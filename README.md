@@ -16,6 +16,7 @@ Setup
 
 - Clone this repo
 - Unrar /Assets/Models/Hogwarts FBX.rar (file too large for github)
+- Enable "Generate Colliders" in Hogwarts model properties
 - Open the folder in Unity
 
 Credits
