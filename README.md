@@ -16,10 +16,14 @@ Setup
 
 - Clone this repo
 - Unrar /Assets/Models/Hogwarts FBX.rar (file too large for github)
-- Enable "Generate Colliders" in Hogwarts model properties
 - Open the folder in Unity
+- Enable "Generate Colliders" in Hogwarts model properties
 
 Credits
 -------------
 
 - Hogwarts model: Dani Moreno (danimorenoanimacion.com)
+
+Copyright Notice
+-------------
+All trademarks or registered trademarks mentioned are property of their respective owners. Unless identified with the designation "COPY FREE", the contents of this project are copyright reserved by its owners.
