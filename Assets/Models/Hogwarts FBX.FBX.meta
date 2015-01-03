@@ -1,0 +1,704 @@
+fileFormatVersion: 2
+guid: ea78caaaf85f5b44ab1dfd793fc8d313
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: caballero sepaparted
+    100002: caballero sepaparted001
+    100004: caballero sepaparted002
+    100006: caballero sepaparted003
+    100008: caballero sepaparted004
+    100010: caballero sepaparted005
+    100012: caballeros
+    100014: caballeros002
+    100016: caballeros004
+    100018: caballeros006
+    100020: caballeros008
+    100022: caballeros010
+    100024: caballeros012
+    100026: caballeros014
+    100028: caballeros016
+    100030: caballeros018
+    100032: caballeros020
+    100034: caballeros022
+    100036: caballeros024
+    100038: caballeros026
+    100040: caballeros027
+    100042: caballeros029
+    100044: caballeros031
+    100046: caballeros033
+    100048: caballeros035
+    100050: caballeros037
+    100052: caballeros039
+    100054: caballeros041
+    100056: caballeros043
+    100058: caballeros045
+    100060: caballeros047
+    100062: caballeros049
+    100064: caballeros050
+    100066: caballeros051
+    100068: caballeros052
+    100070: caballeros054
+    100072: caballeros056
+    100074: caballeros058
+    100076: caballeros060
+    100078: caballeros062
+    100080: caballeros064
+    100082: caballeros066
+    100084: caballeros068
+    100086: caballeros070
+    100088: caballeros072
+    100090: caballeros074
+    100092: caballeros076
+    100094: caballeros077
+    100096: caballeros078
+    100098: DrawCall_0058
+    100100: DrawCall_0071
+    100102: DrawCall_0071_MeshPart0
+    100104: DrawCall_0071_MeshPart1
+    100106: DrawCall_0073
+    100108: DrawCall_0175
+    100110: DrawCall_0175_MeshPart0
+    100112: DrawCall_0175_MeshPart1
+    100114: DrawCall_0175_MeshPart2
+    100116: DrawCall_0193
+    100118: DrawCall_0193_MeshPart0
+    100120: DrawCall_0193_MeshPart1
+    100122: DrawCall_0193_MeshPart2
+    100124: DrawCall_0193_MeshPart3
+    100126: DrawCall_0365
+    100128: DrawCall_0365_MeshPart0
+    100130: DrawCall_0365_MeshPart1
+    100132: DrawCall_0482
+    100134: DrawCall_0482_MeshPart0
+    100136: DrawCall_0482_MeshPart1
+    100138: DrawCall_0482_MeshPart2
+    100140: DrawCall_0482_MeshPart3
+    100142: DrawCall_0482_MeshPart4
+    100144: DrawCall_0482_MeshPart5
+    100146: DrawCall_0482_MeshPart6
+    100148: DrawCall_0482_MeshPart7
+    100150: DrawCall_0482_MeshPart8
+    100152: DrawCall_0482_MeshPart9
+    100154: DrawCall_0760
+    100156: DrawCall_0760_MeshPart0
+    100158: DrawCall_0760_MeshPart1
+    100160: DrawCall_0760_MeshPart2
+    100162: DrawCall_0760_MeshPart3
+    100164: DrawCall_0760_MeshPart4
+    100166: DrawCall_0777
+    100168: DrawCall_0777_MeshPart0
+    100170: DrawCall_0777_MeshPart1
+    100172: DrawCall_0777_MeshPart2
+    100174: DrawCall_0777_MeshPart3
+    100176: DrawCall_0777_MeshPart4
+    100178: DrawCall_0777_MeshPart5
+    100180: DrawCall_0777_MeshPart6
+    100182: DrawCall_0777_MeshPart7
+    100184: DrawCall_0777_MeshPart8
+    100186: DrawCall_0878
+    100188: DrawCall_0878_MeshPart0
+    100190: DrawCall_0878_MeshPart1
+    100192: //RootNode
+    100194: patio principal001
+    100196: patio principal001_MeshPart0
+    100198: patio principal001_MeshPart1
+    100200: patio principal001_MeshPart2
+    100202: patio principal001_MeshPart3
+    100204: patio principal001_MeshPart4
+    100206: patio principal001_MeshPart5
+    100208: patio principal001_MeshPart6
+    100210: patio trasero001
+    100212: patio trasero002
+    100214: patio trasero003
+    100216: patio trasero003_MeshPart0
+    100218: patio trasero003_MeshPart1
+    100220: patio trasero004
+    100222: patio zona trasera
+    100224: puente colgante
+    100226: puente colgante_MeshPart0
+    100228: puente colgante_MeshPart1
+    100230: torre1
+    400000: caballero sepaparted
+    400002: caballero sepaparted001
+    400004: caballero sepaparted002
+    400006: caballero sepaparted003
+    400008: caballero sepaparted004
+    400010: caballero sepaparted005
+    400012: caballeros
+    400014: caballeros002
+    400016: caballeros004
+    400018: caballeros006
+    400020: caballeros008
+    400022: caballeros010
+    400024: caballeros012
+    400026: caballeros014
+    400028: caballeros016
+    400030: caballeros018
+    400032: caballeros020
+    400034: caballeros022
+    400036: caballeros024
+    400038: caballeros026
+    400040: caballeros027
+    400042: caballeros029
+    400044: caballeros031
+    400046: caballeros033
+    400048: caballeros035
+    400050: caballeros037
+    400052: caballeros039
+    400054: caballeros041
+    400056: caballeros043
+    400058: caballeros045
+    400060: caballeros047
+    400062: caballeros049
+    400064: caballeros050
+    400066: caballeros051
+    400068: caballeros052
+    400070: caballeros054
+    400072: caballeros056
+    400074: caballeros058
+    400076: caballeros060
+    400078: caballeros062
+    400080: caballeros064
+    400082: caballeros066
+    400084: caballeros068
+    400086: caballeros070
+    400088: caballeros072
+    400090: caballeros074
+    400092: caballeros076
+    400094: caballeros077
+    400096: caballeros078
+    400098: DrawCall_0058
+    400100: DrawCall_0071
+    400102: DrawCall_0071_MeshPart0
+    400104: DrawCall_0071_MeshPart1
+    400106: DrawCall_0073
+    400108: DrawCall_0175
+    400110: DrawCall_0175_MeshPart0
+    400112: DrawCall_0175_MeshPart1
+    400114: DrawCall_0175_MeshPart2
+    400116: DrawCall_0193
+    400118: DrawCall_0193_MeshPart0
+    400120: DrawCall_0193_MeshPart1
+    400122: DrawCall_0193_MeshPart2
+    400124: DrawCall_0193_MeshPart3
+    400126: DrawCall_0365
+    400128: DrawCall_0365_MeshPart0
+    400130: DrawCall_0365_MeshPart1
+    400132: DrawCall_0482
+    400134: DrawCall_0482_MeshPart0
+    400136: DrawCall_0482_MeshPart1
+    400138: DrawCall_0482_MeshPart2
+    400140: DrawCall_0482_MeshPart3
+    400142: DrawCall_0482_MeshPart4
+    400144: DrawCall_0482_MeshPart5
+    400146: DrawCall_0482_MeshPart6
+    400148: DrawCall_0482_MeshPart7
+    400150: DrawCall_0482_MeshPart8
+    400152: DrawCall_0482_MeshPart9
+    400154: DrawCall_0760
+    400156: DrawCall_0760_MeshPart0
+    400158: DrawCall_0760_MeshPart1
+    400160: DrawCall_0760_MeshPart2
+    400162: DrawCall_0760_MeshPart3
+    400164: DrawCall_0760_MeshPart4
+    400166: DrawCall_0777
+    400168: DrawCall_0777_MeshPart0
+    400170: DrawCall_0777_MeshPart1
+    400172: DrawCall_0777_MeshPart2
+    400174: DrawCall_0777_MeshPart3
+    400176: DrawCall_0777_MeshPart4
+    400178: DrawCall_0777_MeshPart5
+    400180: DrawCall_0777_MeshPart6
+    400182: DrawCall_0777_MeshPart7
+    400184: DrawCall_0777_MeshPart8
+    400186: DrawCall_0878
+    400188: DrawCall_0878_MeshPart0
+    400190: DrawCall_0878_MeshPart1
+    400192: //RootNode
+    400194: patio principal001
+    400196: patio principal001_MeshPart0
+    400198: patio principal001_MeshPart1
+    400200: patio principal001_MeshPart2
+    400202: patio principal001_MeshPart3
+    400204: patio principal001_MeshPart4
+    400206: patio principal001_MeshPart5
+    400208: patio principal001_MeshPart6
+    400210: patio trasero001
+    400212: patio trasero002
+    400214: patio trasero003
+    400216: patio trasero003_MeshPart0
+    400218: patio trasero003_MeshPart1
+    400220: patio trasero004
+    400222: patio zona trasera
+    400224: puente colgante
+    400226: puente colgante_MeshPart0
+    400228: puente colgante_MeshPart1
+    400230: torre1
+    2300000: caballero sepaparted
+    2300002: caballero sepaparted001
+    2300004: caballero sepaparted002
+    2300006: caballero sepaparted003
+    2300008: caballero sepaparted004
+    2300010: caballero sepaparted005
+    2300012: caballeros
+    2300014: caballeros002
+    2300016: caballeros004
+    2300018: caballeros006
+    2300020: caballeros008
+    2300022: caballeros010
+    2300024: caballeros012
+    2300026: caballeros014
+    2300028: caballeros016
+    2300030: caballeros018
+    2300032: caballeros020
+    2300034: caballeros022
+    2300036: caballeros024
+    2300038: caballeros026
+    2300040: caballeros027
+    2300042: caballeros029
+    2300044: caballeros031
+    2300046: caballeros033
+    2300048: caballeros035
+    2300050: caballeros037
+    2300052: caballeros039
+    2300054: caballeros041
+    2300056: caballeros043
+    2300058: caballeros045
+    2300060: caballeros047
+    2300062: caballeros049
+    2300064: caballeros050
+    2300066: caballeros051
+    2300068: caballeros052
+    2300070: caballeros054
+    2300072: caballeros056
+    2300074: caballeros058
+    2300076: caballeros060
+    2300078: caballeros062
+    2300080: caballeros064
+    2300082: caballeros066
+    2300084: caballeros068
+    2300086: caballeros070
+    2300088: caballeros072
+    2300090: caballeros074
+    2300092: caballeros076
+    2300094: caballeros077
+    2300096: caballeros078
+    2300098: DrawCall_0071_MeshPart0
+    2300100: DrawCall_0071_MeshPart1
+    2300102: DrawCall_0073
+    2300104: DrawCall_0175_MeshPart0
+    2300106: DrawCall_0175_MeshPart1
+    2300108: DrawCall_0175_MeshPart2
+    2300110: DrawCall_0193_MeshPart0
+    2300112: DrawCall_0193_MeshPart1
+    2300114: DrawCall_0193_MeshPart2
+    2300116: DrawCall_0193_MeshPart3
+    2300118: DrawCall_0365_MeshPart0
+    2300120: DrawCall_0365_MeshPart1
+    2300122: DrawCall_0482_MeshPart0
+    2300124: DrawCall_0482_MeshPart1
+    2300126: DrawCall_0482_MeshPart2
+    2300128: DrawCall_0482_MeshPart3
+    2300130: DrawCall_0482_MeshPart4
+    2300132: DrawCall_0482_MeshPart5
+    2300134: DrawCall_0482_MeshPart6
+    2300136: DrawCall_0482_MeshPart7
+    2300138: DrawCall_0482_MeshPart8
+    2300140: DrawCall_0482_MeshPart9
+    2300142: DrawCall_0760_MeshPart0
+    2300144: DrawCall_0760_MeshPart1
+    2300146: DrawCall_0760_MeshPart2
+    2300148: DrawCall_0760_MeshPart3
+    2300150: DrawCall_0760_MeshPart4
+    2300152: DrawCall_0777_MeshPart0
+    2300154: DrawCall_0777_MeshPart1
+    2300156: DrawCall_0777_MeshPart2
+    2300158: DrawCall_0777_MeshPart3
+    2300160: DrawCall_0777_MeshPart4
+    2300162: DrawCall_0777_MeshPart5
+    2300164: DrawCall_0777_MeshPart6
+    2300166: DrawCall_0777_MeshPart7
+    2300168: DrawCall_0777_MeshPart8
+    2300170: DrawCall_0878_MeshPart0
+    2300172: DrawCall_0878_MeshPart1
+    2300174: patio principal001_MeshPart0
+    2300176: patio principal001_MeshPart1
+    2300178: patio principal001_MeshPart2
+    2300180: patio principal001_MeshPart3
+    2300182: patio principal001_MeshPart4
+    2300184: patio principal001_MeshPart5
+    2300186: patio principal001_MeshPart6
+    2300188: patio trasero001
+    2300190: patio trasero002
+    2300192: patio trasero003_MeshPart0
+    2300194: patio trasero003_MeshPart1
+    2300196: patio trasero004
+    2300198: patio zona trasera
+    2300200: puente colgante_MeshPart0
+    2300202: puente colgante_MeshPart1
+    2300204: torre1
+    3300000: caballero sepaparted
+    3300002: caballero sepaparted001
+    3300004: caballero sepaparted002
+    3300006: caballero sepaparted003
+    3300008: caballero sepaparted004
+    3300010: caballero sepaparted005
+    3300012: caballeros
+    3300014: caballeros002
+    3300016: caballeros004
+    3300018: caballeros006
+    3300020: caballeros008
+    3300022: caballeros010
+    3300024: caballeros012
+    3300026: caballeros014
+    3300028: caballeros016
+    3300030: caballeros018
+    3300032: caballeros020
+    3300034: caballeros022
+    3300036: caballeros024
+    3300038: caballeros026
+    3300040: caballeros027
+    3300042: caballeros029
+    3300044: caballeros031
+    3300046: caballeros033
+    3300048: caballeros035
+    3300050: caballeros037
+    3300052: caballeros039
+    3300054: caballeros041
+    3300056: caballeros043
+    3300058: caballeros045
+    3300060: caballeros047
+    3300062: caballeros049
+    3300064: caballeros050
+    3300066: caballeros051
+    3300068: caballeros052
+    3300070: caballeros054
+    3300072: caballeros056
+    3300074: caballeros058
+    3300076: caballeros060
+    3300078: caballeros062
+    3300080: caballeros064
+    3300082: caballeros066
+    3300084: caballeros068
+    3300086: caballeros070
+    3300088: caballeros072
+    3300090: caballeros074
+    3300092: caballeros076
+    3300094: caballeros077
+    3300096: caballeros078
+    3300098: DrawCall_0071_MeshPart0
+    3300100: DrawCall_0071_MeshPart1
+    3300102: DrawCall_0073
+    3300104: DrawCall_0175_MeshPart0
+    3300106: DrawCall_0175_MeshPart1
+    3300108: DrawCall_0175_MeshPart2
+    3300110: DrawCall_0193_MeshPart0
+    3300112: DrawCall_0193_MeshPart1
+    3300114: DrawCall_0193_MeshPart2
+    3300116: DrawCall_0193_MeshPart3
+    3300118: DrawCall_0365_MeshPart0
+    3300120: DrawCall_0365_MeshPart1
+    3300122: DrawCall_0482_MeshPart0
+    3300124: DrawCall_0482_MeshPart1
+    3300126: DrawCall_0482_MeshPart2
+    3300128: DrawCall_0482_MeshPart3
+    3300130: DrawCall_0482_MeshPart4
+    3300132: DrawCall_0482_MeshPart5
+    3300134: DrawCall_0482_MeshPart6
+    3300136: DrawCall_0482_MeshPart7
+    3300138: DrawCall_0482_MeshPart8
+    3300140: DrawCall_0482_MeshPart9
+    3300142: DrawCall_0760_MeshPart0
+    3300144: DrawCall_0760_MeshPart1
+    3300146: DrawCall_0760_MeshPart2
+    3300148: DrawCall_0760_MeshPart3
+    3300150: DrawCall_0760_MeshPart4
+    3300152: DrawCall_0777_MeshPart0
+    3300154: DrawCall_0777_MeshPart1
+    3300156: DrawCall_0777_MeshPart2
+    3300158: DrawCall_0777_MeshPart3
+    3300160: DrawCall_0777_MeshPart4
+    3300162: DrawCall_0777_MeshPart5
+    3300164: DrawCall_0777_MeshPart6
+    3300166: DrawCall_0777_MeshPart7
+    3300168: DrawCall_0777_MeshPart8
+    3300170: DrawCall_0878_MeshPart0
+    3300172: DrawCall_0878_MeshPart1
+    3300174: patio principal001_MeshPart0
+    3300176: patio principal001_MeshPart1
+    3300178: patio principal001_MeshPart2
+    3300180: patio principal001_MeshPart3
+    3300182: patio principal001_MeshPart4
+    3300184: patio principal001_MeshPart5
+    3300186: patio principal001_MeshPart6
+    3300188: patio trasero001
+    3300190: patio trasero002
+    3300192: patio trasero003_MeshPart0
+    3300194: patio trasero003_MeshPart1
+    3300196: patio trasero004
+    3300198: patio zona trasera
+    3300200: puente colgante_MeshPart0
+    3300202: puente colgante_MeshPart1
+    3300204: torre1
+    4300000: patio trasero001
+    4300002: patio trasero002
+    4300004: torre1
+    4300006: DrawCall_0777_MeshPart0
+    4300008: DrawCall_0777_MeshPart1
+    4300010: DrawCall_0777_MeshPart2
+    4300012: DrawCall_0777_MeshPart3
+    4300014: DrawCall_0777_MeshPart4
+    4300016: DrawCall_0777_MeshPart5
+    4300018: DrawCall_0777_MeshPart6
+    4300020: DrawCall_0777_MeshPart7
+    4300022: DrawCall_0777_MeshPart8
+    4300024: DrawCall_0193_MeshPart0
+    4300026: DrawCall_0193_MeshPart1
+    4300028: DrawCall_0193_MeshPart2
+    4300030: DrawCall_0193_MeshPart3
+    4300032: DrawCall_0071_MeshPart0
+    4300034: DrawCall_0071_MeshPart1
+    4300036: DrawCall_0175_MeshPart0
+    4300038: DrawCall_0175_MeshPart1
+    4300040: DrawCall_0175_MeshPart2
+    4300042: DrawCall_0365_MeshPart0
+    4300044: DrawCall_0365_MeshPart1
+    4300046: DrawCall_0760_MeshPart0
+    4300048: DrawCall_0760_MeshPart1
+    4300050: DrawCall_0760_MeshPart2
+    4300052: DrawCall_0760_MeshPart3
+    4300054: DrawCall_0760_MeshPart4
+    4300056: DrawCall_0878_MeshPart0
+    4300058: DrawCall_0878_MeshPart1
+    4300060: DrawCall_0482_MeshPart0
+    4300062: DrawCall_0482_MeshPart1
+    4300064: DrawCall_0482_MeshPart2
+    4300066: DrawCall_0482_MeshPart3
+    4300068: DrawCall_0482_MeshPart4
+    4300070: DrawCall_0482_MeshPart5
+    4300072: DrawCall_0482_MeshPart6
+    4300074: DrawCall_0482_MeshPart7
+    4300076: DrawCall_0482_MeshPart8
+    4300078: DrawCall_0482_MeshPart9
+    4300080: DrawCall_0073
+    4300082: patio principal001_MeshPart0
+    4300084: patio principal001_MeshPart1
+    4300086: patio principal001_MeshPart2
+    4300088: patio principal001_MeshPart3
+    4300090: patio principal001_MeshPart4
+    4300092: patio principal001_MeshPart5
+    4300094: patio principal001_MeshPart6
+    4300096: patio trasero003_MeshPart0
+    4300098: patio trasero003_MeshPart1
+    4300100: patio zona trasera
+    4300102: puente colgante_MeshPart0
+    4300104: puente colgante_MeshPart1
+    4300106: caballeros
+    4300108: caballeros002
+    4300110: caballeros004
+    4300112: caballeros006
+    4300114: caballeros008
+    4300116: caballeros010
+    4300118: caballeros012
+    4300120: caballeros014
+    4300122: caballeros016
+    4300124: caballeros018
+    4300126: caballeros020
+    4300128: caballeros022
+    4300130: caballeros024
+    4300132: caballeros026
+    4300134: caballeros027
+    4300136: caballeros029
+    4300138: caballeros031
+    4300140: caballeros033
+    4300142: caballeros035
+    4300144: caballeros037
+    4300146: caballeros039
+    4300148: caballeros041
+    4300150: caballeros043
+    4300152: caballeros045
+    4300154: caballeros047
+    4300156: caballeros049
+    4300158: caballeros050
+    4300160: caballero sepaparted
+    4300162: caballeros051
+    4300164: caballeros052
+    4300166: caballero sepaparted001
+    4300168: caballero sepaparted002
+    4300170: caballeros054
+    4300172: caballeros056
+    4300174: caballeros058
+    4300176: caballeros060
+    4300178: caballeros062
+    4300180: caballeros064
+    4300182: caballeros066
+    4300184: caballeros068
+    4300186: caballeros070
+    4300188: caballeros072
+    4300190: caballeros074
+    4300192: caballeros076
+    4300194: caballeros077
+    4300196: caballeros078
+    4300198: caballero sepaparted003
+    4300200: caballero sepaparted004
+    4300202: caballero sepaparted005
+    4300204: patio trasero004
+    6400000: caballero sepaparted
+    6400002: caballero sepaparted001
+    6400004: caballero sepaparted002
+    6400006: caballero sepaparted003
+    6400008: caballero sepaparted004
+    6400010: caballero sepaparted005
+    6400012: caballeros
+    6400014: caballeros002
+    6400016: caballeros004
+    6400018: caballeros006
+    6400020: caballeros008
+    6400022: caballeros010
+    6400024: caballeros012
+    6400026: caballeros014
+    6400028: caballeros016
+    6400030: caballeros018
+    6400032: caballeros020
+    6400034: caballeros022
+    6400036: caballeros024
+    6400038: caballeros026
+    6400040: caballeros027
+    6400042: caballeros029
+    6400044: caballeros031
+    6400046: caballeros033
+    6400048: caballeros035
+    6400050: caballeros037
+    6400052: caballeros039
+    6400054: caballeros041
+    6400056: caballeros043
+    6400058: caballeros045
+    6400060: caballeros047
+    6400062: caballeros049
+    6400064: caballeros050
+    6400066: caballeros051
+    6400068: caballeros052
+    6400070: caballeros054
+    6400072: caballeros056
+    6400074: caballeros058
+    6400076: caballeros060
+    6400078: caballeros062
+    6400080: caballeros064
+    6400082: caballeros066
+    6400084: caballeros068
+    6400086: caballeros070
+    6400088: caballeros072
+    6400090: caballeros074
+    6400092: caballeros076
+    6400094: caballeros077
+    6400096: caballeros078
+    6400098: DrawCall_0071_MeshPart0
+    6400100: DrawCall_0071_MeshPart1
+    6400102: DrawCall_0073
+    6400104: DrawCall_0175_MeshPart0
+    6400106: DrawCall_0175_MeshPart1
+    6400108: DrawCall_0175_MeshPart2
+    6400110: DrawCall_0193_MeshPart0
+    6400112: DrawCall_0193_MeshPart1
+    6400114: DrawCall_0193_MeshPart2
+    6400116: DrawCall_0193_MeshPart3
+    6400118: DrawCall_0365_MeshPart0
+    6400120: DrawCall_0365_MeshPart1
+    6400122: DrawCall_0482_MeshPart0
+    6400124: DrawCall_0482_MeshPart1
+    6400126: DrawCall_0482_MeshPart2
+    6400128: DrawCall_0482_MeshPart3
+    6400130: DrawCall_0482_MeshPart4
+    6400132: DrawCall_0482_MeshPart5
+    6400134: DrawCall_0482_MeshPart6
+    6400136: DrawCall_0482_MeshPart7
+    6400138: DrawCall_0482_MeshPart8
+    6400140: DrawCall_0482_MeshPart9
+    6400142: DrawCall_0760_MeshPart0
+    6400144: DrawCall_0760_MeshPart1
+    6400146: DrawCall_0760_MeshPart2
+    6400148: DrawCall_0760_MeshPart3
+    6400150: DrawCall_0760_MeshPart4
+    6400152: DrawCall_0777_MeshPart0
+    6400154: DrawCall_0777_MeshPart1
+    6400156: DrawCall_0777_MeshPart2
+    6400158: DrawCall_0777_MeshPart3
+    6400160: DrawCall_0777_MeshPart4
+    6400162: DrawCall_0777_MeshPart5
+    6400164: DrawCall_0777_MeshPart6
+    6400166: DrawCall_0777_MeshPart7
+    6400168: DrawCall_0777_MeshPart8
+    6400170: DrawCall_0878_MeshPart0
+    6400172: DrawCall_0878_MeshPart1
+    6400174: patio principal001_MeshPart0
+    6400176: patio principal001_MeshPart1
+    6400178: patio principal001_MeshPart2
+    6400180: patio principal001_MeshPart3
+    6400182: patio principal001_MeshPart4
+    6400184: patio principal001_MeshPart5
+    6400186: patio principal001_MeshPart6
+    6400188: patio trasero001
+    6400190: patio trasero002
+    6400192: patio trasero003_MeshPart0
+    6400194: patio trasero003_MeshPart1
+    6400196: patio trasero004
+    6400198: patio zona trasera
+    6400200: puente colgante_MeshPart0
+    6400202: puente colgante_MeshPart1
+    6400204: torre1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
