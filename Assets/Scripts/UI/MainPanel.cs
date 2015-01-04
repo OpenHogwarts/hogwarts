@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MainPanel : MonoBehaviour {
+
+	private string defaultLevel = "Hogwarts";
+	private string debugLevel = "Test";
 	
 	void Start () {
 		GameObject.Find ("Canvas/MainPanel/NickInput/Text").GetComponent<Text> ().text = PhotonNetwork.player.name;
@@ -23,18 +26,23 @@ public class MainPanel : MonoBehaviour {
 		GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Connecting...";
 	}
 
+	public void joinTest () {
+		defaultLevel = debugLevel;
+		joinGame ();
+	}
+
 	void OnJoinedLobby () {
 		PhotonNetwork.JoinRandomRoom();
 	}
 
 	void OnJoinedRoom()
 	{
-		PhotonNetwork.LoadLevel("Hogwarts");
+		PhotonNetwork.LoadLevel(defaultLevel);
 	}
 
 	void OnCreatedRoom()
 	{
-		PhotonNetwork.LoadLevel("Hogwarts");
+		PhotonNetwork.LoadLevel(defaultLevel);
 	}
 
 	void OnPhotonRandomJoinFailed()

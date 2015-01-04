@@ -5,14 +5,14 @@ public class NetworkManager : Photon.MonoBehaviour {
 
 	public void Awake()
 	{
-		// in case we started this demo with the wrong scene being active, simply load the menu scene
+		// in case we started with the wrong scene being active, simply load the menu scene
 		if (!PhotonNetwork.connected)
 		{
-			Application.LoadLevel("Menu");
+			Application.LoadLevel("MainMenu");
 			return;
 		}
 		
-		GameObject player = PhotonNetwork.Instantiate("Player", GameObject.Find("SpawnPoints/FirstJoin").transform.position, Quaternion.identity, 0);
+		GameObject player = PhotonNetwork.Instantiate("Characters/Player", GameObject.Find("SpawnPoints/FirstJoin").transform.position, Quaternion.identity, 0);
 
 		player.GetComponent<MouseLook> ().enabled = true;
 		player.GetComponent<CharacterController>().enabled = true;
