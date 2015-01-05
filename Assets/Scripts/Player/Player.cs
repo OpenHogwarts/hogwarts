@@ -8,6 +8,7 @@ public class Player : Photon.MonoBehaviour {
 
 	Animator anim;
 	bool gotFirstUpdate = false;
+	public TextMesh nick;
 
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -43,6 +44,7 @@ public class Player : Photon.MonoBehaviour {
 		if (stream.isWriting)
 		{
 			// We own this player: send the others our data
+			stream.SendNext(PhotonNetwork.playerName);
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 			stream.SendNext(anim.GetFloat("Speed"));
@@ -51,6 +53,7 @@ public class Player : Photon.MonoBehaviour {
 		else
 		{
 			// Network player, receive data
+			nick.text = (string)stream.ReceiveNext();
 			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
 			anim.SetFloat("Speed", (float)stream.ReceiveNext());

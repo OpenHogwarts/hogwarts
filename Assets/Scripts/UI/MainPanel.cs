@@ -13,17 +13,19 @@ public class MainPanel : MonoBehaviour {
 
 	void updateNick () {
 		string nick = GameObject.Find ("Canvas/MainPanel/NickInput/Text").GetComponent<Text> ().text;
-		if (nick == "") { return; }
 
 		PlayerPrefs.SetString ("Nick", nick);
 		PhotonNetwork.player.name = nick;
+		PhotonNetwork.playerName = nick;
 	}
 
 	public void joinGame () {
 		updateNick ();
-		PhotonNetwork.ConnectUsingSettings( Menu.GAME_VERSION );
 
-		GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Connecting...";
+		if (PhotonNetwork.player.name.Length > 3) {
+			PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+			GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
+		}
 	}
 
 	public void joinTest () {
