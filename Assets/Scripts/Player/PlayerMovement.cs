@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		/*if (Chat.isWritting) {
+			return;
+		}*/
 		
 		// WASD forward/back & left/right movement is stored in "direction"
 		direction = transform.rotation * new Vector3( Input.GetAxis("Horizontal") , 0, Input.GetAxis("Vertical") );
@@ -50,6 +54,10 @@ public class PlayerMovement : MonoBehaviour {
 	// FixedUpdate is called once per physics loop
 	// Do all MOVEMENT and other physics stuff here.
 	void FixedUpdate () {
+
+		/*if (Chat.isWritting) {
+			return;
+		}*/
 		
 		// "direction" is the desired movement direction, based on our player's input
 		Vector3 dist = direction * speed * Time.deltaTime;

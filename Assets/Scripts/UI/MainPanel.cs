@@ -16,7 +16,6 @@ public class MainPanel : MonoBehaviour {
 
 		PlayerPrefs.SetString ("Nick", nick);
 		PhotonNetwork.player.name = nick;
-		PhotonNetwork.playerName = nick;
 	}
 
 	public void joinGame () {

@@ -21,16 +21,14 @@ public class NetworkManager : Photon.MonoBehaviour {
 		player.transform.FindChild ("NamePlate").GetComponent<TextMesh>().text = PhotonNetwork.playerName;
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
 	}
-
+	/*
 	void OnPhotonPlayerDisconnected(PhotonPlayer player)
 	{
-		Chat chat = GetComponent<Chat>();
 		chat.sendMessage(player.name + " left the game");
 	}
 
 	void OnPhotonPlayerConnect(PhotonPlayer player)
 	{
-		Chat chat = GetComponent<Chat>();
 		chat.sendMessage(player.name + " joined the game");
-	}
+	}*/
 }

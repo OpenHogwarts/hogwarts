@@ -44,7 +44,7 @@ public class Player : Photon.MonoBehaviour {
 		if (stream.isWriting)
 		{
 			// We own this player: send the others our data
-			stream.SendNext(PhotonNetwork.playerName);
+			stream.SendNext(PhotonNetwork.player.name);
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 			stream.SendNext(anim.GetFloat("Speed"));
