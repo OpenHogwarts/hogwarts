@@ -8,14 +8,14 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 Requirements
 -------------
-- Unity >= 4.6
+- Unity Pro >= 4.6
 
 Setup
 -------------
 [![Analytics](https://ga-beacon.appspot.com/UA-17476024-7/hogwarts/readme?pixel)](https://github.com/OpenHogwarts/hogwarts)
 
 - Clone this repo
-- Unrar /Assets/Models/Hogwarts FBX.rar (file too large for github)
+- Unrar /Assets/Models/Hogwarts FBX.rar (file too large for github - pending to be splitted)
 - Open the folder in Unity
 - Enable "Generate Colliders" in Hogwarts model properties
 
