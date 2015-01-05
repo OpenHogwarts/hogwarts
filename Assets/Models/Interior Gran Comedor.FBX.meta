@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: da36bbcdede36f743b0426cd361eedc6
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: antorchas depie
+    100002: casa gryffindor
+    100004: cortinas entrada castillo
+    100006: Cuadros escalera magica
+    100008: DrawCall_0000
+    100010: DrawCall_0051
+    100012: DrawCall_0052
+    100014: DrawCall_1996
+    100016: el gran comedor
+    100018: EL GRAN COMEDOR Y ESCALERAS MAGICAS
+    100020: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart0
+    100022: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart1
+    100024: el gran comedor_MeshPart0
+    100026: el gran comedor_MeshPart1
+    100028: //RootNode
+    100030: paredes objetos escaleras
+    100032: patio del relog
+    100034: patio transformaciones
+    100036: pociones
+    100038: puerta biblioteca
+    100040: puerta entrada castillo 1
+    100042: puerta entrada castillo 2
+    100044: puerta3
+    100046: puerta4
+    100048: puerta5
+    100050: puerta6
+    100052: puerta7
+    100054: quiddicht
+    100056: rieles puerta entrada castillo 1
+    400000: antorchas depie
+    400002: casa gryffindor
+    400004: cortinas entrada castillo
+    400006: Cuadros escalera magica
+    400008: DrawCall_0000
+    400010: DrawCall_0051
+    400012: DrawCall_0052
+    400014: DrawCall_1996
+    400016: el gran comedor
+    400018: EL GRAN COMEDOR Y ESCALERAS MAGICAS
+    400020: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart0
+    400022: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart1
+    400024: el gran comedor_MeshPart0
+    400026: el gran comedor_MeshPart1
+    400028: //RootNode
+    400030: paredes objetos escaleras
+    400032: patio del relog
+    400034: patio transformaciones
+    400036: pociones
+    400038: puerta biblioteca
+    400040: puerta entrada castillo 1
+    400042: puerta entrada castillo 2
+    400044: puerta3
+    400046: puerta4
+    400048: puerta5
+    400050: puerta6
+    400052: puerta7
+    400054: quiddicht
+    400056: rieles puerta entrada castillo 1
+    2300000: antorchas depie
+    2300002: casa gryffindor
+    2300004: cortinas entrada castillo
+    2300006: Cuadros escalera magica
+    2300008: DrawCall_0000
+    2300010: DrawCall_0051
+    2300012: DrawCall_0052
+    2300014: DrawCall_1996
+    2300016: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart0
+    2300018: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart1
+    2300020: el gran comedor_MeshPart0
+    2300022: el gran comedor_MeshPart1
+    2300024: paredes objetos escaleras
+    2300026: patio del relog
+    2300028: patio transformaciones
+    2300030: pociones
+    2300032: puerta biblioteca
+    2300034: puerta entrada castillo 1
+    2300036: puerta entrada castillo 2
+    2300038: puerta4
+    2300040: puerta5
+    2300042: puerta6
+    2300044: puerta7
+    2300046: quiddicht
+    2300048: rieles puerta entrada castillo 1
+    3300000: antorchas depie
+    3300002: casa gryffindor
+    3300004: cortinas entrada castillo
+    3300006: Cuadros escalera magica
+    3300008: DrawCall_0000
+    3300010: DrawCall_0051
+    3300012: DrawCall_0052
+    3300014: DrawCall_1996
+    3300016: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart0
+    3300018: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart1
+    3300020: el gran comedor_MeshPart0
+    3300022: el gran comedor_MeshPart1
+    3300024: paredes objetos escaleras
+    3300026: patio del relog
+    3300028: patio transformaciones
+    3300030: pociones
+    3300032: puerta biblioteca
+    3300034: puerta entrada castillo 1
+    3300036: puerta entrada castillo 2
+    3300038: puerta4
+    3300040: puerta5
+    3300042: puerta6
+    3300044: puerta7
+    3300046: quiddicht
+    3300048: rieles puerta entrada castillo 1
+    4300000: el gran comedor_MeshPart0
+    4300002: el gran comedor_MeshPart1
+    4300004: Cuadros escalera magica
+    4300006: paredes objetos escaleras
+    4300008: antorchas depie
+    4300010: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart0
+    4300012: EL GRAN COMEDOR Y ESCALERAS MAGICAS_MeshPart1
+    4300014: puerta6
+    4300016: casa gryffindor
+    4300018: puerta7
+    4300020: puerta entrada castillo 2
+    4300022: DrawCall_1996
+    4300024: puerta5
+    4300026: patio del relog
+    4300028: puerta4
+    4300030: DrawCall_0052
+    4300032: DrawCall_0051
+    4300034: rieles puerta entrada castillo 1
+    4300036: DrawCall_0000
+    4300038: puerta biblioteca
+    4300040: quiddicht
+    4300042: pociones
+    4300044: patio transformaciones
+    4300046: puerta entrada castillo 1
+    4300048: cortinas entrada castillo
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
