@@ -25,7 +25,7 @@ public class Player : Photon.MonoBehaviour {
 			}
 
 			//looks like player is falling
-			if (transform.position.y < -40) {
+			if (transform.position.y < -100) {
 				transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
 			}
 		}
