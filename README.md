@@ -5,6 +5,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 ![hogwarts](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen1.png)
 ![hogwars2](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen2.png)
+![hogwars3](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen3.png)
 
 Requirements
 -------------
