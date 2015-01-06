@@ -16,26 +16,18 @@ public class Player : Photon.MonoBehaviour {
 
 	void Update()
 	{
-		if (photonView.isMine) {
-
-			// show / hide chat
-			if (Input.GetKey(KeyCode.Return)) {
-				GameLogic.showChat = true;
-			}
-
-			if (Input.GetKeyDown(KeyCode.Escape)) {
-				Debug.Log("show chat "+ GameLogic.showChat);
-				// maybe user just wants to hide the chat
-				if (GameLogic.showChat) {
-					GameLogic.showChat = false;
-				} else {
-					// show ESC MENU
-				}
-			}
-
-		} else {
+		if (!photonView.isMine) {
 			transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
 			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
+		} else {
+			if (!gotFirstUpdate) {
+				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.Others, PhotonNetwork.player.name);
+			}
+
+			//looks like player is falling
+			if (transform.position.y < -40) {
+				transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+			}
 		}
 	}
 
@@ -44,7 +36,6 @@ public class Player : Photon.MonoBehaviour {
 		if (stream.isWriting)
 		{
 			// We own this player: send the others our data
-			stream.SendNext(PhotonNetwork.player.name);
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
 			stream.SendNext(anim.GetFloat("Speed"));
@@ -53,11 +44,14 @@ public class Player : Photon.MonoBehaviour {
 		else
 		{
 			// Network player, receive data
-			nick.text = (string)stream.ReceiveNext();
 			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
-			anim.SetFloat("Speed", (float)stream.ReceiveNext());
-			anim.SetBool("Jumping", (bool)stream.ReceiveNext());
+
+			if (anim) {
+				anim.SetFloat("Speed", (float)stream.ReceiveNext());
+				anim.SetBool("Jumping", (bool)stream.ReceiveNext());
+			}
+
 			
 			if(gotFirstUpdate == false) {
 				transform.position = this.correctPlayerPos;
@@ -66,5 +60,10 @@ public class Player : Photon.MonoBehaviour {
 			}
 			
 		}
+	}
+
+	[RPC]
+	void setNick (string name) {
+		nick.text = name;
 	}
 }

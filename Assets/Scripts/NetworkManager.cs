@@ -18,7 +18,6 @@ public class NetworkManager : Photon.MonoBehaviour {
 		player.GetComponent<CharacterController>().enabled = true;
 		player.GetComponent<PlayerMovement> ().enabled = true;
 		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
-		player.transform.FindChild ("NamePlate").GetComponent<TextMesh>().text = PhotonNetwork.playerName;
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
 	}
 	/*

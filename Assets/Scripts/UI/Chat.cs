@@ -14,8 +14,8 @@ public class Chat : MonoBehaviour {
 
 	public static bool isWritting = false;
 
-	public void setWritting () {
-		isWritting = true;
+	public void setWritting (bool isIt) {
+		isWritting = isIt;
 	}
 	
 	// Update is called once per frame
