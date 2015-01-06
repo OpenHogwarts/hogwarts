@@ -14,7 +14,7 @@ public class KeyCommands : MonoBehaviour {
 				canvas.SetActive(true);
 			}
 		}else if (Input.GetKeyDown (KeyCode.F2)) {
-			Application.CaptureScreenshot(string.Format("Captura{0}.png", System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f")), 4);
+			Application.CaptureScreenshot(string.Format("Captura{0}.png", System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f")), 2);
 		}
 
 	}
