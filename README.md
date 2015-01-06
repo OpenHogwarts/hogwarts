@@ -15,14 +15,21 @@ Setup
 [![Analytics](https://ga-beacon.appspot.com/UA-17476024-7/hogwarts/readme?pixel)](https://github.com/OpenHogwarts/hogwarts)
 
 - Clone this repo
-- Unrar /Assets/Models/Hogwarts FBX.rar (file too large for github - pending to be splitted)
 - Open the folder in Unity
-- Enable "Generate Colliders" in Hogwarts model properties
+- Enjoy
+
+
+Working features
+-------------
+- Multiplayer
+- Chat
+
 
 Credits
 -------------
 
 - Hogwarts model: Dani Moreno (danimorenoanimacion.com)
+- student & teacher models: Spider-Z
 
 Copyright Notice
 -------------
