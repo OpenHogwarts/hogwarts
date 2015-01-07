@@ -5,7 +5,7 @@ public class Player : Photon.MonoBehaviour {
 
 	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
 	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
-	public int Health = 0;
+	public int Health = 100;
 
 	public int health
 	{
