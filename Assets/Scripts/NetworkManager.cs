@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class NetworkManager : Photon.MonoBehaviour {
+
+	public Texture mmarow;
 	
 	public void Awake()
 	{
@@ -21,6 +23,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
 		GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
 		GameObject.Find("MiniMapElementsCamera").GetComponent<MiniMap>().target = player.transform;
+		player.transform.FindChild ("Indicator").renderer.material.mainTexture = mmarow;
 	}
 	/*
 	void OnPhotonPlayerDisconnected(PhotonPlayer player)
