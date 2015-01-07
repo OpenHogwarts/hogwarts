@@ -20,6 +20,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
 		GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
+		GameObject.Find("MiniMapElementsCamera").GetComponent<MiniMap>().target = player.transform;
 	}
 	/*
 	void OnPhotonPlayerDisconnected(PhotonPlayer player)
