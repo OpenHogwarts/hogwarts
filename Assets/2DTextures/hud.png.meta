@@ -9,6 +9,7 @@ TextureImporter:
     21300008: hud_4
     21300010: hud_5
     21300012: hud_6
+    21300014: hud_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -117,6 +118,16 @@ TextureImporter:
         y: 1919
         width: 1110
         height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1799
+        width: 278
+        height: 118
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

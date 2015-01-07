@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class NetworkManager : Photon.MonoBehaviour {
-
+	
 	public void Awake()
 	{
 		// in case we started with the wrong scene being active, simply load the menu scene
