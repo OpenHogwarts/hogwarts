@@ -18,7 +18,44 @@ public class Player : Photon.MonoBehaviour {
 			characterData.health = value;
 
 			if (photonView.isMine) {
-				HealthBar.Instance.updateUI(characterData.health, characterData.maxHealth);
+				characterData.save();
+				healthBar.updateVertical(characterData.health, characterData.maxHealth);
+			}
+		}
+	}
+
+	public int exp
+	{
+		get {return characterData.exp;}
+		set {
+			//prevent negative values
+			if (value <  0) {
+				value = 0;
+			}
+			
+			characterData.exp = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+				expBar.updateHoritzontal(characterData.exp, 100);
+			}
+		}
+	}
+
+	public int mana
+	{
+		get {return characterData.mana;}
+		set {
+			//prevent negative values
+			if (value <  0) {
+				value = 0;
+			}
+			
+			characterData.mana = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+				manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
 			}
 		}
 	}
@@ -28,6 +65,10 @@ public class Player : Photon.MonoBehaviour {
 	Animator anim;
 	bool gotFirstUpdate = false;
 	public TextMesh nick;
+
+	public UIBar healthBar;
+	public UIBar expBar;
+	public UIBar manaBar;
 
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -41,7 +82,16 @@ public class Player : Photon.MonoBehaviour {
 		} else {
 			if (!gotFirstUpdate) {
 				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.Others, PhotonNetwork.player.name);
-				HealthBar.Instance.updateUI(characterData.health, characterData.maxHealth);
+
+				healthBar = GameObject.Find ("Canvas/HP Orb").GetComponent<UIBar>();
+				expBar = GameObject.Find ("Canvas/ExpBar").GetComponent<UIBar>();
+				manaBar = GameObject.Find ("Canvas/Mana Semicircle").GetComponent<UIBar>();
+
+				healthBar.updateVertical(characterData.health, characterData.maxHealth);
+				expBar.updateHoritzontal(characterData.exp, 100);
+				manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
+
+				gotFirstUpdate = true;
 			}
 
 			//looks like player is falling
