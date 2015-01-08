@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using iBoxDB.LocalServer;
 
 public class NetworkManager : Photon.MonoBehaviour {
 
@@ -15,6 +16,13 @@ public class NetworkManager : Photon.MonoBehaviour {
 		}
 		
 		GameObject player = PhotonNetwork.Instantiate("Characters/Player", GameObject.Find("SpawnPoints/FirstJoin").transform.position, Quaternion.identity, 0);
+		
+
+		// @ToDo: this SHOULD NOT BE A FOREACH
+		foreach (CharacterData character in Menu.db.Select<CharacterData>("FROM characters WHERE id = ?", PhotonNetwork.player.customProperties["characterId"])) {
+			player.GetComponent<Player> ().characterData = character;
+			break;
+		}
 
 		player.GetComponent<MouseLook> ().enabled = true;
 		player.GetComponent<CharacterController>().enabled = true;

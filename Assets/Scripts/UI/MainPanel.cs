@@ -1,35 +1,56 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
 
 	private string defaultLevel = "Hogwarts";
 	private string debugLevel = "Test";
 	
-	void Start () {
-		GameObject.Find ("Canvas/MainPanel/NickInput/Text").GetComponent<Text> ().text = PhotonNetwork.player.name;
-	}
+	public void Start () {
+		bool hasPlayer = false;
 
-	void updateNick () {
-		string nick = GameObject.Find ("Canvas/MainPanel/NickInput/Text").GetComponent<Text> ().text;
+		// @ToDo: this SHOULD NOT BE A FOREACH
+		foreach (CharacterData character in Menu.db.Select<CharacterData>("FROM characters")) {
+			hasPlayer = true;
 
-		PlayerPrefs.SetString ("Nick", nick);
-		PhotonNetwork.player.name = nick;
-	}
-
-	public void joinGame () {
-		updateNick ();
-
-		if (PhotonNetwork.player.name.Length > 3) {
-			PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
-			GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").GetComponent<Text>().text = character.name;
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").GetComponent<Text>().text = character.level.ToString();
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").GetComponent<Button>().onClick.AddListener(
+				delegate {
+				this.joinGame(character.id);
+			});
+			break;
 		}
+		if (hasPlayer) {
+			GameObject.Find ("Canvas/MainPanel/CreateButton").SetActive(false);
+		} else {
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").SetActive(false);
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").SetActive(false);
+			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").SetActive(false);
+		}
+	}
+
+	public void joinGame (int characterId) {
+
+		if (characterId < 1) {
+			return;
+		}
+
+		Hashtable h = new Hashtable(1);
+		h.Add("characterId", characterId);
+
+		PhotonNetwork.player.SetCustomProperties(h);
+		
+		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+		GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
 	}
 
 	public void joinTest () {
 		defaultLevel = debugLevel;
-		joinGame ();
+		joinGame (1);
 	}
 
 	void OnJoinedLobby () {

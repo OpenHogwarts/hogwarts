@@ -5,28 +5,25 @@ public class Player : Photon.MonoBehaviour {
 
 	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
 	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
-	public int Health = 100;
 
 	public int health
 	{
-		get {return Health;}
+		get {return characterData.health;}
 		set {
 			//prevent negative health values
 			if (value <  0) {
 				value = 0;
 			}
 
-			Health = value;
+			characterData.health = value;
 
 			if (photonView.isMine) {
-				HealthBar.Instance.updateUI(health, maxHealth);
+				HealthBar.Instance.updateUI(characterData.health, characterData.maxHealth);
 			}
 		}
 	}
-	private int maxHealth = 100;
-	private int experience;
-	private int mana;
-	private int maxMana;
+
+	public CharacterData characterData;
 
 	Animator anim;
 	bool gotFirstUpdate = false;
@@ -44,7 +41,7 @@ public class Player : Photon.MonoBehaviour {
 		} else {
 			if (!gotFirstUpdate) {
 				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.Others, PhotonNetwork.player.name);
-				HealthBar.Instance.updateUI(health, maxHealth);
+				HealthBar.Instance.updateUI(characterData.health, characterData.maxHealth);
 			}
 
 			//looks like player is falling
@@ -95,5 +92,14 @@ public class Player : Photon.MonoBehaviour {
 	[RPC]
 	void setNick (string name) {
 		nick.text = name;
+	}
+
+	private static Vector3 getVector3(string rString){
+		string[] temp = rString.Substring(1, rString.Length-2).Split(',');
+		float x = float.Parse(temp[0]);
+		float y = float.Parse(temp[1]);
+		float z = float.Parse(temp[2]);
+		Vector3 rValue = new Vector3(x,y,z);
+		return rValue;
 	}
 }
