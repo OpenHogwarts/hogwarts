@@ -20,7 +20,7 @@ public class MainPanel : MonoBehaviour {
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").GetComponent<Text>().text = character.level.ToString();
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").GetComponent<Button>().onClick.AddListener(
 				delegate {
-				this.joinGame(character.id);
+				this.joinGame(character.id, character.name);
 			});
 			break;
 		}
@@ -33,7 +33,7 @@ public class MainPanel : MonoBehaviour {
 		}
 	}
 
-	public void joinGame (int characterId) {
+	public void joinGame (int characterId, string name) {
 
 		if (characterId < 1) {
 			return;
@@ -43,6 +43,7 @@ public class MainPanel : MonoBehaviour {
 		h.Add("characterId", characterId);
 
 		PhotonNetwork.player.SetCustomProperties(h);
+		PhotonNetwork.player.name = name;
 		
 		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
 		GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
@@ -50,7 +51,7 @@ public class MainPanel : MonoBehaviour {
 
 	public void joinTest () {
 		defaultLevel = debugLevel;
-		joinGame (1);
+		joinGame (1, "Tester");
 	}
 
 	void OnJoinedLobby () {
