@@ -10,6 +10,7 @@
 	public int maxHealth;
 	public int mana;
 	public int maxMana;
+	public int exp;
 	
 	public int knut;
 	public int sickle;
