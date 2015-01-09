@@ -14,6 +14,12 @@ TextureImporter:
     21300018: hud_9
     21300020: hud_10
     21300022: hud_11
+    21300024: hud_12
+    21300026: hud_13
+    21300028: hud_14
+    21300030: hud_15
+    21300032: hud_16
+    21300034: hud_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,6 +64,16 @@ TextureImporter:
     - name: hud_0
       rect:
         serializedVersion: 2
+        x: 400
+        y: 1996
+        width: 92
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_1
+      rect:
+        serializedVersion: 2
         x: 507
         y: 1950
         width: 98
@@ -65,7 +81,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_1
+    - name: hud_2
       rect:
         serializedVersion: 2
         x: 627
@@ -75,7 +91,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_2
+    - name: hud_3
       rect:
         serializedVersion: 2
         x: 746
@@ -85,7 +101,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_3
+    - name: hud_4
       rect:
         serializedVersion: 2
         x: 864
@@ -95,7 +111,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_4
+    - name: hud_5
       rect:
         serializedVersion: 2
         x: 975
@@ -105,7 +121,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_5
+    - name: hud_6
       rect:
         serializedVersion: 2
         x: 0
@@ -115,7 +131,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_6
+    - name: hud_7
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +141,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_7
+    - name: hud_8
       rect:
         serializedVersion: 2
         x: 2
@@ -135,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_8
+    - name: hud_9
       rect:
         serializedVersion: 2
         x: 297
@@ -145,7 +161,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_9
+    - name: hud_10
       rect:
         serializedVersion: 2
         x: 407
@@ -155,7 +171,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_10
+    - name: hud_11
       rect:
         serializedVersion: 2
         x: 520
@@ -165,13 +181,63 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: hud_11
+    - name: hud_12
       rect:
         serializedVersion: 2
         x: 630
         y: 1872
         width: 32
         height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_13
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 1873
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_14
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1872
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_15
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1872
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_16
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 1872
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_17
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 1876
+        width: 32
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

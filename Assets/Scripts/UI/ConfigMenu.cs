@@ -8,6 +8,8 @@ public class ConfigMenu : MonoBehaviour {
 	public GameObject options;
 	public Toggle fxaa;
 	public Toggle ssao;
+	public Slider uiscale;
+	public Canvas ui;
 
 	public void ConfigShow(){
 		if (menu.GetActive()) {
@@ -45,5 +47,9 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsSetSSAO(){
 		Camera.main.GetComponent<AmbientObscurance> ().enabled = ssao.isOn;
+	}
+
+	public void OptionsSetUIScale(){
+		ui.scaleFactor = uiscale.value;
 	}
 }
