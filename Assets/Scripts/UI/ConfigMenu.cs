@@ -8,6 +8,8 @@ public class ConfigMenu : MonoBehaviour {
 	public GameObject options;
 	public Toggle fxaa;
 	public Toggle ssao;
+	public Toggle rbt;
+	public GameObject rightbar;
 	public Slider uiscale;
 	public Canvas ui;
 
@@ -51,5 +53,9 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsSetUIScale(){
 		ui.scaleFactor = uiscale.value;
+	}
+
+	public void OptionsRightBar(){
+		rightbar.SetActive (rbt.isOn);
 	}
 }
