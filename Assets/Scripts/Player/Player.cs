@@ -81,7 +81,7 @@ public class Player : Photon.MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
 		} else {
 			if (!gotFirstUpdate) {
-				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.Others, PhotonNetwork.player.name);
+				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
 				healthBar = GameObject.Find ("Canvas/HP Orb").GetComponent<UIBar>();
 				expBar = GameObject.Find ("Canvas/ExpBar").GetComponent<UIBar>();

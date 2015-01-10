@@ -265,6 +265,10 @@ public void DidJump ()
 
 void Update ()
 {
+
+	if (Chat.isWritting) {
+		return;
+	}
 	
 	if (!isControllable)
 	{
