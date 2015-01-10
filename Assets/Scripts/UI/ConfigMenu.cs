@@ -10,7 +10,9 @@ public class ConfigMenu : MonoBehaviour {
 	public Toggle ssao;
 	public Toggle dof;
 	public Toggle rbt;
+	public Toggle performance;
 	public GameObject rightbar;
+	public GameObject perftext;
 	public Slider uiscale;
 	public Canvas ui;
 
@@ -62,5 +64,9 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsRightBar(){
 		rightbar.SetActive (rbt.isOn);
+	}
+
+	public void OptionsPerformance(){
+		perftext.SetActive (performance.isOn);
 	}
 }

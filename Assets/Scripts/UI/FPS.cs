@@ -10,6 +10,7 @@ public class FPS : MonoBehaviour {
 	private int   frames  = 0;
 	private float timeleft;
 	public Text fpst;
+	public bool ping = false;
 	
 	void Start()
 	{
@@ -26,7 +27,11 @@ public class FPS : MonoBehaviour {
 		{
 			float fps = accum/frames;
 			string format = System.String.Format("{0:F2} FPS",fps);
+			if(ping){
+			fpst.text = "Ping: "+PhotonNetwork.GetPing().ToString()+"ms / "+format;
+			}else{
 			fpst.text = format;
+			}
 
 			timeleft = updateInterval;
 			accum = 0.0F;
