@@ -8,6 +8,7 @@ public class ConfigMenu : MonoBehaviour {
 	public GameObject options;
 	public Toggle fxaa;
 	public Toggle ssao;
+	public Toggle dof;
 	public Toggle rbt;
 	public GameObject rightbar;
 	public Slider uiscale;
@@ -49,6 +50,10 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsSetSSAO(){
 		Camera.main.GetComponent<AmbientObscurance> ().enabled = ssao.isOn;
+	}
+
+	public void OptionsSetDOF(){
+		Camera.main.GetComponent<DepthOfFieldScatter> ().enabled = dof.isOn;
 	}
 
 	public void OptionsSetUIScale(){
