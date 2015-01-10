@@ -24,9 +24,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 			break;
 		}
 
-		//player.GetComponent<MouseLook> ().enabled = true;
-		//player.GetComponent<CharacterController>().enabled = true;
-		//player.GetComponent<PlayerMovement> ().enabled = true;
+		player.GetComponent<ThirdPersonController>().enabled = true;
 		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
 		GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
