@@ -306,7 +306,7 @@ void Update ()
 		else 
 		{
 			anim.SetBool("Jumping", false);
-			if(controller.velocity.sqrMagnitude < 0.1f) {
+			if(controller.velocity.sqrMagnitude < 0.5f) {
 				anim.SetFloat("Speed", controller.velocity.sqrMagnitude);
 			}
 			else 
