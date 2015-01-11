@@ -12,6 +12,11 @@ public class MainPanel : MonoBehaviour {
 	public void Start () {
 		bool hasPlayer = false;
 
+		if (Menu.db.SelectCount("FROM item") < 1) {
+			DBSetup.insertItems();
+			DBSetup.insertTestItems();
+		}
+
 		// @ToDo: this SHOULD NOT BE A FOREACH
 		foreach (CharacterData character in Menu.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
@@ -30,6 +35,7 @@ public class MainPanel : MonoBehaviour {
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").SetActive(false);
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").SetActive(false);
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").SetActive(false);
+			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(false);
 		}
 	}
 

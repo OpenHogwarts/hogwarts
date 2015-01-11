@@ -60,6 +60,53 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	public int knut
+	{
+		get {return characterData.knut;}
+		set {
+			//prevent negative values
+			if (value <  0) {value = 0;}
+
+			characterData.knut = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+				Inventory.Instance.updateMoney();
+			}
+		}
+	}
+	public int sickle
+	{
+		get {return characterData.sickle;}
+		set {
+			//prevent negative values
+			if (value <  0) {value = 0;}
+
+			characterData.sickle = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+				Inventory.Instance.updateMoney();
+			}
+		}
+	}
+
+	public int galleon
+	{
+		get {return characterData.galleon;}
+		set {
+			//prevent negative values
+			if (value <  0) {value = 0;}
+			
+			characterData.galleon = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+				Inventory.Instance.updateMoney();
+			}
+		}
+	}
+
 	public CharacterData characterData;
 
 	Animator anim;
@@ -70,7 +117,20 @@ public class Player : Photon.MonoBehaviour {
 	public UIBar expBar;
 	public UIBar manaBar;
 
+	public static Player _instance;
+	
+	public static Player Instance {
+		get
+		{
+			return _instance;
+		}
+	}
+
+
 	void Start () {
+		if (photonView.isMine) {
+			_instance = this;
+		}
 		anim = GetComponent<Animator>();
 	}
 

@@ -36,6 +36,8 @@ public class Menu : MonoBehaviour {
 			#endif
 			server = new DB (3);
 			server.GetConfig ().EnsureTable<CharacterData> ("characters", "id", "name");
+			server.GetConfig ().EnsureTable<CharacterItem> ("inventory", "id");
+			server.GetConfig ().EnsureTable<Item> ("item", "id");
 			
 			db = server.Open ();
 		}
