@@ -30,15 +30,9 @@ public class CameraController : MonoBehaviour {
 		currentDistance = distance;
 		desiredDistance = distance;
 		correctedDistance = distance;
-		oldDistance = distance;
 	}
 
 	void LateUpdate () {
-
-		// check if player has changed its camera distance
-		if (oldDistance !=  currentDistance) {
-			updateDistancePref();
-		}
 
 		if (Input.GetMouseButton (0)) {
 			x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
@@ -68,9 +62,10 @@ public class CameraController : MonoBehaviour {
 		transform.position = position;
 	}
 
-	private void updateDistancePref () {
+	// set play camera preferences before quit
+	void OnApplicationQuit() 
+	{
 		PlayerPrefs.SetFloat("CameraDistance", currentDistance);
-		oldDistance = currentDistance;
 	}
 
 	private static float ClampAngle(float angle, float min, float max){
