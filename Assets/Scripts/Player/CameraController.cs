@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour {
 	public float desiredDistance;
 	public float correctedDistance;
 	public float currentDistance;
+	private float oldDistance;
 
 	public float cameraTargetHeight = 1.0f;
 
@@ -25,12 +26,20 @@ public class CameraController : MonoBehaviour {
 		Vector3 angles = transform.eulerAngles;
 		x = angles.x;
 		y = angles.y;
+		distance = PlayerPrefs.GetFloat("CameraDistance", distance);
 		currentDistance = distance;
 		desiredDistance = distance;
 		correctedDistance = distance;
+		oldDistance = distance;
 	}
 
-	void LateUpdate (){
+	void LateUpdate () {
+
+		// check if player has changed its camera distance
+		if (oldDistance !=  currentDistance) {
+			updateDistancePref();
+		}
+
 		if (Input.GetMouseButton (0)) {
 			x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
 			y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
@@ -57,6 +66,11 @@ public class CameraController : MonoBehaviour {
 
 		transform.rotation = rotation;
 		transform.position = position;
+	}
+
+	private void updateDistancePref () {
+		PlayerPrefs.SetFloat("CameraDistance", currentDistance);
+		oldDistance = currentDistance;
 	}
 
 	private static float ClampAngle(float angle, float min, float max){
