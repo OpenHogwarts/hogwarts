@@ -23,8 +23,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 			player.GetComponent<Player> ().characterData = character;
 			break;
 		}
-
-		//player.GetComponent<ThirdPersonController>().enabled = true;
+		
 		player.GetComponent<PlayerController> ().enabled = true;
 		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
 		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
