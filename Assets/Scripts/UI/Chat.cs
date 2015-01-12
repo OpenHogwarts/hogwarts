@@ -55,4 +55,8 @@ public class Chat : MonoBehaviour {
 		input.text = "";
 		input2.text = "";
 	}
+
+	public void LocalMsg(string msg){
+		AddMsg (msg);
+	}
 }
