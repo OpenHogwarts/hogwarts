@@ -34,14 +34,10 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool("Jumping", false);
 		}
 
-		//Movement behaviour
-		transform.Rotate(0, Input.GetAxis("Horizontal")*rotateSpeed, 0);
-		Vector3 forward = transform.TransformDirection(Vector3.forward);
-		float speed = forwardSpeed * Input.GetAxis ("Vertical");
-
 		//If you click with both mouse buttons, move in the camera direction, else, move using WASD
 		if (Input.GetKey (KeyCode.Mouse0) && Input.GetKey (KeyCode.Mouse1)) {
-			forward = cam.transform.TransformDirection (Vector3.forward);
+			forward = transform.TransformDirection (Vector3.forward);
+			Debug.Log(forward);
 			speed = forwardSpeed;
 			transform.rotation = Quaternion.Euler (0, cam.transform.rotation.eulerAngles.y, 0);
 		} else {
