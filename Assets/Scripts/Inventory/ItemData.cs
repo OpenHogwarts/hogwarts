@@ -31,7 +31,11 @@
 		
 		// **  CONSUMABLE ** //
 		Health,
-		Mana
+		Mana,
+
+		// ** USELESS **//
+		Quest,
+		Scrap
 		
 	}
 

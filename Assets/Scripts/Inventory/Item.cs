@@ -33,7 +33,6 @@ public class Item : ItemData
 		foreach (Item itm in Menu.db.Select<Item>("FROM item WHERE id = ?", cItem.item)) {
 			itm.characterItem = cItem;
 			return itm;
-			break;
 		}
 		throw new Exception("item not found");
 	}

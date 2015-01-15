@@ -8,6 +8,20 @@ using System.Collections;
 public class UIMenu : MonoBehaviour {
 
 	public GameObject BagPanel;
+	public GameObject SellerPanel;
+
+	public static UIMenu _instance;
+	
+	public static UIMenu Instance {
+		get
+		{
+			return _instance;
+		}
+	}
+	
+	public void Start () {
+		_instance = this;
+	}
 
 	public void togglePanel (string name) {
 		GameObject panel = (GameObject)this.GetType ().GetField (name).GetValue (this);
@@ -22,5 +36,6 @@ public class UIMenu : MonoBehaviour {
 	
 	public void hideAllPanels() {
 		BagPanel.SetActive (false);
+		SellerPanel.SetActive (false);
 	}
 }

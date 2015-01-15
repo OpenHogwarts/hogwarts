@@ -34,6 +34,10 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate () {
 
+		if (GamePanel.isMovingAPanel) {
+			return;
+		}
+
 		if (Input.GetMouseButton (0)) {
 			x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
 			y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;

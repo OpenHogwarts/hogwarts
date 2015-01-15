@@ -2,9 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
-public class Inventory : MonoBehaviour, IDragHandler {
+public class Inventory : MonoBehaviour {
 
 	public GameObject itemSlotPrefab;
 	public GameObject slotPrefab;
@@ -15,8 +14,6 @@ public class Inventory : MonoBehaviour, IDragHandler {
 
 	int x = -110; 
 	int y = 110;
-
-	List<Item> items = new List<Item>();
 
 	public static Inventory _instance;
 	
@@ -133,14 +130,5 @@ public class Inventory : MonoBehaviour, IDragHandler {
 	*/
 	public void hideTooltip () {
 		toolTip.SetActive (false);
-	}
-
-
-	/**
-		Allows dragging the bag through game screen
-		@return void
-	*/
-	public void OnDrag (PointerEventData eventData) {
-		transform.position = Input.mousePosition;
 	}
 }

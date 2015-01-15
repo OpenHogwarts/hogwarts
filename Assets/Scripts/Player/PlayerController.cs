@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 		//If you click with both mouse buttons, move in the camera direction, else, move using WASD
 		if (Input.GetKey (KeyCode.Mouse0) && Input.GetKey (KeyCode.Mouse1)) {
 			forward = transform.TransformDirection (Vector3.forward);
-			Debug.Log(forward);
+
 			speed = forwardSpeed;
 			transform.rotation = Quaternion.Euler (0, cam.transform.rotation.eulerAngles.y, 0);
 		} else {
