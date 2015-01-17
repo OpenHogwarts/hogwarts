@@ -13,6 +13,9 @@
 	}
 	
 	public bool create () {
+		if (character == 0) {
+			character = (int)PhotonNetwork.player.customProperties["characterId"];
+		}
 		return Menu.db.Insert (TABLE_NAME, this);
 	}
 }

@@ -102,9 +102,10 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void updateMoney () {
-		transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = Player.Instance.galleon.ToString();
-		transform.FindChild ("SickleLabel").GetComponent<Text> ().text = Player.Instance.sickle.ToString();
-		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = Player.Instance.knut.ToString();
+		Vector3 money = Util.formatMoney (Player.Instance.money);
+		transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
+		transform.FindChild ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
+		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
 	}
 
 	/**

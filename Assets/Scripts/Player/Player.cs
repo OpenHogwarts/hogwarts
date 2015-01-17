@@ -60,45 +60,14 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	public int knut
+	public int money
 	{
-		get {return characterData.knut;}
+		get {return characterData.money;}
 		set {
 			//prevent negative values
 			if (value <  0) {value = 0;}
 
-			characterData.knut = value;
-			
-			if (photonView.isMine) {
-				characterData.save();
-				Inventory.Instance.updateMoney();
-			}
-		}
-	}
-	public int sickle
-	{
-		get {return characterData.sickle;}
-		set {
-			//prevent negative values
-			if (value <  0) {value = 0;}
-
-			characterData.sickle = value;
-			
-			if (photonView.isMine) {
-				characterData.save();
-				Inventory.Instance.updateMoney();
-			}
-		}
-	}
-
-	public int galleon
-	{
-		get {return characterData.galleon;}
-		set {
-			//prevent negative values
-			if (value <  0) {value = 0;}
-			
-			characterData.galleon = value;
+			characterData.money = value;
 			
 			if (photonView.isMine) {
 				characterData.save();
@@ -211,5 +180,22 @@ public class Player : Photon.MonoBehaviour {
 		float z = float.Parse(temp[2]);
 		Vector3 rValue = new Vector3(x,y,z);
 		return rValue;
+	}
+
+	/**
+	* Adds an item to current user
+	*
+	* @param int id item id
+	* @param int amount item quantity
+	* 
+	* @return bool
+	 */
+	public bool addItem (int id, int amount = 1) {
+
+		CharacterItem item = new CharacterItem {
+			item = id,
+			quantity = amount
+		};
+		return item.create ();
 	}
 }

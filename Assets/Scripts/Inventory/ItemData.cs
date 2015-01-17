@@ -7,6 +7,7 @@
 	public string description;
 	public ItemType type;
 	public ItemSubType subType;
+	public int price;
 
 	public enum ItemType
 	{

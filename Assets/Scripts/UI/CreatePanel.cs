@@ -14,7 +14,7 @@ public class CreatePanel : MonoBehaviour {
 		int inicialHealth = 270;
 		int inicialMana = 130;
 
-		var data = new CharacterData
+		CharacterData character = new CharacterData
 		{
 			name = nick,
 			model = "male_01",
@@ -24,12 +24,10 @@ public class CreatePanel : MonoBehaviour {
 			maxHealth = inicialHealth,
 			mana = inicialMana,
 			maxMana = inicialMana,
-			knut = 50,
-			sickle = 0,
-			galleon = 0,
+			money = 50,
 			id = Menu.db.Id(1)
 		};
-		bool sucess = Menu.db.Insert ("characters", data);
+		bool sucess = character.create();
 
 		if (sucess) {
 			Application.LoadLevel(Application.loadedLevel);

@@ -36,4 +36,11 @@ public class Item : ItemData
 		}
 		throw new Exception("item not found");
 	}
+
+	public static Item get (int id) {
+		foreach (Item itm in Menu.db.Select<Item>("FROM item WHERE id = ?", id)) {
+			return itm;
+		}
+		throw new Exception("item not found");
+	}
 }
