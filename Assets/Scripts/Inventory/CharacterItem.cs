@@ -1,4 +1,5 @@
-﻿public class CharacterItem {
+﻿using UnityEngine;
+public class CharacterItem {
 
 	protected string TABLE_NAME = "inventory";
 
@@ -9,7 +10,11 @@
 	public int slot = 0;
 
 	public void save () {
-		Menu.db.Update (TABLE_NAME, this);
+		if (quantity < 1) {
+			delete();
+		} else {
+			Menu.db.Update (TABLE_NAME, this);
+		}
 	}
 	
 	public bool create () {
@@ -17,5 +22,9 @@
 			character = (int)PhotonNetwork.player.customProperties["characterId"];
 		}
 		return Menu.db.Insert (TABLE_NAME, this);
+	}
+
+	public void delete () {
+		Menu.db.Delete (TABLE_NAME, this);
 	}
 }

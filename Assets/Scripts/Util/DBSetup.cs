@@ -13,6 +13,7 @@ public class DBSetup : MonoBehaviour {
 		item.name = "Queso de cabra";
 		item.description = "Hecho en el mejor caserío muggle";
 		item.price = 40;
+		item.health = 20;
 		item.type = Item.ItemType.Consumable;
 		item.subType = Item.ItemSubType.Health;
 		item.create ();

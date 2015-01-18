@@ -1,13 +1,33 @@
-﻿public class ItemData {
+﻿using System;
+public class ItemData {
 
 	protected string TABLE_NAME = "item";
 
 	public int id;
 	public string name;
 	public string description;
-	public ItemType type;
-	public ItemSubType subType;
+	public int _type;
+	public int _subType;
+	public ItemType type {
+		get {
+			return (ItemType)_type;
+		}
+		set {
+			_type = (int)value;
+		}
+	}
+	public ItemSubType subType {
+		get {
+			return (ItemSubType)_subType;
+		}
+		set {
+			_subType = (int)value;
+		}
+	}
 	public int price;
+
+	// CUSTOM ATTRIBUTES BASED ON ITEM TYPE
+	public int health;
 
 	public enum ItemType
 	{

@@ -43,4 +43,18 @@ public class Item : ItemData
 		}
 		throw new Exception("item not found");
 	}
+
+	public void use () {
+		switch (type) {
+			case Item.ItemType.Consumable:
+				switch(subType) {
+					case Item.ItemSubType.Health:
+						Player.Instance.health += health;
+						characterItem.quantity--;
+					break;
+				}
+				break;
+		}
+		characterItem.save ();
+	}
 }
