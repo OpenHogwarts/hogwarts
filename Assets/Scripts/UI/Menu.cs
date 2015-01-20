@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using iBoxDB.LocalServer;
@@ -35,12 +36,23 @@ public class Menu : MonoBehaviour {
 			iBoxDB.WSDatabaseConfig.ResetStorage();
 			#endif
 			server = new DB (3);
-			server.GetConfig ().EnsureTable<CharacterData> ("characters", "id", "name");
+
+			server.GetConfig ().EnsureTable<CharacterData> ("characters", "id");
+			bool isUniqueName = true;
+			server.GetConfig ().EnsureIndex<CharacterData> ("characters", isUniqueName, "name");
+
 			server.GetConfig ().EnsureTable<CharacterItem> ("inventory", "id");
 			server.GetConfig ().EnsureTable<Item> ("item", "id");
 			
 			db = server.Open ();
 		}
+	}
+
+	public static T getOne<T> (string query, params object[] args) where T:class,new() {
+
+		IEnumerator<T> enumerator = Menu.db.Select<T> (query+" limit 0,1", args).GetEnumerator ();
+		enumerator.MoveNext ();
+		return enumerator.Current;
 	}
 	
 	public void showPanel (string name) {

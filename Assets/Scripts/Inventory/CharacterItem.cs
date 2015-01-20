@@ -25,6 +25,6 @@ public class CharacterItem {
 	}
 
 	public void delete () {
-		Menu.db.Delete (TABLE_NAME, this);
+		Menu.db.Delete (TABLE_NAME, this.id);
 	}
 }

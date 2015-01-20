@@ -30,18 +30,13 @@ public class Item : ItemData
 	}
 
 	public Item  get (CharacterItem cItem) {
-		foreach (Item itm in Menu.db.Select<Item>("FROM item WHERE id = ?", cItem.item)) {
-			itm.characterItem = cItem;
-			return itm;
-		}
-		throw new Exception("item not found");
+		Item itm = Menu.db.SelectKey<Item> ("item", cItem.item);
+		itm.characterItem = cItem;
+		return itm;
 	}
 
 	public static Item get (int id) {
-		foreach (Item itm in Menu.db.Select<Item>("FROM item WHERE id = ?", id)) {
-			return itm;
-		}
-		throw new Exception("item not found");
+		return Menu.db.SelectKey<Item> ("item", id);
 	}
 
 	public void use () {

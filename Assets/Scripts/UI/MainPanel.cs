@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
+
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
 
 	private string defaultLevel = "Hogwarts";
 	private string debugLevel = "Test";
-	
+
 	public void Start () {
 		bool hasPlayer = false;
 
@@ -16,8 +16,9 @@ public class MainPanel : MonoBehaviour {
 			DBSetup.insertItems();
 			DBSetup.insertTestItems();
 		}
+		
 
-		// @ToDo: this SHOULD NOT BE A FOREACH
+		// @ToDo: create a UI for selection
 		foreach (CharacterData character in Menu.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
 
@@ -37,6 +38,7 @@ public class MainPanel : MonoBehaviour {
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").SetActive(false);
 			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(false);
 		}
+		 
 	}
 
 	public void joinGame (int characterId, string name) {
