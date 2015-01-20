@@ -26,6 +26,7 @@ Working features
 -------------
 - Multiplayer
 - Chat
+- Inventory
 
 
 Credits
@@ -33,6 +34,11 @@ Credits
 
 - Hogwarts model: Dani Moreno (danimorenoanimacion.com)
 - student & teacher models: Spider-Z
+- Wand models: Ektorkrom
+
+Special Thanks
+-------------
+- Bruce (iBoxDB creator) for the technical support given
 
 Copyright Notice
 -------------
