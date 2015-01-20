@@ -18,10 +18,10 @@
 	public int money;
 
 	public void save () {
-		Menu.db.Update (TABLE_NAME, this);
+		Service.db.Update (TABLE_NAME, this);
 	}
 
 	public bool create () {
-		return Menu.db.Insert (TABLE_NAME, this);
+		return Service.db.Insert (TABLE_NAME, this);
 	}
 }

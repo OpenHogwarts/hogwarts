@@ -12,14 +12,14 @@ public class MainPanel : MonoBehaviour {
 	public void Start () {
 		bool hasPlayer = false;
 
-		if (Menu.db.SelectCount("FROM item") < 1) {
+		if (Service.db.SelectCount("FROM item") < 1) {
 			DBSetup.insertItems();
 			DBSetup.insertTestItems();
 		}
 		
 
 		// @ToDo: create a UI for selection
-		foreach (CharacterData character in Menu.db.Select<CharacterData>("FROM characters")) {
+		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
 
 			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").GetComponent<Text>().text = character.name;

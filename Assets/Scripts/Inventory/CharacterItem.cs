@@ -13,7 +13,7 @@ public class CharacterItem {
 		if (quantity < 1) {
 			delete();
 		} else {
-			Menu.db.Update (TABLE_NAME, this);
+			Service.db.Update (TABLE_NAME, this);
 		}
 	}
 	
@@ -21,10 +21,10 @@ public class CharacterItem {
 		if (character == 0) {
 			character = (int)PhotonNetwork.player.customProperties["characterId"];
 		}
-		return Menu.db.Insert (TABLE_NAME, this);
+		return Service.db.Insert (TABLE_NAME, this);
 	}
 
 	public void delete () {
-		Menu.db.Delete (TABLE_NAME, this.id);
+		Service.db.Delete (TABLE_NAME, this.id);
 	}
 }

@@ -7,7 +7,7 @@ public class CreatePanel : MonoBehaviour {
 	public void createButton () {
 		string nick = GameObject.Find ("Canvas/CreatePanel/NickInput/Text").GetComponent<Text> ().text;
 
-		if (nick.Length < 3 || Menu.db.SelectCount ("FROM characters WHERE name = ?", nick) != 0) {
+		if (nick.Length < 3 || Service.db.SelectCount ("FROM characters WHERE name = ?", nick) != 0) {
 			return;
 		}
 
@@ -25,7 +25,7 @@ public class CreatePanel : MonoBehaviour {
 			mana = inicialMana,
 			maxMana = inicialMana,
 			money = 50,
-			id = Menu.db.Id(1)
+			id = Service.db.Id(1)
 		};
 		bool sucess = character.create();
 

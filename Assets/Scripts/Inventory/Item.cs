@@ -30,13 +30,13 @@ public class Item : ItemData
 	}
 
 	public Item  get (CharacterItem cItem) {
-		Item itm = Menu.db.SelectKey<Item> ("item", cItem.item);
+		Item itm = Service.db.SelectKey<Item> ("item", cItem.item);
 		itm.characterItem = cItem;
 		return itm;
 	}
 
 	public static Item get (int id) {
-		return Menu.db.SelectKey<Item> ("item", id);
+		return Service.db.SelectKey<Item> ("item", id);
 	}
 
 	public void use () {

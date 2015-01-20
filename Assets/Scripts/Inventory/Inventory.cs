@@ -86,32 +86,34 @@ public class Inventory : MonoBehaviour {
 
 		bool isAssigned = false;
 		Item itm = new Item ();
+		CharacterItem characterItem;
+		GameObject itemSlot;
 
-		foreach(CharacterItem characterItem in Menu.db.Select<CharacterItem>("FROM inventory WHERE character == ? & slot == ?", PhotonNetwork.player.customProperties["characterId"], slot.num)) {
+		characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE character == ? & slot == ?", PhotonNetwork.player.customProperties["characterId"], slot.num);
+		if (characterItem != null) {
 			isAssigned = true;
-			GameObject itemSlot = (GameObject)Instantiate(itemSlotPrefab);
+			itemSlot = (GameObject)Instantiate(itemSlotPrefab);
 			itemSlot.tag = "TemporalPanel";
 			itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
 			
 			itemSlot.transform.SetParent(this.gameObject.transform, false);
 			itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
-			
-			break;
 		}
+
 		if (!isAssigned) {
-			foreach(CharacterItem characterItem in Menu.db.Select<CharacterItem>("FROM inventory WHERE character = ? & slot = ?", PhotonNetwork.player.customProperties["characterId"], 0)) {
-				
+			characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE character == ? & slot == ?", PhotonNetwork.player.customProperties["characterId"], 0);
+
+			if (characterItem != null) {
 				// assign this slot to the item
 				characterItem.slot = slot.num;
 				characterItem.save();
 				
-				GameObject itemSlot = (GameObject)Instantiate(itemSlotPrefab);
+				itemSlot = (GameObject)Instantiate(itemSlotPrefab);
 				itemSlot.tag = "TemporalPanel";
 				itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
 				
 				itemSlot.transform.SetParent(this.gameObject.transform, false);
 				itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
-				break;
 			}
 			
 			if (!isAssigned) {
