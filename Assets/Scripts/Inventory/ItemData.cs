@@ -41,14 +41,14 @@ public class ItemData {
 	public enum ItemSubType
 	{
 		// **  ARMOR ** //
-		Head,
-		Boots,
-		Chest,
-		Pants,
-		Earring,
-		Necklace,
-		Ring,
-		Hands,
+		Head = 1,
+		Boots = 2,
+		Chest = 3,
+		Pants = 4,
+		Earring = 5,
+		Necklace = 6,
+		Ring = 7,
+		Hands = 8,
 		
 		// **  CONSUMABLE ** //
 		Health,

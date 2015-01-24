@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
 	This class is used to setup DB items
@@ -8,7 +9,9 @@ using System.Collections;
 public class DBSetup : MonoBehaviour {
 
 	public static void insertItems () {
-		ItemData item = new ItemData ();
+		ItemData item;
+
+		item = new ItemData ();
 		item.id = 1;
 		item.name = "Queso de cabra";
 		item.description = "Hecho en el mejor caserío muggle";
@@ -19,14 +22,23 @@ public class DBSetup : MonoBehaviour {
 		item.create ();
 		
 		
-		ItemData item2 = new ItemData ();
-		item2.id = 2;
-		item2.name = "Colgante de Dermor";
-		item2.description = "No se me ocurre nada bueno";
-		item2.price = 2500;
-		item2.type = Item.ItemType.Armor;
-		item2.subType = Item.ItemSubType.Necklace;
-		item2.create ();
+		item = new ItemData ();
+		item.id = 2;
+		item.name = "Colgante de Dermor";
+		item.description = "No se me ocurre nada bueno";
+		item.price = 2500;
+		item.type = Item.ItemType.Armor;
+		item.subType = Item.ItemSubType.Necklace;
+		item.create ();
+
+		item = new ItemData ();
+		item.id = 3;
+		item.name = "Varita de principiante";
+		item.description = "La varita reglamentaria del centro";
+		item.price = 40;
+		item.type = Item.ItemType.Weapon;
+		item.subType = Item.ItemSubType.Health;
+		item.create ();
 	}
 
 	public static void insertTestItems () {

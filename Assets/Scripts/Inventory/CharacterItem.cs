@@ -8,6 +8,24 @@ public class CharacterItem {
 	public int character;
 	public int quantity;
 	public int slot = 0;
+	public int _position = 0;
+	public int attrition = 0;
+
+	public equipmentPosition position {
+		get {
+			return (equipmentPosition)_position;
+		}
+		set {
+			_position = (int)value;
+		}
+	}
+
+	public enum equipmentPosition {
+		head = 1,
+		handLeft = 2,
+		handRight = 3,
+		hands = 4
+	}
 
 	public void save () {
 		if (quantity < 1) {

@@ -9,6 +9,7 @@ public class UIMenu : MonoBehaviour {
 
 	public GameObject BagPanel;
 	public GameObject SellerPanel;
+	public GameObject CharacterPanel;
 
 	public static UIMenu _instance;
 	
@@ -37,5 +38,6 @@ public class UIMenu : MonoBehaviour {
 	public void hideAllPanels() {
 		BagPanel.SetActive (false);
 		SellerPanel.SetActive (false);
+		CharacterPanel.SetActive (false);
 	}
 }

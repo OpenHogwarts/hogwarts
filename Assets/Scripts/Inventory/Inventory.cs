@@ -88,21 +88,24 @@ public class Inventory : MonoBehaviour {
 		CharacterItem characterItem;
 		GameObject itemSlot;
 
-		characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE character == ? & slot == ?", PhotonNetwork.player.customProperties["characterId"], slot.num);
+		characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], slot.num);
 		if (characterItem != null) {
 			isAssigned = true;
 			itemSlot = (GameObject)Instantiate(itemSlotPrefab);
 			itemSlot.tag = "TemporalPanel";
 			itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
+			itemSlot.GetComponent<ItemSlot>().currentSlot = slot;
 			
 			itemSlot.transform.SetParent(this.gameObject.transform, false);
 			itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
 		}
 
 		if (!isAssigned) {
-			characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE character == ? & slot == ?", PhotonNetwork.player.customProperties["characterId"], 0);
+			characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], 0);
 
 			if (characterItem != null) {
+				isAssigned = true;
+
 				// assign this slot to the item
 				characterItem.slot = slot.num;
 				characterItem.save();
@@ -110,15 +113,13 @@ public class Inventory : MonoBehaviour {
 				itemSlot = (GameObject)Instantiate(itemSlotPrefab);
 				itemSlot.tag = "TemporalPanel";
 				itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
+				itemSlot.GetComponent<ItemSlot>().currentSlot = slot;
 				
 				itemSlot.transform.SetParent(this.gameObject.transform, false);
 				itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
 			}
-			
-			if (!isAssigned) {
-				slot.available = true;
-			}
 		}
+		slot.available = !isAssigned;
 	}
 
 	public void updateMoney () {

@@ -20,7 +20,7 @@ public class SellPanel : MonoBehaviour {
 		}
 		get {return _selectedItem;}
 	}
-	const int MAX_ITEMS = 2;
+	const int MAX_ITEMS = 3;
 	List<Item> itemList = new List<Item>();
 
 	public static SellPanel _instance;
@@ -30,7 +30,6 @@ public class SellPanel : MonoBehaviour {
 			return _instance;
 		}
 	}
-
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +52,7 @@ public class SellPanel : MonoBehaviour {
 			newItem.gameObject.transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
 			newItem.gameObject.transform.FindChild ("SickleLabel").GetComponent<Text> ().text = price.y.ToString();
 			newItem.gameObject.transform.FindChild ("KnutLabel").GetComponent<Text> ().text = price.z.ToString();
+			newItem.gameObject.transform.FindChild ("Icon").GetComponent<RawImage> ().texture = tItem.icon;
 
 			newItem.gameObject.transform.FindChild("Button").GetComponent<Button>().onClick.AddListener(
 				delegate {

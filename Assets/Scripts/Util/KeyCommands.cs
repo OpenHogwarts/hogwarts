@@ -14,10 +14,14 @@ public class KeyCommands : MonoBehaviour {
 			}else{
 				canvas.SetActive(true);
 			}
-		}else if (Input.GetKeyDown (KeyCode.F2)) {
+		} else if (Input.GetKeyDown (KeyCode.F2)) {
 			string now = System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f");
 			Application.CaptureScreenshot("./Screenshots/"+string.Format("Screenshot{0}.png", now));
 			chat.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> Captura guardada como Screenshot"+now+".png");
+		} else if (Input.GetKeyDown (KeyCode.P)) {
+			UIMenu.Instance.togglePanel("CharacterPanel");
+		} else if (Input.GetKeyDown (KeyCode.I)) {
+			UIMenu.Instance.togglePanel("BagPanel");
 		}
 
 	}

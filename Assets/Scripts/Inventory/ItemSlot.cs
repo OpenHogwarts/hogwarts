@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
@@ -10,6 +11,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	bool isDragging = false;
 	bool isDeciding = false;
 	Vector3 initialPos;
+	public Slot currentSlot;
 	
 	public Item item {
 		get {return itm;}
@@ -46,23 +48,38 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		List<RaycastResult> raycastResults = new List<RaycastResult>();
 		EventSystem.current.RaycastAll(eventData, raycastResults);
 
-		if (raycastResults.Count > 1 && raycastResults [1].gameObject.name == "Slot(Clone)") {
-			Slot slot = raycastResults [1].gameObject.GetComponent<Slot> ();
+		// try to find an slot
+		foreach (RaycastResult raycast in raycastResults) {
+			try {
+				Slot slot = raycast.gameObject.GetComponent<Slot> ();
+				
+				if (!slot.available) {
+					resetPosition();
+				} else {
 
-			if (!slot.available) {
-				// @ToDo: we should move the entire list to free the slot
-				restartPosition();
-			} else {
-				transform.position = slot.transform.position;
-				slot.available = false;
+					// we need to check if this item can be equiped on this slot
+					if (slot.type == Slot.slotType.equipment && !item.isValidEquipmentPosition(slot.subType)) {
+						break;
+					}
 
-				// update item pos in db
-				item.characterItem.slot = slot.num;
-				item.characterItem.save();
+					// @ToDo switch itemSlot parent to current panel since it can be changed (Inventory or CharacterPanel)
+					transform.position = slot.transform.position;
+					slot.available = false;
+					currentSlot.available = true; // free the old slot
+					currentSlot = slot;
+					
+					// update item pos in db
+					item.characterItem.slot = slot.num;
+					item.characterItem.position = slot.subType;
+					item.characterItem.save();
+				}
+				return;
+			} catch (Exception) {
+				continue;
 			}
-		} else {
-			restartPosition();
 		}
+
+		resetPosition();
 	}
 
 
@@ -74,11 +91,18 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			return;
 		}
 		Vector3 pos = new Vector3 (transform.position.x + 100, transform.position.y - 50, 0);
-		Inventory.Instance.showTooltip (pos, item);
+
+		// check if this slot is in inventory or in characterPanel
+		if (item.characterItem.position == 0) { 
+			Inventory.Instance.showTooltip (pos, item);
+		}
 	}
 	
 	public void OnPointerExit (PointerEventData eventData) {
-		Inventory.Instance.hideTooltip();
+		// check if this slot is in inventory or in characterPanel
+		if (item.characterItem.position == 0) { 
+			Inventory.Instance.hideTooltip();
+		}
 	}
 
 	public void OnPointerClick (PointerEventData data) {
@@ -87,11 +111,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 
 		Vector3 pos = new Vector3 (transform.position.x + 100, transform.position.y - 50, 0);
-		Inventory.Instance.showOptions (pos, item);
+
+		// check if this slot is in inventory or in characterPanel
+		if (item.characterItem.position == 0) { 
+			Inventory.Instance.showOptions (pos, item);
+		}
 		isDeciding = true;
 	}
 
-	void restartPosition () {
+	void resetPosition () {
 		transform.position = initialPos;
 	}
 }
