@@ -24,7 +24,7 @@ public class CreatePanel : MonoBehaviour {
 			maxHealth = inicialHealth,
 			mana = inicialMana,
 			maxMana = inicialMana,
-			money = 50,
+			money = 234670,
 			id = Service.db.Id(1)
 		};
 		bool sucess = character.create();

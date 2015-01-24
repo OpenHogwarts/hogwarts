@@ -6,9 +6,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
 
-	private string defaultLevel = "Hogwarts";
-	private string debugLevel = "Test";
-
 	public void Start () {
 		bool hasPlayer = false;
 
@@ -58,7 +55,7 @@ public class MainPanel : MonoBehaviour {
 	}
 
 	public void joinTest () {
-		defaultLevel = debugLevel;
+		Menu.defaultLevel = Menu.debugLevel;
 		joinGame (1, "Tester");
 	}
 
@@ -68,12 +65,13 @@ public class MainPanel : MonoBehaviour {
 
 	void OnJoinedRoom()
 	{
-		PhotonNetwork.LoadLevel(defaultLevel);
+		//PhotonNetwork.LoadLevel(defaultLevel);
+		Menu.Instance.showPanel ("LoadingPanel");
 	}
 
 	void OnCreatedRoom()
 	{
-		PhotonNetwork.LoadLevel(defaultLevel);
+		OnJoinedRoom ();
 	}
 
 	void OnPhotonRandomJoinFailed()

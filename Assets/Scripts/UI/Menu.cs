@@ -7,11 +7,13 @@ using System.Net;
 
 public class Menu : MonoBehaviour {
 
-
+	public static string defaultLevel = "Hogwarts";
+	public static string debugLevel = "Test";
 
 	public GameObject OptionsPanel;
 	public GameObject MainPanel;
 	public GameObject CreatePanel;
+	public GameObject LoadingPanel;
 	
 	public const string GAME_VERSION = "0.01";
 
@@ -39,5 +41,6 @@ public class Menu : MonoBehaviour {
 		CreatePanel.SetActive (false);
 		//OptionsPanel.SetActive(false);
 		MainPanel.SetActive(false);
+		LoadingPanel.SetActive(false);
 	}
 }

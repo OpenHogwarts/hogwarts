@@ -25,15 +25,14 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		_instance = this;
 
 		reload ();
 		updateMoney ();
 	}
 
-	void reload () {
+	public void reload () {
 
 		x = -110;
 		y = 110;

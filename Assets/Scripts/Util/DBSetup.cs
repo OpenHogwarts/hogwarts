@@ -23,7 +23,7 @@ public class DBSetup : MonoBehaviour {
 		item2.id = 2;
 		item2.name = "Colgante de Dermor";
 		item2.description = "No se me ocurre nada bueno";
-		item.price = 2500;
+		item2.price = 2500;
 		item2.type = Item.ItemType.Armor;
 		item2.subType = Item.ItemSubType.Necklace;
 		item2.create ();

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Player : Photon.MonoBehaviour {
@@ -71,7 +72,9 @@ public class Player : Photon.MonoBehaviour {
 			
 			if (photonView.isMine) {
 				characterData.save();
-				Inventory.Instance.updateMoney();
+				try {
+					Inventory.Instance.updateMoney();
+				} catch (Exception) {}
 			}
 		}
 	}
@@ -196,6 +199,15 @@ public class Player : Photon.MonoBehaviour {
 			item = id,
 			quantity = amount
 		};
-		return item.create ();
+		bool success = item.create ();
+
+		// reload inventory
+		if (success) {
+			try {
+				Inventory.Instance.reload();
+			} catch (Exception) {}
+		}
+
+		return success;
 	}
 }
