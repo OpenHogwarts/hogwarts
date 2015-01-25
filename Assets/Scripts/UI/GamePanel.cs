@@ -12,6 +12,13 @@ public class GamePanel : MonoBehaviour, IDragHandler, IDropHandler {
 		rect = GetComponent<RectTransform>();
 	}
 
+	public void OnEnable () {
+		if (rect == null) {
+			rect = GetComponent<RectTransform>();
+		}
+		rect.SetAsLastSibling ();
+	}
+
 	/**
 		Allows dragging the panel through game screen
 		@return void

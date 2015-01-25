@@ -20,6 +20,39 @@ public class Item : ItemData
 		}
 	}
 
+	string _model;
+	
+	/* Having
+		id: 4
+		type: Weapon
+		subtype: Wand
+
+		We will get Items/Weapon/Wand/Wand_01/Wand_01
+	*/
+	public string modelRoute
+	{
+		get {
+			if (_model == null) {
+				string nId;
+				string mName;
+
+				if (id < 10) {
+					nId = "0"+id;
+				} else {
+					nId = id.ToString();
+				}
+				mName = ((ItemSubType)subType).ToString() + "_"+ nId;
+
+				_model = "Items/";
+				_model += ((ItemType)type).ToString() + "/";
+				_model += ((ItemSubType)subType).ToString() + "/";
+				_model += mName + "/" + mName;
+			}
+			
+			return _model;
+		}
+	}
+
 	public int quantity
 	{
 		get {return characterItem.quantity;}

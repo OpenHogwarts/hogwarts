@@ -27,7 +27,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		initialPos = transform.position;
 		GetComponent<RectTransform> ().SetAsLastSibling ();
 
-		Inventory.Instance.hideTooltip();
+		UIMenu.Instance.hideTooltip();
 	}
 
 	/**
@@ -62,16 +62,27 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 						break;
 					}
 
-					// @ToDo switch itemSlot parent to current panel since it can be changed (Inventory or CharacterPanel)
+					// @ToDo switch itemSlot parent to current panel since it could be changed (Inventory or CharacterPanel)
 					transform.position = slot.transform.position;
+
+					if (slot.type == Slot.slotType.equipment) {
+						transform.SetParent(UIMenu.Instance.CharacterPanel.transform);
+					} else {
+						transform.SetParent(UIMenu.Instance.BagPanel.transform);
+					}
+
 					slot.available = false;
 					currentSlot.available = true; // free the old slot
-					currentSlot = slot;
 					
 					// update item pos in db
 					item.characterItem.slot = slot.num;
 					item.characterItem.position = slot.subType;
 					item.characterItem.save();
+
+					if (slot.type == Slot.slotType.equipment || currentSlot.type == Slot.slotType.equipment) {
+						PlayerEquipment.Instance.reload();
+					}
+					currentSlot = slot;
 				}
 				return;
 			} catch (Exception) {
@@ -92,17 +103,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 		Vector3 pos = new Vector3 (transform.position.x + 100, transform.position.y - 50, 0);
 
-		// check if this slot is in inventory or in characterPanel
-		if (item.characterItem.position == 0) { 
-			Inventory.Instance.showTooltip (pos, item);
-		}
+		UIMenu.Instance.showTooltip (pos, item);
 	}
 	
 	public void OnPointerExit (PointerEventData eventData) {
-		// check if this slot is in inventory or in characterPanel
-		if (item.characterItem.position == 0) { 
-			Inventory.Instance.hideTooltip();
-		}
+		UIMenu.Instance.hideTooltip();
 	}
 
 	public void OnPointerClick (PointerEventData data) {

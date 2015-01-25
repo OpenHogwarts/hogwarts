@@ -31,11 +31,11 @@ public class ItemData {
 
 	public enum ItemType
 	{
-		Armor,
-		Weapon,
-		Consumable,
-		Useless,
-		Container
+		Armor = 1,
+		Weapon = 2,
+		Consumable = 3,
+		Useless = 4,
+		Container = 5
 	}
 	
 	public enum ItemSubType
@@ -49,14 +49,20 @@ public class ItemData {
 		Necklace = 6,
 		Ring = 7,
 		Hands = 8,
+
+		// **  WEAPON ** //
+		Wand = 9,
+		Staff = 10,
+		Sword = 11,
+		Pistol = 12,
 		
 		// **  CONSUMABLE ** //
-		Health,
-		Mana,
+		Health = 13,
+		Mana = 14,
 
 		// ** USELESS **//
-		Quest,
-		Scrap
+		Quest = 15,
+		Scrap = 16
 		
 	}
 

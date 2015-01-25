@@ -37,7 +37,7 @@ public class DBSetup : MonoBehaviour {
 		item.description = "La varita reglamentaria del centro";
 		item.price = 40;
 		item.type = Item.ItemType.Weapon;
-		item.subType = Item.ItemSubType.Health;
+		item.subType = Item.ItemSubType.Wand;
 		item.create ();
 	}
 

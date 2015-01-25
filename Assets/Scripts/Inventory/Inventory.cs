@@ -38,13 +38,7 @@ public class Inventory : MonoBehaviour {
 		y = 110;
 
 		// remove old items
-		var children = new List<GameObject>();
-		foreach (Transform child in transform) {
-			if (child.tag == "TemporalPanel") {
-				children.Add(child.gameObject);
-			}
-		} 
-		children.ForEach(child => Destroy(child));
+		destroyOldIcons ();
 
 		int slotNum = 1; // new items have pos 0
 		
@@ -73,6 +67,16 @@ public class Inventory : MonoBehaviour {
 				slotNum++;
 			}
 		}
+	}
+
+	void destroyOldIcons () {
+		var children = new List<GameObject>();
+		foreach (Transform child in transform) {
+			if (child.tag == "TemporalPanel") {
+				children.Add(child.gameObject);
+			}
+		} 
+		children.ForEach(child => Destroy(child));
 	}
 
 	/**
@@ -129,35 +133,10 @@ public class Inventory : MonoBehaviour {
 		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
 	}
 
-	/**
-		Shows a tooltip near to item slot
-		@param Vector3 pos Position to show the tooltip
-		@param Item item Item which we want to show its information
-
-		@return void
-	 */
-	public void showTooltip (Vector3 pos, Item item) {
-		toolTip.SetActive (true);
-		toolTip.GetComponent<RectTransform> ().SetAsLastSibling ();
-		toolTip.transform.position = pos;
-
-		toolTip.transform.FindChild("TitleLabel").GetComponent<Text>().text = item.name;
-		toolTip.transform.FindChild("TextLabel").GetComponent<Text>().text = item.description;
-	}
-
-	/**
-		hides the tooltip
-
-		@return void
-	*/
-	public void hideTooltip () {
-		toolTip.SetActive (false);
-	}
-
 	public void showOptions (Vector3 pos, Item item) {
 		bool hasMenu = true;
 
-		hideTooltip ();
+		UIMenu.Instance.hideTooltip ();
 		optionsPanel.SetActive (true);
 		optionsPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
 		optionsPanel.transform.position = pos;
