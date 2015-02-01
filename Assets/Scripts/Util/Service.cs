@@ -24,6 +24,7 @@ public class Service {
 				//bool isUnique = false;
 				//server.GetConfig ().EnsureIndex<CharacterItem> ("inventory", isUnique, "_position");
 				server.GetConfig ().EnsureTable<Item> ("item", "id");
+				server.GetConfig ().EnsureTable<NPCData> ("npc", "id");
 				
 				_db = server.Open ();
 			}

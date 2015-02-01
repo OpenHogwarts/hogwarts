@@ -8,6 +8,12 @@ using System.Collections.Generic;
 
 public class DBSetup : MonoBehaviour {
 
+	public static void start () {
+		insertItems ();
+		insertTestItems ();
+		insertNPCs ();
+	}
+
 	public static void insertItems () {
 		ItemData item;
 
@@ -48,5 +54,27 @@ public class DBSetup : MonoBehaviour {
 		item.character = 1;
 		item.quantity = 2;
 		item.create();
+	}
+
+	public static void insertNPCs () {
+
+		NPCData npc;
+
+		npc = new NPCData ();
+		npc.id = 1;
+		npc.name = "Mike Ghole";
+		npc.level = 25;
+		npc.type = NPCData.creatureType.Human;
+		npc.subType = NPCData.creatureSubType.Seller;
+		npc.create ();
+
+		npc = new NPCData ();
+		npc.id = 2;
+		npc.name = "Araña del castillo";
+		npc.level = 5;
+		npc.type = NPCData.creatureType.Monster;
+		npc.subType = NPCData.creatureSubType.Normal;
+		npc.isAggresive = true;
+		npc.create ();
 	}
 }

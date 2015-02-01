@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: ce55077fe06e3924688e29bcc762a853
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: arcane_circles_0
+    21300002: arcane_circles_1
+    21300004: arcane_circles_2
+    21300006: arcane_circles_3
+    21300008: arcane_circles_4
+    21300010: arcane_circles_5
+    21300012: arcane_circles_6
+    21300014: arcane_circles_7
+    21300016: arcane_circles_8
+    21300018: arcane_circles_9
+    21300020: arcane_circles_10
+    21300022: arcane_circles_11
+    21300024: arcane_circles_12
+    21300026: arcane_circles_13
+    21300028: arcane_circles_14
+    21300030: arcane_circles_15
+    21300032: arcane_circles_16
+    21300034: arcane_circles_17
+    21300036: arcane_circles_18
+    21300038: arcane_circles_19
+    21300040: arcane_circles_20
+    21300042: arcane_circles_26
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: arcane_circles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1339
+        width: 239
+        height: 261
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 994
+        width: 306
+        height: 334
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_2
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1332
+        width: 267
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_3
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 1338
+        width: 263
+        height: 261
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_4
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 1337
+        width: 261
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_5
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 985
+        width: 342
+        height: 342
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_6
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 1027
+        width: 269
+        height: 269
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_7
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 973
+        width: 360
+        height: 365
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_8
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 667
+        width: 353
+        height: 336
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_9
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 676
+        width: 334
+        height: 324
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_10
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 662
+        width: 296
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_11
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 1015
+        width: 303
+        height: 287
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_12
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1307
+        width: 335
+        height: 293
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_13
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 370
+        width: 265
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_14
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 348
+        width: 316
+        height: 305
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_15
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 339
+        width: 315
+        height: 308
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 682
+        width: 285
+        height: 308
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_17
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 672
+        width: 303
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 382
+        width: 273
+        height: 265
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 406
+        height: 387
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_20
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 370
+        width: 266
+        height: 263
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arcane_circles_26
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 26
+        width: 342
+        height: 322
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

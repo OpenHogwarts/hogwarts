@@ -10,10 +10,8 @@ public class MainPanel : MonoBehaviour {
 		bool hasPlayer = false;
 
 		if (Service.db.SelectCount("FROM item") < 1) {
-			DBSetup.insertItems();
-			DBSetup.insertTestItems();
+			DBSetup.start();
 		}
-		
 
 		// @ToDo: create a UI for selection
 		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {

@@ -79,6 +79,21 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	public int level
+	{
+		get {return characterData.level;}
+		set {
+			//prevent negative values
+			if (value <  0) {value = 0;}
+			
+			characterData.level = value;
+			
+			if (photonView.isMine) {
+				characterData.save();
+			}
+		}
+	}
+
 	public CharacterData characterData;
 
 	Animator anim;
@@ -88,6 +103,8 @@ public class Player : Photon.MonoBehaviour {
 	public UIBar healthBar;
 	public UIBar expBar;
 	public UIBar manaBar;
+
+	NamePlate namePlate;
 
 	public static Player _instance;
 	
@@ -104,6 +121,8 @@ public class Player : Photon.MonoBehaviour {
 			_instance = this;
 		}
 		anim = GetComponent<Animator>();
+		namePlate = transform.FindChild ("NamePlate").GetComponent<NamePlate>();
+
 	}
 
 	void Update()
@@ -173,7 +192,7 @@ public class Player : Photon.MonoBehaviour {
 
 	[RPC]
 	void setNick (string name) {
-		nick.text = name;
+		namePlate.setName (name, NamePlate.COLOR_NORMAL);
 	}
 
 	private static Vector3 getVector3(string rString){
