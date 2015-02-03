@@ -202,12 +202,12 @@ public class Motor : MonoBehaviour
 				{
 					// Get the ground velocity and we parent to it
 					groundVelocity = collision.rigidbody.velocity;
-					transform.parent = collision.transform;
+					//transform.parent = collision.transform;
 				}
 				else if (isStatic(collision))
 				{
 					// Just parent to it since it's static
-					transform.parent = collision.transform;
+					//transform.parent = collision.transform;
 				}
 				else
 				{

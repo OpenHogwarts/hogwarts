@@ -82,8 +82,8 @@ public class NPC : MonoBehaviour
 	
 	private void Update()
 	{
-		//if (data.subType != NPCData.creatureSubType.Normal) {return;} // enable in debug to not verifiy if you are the master
-		if (data.subType != NPCData.creatureSubType.Normal || !PhotonNetwork.isMasterClient) {return;}
+		if (data.subType != NPCData.creatureSubType.Normal) {return;} // enable in debug to not verifiy if you are the master
+		//if (data.subType != NPCData.creatureSubType.Normal || !PhotonNetwork.isMasterClient) {return;}
 
 
 		if (this.EnableCombat) {
