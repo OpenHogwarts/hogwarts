@@ -15,16 +15,20 @@ public class Service {
 				iBoxDB.WSDatabaseConfig.ResetStorage();
 				#endif
 				server = new DB (3);
+
+				bool isUnique = true;
+				bool isNotUnique = false;
 				
 				server.GetConfig ().EnsureTable<CharacterData> ("characters", "id");
-				bool isUniqueName = true;
-				server.GetConfig ().EnsureIndex<CharacterData> ("characters", isUniqueName, "name");
+				server.GetConfig ().EnsureIndex<CharacterData> ("characters", isUnique, "name");
 				
 				server.GetConfig ().EnsureTable<CharacterItem> ("inventory", "id");
-				//bool isUnique = false;
+
 				//server.GetConfig ().EnsureIndex<CharacterItem> ("inventory", isUnique, "_position");
 				server.GetConfig ().EnsureTable<Item> ("item", "id");
 				server.GetConfig ().EnsureTable<NPCData> ("npc", "id");
+				server.GetConfig ().EnsureTable<WaypointData> ("waypoint_data", "id");
+				server.GetConfig ().EnsureIndex<WaypointData> ("waypoint_data", isNotUnique, "npc");
 				
 				_db = server.Open ();
 			}

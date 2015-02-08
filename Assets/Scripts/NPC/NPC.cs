@@ -26,6 +26,11 @@ public class NPC : MonoBehaviour
 		}
 	}
 
+	public List<WaypointData> waypoints
+	{
+		get {return data.waypoints;}
+	}
+
 	public GameObject projectilePrefab;
 	public AnimationClip idleAnimation;
 	public AnimationClip runAnimation;
@@ -50,6 +55,9 @@ public class NPC : MonoBehaviour
 	private float distanceFromIPos = 0;
 	private float OriginalAttacksPerSecond;
 	private bool backToIPos = false;
+	private int currentWaypoint = 0;
+	private float curTime = 0;
+	private float pauseDuration = 2;
 
 	protected NamePlate namePlate;
 	
@@ -82,9 +90,11 @@ public class NPC : MonoBehaviour
 	
 	private void Update()
 	{
-		if (data.subType != NPCData.creatureSubType.Normal) {return;} // enable in debug to not verifiy if you are the master
-		//if (data.subType != NPCData.creatureSubType.Normal || !PhotonNetwork.isMasterClient) {return;}
-
+		if (Application.isEditor) {
+			if (data.subType != NPCData.creatureSubType.Normal) {return;} // enable in debug to not verifiy if you are the master
+		} else {
+			if (data.subType != NPCData.creatureSubType.Normal || !PhotonNetwork.isMasterClient) {return;}
+		}
 
 		if (this.EnableCombat) {
 			this.timeSinceLastAttack += Time.deltaTime;
@@ -171,7 +181,16 @@ public class NPC : MonoBehaviour
 					if (backToIPos) {
 						gotoInitialPoint();
 					} else {
-						anim.Play(this.idleAnimation.name);
+						if (waypoints.Count == 0) {
+							anim.Play(this.idleAnimation.name);
+						} else {
+							// run points in loop
+							if (currentWaypoint < waypoints.Count) {
+								followPoint ();
+							} else {
+								currentWaypoint = 0;
+							}
+						}
 					}
 				}
 					
@@ -294,6 +313,30 @@ public class NPC : MonoBehaviour
 	private IEnumerator Slow(float amountToReduceBy)
 	{
 		yield return new WaitForSeconds(1);
+	}
+
+	void followPoint () {
+		
+		Vector3 target = waypoints[currentWaypoint].position;
+		target.y = transform.position.y; // Keep waypoint at character's height
+		Vector3 moveDirection = target - transform.position;
+		
+		if (moveDirection.magnitude < 0.5f) {
+			if (curTime == 0) {
+				curTime = Time.time; // Pause over the Waypoint
+			}
+			if ((Time.time - curTime) >= pauseDuration) {
+				currentWaypoint++;
+				curTime = 0;
+			}
+			anim.Play(this.idleAnimation.name);
+		} else {
+			anim.Play(this.runAnimation.name);
+
+			this.transform.position = Vector3.MoveTowards(this.transform.position, target, data.runSpeed * Time.deltaTime);
+			this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((target.x - this.transform.position.x), (target.z - this.transform.position.z)) * 57.29578f, 0.0f);
+
+		}    
 	}
 
 }

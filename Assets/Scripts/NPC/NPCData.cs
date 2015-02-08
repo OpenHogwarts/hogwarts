@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NPCData {
 
@@ -34,6 +35,19 @@ public class NPCData {
 	public float distanceToLoseAggro = 30;
 	public float runSpeed = 8;
 	public float attacksPerSecond = 1;
+	private List<WaypointData> _waypoints = new List<WaypointData> ();
+	public List<WaypointData> waypoints {
+		get {
+			
+			if (_waypoints.Count == 0) {
+				foreach (WaypointData data in Service.db.Select<WaypointData>("FROM "+WaypointData.TABLE_NAME + " WHERE npc ==? ORDER BY id asc ", id)) {
+					_waypoints.Add(data);
+				}
+			}
+			
+			return _waypoints;
+		}
+	}
 
 	public enum creatureType
 	{

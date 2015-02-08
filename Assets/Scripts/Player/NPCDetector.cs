@@ -6,7 +6,8 @@ NPC detection is separated into a empty child to prevent having 2 collider compo
  */
 
 public class NPCDetector : MonoBehaviour {
-	
+
+
 	public void OnTriggerEnter (Collider other) {
 		this.canBeTargeted(other);
 	}
@@ -19,8 +20,6 @@ public class NPCDetector : MonoBehaviour {
 
 		if (other.gameObject.tag != "NPC") {return;}
 	
-		
-		RaycastHit hitdist = new RaycastHit();
 		Vector3 hitPoint;
 
 		Ray ray = new Ray(transform.position, other.gameObject.transform.position);
