@@ -1,3 +1,5 @@
+#warning Upgrade NOTE: unity_Scale shader variable was removed; replaced 'unity_Scale.w' with '1.0'
+
 Shader "FX/Water" { 
 Properties {
 	_WaveScale ("Wave scale", Range (0.02,0.15)) = 0.063
@@ -76,7 +78,7 @@ v2f vert(appdata v)
 	
 	// scroll bump waves
 	float4 temp;
-	temp.xyzw = v.vertex.xzxz * _WaveScale4 / unity_Scale.w + _WaveOffset;
+	temp.xyzw = v.vertex.xzxz * _WaveScale4 / 1.0 + _WaveOffset;
 	o.bumpuv0 = temp.xy;
 	o.bumpuv1 = temp.wz;
 	

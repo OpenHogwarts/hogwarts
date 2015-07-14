@@ -37,7 +37,7 @@ class TonemappingEditor extends Editor
     	
 		GUILayout.Label("Mapping HDR to LDR ranges since 1982", EditorStyles.miniLabel);
 		
-		var cam : Camera = (target as Tonemapping).camera;
+		var cam : Camera = (target as Tonemapping).GetComponent.<Camera>();
 		if(cam != null) {
 			if(!cam.hdr) {
 				EditorGUILayout.HelpBox("The camera is not HDR enabled. This will likely break the Tonemapper.", MessageType.Warning);

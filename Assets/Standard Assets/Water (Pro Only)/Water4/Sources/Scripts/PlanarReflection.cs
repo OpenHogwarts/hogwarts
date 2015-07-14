@@ -35,7 +35,7 @@ public class PlanarReflection : MonoBehaviour
 			go = new GameObject(reflName, typeof(Camera)); 
 		if(!go.GetComponent(typeof(Camera)))
 			go.AddComponent(typeof(Camera));
-		Camera reflectCamera = go.camera;				
+		Camera reflectCamera = go.GetComponent<Camera>();				
 		
 		reflectCamera.backgroundColor = clearColor;
 		reflectCamera.clearFlags = reflectSkybox ? CameraClearFlags.Skybox : CameraClearFlags.SolidColor;				

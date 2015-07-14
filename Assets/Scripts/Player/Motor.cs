@@ -54,8 +54,8 @@ public class Motor : MonoBehaviour
 	void Awake()
 	{
 		capsule = GetComponent<CapsuleCollider>();
-		rigidbody.freezeRotation = true;
-		rigidbody.useGravity = true;
+		GetComponent<Rigidbody>().freezeRotation = true;
+		GetComponent<Rigidbody>().useGravity = true;
 	}
 	
 	/// <summary>
@@ -111,16 +111,16 @@ public class Motor : MonoBehaviour
 		{
 			// Apply a force that attempts to reach our target velocity
 			var velocityChange = CalculateVelocityChange(inputVector);
-			rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+			GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
 			
 			// Jump
 			if (canJump && jumpFlag)
 			{
 				jumpFlag = false;
-				rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y + CalculateJumpVerticalSpeed(), rigidbody.velocity.z);
+				GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, GetComponent<Rigidbody>().velocity.y + CalculateJumpVerticalSpeed(), GetComponent<Rigidbody>().velocity.z);
 			} else {
 				anim.SetBool ("Jumping", false);
-				anim.SetFloat("Speed", rigidbody.velocity.magnitude);
+				anim.SetFloat("Speed", GetComponent<Rigidbody>().velocity.magnitude);
 			}
 			
 			// By setting grounded to false in every FixedUpdate we avoid
@@ -132,7 +132,7 @@ public class Motor : MonoBehaviour
 		{
 			// Uses the input vector to affect the mid air direction
 			var velocityChange = transform.TransformDirection(inputVector) * inAirControl;
-			rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+			GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
 			anim.SetBool ("Jumping", true);
 		}
 	}
@@ -175,7 +175,7 @@ public class Motor : MonoBehaviour
 		relativeVelocity.x *= sidestepSpeed;
 		
 		// Calculate delta velocity
-		var currRelativeVelocity = rigidbody.velocity - groundVelocity;
+		var currRelativeVelocity = GetComponent<Rigidbody>().velocity - groundVelocity;
 		var velocityChange = relativeVelocity - currRelativeVelocity;
 		velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
 		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
@@ -225,12 +225,12 @@ public class Motor : MonoBehaviour
 	
 	private bool isKinematic(Collision collision)
 	{
-		return isKinematic(collider.transform);
+		return isKinematic(GetComponent<Collider>().transform);
 	}
 	
 	private bool isKinematic(Transform transform)
 	{
-		return transform.rigidbody && transform.rigidbody.isKinematic;
+		return transform.GetComponent<Rigidbody>() && transform.GetComponent<Rigidbody>().isKinematic;
 	}
 	
 	private bool isStatic(Collision collision)

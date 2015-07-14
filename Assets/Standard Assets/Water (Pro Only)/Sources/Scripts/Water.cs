@@ -35,7 +35,7 @@ public class Water : MonoBehaviour
 	// camera will just work!
 	public void OnWillRenderObject()
 	{
-		if( !enabled || !renderer || !renderer.sharedMaterial || !renderer.enabled )
+		if( !enabled || !GetComponent<Renderer>() || !GetComponent<Renderer>().sharedMaterial || !GetComponent<Renderer>().enabled )
 			return;
 			
 		Camera cam = Camera.current;
@@ -95,7 +95,7 @@ public class Water : MonoBehaviour
 			reflectionCamera.Render();
 			reflectionCamera.transform.position = oldpos;
 			GL.SetRevertBackfacing (false);
-			renderer.sharedMaterial.SetTexture( "_ReflectionTex", m_ReflectionTexture );
+			GetComponent<Renderer>().sharedMaterial.SetTexture( "_ReflectionTex", m_ReflectionTexture );
 		}
 		
 		// Render refraction
@@ -113,7 +113,7 @@ public class Water : MonoBehaviour
 			refractionCamera.transform.position = cam.transform.position;
 			refractionCamera.transform.rotation = cam.transform.rotation;
 			refractionCamera.Render();
-			renderer.sharedMaterial.SetTexture( "_RefractionTex", m_RefractionTexture );
+			GetComponent<Renderer>().sharedMaterial.SetTexture( "_RefractionTex", m_RefractionTexture );
 		}
 		
 		// Restore pixel light count
@@ -168,9 +168,9 @@ public class Water : MonoBehaviour
 	// old cards to make water texture scroll.
 	void Update()
 	{
-		if( !renderer )
+		if( !GetComponent<Renderer>() )
 			return;
-		Material mat = renderer.sharedMaterial;
+		Material mat = GetComponent<Renderer>().sharedMaterial;
 		if( !mat )
 			return;
 			
@@ -190,7 +190,7 @@ public class Water : MonoBehaviour
 		mat.SetVector( "_WaveOffset", offsetClamped );
 		mat.SetVector( "_WaveScale4", waveScale4 );
 			
-		Vector3 waterSize = renderer.bounds.size;		
+		Vector3 waterSize = GetComponent<Renderer>().bounds.size;		
 		Vector3 scale = new Vector3( waterSize.x*waveScale4.x, waterSize.z*waveScale4.y, 1 );
 		Matrix4x4 scrollMatrix = Matrix4x4.TRS( new Vector3(offsetClamped.x,offsetClamped.y,0), Quaternion.identity, scale );
 		mat.SetMatrix( "_WaveMatrix", scrollMatrix );
@@ -259,11 +259,11 @@ public class Water : MonoBehaviour
 			if (!reflectionCamera) // catch both not-in-dictionary and in-dictionary-but-deleted-GO
 			{
 				GameObject go = new GameObject( "Water Refl Camera id" + GetInstanceID() + " for " + currentCamera.GetInstanceID(), typeof(Camera), typeof(Skybox) );
-				reflectionCamera = go.camera;
+				reflectionCamera = go.GetComponent<Camera>();
 				reflectionCamera.enabled = false;
 				reflectionCamera.transform.position = transform.position;
 				reflectionCamera.transform.rotation = transform.rotation;
-				reflectionCamera.gameObject.AddComponent("FlareLayer");
+				reflectionCamera.gameObject.AddComponent<FlareLayer>();
 				go.hideFlags = HideFlags.HideAndDontSave;
 				m_ReflectionCameras[currentCamera] = reflectionCamera;
 			}
@@ -288,11 +288,11 @@ public class Water : MonoBehaviour
 			if (!refractionCamera) // catch both not-in-dictionary and in-dictionary-but-deleted-GO
 			{
 				GameObject go = new GameObject( "Water Refr Camera id" + GetInstanceID() + " for " + currentCamera.GetInstanceID(), typeof(Camera), typeof(Skybox) );
-				refractionCamera = go.camera;
+				refractionCamera = go.GetComponent<Camera>();
 				refractionCamera.enabled = false;
 				refractionCamera.transform.position = transform.position;
 				refractionCamera.transform.rotation = transform.rotation;
-				refractionCamera.gameObject.AddComponent("FlareLayer");
+				refractionCamera.gameObject.AddComponent<FlareLayer>();
 				go.hideFlags = HideFlags.HideAndDontSave;
 				m_RefractionCameras[currentCamera] = refractionCamera;
 			}
@@ -309,10 +309,10 @@ public class Water : MonoBehaviour
 	
 	private WaterMode FindHardwareWaterSupport()
 	{
-		if( !SystemInfo.supportsRenderTextures || !renderer )
+		if( !SystemInfo.supportsRenderTextures || !GetComponent<Renderer>() )
 			return WaterMode.Simple;
 			
-		Material mat = renderer.sharedMaterial;
+		Material mat = GetComponent<Renderer>().sharedMaterial;
 		if( !mat )
 			return WaterMode.Simple;
 			

@@ -1,3 +1,5 @@
+// Upgrade NOTE: unity_Scale shader variable was removed; replaced 'unity_Scale.w' with '1.0'
+
 
 #ifndef WATER_CG_INCLUDED
 #define WATER_CG_INCLUDED
@@ -127,7 +129,7 @@ inline half2 GetTileableUv(half4 vertex)
 {
 	// @NOTE: use worldSpaceVertex.xz instead of ws to make it rotation independent
 	half2 ws = half2(_Object2World[0][3],_Object2World[2][3]);
-	half2 tileableUv = (ws + vertex.xz/unity_Scale.w);	
+	half2 tileableUv = (ws + vertex.xz/1.0);	
 	return tileableUv;
 }
 

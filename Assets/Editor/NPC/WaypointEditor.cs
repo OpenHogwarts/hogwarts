@@ -103,7 +103,7 @@ public class WaypointEditor : Editor
 	void createWaypoint (Vector3 position)
 	{
 		checkContainer ();
-		GameObject waypoint = Resources.LoadAssetAtPath("Assets/Prefabs/Waypoint.prefab", typeof(GameObject)) as GameObject;
+		GameObject waypoint = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Waypoint.prefab", typeof(GameObject)) as GameObject;
 		GameObject waypointInstance = Instantiate(waypoint) as GameObject;
 		waypointInstance.hideFlags = HideFlags.DontSave;
 		waypointInstance.transform.position = position;
