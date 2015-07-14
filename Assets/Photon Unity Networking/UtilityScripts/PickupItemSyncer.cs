@@ -69,7 +69,7 @@ public class PickupItemSyncer : Photon.MonoBehaviour
         }
     }
 
-    [RPC]
+    [PunRPC]
     public void RequestForPickupTimes(PhotonMessageInfo msgInfo)
     {
         if (msgInfo.sender == null)
@@ -126,7 +126,7 @@ public class PickupItemSyncer : Photon.MonoBehaviour
     }
 
 
-    [RPC]
+    [PunRPC]
     public void PickupItemInit(double timeBase, float[] inactivePickupsAndTimes)
     {
         this.IsWaitingForPickupInit = false;

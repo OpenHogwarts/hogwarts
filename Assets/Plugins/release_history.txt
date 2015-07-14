@@ -8,6 +8,50 @@ http://doc.exitgames.com
 http://forum.exitgames.com
 
 
+*** Version 4.0.0.9 (2015 - rev)
+    Removed: LitePeer class and complete "Lite" namespace. It's highly recommended to use the LoadBalancing API (LoadBalancingClient, etc). The (few) operations that were defined in Lite are no longer required really.
+    Refactored: Some "base" enumerations that were provided by the Lite peer. They are now in LoadBalancingPeer.
+    Added: support for RoomOptions.Plugins. Which we need now since we support multiple plugins per plugin dll - for testing purposes for instance.
+    Fixed: The wrapper classes for the native sockets now do a Sleep(15) when there's nothing to receive. This reduces CPU load considerably.
+    Fixed: Unity library SocketWebTcp class for websocket support. It requires a coroutine on a new GameObject which is now marked as DontDestroyOnLoad(go) and survives scene loading.
+    Fixed: The Windows 8 SDKs now include the release assemblies. This makes sure you can submit your app to the Windows Store.
+    Added: ConnectionProtocol WebSocket and WebSocketSecure. It's simply a different protocol, compared to UDP and TCP, so it should be separated.
+    Internal: DoFraming is now a part of TPeer (was in IPhotonSocket). It's set by the ConnectionProtocol which avoids misconfiguration.
+    Changed: SendPing can now send a ping binary message or enqueue the Ping Operation (when DoFraming is false).
+    Added: A null-check for TrafficStatsStopwatch to avoid NullReferenceExceptions.
+    Added: Compile condition for Ping result handling. It's only used when the client uses Sockets as well (for the time being).
+    Added: Unity WebGL export also sets a "using" Hashtable definition.
+    Fixed: An exception in Photon.Hashtable.ToString() if a value was null. The assumption was that there are no null-values.
+    Changed: SocketUdp and SocketTcp now implement IDisposable, which seems to help with infrequent freezes in the Unity Editor.
+    Added: PhotonPeer.QuickResendAttempts. Sets how many resend attempts for a reliable command will be done in quick succession (after RTT+4*Variance), before the time between repeats will be increased. Use with care and with low values.
+    Added: IP/Hostname to logged exceptions when Connect fails. This is easier to support (e.g. DNS lookup fails).
+    Fixed: Library for PUN+ export to WebGL. Originally, we forced UDP as protocol for PUN+ export, as the native sockets library doesn't support TCP. However, WebGL export introduced a new use case.
+LoadBalancing (Realtime and Turnbased API)
+    Added: GamePropertyKey.MasterClientId (248) and ParameterCode.MasterClientId (203)
+    Added: ParameterCode.ExpectedValues (231)
+    Added: ParameterCode.SuppressRoomEvents (237)
+    Updated: Description for IsConnectedAndReady.
+    Changed: NameServerAddress to return a fitting address depending on protocol (including WebSocket but not yet RHTTP).
+    Updated: The only name server host is now "ns.exitgames.com", which gets turned into a proper address by protocol.
+    Changed: LoadBalancingClient.CustomAuthenticationValues is now .AuthValues. You can use those values to identify a user, even if you don't setup an external, custom authentication service.
+    Changed: LoadBalancingClient.UserId no longer directly stores the id but puts it into AuthValues. This means, the UserId could also be set via setting AuthValues.
+    Changed: The API of AuthenticationValues. There is now the UserId and AddAuthParameter() replaces the less general SetAuthParameters() (which only set specific key/values).
+    Changed: PlayerName gets renamed to NickName, so PhotonPlayer.Name becomes .NickName and LoadBalancingClient.Name becomes .NickName, too. The old naming is marked as obsolete.
+Chat API:
+    Added: Unity/WebGL support (merged from PUN)
+    Added(Breaking): IChatClientListener.DebugReturn; Photon lib and chat client log via this method (no logging to console by default)
+    Changed: ChatClient.CustomAuthenticationValues is now .AuthValues. You can use those values to identify a user, even if you don't setup an external, custom authentication service.
+    Changed: ChatClient.UserId no longer directly stores the id but puts it into AuthValues. This means, the UserId could also be set via setting AuthValues.
+    Changed: The API of AuthenticationValues. There is now the UserId and AddAuthParameter() replaces the less general SetAuthParameters() (which only set specific key/values).
+
+*** Version 4.0.0.8 (14. January 2015 - rev2765)
+    Fixed: Serialization of custom types with nested Serialize-calls. In this case, re-using a specific memory stream breaks it.
+
+*** Version 4.0.0.7 (12. January 2015 - rev2763)
+    Fixed: Serialization of arrays of custom-types.
+Chat API
+    Internal: Changed code for UserID from 7 to 225. The latter is used in LoadBalancing, too, so we want to re-use the code here.
+
 *** Version 4.0.0.6 (05. December 2014 - rev2758)
     Added: ChatApi and LoadBalancingApi folders to Unity SDK. They are needed in any Photon project with Unity. When updating, copy and paste the files over existing ones and make sure to replace the assembly-files, too.
     Changed: Protocol to save more memory or re-use it. The idea is to have less Garbage Collection (primarily for Unity/PUN and custom types).
@@ -19,13 +63,12 @@ http://forum.exitgames.com
     Changed: DispatchIncomingCommands() no longer instantiates the commandsToRemove each call. This is reused and thus saves memory.
     Changed: net_fx build will now check IsConstructedGenericType to detect if something is a dictionary
 LoadBalancing
-    ADDED: LoadBalancingClient.OpJoinOrCreateRoom overload which has lobby as parameter. If a room gets created, this defines in which lobby it belongs.
-    CHANGED: LoadBalancingPeer: Added new error code PluginMismatch, documentation for Plugins parameter code.
-
+    Added: LoadBalancingClient.OpJoinOrCreateRoom overload which has lobby as parameter. If a room gets created, this defines in which lobby it belongs.
+    Changed: LoadBalancingPeer: Added new error code PluginMismatch, documentation for Plugins parameter code.
 
 *** Version 4.0.0.5 (23. September 2014 - rev2738)
     Updated: AddFriends and RemoveFriends doc.
-	Changed: Logging level for two cases. Dropping a package due to failed CRC-check is now logged for INFO. It's expected and certainly not an error. Dropping a package when the incoming challenge does not match is also not an ERROR. It is expected when you switch servers and packages arrive late. This is now debug level ALL.
+    Changed: Logging level for two cases. Dropping a package due to failed CRC-check is now logged for INFO. It's expected and certainly not an error. Dropping a package when the incoming challenge does not match is also not an ERROR. It is expected when you switch servers and packages arrive late. This is now debug level ALL.
 
 *** Version 4.0.0.4 (19. September 2014 - rev2736)
     Fixed: Fragmentation when CRC checks are enabled. This kept clients from sending fragmented commands when the additional 4 bytes CRC were included later on.

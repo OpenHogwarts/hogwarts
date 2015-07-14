@@ -1,8 +1,11 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 #if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
 using UnityEditorInternal;
+#elif UNITY_5 || UNITY_5_0
+using UnityEditor.Animations;
 #endif
 
 [CustomEditor(typeof (PhotonAnimatorView))]
@@ -11,7 +14,7 @@ public class PhotonAnimatorViewEditor : Editor
     private Animator m_Animator;
     private PhotonAnimatorView m_Target;
 
-#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
+#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6 || UNITY_5 || UNITY_5_0
     private AnimatorController m_Controller;
 #endif
 
@@ -28,8 +31,8 @@ public class PhotonAnimatorViewEditor : Editor
         }
 
         DrawWeightInspector();
-
-        if (this.m_Animator.layerCount == 0)
+        //TODO: in Unity 5, it seems the layerCount is empty unless we use the controller?!
+        if (GetLayerCount() == 0)
         {
             GUILayout.BeginVertical(GUI.skin.box);
             GUILayout.Label("Animator doesn't have any layers setup to synchronize");
@@ -51,6 +54,33 @@ public class PhotonAnimatorViewEditor : Editor
         //GUILayout.Label( "m_SynchronizeParameters " + serializedObject.FindProperty( "m_SynchronizeParameters" ).arraySize );
     }
 
+    private int GetLayerCount()
+    {
+#if UNITY_5 || UNITY_5_0
+        return (this.m_Controller == null) ? 0 : this.m_Controller.layers.Length;
+#else
+        return this.m_Animator.layerCount;
+#endif
+    }
+
+
+#if UNITY_5 || UNITY_5_0
+    private RuntimeAnimatorController GetEffectiveController(Animator animator)
+    {
+        RuntimeAnimatorController controller = animator.runtimeAnimatorController;
+
+        AnimatorOverrideController overrideController = controller as AnimatorOverrideController;
+        while (overrideController != null)
+        {
+            controller = overrideController.runtimeAnimatorController;
+            overrideController = controller as AnimatorOverrideController;
+        }
+
+        return controller;
+    }
+#endif
+
+
     private void OnEnable()
     {
         this.m_Target = (PhotonAnimatorView) target;
@@ -58,6 +88,8 @@ public class PhotonAnimatorViewEditor : Editor
 
 #if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
         this.m_Controller = AnimatorController.GetEffectiveAnimatorController(this.m_Animator);
+#elif UNITY_5 || UNITY_5_0
+        this.m_Controller = this.GetEffectiveController(this.m_Animator) as AnimatorController;
 #endif
 
         CheckIfStoredParametersExist();
@@ -74,9 +106,9 @@ public class PhotonAnimatorViewEditor : Editor
         }
 
         float lineHeight = 20;
-        Rect containerRect = PhotonGUI.ContainerBody(this.m_Animator.layerCount*lineHeight);
+        Rect containerRect = PhotonGUI.ContainerBody(this.GetLayerCount()*lineHeight);
 
-        for (int i = 0; i < this.m_Animator.layerCount; ++i)
+        for (int i = 0; i < this.GetLayerCount(); ++i)
         {
             if (this.m_Target.DoesLayerSynchronizeTypeExist(i) == false)
             {
@@ -84,7 +116,7 @@ public class PhotonAnimatorViewEditor : Editor
                 EditorUtility.SetDirty(this.m_Target);
             }
 
-            PhotonAnimatorView.SynchronizeType value = this.m_Target.GetLayerSynchronizeType(i);
+            PhotonAnimatorView.SynchronizeType syncType = this.m_Target.GetLayerSynchronizeType(i);
 
             Rect elementRect = new Rect(containerRect.xMin, containerRect.yMin + i*lineHeight, containerRect.width, lineHeight);
 
@@ -92,18 +124,18 @@ public class PhotonAnimatorViewEditor : Editor
             GUI.Label(labelRect, "Layer " + i);
 
             Rect popupRect = new Rect(elementRect.xMin + EditorGUIUtility.labelWidth, elementRect.yMin + 2, elementRect.width - EditorGUIUtility.labelWidth - 5, EditorGUIUtility.singleLineHeight);
-            value = (PhotonAnimatorView.SynchronizeType) EditorGUI.EnumPopup(popupRect, value);
+            syncType = (PhotonAnimatorView.SynchronizeType) EditorGUI.EnumPopup(popupRect, syncType);
 
-            if (i < this.m_Animator.layerCount - 1)
+            if (i < this.GetLayerCount() - 1)
             {
                 Rect splitterRect = new Rect(elementRect.xMin + 2, elementRect.yMax, elementRect.width - 4, 1);
                 PhotonGUI.DrawSplitter(splitterRect);
             }
 
-            if (value != this.m_Target.GetLayerSynchronizeType(i))
+            if (syncType != this.m_Target.GetLayerSynchronizeType(i))
             {
                 Undo.RecordObject(target, "Modify Synchronize Layer Weights");
-                this.m_Target.SetLayerSynchronized(i, value);
+                this.m_Target.SetLayerSynchronized(i, syncType);
 
                 EditorUtility.SetDirty(this.m_Target);
             }
@@ -112,67 +144,60 @@ public class PhotonAnimatorViewEditor : Editor
 
     private int GetParameterCount()
     {
-#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
-        if (this.m_Controller == null)
-        {
-            return 0;
-        }
+        #if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
+        return (this.m_Controller == null) ? 0 : this.m_Controller.parameterCount;
+        #elif UNITY_5 || UNITY_5_0
+        return (this.m_Controller == null) ? 0 : this.m_Controller.parameters.Length;
+        #else
+        return (m_Animator == null) ? 0 : m_Animator.parameters.Length;
+        #endif
+    }
 
-        return this.m_Controller.parameterCount;
-#else
-        if( m_Animator == null )
-        {
-            return 0;
-        }
-
-        return m_Animator.parameters.Length;
-#endif
+    private AnimatorControllerParameter GetAnimatorControllerParameter(int i)
+    {
+        #if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
+        return this.m_Controller.GetParameter(i);
+        #elif UNITY_5 || UNITY_5_0
+        return this.m_Controller.parameters[i];
+        #else
+        return m_Animator.parameters[i];
+        #endif
     }
 
     private bool DoesParameterExist(string name)
     {
-#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
-        for (int i = 0; i < this.m_Controller.parameterCount; ++i)
+        for (int i = 0; i < this.GetParameterCount(); ++i)
         {
-            if (this.m_Controller.GetParameter(i).name == name)
+            if (GetAnimatorControllerParameter(i).name == name)
             {
                 return true;
             }
         }
 
         return false;
-#else
-        for( int i = 0; i < m_Animator.parameters.Length; ++i )
-        {
-            if( m_Animator.parameters[ i ].name == name )
-            {
-                return true;
-            }
-        }
-
-        return false;
-#endif
     }
 
     private void CheckIfStoredParametersExist()
     {
-        for (int i = 0; i < this.m_Target.GetSynchronizedParameters().Count; ++i)
+        var syncedParams = this.m_Target.GetSynchronizedParameters();
+        List<string> paramsToRemove = new List<string>();
+
+        for (int i = 0; i < syncedParams.Count; ++i)
         {
-            string parameterName = this.m_Target.GetSynchronizedParameters()[i].Name;
+            string parameterName = syncedParams[i].Name;
             if (DoesParameterExist(parameterName) == false)
             {
-                Debug.LogWarning("Parameter '" + this.m_Target.GetSynchronizedParameters()[i].Name +
-                                 "' doesn't exist anymore. Removing it from the list of synchronized parameters");
-                int numberOfRemovedElements = this.m_Target.GetSynchronizedParameters().RemoveAll(item => item.Name == parameterName);
-                EditorUtility.SetDirty(this.m_Target);
-
-                i -= numberOfRemovedElements;
-
-                if (i < 0)
-                {
-                    break;
-                }
+                Debug.LogWarning("Parameter '" + this.m_Target.GetSynchronizedParameters()[i].Name + "' doesn't exist anymore. Removing it from the list of synchronized parameters");
+                paramsToRemove.Add(parameterName);
             }
+        }
+        if (paramsToRemove.Count > 0)
+        {
+            foreach (string param in paramsToRemove)
+            {
+                this.m_Target.GetSynchronizedParameters().RemoveAll(item => item.Name == param);
+            }
+            EditorUtility.SetDirty(this.m_Target);
         }
     }
 
@@ -192,12 +217,7 @@ public class PhotonAnimatorViewEditor : Editor
         for (int i = 0; i < GetParameterCount(); i++)
         {
             AnimatorControllerParameter parameter = null;
-
-#if UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5 || UNITY_4_6
-            parameter = this.m_Controller.GetParameter(i);
-#else
-            parameter = m_Animator.parameters[ i ];
-#endif
+            parameter = GetAnimatorControllerParameter(i);
 
             string defaultValue = "";
 

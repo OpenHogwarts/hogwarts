@@ -41,7 +41,7 @@ Server
 	
 	The window "Photon Unity Networking" will help you setup a Photon Cloud account.
 	This service is geared towards room-based games and the server cannot be modified.
-	Read more about it: http://cloud.exitgames.com
+	Read more about it: http://www.exitgames.com
 
 	Alternatively, download the Server SDK and run your own Photon Server.
 	The SDK has the binaries to run immediately but also includes the source code and projects
@@ -52,7 +52,7 @@ Server
 
 PUN+ and Networking Guide Subscriptions
     Follow these steps when you bought an asset that includes an upgrade for a Photon Cloud subscription:
-        • Use an existing Photon Cloud Account or register here: https://cloud.exitgames.com/Account/SignUp 
+        • Use an existing Photon Cloud Account or register here: https://www.exitgames.com/Account/SignUp 
         • Sign in and open the Dashboard. 
         • Select the Subscription you want to upgrade and click the button "Apply Unity Purchase".
         • Enter your Unity Invoice Number and click "Redeem".

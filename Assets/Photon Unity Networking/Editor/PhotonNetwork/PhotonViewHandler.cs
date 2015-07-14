@@ -27,7 +27,7 @@ public class PhotonViewHandler : EditorWindow
         if (Application.isPlaying)
         {
             //Debug.Log("HierarchyChange ignored, while running.");
-            CheckSceneForStuckHandlers = true;
+            CheckSceneForStuckHandlers = true;  // done once AFTER play mode.
             return;
         }
 

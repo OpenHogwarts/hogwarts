@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 /*
@@ -44,7 +44,7 @@ public class Chat : MonoBehaviour {
 	}
 	
 	//Needs to be RPC to work online
-	[RPC]
+	[PunRPC]
 	public void Msg(string msg){
 		AddMsg (msg);
 	}

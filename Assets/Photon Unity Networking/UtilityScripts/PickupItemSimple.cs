@@ -36,7 +36,7 @@ public class PickupItemSimple : Photon.MonoBehaviour
         this.photonView.RPC("PunPickupSimple", PhotonTargets.AllViaServer);
     }
 
-    [RPC]
+    [PunRPC]
     public void PunPickupSimple(PhotonMessageInfo msgInfo)
     {
         // one of the messages might be ours

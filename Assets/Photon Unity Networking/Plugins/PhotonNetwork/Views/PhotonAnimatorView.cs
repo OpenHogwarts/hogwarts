@@ -97,6 +97,12 @@ public class PhotonAnimatorView : MonoBehaviour
             m_Animator.applyRootMotion = false;
         }
 
+        if( PhotonNetwork.inRoom == false || PhotonNetwork.room.playerCount <= 1 )
+        {
+            m_StreamQueue.Reset();
+            return;
+        }
+
         if( m_PhotonView.isMine == true )
         {
             SerializeDataContinuously();

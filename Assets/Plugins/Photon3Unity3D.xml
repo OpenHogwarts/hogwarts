@@ -18,9 +18,9 @@
             Creates a shallow copy of the Hashtable.
             </summary>
             <remarks>
-            A shallow copy of a collection copies only the elements of the collection, whether they are 
-            reference types or value types, but it does not copy the objects that the references refer 
-            to. The references in the new collection point to the same objects that the references in 
+            A shallow copy of a collection copies only the elements of the collection, whether they are
+            reference types or value types, but it does not copy the objects that the references refer
+            to. The references in the new collection point to the same objects that the references in
             the original collection point to.
             </remarks>
             <returns>Shallow copy of the Hashtable.</returns>
@@ -330,27 +330,24 @@
             Callback method which gives you (async) responses for called operations.
             </summary>
             <remarks>
-            Like methods, operations can have a result. As operation-calls are non-blocking, the response
-            for any operation of this peer is provided by this method. 
-            As example: Joining a room on a Lite-based server will return a list of players currently in gamey
-            your actorNumber and some other values.
+            Similar to method-calling, operations can have a result. 
+            Because operation-calls are non-blocking and executed on the server, responses are provided 
+            after a roundtrip as call to this method.
+            
+            Example: Trying to create a room usually succeeds but can fail if the room's name is already
+            in use (room names are their IDs).
             
             This method is used as general callback for all operations. Each response corresponds to a certain 
-            "type" of operation by its OperationCode (see: <see cref="!:Operations"/>).<para></para>
-            
-            The "Lite Application" uses these OpCodes:
-             * <see cref="F:ExitGames.Client.Photon.Lite.LiteOpCode.Join"/> for OpJoin, contains the actorNr of "this" player
-             * <see cref="F:ExitGames.Client.Photon.Lite.LiteOpCode.Leave"/> when leaving a room
-             * <see cref="F:ExitGames.Client.Photon.Lite.LiteOpCode.RaiseEvent"/> for OpRaiseEvent, if this was sent as reliable command
-             * <see cref="F:ExitGames.Client.Photon.Lite.LiteOpCode.SetProperties"/> for OpSetPropertiesOfActor and OpSetPropertiesOfGame
+            "type" of operation by its OperationCode (see: <see cref="!:Operations"/>).
+            <para></para>
             </remarks>
             <example>
             When you join a room, the server will assign a consecutive number to each client: the 
             "actorNr" or "player number". This is sent back in the OperationResult's 
-            Parameters as value of key <see cref="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorNr"/>.<para></para>
+            Parameters as value of key <see cref="!:EventCode.ActorNr"/>.<para></para>
             
             Fetch your actorNr of a Join response like this:<para></para>
-            <c>int actorNr = (int)operationResponse[(byte)LiteOpKey.ActorNr];</c>
+            <c>int actorNr = (int)operationResponse[(byte)OperationCode.ActorNr];</c>
             </example>
             <param name="operationResponse">The response to an operation\-call.</param>                                                          
         </member>
@@ -379,11 +376,12 @@
             
             Events can be defined and extended server-side. 
             
-            If you use the Lite application as base, several events like EvJoin and EvLeave are already defined.
-            For these events and their Parameters, the library provides constants, so check:
-            LiteEventCode and LiteEventKey classes.
-            Lite also allows you to come up with custom events on the fly, purely client-side. To do so, use 
-            LitePeer.OpRaiseEvent.<para></para>
+            If you use the LoadBalancing application as base, several events like EvJoin and EvLeave are already defined.
+            For these events and their Parameters, the library provides constants, so check the EventCode and ParameterCode 
+            classes.
+            
+            Photon also allows you to come up with custom events on the fly, purely client-side. To do so, use 
+            OpRaiseEvent.<para></para>
             
             Events are buffered on the client side and must be Dispatched. This way, OnEvent is always taking
             place in the same thread as a <see cref="M:ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands"/> call.
@@ -395,262 +393,205 @@
             Ports of IPv4 Addresses are of type ushort. They are used as int usually though.
             </summary>
         </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LiteEventCode">
+        <member name="T:ExitGames.Client.Photon.NCommand">
+            <summary> Internal class for "commands" - the package in which operations are sent.</summary>
+        </member>
+        <member name="M:ExitGames.Client.Photon.NCommand.#ctor(ExitGames.Client.Photon.EnetPeer,System.Byte,System.Byte[],System.Byte)">
+            <summary>this variant does only create outgoing commands and increments . incoming ones are created from a DataInputStream</summary>
+        </member>
+        <member name="M:ExitGames.Client.Photon.NCommand.#ctor(ExitGames.Client.Photon.EnetPeer,System.Byte[],System.Int32@)">
+            <summary>reads the command values (commandHeader and command-values) from incoming bytestream and populates the incoming command*</summary>
+        </member>
+        <member name="T:ExitGames.Client.Photon.SimulationItem">
             <summary>
-            Lite - Event codes.
-            These codes are defined by the Lite application's logic on the server side.
-            Other application's won't necessarily use these.
+            A simulation item is an action that can be queued to simulate network lag.
             </summary>
-            <remarks>If your game is built as extension of Lite, don't re-use these codes for your custom events.</remarks>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventCode.Join">
-            <summary>(255) Event Join: someone joined the game</summary>
+        <member name="F:ExitGames.Client.Photon.SimulationItem.stopw">
+            <summary>With this, the actual delay can be measured, compared to the intended lag.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventCode.Leave">
-            <summary>(254) Event Leave: someone left the game</summary>
+        <member name="F:ExitGames.Client.Photon.SimulationItem.TimeToExecute">
+            <summary>Timestamp after which this item must be executed.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventCode.PropertiesChanged">
-            <summary>(253) Event PropertiesChanged</summary>
+        <member name="F:ExitGames.Client.Photon.SimulationItem.ActionToExecute">
+            <summary>Action to execute when the lag-time passed.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventCode.Disconnect">
-            <summary>(252) Event Disconnect</summary>
+        <member name="M:ExitGames.Client.Photon.SimulationItem.#ctor">
+            <summary>Starts a new Stopwatch</summary>
         </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LiteEventKey">
+        <member name="T:ExitGames.Client.Photon.NetworkSimulationSet">
             <summary>
-            Lite - Keys of event-parameters that are defined by the Lite application logic.
-            To keep things lean (in terms of bandwidth), we use byte keys to identify values in events within Photon.
-            In Lite, you can send custom events by defining a EventCode and some content. This custom content is a Hashtable,
-            which can use any type for keys and values. The parameter for operation RaiseEvent and the resulting
-            Events use key (byte)245 for the custom content. The constant for this is: Data or
-            <see cref="F:ExitGames.Client.Photon.Lite.LiteEventKey.CustomContent" text="LiteEventKey.CustomContent Field"/>.
-            </summary>
-            <remarks>
-            If your game is built as extension of Lite, don't re-use these codes for your custom events.
-            </remarks>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorNr">
-            <summary>(254) Playernumber of the player who triggered the event.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.TargetActorNr">
-            <summary>(253) Playernumber of the player who is target of an event (e.g. changed properties).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorList">
-            <summary>(252) List of playernumbers currently in the room.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.Properties">
-            <summary>(251) Set of properties (a Hashtable).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorProperties">
-            <summary>(249) Key for actor (player) property set (Hashtable).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.GameProperties">
-            <summary>(248) Key for game (room) property set (Hashtable).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.Data">
-            <summary>(245) Custom Content of an event (a Hashtable in Lite).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteEventKey.CustomContent">
-            <summary>
-            (245) The Lite operation RaiseEvent will place the Hashtable with your custom event-content under this key.</summary>
-            <remarks>Alternative for: Data!</remarks>
-        </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LiteOpCode">
-            <summary>
-            Lite - Operation Codes.
-            This enumeration contains the codes that are given to the Lite Application's
-            operations. Instead of sending "Join", this enables us to send the byte 255.
+            A set of network simulation settings, enabled (and disabled) by PhotonPeer.IsSimulationEnabled.
             </summary>
             <remarks>
-            Other applications (the MMO demo or your own) could define other operations and other codes.
-            If your game is built as extension of Lite, don't re-use these codes for your custom events.
+            For performance reasons, the lag and jitter settings can't be produced exactly.
+            In some cases, the resulting lag will be up to 20ms bigger than the lag settings.
+            Even if all settings are 0, simulation will be used. Set PhotonPeer.IsSimulationEnabled 
+            to false to disable it if no longer needed.
+            
+            All lag, jitter and loss is additional to the current, real network conditions.
+            If the network is slow in reality, this will add even more lag.
+            The jitter values will affect the lag positive and negative, so the lag settings 
+            describe the medium lag even with jitter. The jitter influence is: [-jitter..+jitter].
+            Packets "lost" due to OutgoingLossPercentage count for BytesOut and LostPackagesOut.
+            Packets "lost" due to IncomingLossPercentage count for BytesIn and LostPackagesIn.
             </remarks>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.Join">
-            <summary>(255) Code for OpJoin, to get into a room.</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.isSimulationEnabled">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.Leave">
-            <summary>(254) Code for OpLeave, to get out of a room.</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingLag">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.RaiseEvent">
-            <summary>(253) Code for OpRaiseEvent (not same as eventCode).</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingJitter">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.SetProperties">
-            <summary>(252) Code for OpSetProperties.</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingLossPercentage">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.GetProperties">
-            <summary>(251) Operation code for OpGetProperties.</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingLag">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpCode.ChangeGroups">
-            <summary>(248) Operation code to change interest groups in Rooms (Lite application and extending ones).</summary>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingJitter">
+            <summary>internal</summary>
         </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LiteOpKey">
-             <summary>
-             Lite - keys for parameters of operation requests and responses (short: OpKey).
-             </summary>
-             <remarks>
-             These keys match a definition in the Lite application (part of the server SDK).
-             If your game is built as extension of Lite, don't re-use these codes for your custom events.
-            
-             These keys are defined per application, so Lite has different keys than MMO or your
-             custom application. This is why these are not an enumeration.
-             Lite and Lite Lobby will use the keys 255 and lower, to give you room for your own codes.
-            
-             Keys for operation-parameters could be assigned on a per operation basis, but
-             it makes sense to have fixed keys for values which are used throughout the whole
-             application.
-             </remarks>
+        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingLossPercentage">
+            <summary>internal</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Asid">
-            <summary>(255) Code of the room name. Used in OpJoin (Asid = Application Session ID).</summary>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IsSimulationEnabled">
+            <summary>This setting overrides all other settings and turns simulation on/off. Default: false.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.RoomName">
-            <summary>(255) Code of the room name. Used in OpJoin.</summary>
-            <remarks>Alternative for: Asid!</remarks>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingLag">
+            <summary>Outgoing packages delay in ms. Default: 100.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.GameId">
-            <summary>(255) Code of the game id (a unique room name). Used in OpJoin.</summary>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingJitter">
+            <summary>Randomizes OutgoingLag by [-OutgoingJitter..+OutgoingJitter]. Default: 0.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.ActorNr">
-            <summary>(254) Code of the Actor of an operation. Used for property get and set.</summary>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingLossPercentage">
+            <summary>Percentage of outgoing packets that should be lost. Between 0..100. Default: 1. TCP ignores this setting.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.TargetActorNr">
-            <summary>(253) Code of the target Actor of an operation. Used for property set. Is 0 for game</summary>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingLag">
+            <summary>Incoming packages delay in ms. Default: 100.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.ActorList">
-            <summary>(252) Code for list of players in a room. Currently not used.</summary>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingJitter">
+            <summary>Randomizes IncomingLag by [-IncomingJitter..+IncomingJitter]. Default: 0.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Properties">
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingLossPercentage">
+            <summary>Percentage of incoming packets that should be lost. Between 0..100. Default: 1. TCP ignores this setting.</summary>
+        </member>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.LostPackagesOut">
+            <summary>Counts how many outgoing packages actually got lost. TCP connections ignore loss and this stays 0.</summary>
+        </member>
+        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.LostPackagesIn">
+            <summary>Counts how many incoming packages actually got lost. TCP connections ignore loss and this stays 0.</summary>
+        </member>
+        <member name="T:Photon.SocketServer.Security.OakleyGroups">
             <summary>
-            (251) Code for property set (Hashtable). This key is used when sending only one set of properties.
-            If either ActorProperties or GameProperties are used (or both), check those keys.
+            Provides classical Diffie-Hellman Modular Exponentiation Groups defined by the 
+            OAKLEY Key Determination Protocol (RFC 2412).
             </summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Broadcast">
-            <summary>(250) Code for broadcast parameter of OpSetProperties method.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.ActorProperties">
-            <summary>(249) Code for property set (Hashtable).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.GameProperties">
-            <summary>(248) Code for property set (Hashtable).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Cache">
-            <summary>(247) Code for caching events while raising them.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.ReceiverGroup">
-            <summary>(246) Code to select the receivers of events (used in Lite, Operation RaiseEvent).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Data">
-            <summary>(245) Code of data of an event. Used in OpRaiseEvent.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Code">
-            <summary>(244) Code used when sending some code-related parameter, like OpRaiseEvent's event-code.</summary>
-            <remarks>This is not the same as the Operation's code, which is no longer sent as part of the parameter Dictionary in Photon 3.</remarks>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Group">
-            <summary>(240) Code for "group" operation-parameter (as used in Op RaiseEvent).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Remove">
+        <member name="F:Photon.SocketServer.Security.OakleyGroups.Generator">
             <summary>
-            (239) The "Remove" operation-parameter can be used to remove something from a list. E.g. remove groups from player's interest groups.
+            Gets the genrator (N) used by the the well known groups 1,2 and 5.
             </summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LiteOpKey.Add">
+        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime768">
             <summary>
-            (238) The "Add" operation-parameter can be used to add something to some list or set. E.g. add groups to player's interest groups.
+            Gets the 768 bit prime for the well known group 1. 
             </summary>
         </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LitePropertyTypes">
+        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime1024">
             <summary>
-            Lite - Flags for "types of properties", being used as filter in OpGetProperties.
+            Gets the 1024 bit prime for the well known group 2. 
             </summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LitePropertyTypes.None">
-            <summary>(0x00) Flag type for no property type.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LitePropertyTypes.Game">
-            <summary>(0x01) Flag type for game-attached properties.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LitePropertyTypes.Actor">
-            <summary>(0x02) Flag type for actor related propeties.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.LitePropertyTypes.GameAndActor">
-            <summary>(0x01) Flag type for game AND actor properties. Equal to 'Game'</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.Lite.EventCaching">
+        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime1536">
             <summary>
-            Lite - OpRaiseEvent allows you to cache events and automatically send them to joining players in a room.
-            Events are cached per event code and player: Event 100 (example!) can be stored once per player.
-            Cached events can be modified, replaced and removed.
+            Gets the 1536  bit prime for the well known group 5. 
+            </summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.Ok">
+            <summary>Result code for any (internal) operation.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.ClientKey">
+            <summary>Param code. Used in internal op: InitEncryption.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.ModeKey">
+            <summary>Encryption-Mode code. Used in internal op: InitEncryption.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.ServerKey">
+            <summary>Param code. Used in internal op: InitEncryption.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.InitEncryption">
+            <summary>Code of internal op: InitEncryption.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.PhotonCodes.Ping">
+            <summary>TODO: Code of internal op: Ping (used in PUN binary websockets).</summary>
+        </member>
+        <member name="T:ExitGames.Client.Photon.PeerStateValue">
+            <summary>
+            Value range for a Peer's connection and initialization state, as returned by the PeerState property.
             </summary>
             <remarks>
-            Caching works only combination with ReceiverGroup options Others and All.
+            While this is not the same as the StatusCode of IPhotonPeerListener.OnStatusChanged(), it directly relates to it.
+            In most cases, it makes more sense to build a game's state on top of the OnStatusChanged() as you get changes.
             </remarks>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.DoNotCache">
-            <summary>Default value (not sent).</summary>
+        <member name="F:ExitGames.Client.Photon.PeerStateValue.Disconnected">
+            <summary>The peer is disconnected and can't call Operations. Call Connect().</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.MergeCache">
-            <summary>Will merge this event's keys with those already cached.</summary>
+        <member name="F:ExitGames.Client.Photon.PeerStateValue.Connecting">
+            <summary>The peer is establishing the connection: opening a socket, exchanging packages with Photon.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.ReplaceCache">
-            <summary>Replaces the event cache for this eventCode with this event's content.</summary>
+        <member name="F:ExitGames.Client.Photon.PeerStateValue.InitializingApplication">
+            <summary>The connection is established and now sends the application name to Photon.</summary>
+            <remarks>You set the "application name" by calling PhotonPeer.Connect().</remarks>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.RemoveCache">
-            <summary>Removes this event (by eventCode) from the cache.</summary>
+        <member name="F:ExitGames.Client.Photon.PeerStateValue.Connected">
+            <summary>The peer is connected and initialized (selected an application). You can now use operations.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.AddToRoomCache">
-            <summary>Adds an event to the room's cache</summary>
+        <member name="F:ExitGames.Client.Photon.PeerStateValue.Disconnecting">
+            <summary>The peer is disconnecting. It sent a disconnect to the server, which will acknowledge closing the connection.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.AddToRoomCacheGlobal">
-            <summary>Adds this event to the cache for actor 0 (becoming a "globally owned" event in the cache).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.RemoveFromRoomCache">
-            <summary>Remove fitting event from the room's cache.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.RemoveFromRoomCacheForActorsLeft">
-            <summary>Removes events of players who already left the room (cleaning up).</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.SliceIncreaseIndex">
-            <summary>Increase the index of the sliced cache.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.SliceSetIndex">
-            <summary>Set the index of the sliced cache. You must set RaiseEventOptions.CacheSliceIndex for this.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.SlicePurgeIndex">
-            <summary>Purge cache slice with index. Exactly one slice is removed from cache. You must set RaiseEventOptions.CacheSliceIndex for this.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.Lite.EventCaching.SlicePurgeUpToIndex">
-            <summary>Purge cache slices with specified index and anything lower than that. You must set RaiseEventOptions.CacheSliceIndex for this.</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.Lite.ReceiverGroup">
+        <member name="T:ExitGames.Client.Photon.ConnectionProtocol">
             <summary>
-            Lite - OpRaiseEvent lets you chose which actors in the room should receive events.
-            By default, events are sent to "Others" but you can overrule this.
+            These are the options that can be used as underlying transport protocol.
             </summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.ReceiverGroup.Others">
-            <summary>Default value (not sent). Anyone else gets my event.</summary>
+        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.Udp">
+            <summary>Use UDP to connect to Photon, which allows you to send operations reliable or unreliable on demand.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.ReceiverGroup.All">
-            <summary>Everyone in the current room (including this peer) will get this event.</summary>
+        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.Tcp">
+            <summary>Use TCP to connect to Photon.</summary>
         </member>
-        <member name="F:ExitGames.Client.Photon.Lite.ReceiverGroup.MasterClient">
-            <summary>The server sends this event only to the actor with the lowest actorNumber.</summary>
-            <remarks>The "master client" does not have special rights but is the one who is in this room the longest time.</remarks>
+        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.WebSocket">
+            <summary>A TCP-based protocol commonly supported by browsers.For WebGL games mostly. Note: No WebSocket IPhotonSocket implementation is in this Assembly.</summary>
+            <remarks>This protocol is only available in Unity exports to WebGL.</remarks>
         </member>
-        <member name="T:ExitGames.Client.Photon.Lite.LitePeer">
-             <summary>
-             A LitePeer is an extended PhotonPeer and implements the operations offered by the "Lite" Application
-             of the Photon Server SDK.
-             </summary>
-             <remarks>
-             This class is used by our samples and allows rapid development of simple games. You can use rooms and
-             properties and send events. For many games, this is a good start.
-            
-             Operations are prefixed as "Op" and are always asynchronous. In most cases, an OperationResult is
-             provided by a later call to OnOperationResult.
-             </remarks>
+        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.WebSocketSecure">
+            <summary>A TCP-based, encrypted protocol commonly supported by browsers. For WebGL games mostly. Note: No WebSocket IPhotonSocket implementation is in this Assembly.</summary>
+            <remarks>This protocol is only available in Unity exports to WebGL.</remarks>
+        </member>
+        <member name="T:ExitGames.Client.Photon.DebugLevel">
+            <summary>
+            Level / amount of DebugReturn callbacks. Each debug level includes output for lower ones: OFF, ERROR, WARNING, INFO, ALL.
+            </summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.DebugLevel.OFF">
+            <summary>No debug out.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.DebugLevel.ERROR">
+            <summary>Only error descriptions.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.DebugLevel.WARNING">
+            <summary>Warnings and errors.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.DebugLevel.INFO">
+            <summary>Information about internal workflows, warnings and errors.</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.DebugLevel.ALL">
+            <summary>Most complete workflow description (but lots of debug output), info, warnings and errors.</summary>
         </member>
         <member name="T:ExitGames.Client.Photon.PhotonPeer">
             <summary>
@@ -708,8 +649,8 @@
              The applicationName defines the application logic to use server-side and it should match the name of
              one of the apps in your server's config.
             
-             By default, the applicationName is "Lite" but other samples use "LiteLobby" and "MmoDemo" in
-             Connect(). You can setup your own application and name it any way you like.
+             By default, the applicationName is "LoadBalancing" but there is also the "MmoDemo".
+             You can setup your own application and name it any way you like.
              </summary>
              <param name="serverAddress">
              Address of the Photon server. Format: ip:port (e.g. 127.0.0.1:5055) or hostname:port (e.g. localhost:5055)
@@ -735,8 +676,8 @@
             
              If the client is disconnected already or the connection thread is stopped, then there is no callback.
             
-             Lite: The default server logic will leave any joined game and trigger the respective event
-             (<see cref="F:ExitGames.Client.Photon.Lite.LiteEventCode.Leave" text="LiteEventCode.Leave"/>) for the remaining players.
+             The default server logic will leave any joined game and trigger the respective event
+             (<see cref="!:EventCode.Leave" text="EventCode.Leave"/>) for the remaining players.
              </remarks>
         </member>
         <member name="M:ExitGames.Client.Photon.PhotonPeer.StopThread">
@@ -857,8 +798,8 @@
             <summary>
             Channel-less wrapper for OpCustom().
             </summary>
-            <param name="customOpCode">Operations are handled by their byte\-typed code. The codes of the
-                                       "Lite" application are in the struct <see cref="T:ExitGames.Client.Photon.Lite.LiteOpCode"/>.</param>
+            <param name="customOpCode">Operations are handled by their byte\-typed code. 
+            The codes of the "LoadBalancong" application are in the class <see cref="!:ExitGames.Client.Photon.LoadBalancing.OperationCode"/>.</param>
             <param name="customOpParameters">Containing parameters as key\-value pair. The key is byte\-typed, while the value is any serializable datatype.</param>
             <param name="sendReliable">Selects if the operation must be acknowledged or not. If false, the
                                        operation is not guaranteed to reach the server.</param>
@@ -875,7 +816,7 @@
             accordingly.<para></para>
             This is explained in more detail as "<see cref="!:Operations" text="Custom Operations"/>".
             <param name="customOpCode">Operations are handled by their byte\-typed code. The codes of the
-                                       "Lite" application are in the struct <see cref="T:ExitGames.Client.Photon.Lite.LiteOpCode"/>.</param>
+                                       "LoadBalancing" application are in the class <see cref="!:ExitGames.Client.Photon.LoadBalancing.OperationCode"/>.</param>
             <param name="customOpParameters">Containing parameters as key\-value pair. The key is byte\-typed, while the value is any serializable datatype.</param>
             <param name="sendReliable">Selects if the operation must be acknowledged or not. If false, the
                                        operation is not guaranteed to reach the server.</param>
@@ -892,7 +833,7 @@
              Use this only after encryption was established by EstablishEncryption and waiting for the OnStateChanged callback.
              </summary>
              <param name="customOpCode">Operations are handled by their byte\-typed code. The codes of the
-                                        "Lite" application are in the struct <see cref="T:ExitGames.Client.Photon.Lite.LiteOpCode"/>.</param>
+                                        "LoadBalancing" application are in the class <see cref="!:ExitGames.Client.Photon.LoadBalancing.OperationCode"/>.</param>
              <param name="customOpParameters">Containing parameters as key\-value pair. The key is byte\-typed, while the value is any serializable datatype.</param>
              <param name="sendReliable">Selects if the operation must be acknowledged or not. If false, the
                                         operation is not guaranteed to reach the server.</param>
@@ -935,7 +876,7 @@
         </member>
         <member name="P:ExitGames.Client.Photon.PhotonPeer.SocketImplementation">
             <summary>
-            Can be used to set a UDP IPhotonSocket implementation at runtime (before connecting) 
+            Can be used to set a UDP IPhotonSocket implementation at runtime (before connecting)
             in compatible DLL builds.
             </summary>
             <remarks>
@@ -993,9 +934,11 @@
             The value includes all headers for this single operation but excludes those of UDP, Enet Package Headers and TCP.
             </summary>
             <remarks>
-            Get this value immediately after calling an operation. Example:
-            this.litepeer.OpJoin("myroom");
-            int opjoinByteCount = this.peer.ByteCountLastOperation;
+            Get this value immediately after calling an operation. 
+            Example:
+            
+            this.loadbalancingClient.OpJoinRoom("myroom");
+            int opjoinByteCount = this.loadbalancingClient.ByteCountLastOperation;
             </remarks>
         </member>
         <member name="P:ExitGames.Client.Photon.PhotonPeer.TrafficStatsEnabled">
@@ -1024,14 +967,25 @@
         <member name="P:ExitGames.Client.Photon.PhotonPeer.TrafficStatsGameLevel">
             <summary>
             Gets a statistic of incoming and outgoing traffic, split by operation, operation-result and event.
+            </summary>
+            <remarks>
             Operations are outgoing traffic, results and events are incoming.
             Includes the per-command header sizes (Udp: Enet Command Header or Tcp: Message Header).
+            </remarks>
+        </member>
+        <member name="P:ExitGames.Client.Photon.PhotonPeer.QuickResendAttempts">
+            <summary>
+            Up to 4 resend attempts for a reliable command can be done in quick succession (after RTT+4*Variance).
             </summary>
+            <remarks>
+            By default 0. Any later resend attempt will then double the time before the next resend.
+            Max value = 4;
+            Make sure to adjust SentCountAllowance to a slightly higher value, as more repeats will get done.
+            </remarks>
         </member>
         <member name="P:ExitGames.Client.Photon.PhotonPeer.PeerState">
             <summary>
-            This is the (low level) state of the connection to the server of a PhotonPeer.
-            It is managed internally and read-only.
+            This is the (low level) state of the connection to the server of a PhotonPeer. Managed internally and read-only.
             </summary>
             <remarks>
             Don't mix this up with the StatusCode provided in IPhotonListener.OnStatusChanged().
@@ -1186,7 +1140,7 @@
              The approximation adds RoundtripTime / 2 and uses this.LocalTimeInMilliSeconds to calculate
              in-between values (this property returns a new value per tick).
             
-             The value sent by Photon equals Environment.TickCount in the logic layer (e.g. Lite).
+             The value sent by Photon equals Environment.TickCount in the logic layer.
              </remarks>
              <value>
              0 until connected.
@@ -1297,548 +1251,6 @@
             While true, the peer will not send any other commands except ACKs (used in UDP connections).
             </summary>
         </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.#ctor(ExitGames.Client.Photon.IPhotonPeerListener)">
-            <summary>
-            Creates a LitePeer instance to connect and communicate with a Photon server.<para></para>
-            Uses UDP as protocol (except in the Silverlight library).
-            </summary>
-            <param name="listener">Your IPhotonPeerListener implementation.</param>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.#ctor">
-            <summary>
-            Creates a LitePeer instance to connect and communicate with a Photon server.<para></para>
-            Uses UDP as protocol (except in the Silverlight library).
-            </summary>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.#ctor(ExitGames.Client.Photon.ConnectionProtocol)">
-            <summary>
-            Creates a LitePeer instance to connect and communicate with a Photon server.
-            </summary>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.#ctor(ExitGames.Client.Photon.IPhotonPeerListener,ExitGames.Client.Photon.ConnectionProtocol)">
-            <summary>
-            Creates a LitePeer instance to communicate with Photon with your selection of protocol.
-            We recommend UDP.
-            </summary>
-            <param name="listener">Your IPhotonPeerListener implementation.</param>
-            <param name="protocolType">Protocol to use to connect to Photon.</param>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpChangeGroups(System.Byte[],System.Byte[])">
-            <summary>
-            Operation to handle this client's interest groups (for events in room).
-            </summary>
-            <remarks>
-            Note the difference between passing null and byte[0]:
-              null won't add/remove any groups.
-              byte[0] will add/remove all (existing) groups.
-            First, removing groups is executed. This way, you could leave all groups and join only the ones provided.
-            </remarks>
-            <param name="groupsToRemove">Groups to remove from interest. Null will not leave any. A byte[0] will remove all.</param>
-            <param name="groupsToAdd">Groups to add to interest. Null will not add any. A byte[0] will add all current.</param>
-            <returns></returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,System.Boolean,System.Object)">
-            <summary>
-            Send an event with custom code/type and any content to the other players in the same room.
-            </summary>
-            <remarks>This override explicitly uses another parameter order to not mix it up with the implementation for Hashtable only.</remarks>
-            <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-            <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-            <param name="customEventContent">Any serializable datatype (including Hashtable like the other OpRaiseEvent overloads).</param>
-            <returns>If operation could be enqueued for sending. Sent when calling: Service or SendOutgoingCommands.</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,System.Boolean,System.Object,System.Byte,ExitGames.Client.Photon.Lite.EventCaching,System.Int32[],ExitGames.Client.Photon.Lite.ReceiverGroup,System.Byte)">
-            <summary>
-            Send an event with custom code/type and any content to the other players in the same room.
-            </summary>
-            <remarks>This override explicitly uses another parameter order to not mix it up with the implementation for Hashtable only.</remarks>
-            <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-            <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-            <param name="customEventContent">Any serializable datatype (including Hashtable like the other OpRaiseEvent overloads).</param>
-            <param name="channelId">Command sequence in which this command belongs. Must be less than value of ChannelCount property. Default: 0.</param>
-            <param name="cache">Affects how the server will treat the event caching-wise. Can cache events for players joining later on or remove previously cached events. Default: DoNotCache.</param>
-            <param name="targetActors">List of ActorNumbers (in this room) to send the event to. Overrides caching. Default: null.</param>
-            <param name="receivers">Defines a target-player group. Default: Others.</param>
-            <param name="interestGroup">Defines to which interest group the event is sent. Players can subscribe or unsibscribe to groups. Group 0 is always sent to all. Default: 0.</param>
-            <returns>If operation could be enqueued for sending. Sent when calling: Service or SendOutgoingCommands.</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,System.Byte,ExitGames.Client.Photon.Hashtable,System.Boolean)">
-            <summary>
-            Send your custom data as event to an "interest group" in the current Room.
-            </summary>
-            <remarks>
-            No matter if reliable or not, when an event is sent to a interest Group, some users won't get this data.
-            Clients can control the groups they are interested in by using OpChangeGroups.
-            </remarks>
-            <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-            <param name="interestGroup">The ID of the interest group this event goes to (exclusively). Grouo 0 sends to all.</param>
-            <param name="customEventContent">Custom data you want to send along (use null, if none).</param>
-            <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,ExitGames.Client.Photon.Hashtable,System.Boolean)">
-            <summary>
-            RaiseEvent tells the server to send an event to the other players within the same room.
-            </summary>
-            <remarks>
-            This method is described in one of its overloads.
-            </remarks>
-            <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-            <param name="customEventContent">Custom data you want to send along (use null, if none).</param>
-            <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,ExitGames.Client.Photon.Hashtable,System.Boolean,System.Byte)">
-             <summary>
-             RaiseEvent tells the server to send an event to the other players within the same room.
-             </summary>
-             <remarks>
-             Type and content of the event can be defined by the client side at will. The server only
-             forwards the content and eventCode to others in the same room.
-            
-             The eventCode should be used to define the event's type and content respectively.///
-             Lite and Loadbalancing are using a few eventCode values already but those start with 255 and go down.
-             Your eventCodes can start at 1, going up.
-            
-             The customEventContent is a Hashtable with any number of key-value pairs of
-             <see cref="!:Serializable Datatypes" text="serializable datatypes"/> or null.
-             Receiving clients can access this Hashtable as Parameter LiteEventKey.Data (see below).
-            
-             RaiseEvent can be used reliable or unreliable. Both result in ordered events but the unreliable ones
-             might be lost and allow gaps in the resulting event sequence. On the other hand, they cause less
-             overhead and are optimal for data that is replaced soon.
-            
-             Like all operations, RaiseEvent is not done immediately but when you call SendOutgoingCommands.
-            
-             It is recommended to keep keys (and data) as simple as possible (e.g. byte or short as key), as
-             the data is typically sent multiple times per second. This easily adds up to a huge amount of data
-             otherwise.
-             </remarks>
-             <example>
-             <code>
-             //send some position data (using byte-keys, as they are small):
-            
-             Hashtable evInfo = new Hashtable();
-             Player local = (Player)players[playerLocalID];
-             evInfo.Add((byte)STATUS_PLAYER_POS_X, (int)local.posX);
-             evInfo.Add((byte)STATUS_PLAYER_POS_Y, (int)local.posY);
-            
-             peer.OpRaiseEvent(EV_MOVE, evInfo, true);  //EV_MOVE = (byte)1
-            
-             //receive this custom event in OnEvent():
-             Hashtable data = (Hashtable)photonEvent[LiteEventKey.Data];
-             switch (eventCode) {
-               case EV_MOVE:               //1 in this sample
-                   p = (Player)players[actorNr];
-                   if (p != null) {
-                       p.posX = (int)data[(byte)STATUS_PLAYER_POS_X];
-                       p.posY = (int)data[(byte)STATUS_PLAYER_POS_Y];
-                   }
-                   break;
-             </code>
-            
-             Events from the Photon Server are internally buffered until they are
-             <see cref="M:ExitGames.Client.Photon.PhotonPeer.DispatchIncomingCommands" text="Dispatched"/>, just
-             like OperationResults.
-             </example>
-             <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-             <param name="customEventContent">Custom data you want to send along (use null, if none).</param>
-             <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-             <param name="channelId">Number of channel (sequence) to use (starting with 0).</param>
-             <returns>If operation could be enqueued for sending.</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,ExitGames.Client.Photon.Hashtable,System.Boolean,System.Byte,System.Int32[])">
-             <summary>
-             RaiseEvent tells the server to send an event to the other players within the same room.
-             </summary>
-             <remarks>
-             This method is described in one of its overloads.
-            
-             This variant has an optional list of targetActors. Use this to send the event only to
-             specific actors in the same room, each identified by an actorNumber (or ID).
-            
-             This can be useful to implement private messages inside a room or similar.
-             </remarks>
-             <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-             <param name="customEventContent">Custom data you want to send along (use null, if none).</param>
-             <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-             <param name="channelId">Number of channel to use (starting with 0).</param>
-             <param name="targetActors">List of actorNumbers that receive this event.</param>
-             <returns>If operation could be enqueued for sending.</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpRaiseEvent(System.Byte,ExitGames.Client.Photon.Hashtable,System.Boolean,System.Byte,ExitGames.Client.Photon.Lite.EventCaching,ExitGames.Client.Photon.Lite.ReceiverGroup)">
-             <summary>
-             Calls operation RaiseEvent on the server, with full control of event-caching and the target receivers.
-             </summary>
-             <remarks>
-             This method is described in one of its overloads.
-            
-             The cache parameter defines if and how this event will be cached server-side. Per event-code, your client
-             can store events and update them and will send cached events to players joining the same room.
-            
-             The option EventCaching.DoNotCache matches the default behaviour of RaiseEvent.
-             The option EventCaching.MergeCache will merge the costomEventContent into existing one.
-             Values in the customEventContent Hashtable can be null to remove existing values.
-            
-             With the receivers parameter, you can chose who gets this event: Others (default), All (includes you as sender)
-             or MasterClient. The MasterClient is the connected player with the lowest ActorNumber in this room.
-             This player could get some privileges, if needed.
-            
-             Read more about Cached Events in the DevNet: http://doc.exitgames.com
-             </remarks>
-             <param name="eventCode">Identifies this type of event (and the content). Your game's event codes can start with 0.</param>
-             <param name="customEventContent">Custom data you want to send along (use null, if none).</param>
-             <param name="sendReliable">If this event has to arrive reliably (potentially repeated if it's lost).</param>
-             <param name="channelId">Number of channel to use (starting with 0).</param>
-             <param name="cache">Events can be cached (merged and removed) for players joining later on.</param>
-             <param name="receivers">Controls who should get this event.</param>
-             <returns>If operation could be enqueued for sending.</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpSetPropertiesOfActor(System.Int32,ExitGames.Client.Photon.Hashtable,System.Boolean,System.Byte)">
-            <summary>
-            Attaches or updates properties of the specified actor.
-            </summary>
-            <remarks>
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">Hashtable containing the properties to add or update.</param>
-            <param name="actorNr">the actorNr is used to identify a player/peer in a game</param>
-            <param name="broadcast">true will trigger an event LiteEventKey.PropertiesChanged with the updated properties in it</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpSetPropertiesOfGame(ExitGames.Client.Photon.Hashtable,System.Boolean,System.Byte)">
-            <summary>
-            Attaches or updates properties of the current game.
-            </summary>
-            <remarks>
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">hashtable containing the properties to add or overwrite</param>
-            <param name="broadcast">true will trigger an event LiteEventKey.PropertiesChanged with the updated
-                                    properties in it</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpGetProperties(System.Byte)">
-            <summary>
-            Gets all properties of the game and each actor.
-            </summary>
-            <remarks>
-            The server returns only actor properties of players who are in the room when the
-            operation executes (players might join or leave while the operation is on it's way).
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpGetPropertiesOfActor(System.Int32[],System.String[],System.Byte)">
-            <summary>
-            Gets selected properties of an actor.
-            </summary>
-            <remarks>
-            The server returns only actor properties of players who are in the room when the
-            operation executes (players might join or leave while the operation is on it's way).
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">optional, array of property keys to fetch</param>
-            <param name="actorNrList">optional, a list of actornumbers to get the properties of</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpGetPropertiesOfActor(System.Int32[],System.Byte[],System.Byte)">
-            <summary>
-            Gets selected properties of some actors.
-            </summary>
-            <remarks>
-            The server returns only actor properties of players who are in the room when the
-            operation executes (players might join or leave while the operation is on it's way).
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">array of property keys to fetch. optional (can be null).</param>
-            <param name="actorNrList">optional, a list of actornumbers to get the properties of</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpGetPropertiesOfGame(System.String[],System.Byte)">
-            <summary>
-            Gets selected properties of current game.
-            </summary>
-            <remarks>
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">array of property keys to fetch. optional (can be null).</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpGetPropertiesOfGame(System.Byte[],System.Byte)">
-            <summary>
-            Gets selected properties of current game.
-            </summary>
-            <remarks>
-            Please read the general description of <see cref="!:Properties on Photon"/>.
-            </remarks>
-            <param name="properties">array of property keys to fetch. optional (can be null).</param>
-            <param name="channelId">Number of channel to use (starting with 0).</param>
-            <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpJoin(System.String)">
-             <summary>
-             This operation will join an existing room by name or create one if the name is not in use yet.
-            
-             Rooms (or games) are simply identified by name. We assume that users always want to get into a room - no matter
-             if it existed before or not, so it might be a new one. If you want to make sure a room is created (new, empty),
-             the client side might come up with a unique name for it (make sure the name was not taken yet).
-            
-             The application "Lite Lobby" lists room names and effectively allows the user to select a distinct one.
-            
-             Each actor (a.k.a. player) in a room will get events that are raised for the room by any player.
-            
-             To distinguish the actors, each gets a consecutive actornumber. This is used in events to mark who triggered
-             the event. A client finds out it's own actornumber in the return callback for operation Join. Number 1 is the
-             lowest actornumber in each room and the client with that actornumber created the room.
-            
-             Each client could easily send custom data around. If the data should be available to newcomers, it makes sense
-             to use Properties.
-            
-             Joining a room will trigger the event <see cref="F:ExitGames.Client.Photon.Lite.LiteEventCode.Join" text="LiteEventCode.Join"/>, which contains
-             the list of actorNumbers of current players inside the  room
-             (<see cref="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorList" text="LiteEventKey.ActorList"/>). This also gives you a count of current
-             players.
-             </summary>
-             <param name="gameName">Any identifying name for a room / game.</param>
-             <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpJoin(System.String,ExitGames.Client.Photon.Hashtable,ExitGames.Client.Photon.Hashtable,System.Boolean)">
-             <summary>
-             This operation will join an existing room by name or create one if the name is not in use yet.
-            
-             Rooms (or games) are simply identified by name. We assume that users always want to get into a room - no matter
-             if it existed before or not, so it might be a new one. If you want to make sure a room is created (new, empty),
-             the client side might come up with a unique name for it (make sure the name was not taken yet).
-            
-             The application "Lite Lobby" lists room names and effectively allows the user to select a distinct one.
-            
-             Each actor (a.k.a. player) in a room will get events that are raised for the room by any player.
-            
-             To distinguish the actors, each gets a consecutive actornumber. This is used in events to mark who triggered
-             the event. A client finds out it's own actornumber in the return callback for operation Join. Number 1 is the
-             lowest actornumber in each room and the client with that actornumber created the room.
-            
-             Each client could easily send custom data around. If the data should be available to newcomers, it makes sense
-             to use Properties.
-            
-             Joining a room will trigger the event <see cref="F:ExitGames.Client.Photon.Lite.LiteEventCode.Join" text="LiteEventCode.Join"/>, which contains
-             the list of actorNumbers of current players inside the  room
-             (<see cref="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorList" text="LiteEventKey.ActorList"/>). This also gives you a count of current
-             players.
-             </summary>
-            
-             <param name="gameName">Any identifying name for a room / game.</param>
-             <param name="gameProperties">optional, set of game properties, by convention: only used if game is new/created</param>
-             <param name="actorProperties">optional, set of actor properties</param>
-             <param name="broadcastActorProperties">optional, broadcast actor proprties in join-event</param>
-             <returns>If operation could be enqueued for sending</returns>
-        </member>
-        <member name="M:ExitGames.Client.Photon.Lite.LitePeer.OpLeave">
-            <summary>
-            Leave operation of the Lite Application (also in Lite Lobby).
-            Leaves a room / game, but keeps the connection. This operations triggers the event <see cref="F:ExitGames.Client.Photon.Lite.LiteEventCode.Leave" text="LiteEventCode.Leave"/>
-            for the remaining clients. The event includes the actorNumber of the player who left in key <see cref="F:ExitGames.Client.Photon.Lite.LiteEventKey.ActorNr" text="LiteEventKey.ActorNr"/>.
-            </summary>
-            <returns>
-            Consecutive invocationID of the OP. Will throw Exception if not connected.
-            </returns>
-        </member>
-        <member name="T:ExitGames.Client.Photon.NCommand">
-            <summary> Internal class for "commands" - the package in which operations are sent.</summary>
-        </member>
-        <member name="M:ExitGames.Client.Photon.NCommand.#ctor(ExitGames.Client.Photon.EnetPeer,System.Byte,System.Byte[],System.Byte)">
-            <summary>this variant does only create outgoing commands and increments . incoming ones are created from a DataInputStream</summary>
-        </member>
-        <member name="M:ExitGames.Client.Photon.NCommand.#ctor(ExitGames.Client.Photon.EnetPeer,System.Byte[],System.Int32@)">
-            <summary>reads the command values (commandHeader and command-values) from incoming bytestream and populates the incoming command*</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.SimulationItem">
-            <summary>
-            A simulation item is an action that can be queued to simulate network lag.
-            </summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.SimulationItem.stopw">
-            <summary>With this, the actual delay can be measured, compared to the intended lag.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.SimulationItem.TimeToExecute">
-            <summary>Timestamp after which this item must be executed.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.SimulationItem.ActionToExecute">
-            <summary>Action to execute when the lag-time passed.</summary>
-        </member>
-        <member name="M:ExitGames.Client.Photon.SimulationItem.#ctor">
-            <summary>Starts a new Stopwatch</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.NetworkSimulationSet">
-            <summary>
-            A set of network simulation settings, enabled (and disabled) by PhotonPeer.IsSimulationEnabled.
-            </summary>
-            <remarks>
-            For performance reasons, the lag and jitter settings can't be produced exactly.
-            In some cases, the resulting lag will be up to 20ms bigger than the lag settings.
-            Even if all settings are 0, simulation will be used. Set PhotonPeer.IsSimulationEnabled 
-            to false to disable it if no longer needed.
-            
-            All lag, jitter and loss is additional to the current, real network conditions.
-            If the network is slow in reality, this will add even more lag.
-            The jitter values will affect the lag positive and negative, so the lag settings 
-            describe the medium lag even with jitter. The jitter influence is: [-jitter..+jitter].
-            Packets "lost" due to OutgoingLossPercentage count for BytesOut and LostPackagesOut.
-            Packets "lost" due to IncomingLossPercentage count for BytesIn and LostPackagesIn.
-            </remarks>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.isSimulationEnabled">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingLag">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingJitter">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.outgoingLossPercentage">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingLag">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingJitter">
-            <summary>internal</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.NetworkSimulationSet.incomingLossPercentage">
-            <summary>internal</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IsSimulationEnabled">
-            <summary>This setting overrides all other settings and turns simulation on/off. Default: false.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingLag">
-            <summary>Outgoing packages delay in ms. Default: 100.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingJitter">
-            <summary>Randomizes OutgoingLag by [-OutgoingJitter..+OutgoingJitter]. Default: 0.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.OutgoingLossPercentage">
-            <summary>Percentage of outgoing packets that should be lost. Between 0..100. Default: 1. TCP ignores this setting.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingLag">
-            <summary>Incoming packages delay in ms. Default: 100.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingJitter">
-            <summary>Randomizes IncomingLag by [-IncomingJitter..+IncomingJitter]. Default: 0.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.IncomingLossPercentage">
-            <summary>Percentage of incoming packets that should be lost. Between 0..100. Default: 1. TCP ignores this setting.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.LostPackagesOut">
-            <summary>Counts how many outgoing packages actually got lost. TCP connections ignore loss and this stays 0.</summary>
-        </member>
-        <member name="P:ExitGames.Client.Photon.NetworkSimulationSet.LostPackagesIn">
-            <summary>Counts how many incoming packages actually got lost. TCP connections ignore loss and this stays 0.</summary>
-        </member>
-        <member name="T:Photon.SocketServer.Security.OakleyGroups">
-            <summary>
-            Provides classical Diffie-Hellman Modular Exponentiation Groups defined by the 
-            OAKLEY Key Determination Protocol (RFC 2412).
-            </summary>
-        </member>
-        <member name="F:Photon.SocketServer.Security.OakleyGroups.Generator">
-            <summary>
-            Gets the genrator (N) used by the the well known groups 1,2 and 5.
-            </summary>
-        </member>
-        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime768">
-            <summary>
-            Gets the 768 bit prime for the well known group 1. 
-            </summary>
-        </member>
-        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime1024">
-            <summary>
-            Gets the 1024 bit prime for the well known group 2. 
-            </summary>
-        </member>
-        <member name="F:Photon.SocketServer.Security.OakleyGroups.OakleyPrime1536">
-            <summary>
-            Gets the 1536  bit prime for the well known group 5. 
-            </summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PhotonCodes.Ok">
-            <summary>Result code for any (internal) operation.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PhotonCodes.ClientKey">
-            <summary>Param code. Used in internal op: InitEncryption.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PhotonCodes.ModeKey">
-            <summary>Encryption-Mode code. Used in internal op: InitEncryption.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PhotonCodes.ServerKey">
-            <summary>Param code. Used in internal op: InitEncryption.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PhotonCodes.InitEncryption">
-            <summary>Code of internal op: InitEncryption.</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.PeerStateValue">
-            <summary>
-            Value range for a Peer's connection and initialization state, as returned by the PeerState property.
-            </summary>
-            <remarks>
-            While this is not the same as the StatusCode of IPhotonPeerListener.OnStatusChanged(), it directly relates to it.
-            In most cases, it makes more sense to build a game's state on top of the OnStatusChanged() as you get changes.
-            </remarks>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PeerStateValue.Disconnected">
-            <summary>The peer is disconnected and can't call Operations. Call Connect().</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PeerStateValue.Connecting">
-            <summary>The peer is establishing the connection: opening a socket, exchanging packages with Photon.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PeerStateValue.InitializingApplication">
-            <summary>The connection is established and now sends the application name to Photon.</summary>
-            <remarks>You set the "application name" by calling PhotonPeer.Connect().</remarks>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PeerStateValue.Connected">
-            <summary>The peer is connected and initialized (selected an application). You can now use operations.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.PeerStateValue.Disconnecting">
-            <summary>The peer is disconnecting. It sent a disconnect to the server, which will acknowledge closing the connection.</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.ConnectionProtocol">
-            <summary>
-            These are the options that can be used as underlying transport protocol.
-            </summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.Udp">
-            <summary>Use UDP to connect to Photon, which allows you to send operations reliable or unreliable on demand.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.ConnectionProtocol.Tcp">
-            <summary>Use TCP to connect to Photon.</summary>
-        </member>
-        <member name="T:ExitGames.Client.Photon.DebugLevel">
-            <summary>
-            Level / amount of DebugReturn callbacks. Each debug level includes output for lower ones: OFF, ERROR, WARNING, INFO, ALL.
-            </summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.DebugLevel.OFF">
-            <summary>No debug out.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.DebugLevel.ERROR">
-            <summary>Only error descriptions.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.DebugLevel.WARNING">
-            <summary>Warnings and errors.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.DebugLevel.INFO">
-            <summary>Information about internal workflows, warnings and errors.</summary>
-        </member>
-        <member name="F:ExitGames.Client.Photon.DebugLevel.ALL">
-            <summary>Most complete workflow description (but lots of debug output), info, warnings and errors.</summary>
-        </member>
         <member name="T:ExitGames.Client.Photon.PingMono">
             <summary>Uses C# Socket class from System.Net.Sockets (as Unity usually does).</summary>
             <remarks>Incompatible with Windows 8 Store/Phone API.</remarks>
@@ -1866,8 +1278,8 @@
             <remarks>
             The OperationCode defines the type of operation called on Photon and in turn also the Parameters that
             are set in the request. Those are provided as Dictionary with byte-keys.
-            There are pre-defined constants for various codes defined in the Lite application. Check: LiteOpCode,
-            LiteOpKey, etc.
+            There are pre-defined constants for various codes defined in the LoadBalancing application. 
+            Check: OperationCode, ParameterCode, etc.
             <para></para>
             An operation's request is summarized by the ReturnCode: a short typed code for &quot;Ok&quot; or
             some different result. The code's meaning is specific per operation. An optional DebugMessage can be
@@ -1880,7 +1292,7 @@
         </member>
         <member name="F:ExitGames.Client.Photon.OperationResponse.OperationCode">
             <summary>The code for the operation called initially (by this peer).</summary>
-            <remarks>Use enums or constants to be able to handle those codes, like LiteOpCode does.</remarks>
+            <remarks>Use enums or constants to be able to handle those codes, like OperationCode does.</remarks>
         </member>
         <member name="F:ExitGames.Client.Photon.OperationResponse.ReturnCode">
             <summary>A code that &quot;summarizes&quot; the operation's success or failure. Specific per operation. 0 usually means "ok".</summary>
@@ -1912,10 +1324,10 @@
             Event Parameters, like OperationRequests and OperationResults, consist of a Dictionary with byte-typed keys per value.
             </summary>
             <remarks>
-            The indexer of this class actually provides access to the Parameters Dictionary.
-            The operation RaiseEvent of the Lite application allows you to provide custom event content. Defined in Lite, this
-            CustomContent will be made the value of key LiteEventKey.OperationRaiseEvent which is (byte)42.
-            Enums and constants for the Lite-Application codes are defined in the LitePeer namespace. Check: LiteEventKey, etc.
+            The indexer of this class provides access to the Parameters Dictionary.
+            
+            The operation RaiseEvent allows you to provide custom event content. Defined in LoadBalancing, this
+            CustomContent will be made the value of key ParameterCode.CustomEventContent.
             </remarks>
         </member>
         <member name="F:ExitGames.Client.Photon.EventData.Code">
@@ -2265,6 +1677,10 @@
         </member>
         <member name="F:ExitGames.Client.Photon.TPeer.ALL_HEADER_BYTES">
             <summary>TCP header combined: 9 bytes</summary>
+        </member>
+        <member name="F:ExitGames.Client.Photon.TPeer.DoFraming">
+            <summary>Defines if the (TCP) socket implementation needs to do "framing".</summary>
+            <remarks>The WebSocket protocol (e.g.) includes framing, so when that is used, we set DoFraming to false.</remarks>
         </member>
         <member name="M:ExitGames.Client.Photon.TPeer.DispatchIncomingCommands">
             <summary>

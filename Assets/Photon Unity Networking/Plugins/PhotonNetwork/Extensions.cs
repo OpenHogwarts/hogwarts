@@ -119,11 +119,14 @@ public static class Extensions
     public static Hashtable StripToStringKeys(this IDictionary original)
     {
         Hashtable target = new Hashtable();
-        foreach (DictionaryEntry pair in original)
+        if (original != null)
         {
-            if (pair.Key is string)
+            foreach (DictionaryEntry pair in original)
             {
-                target[pair.Key] = pair.Value;
+                if (pair.Key is string)
+                {
+                    target[pair.Key] = pair.Value;
+                }
             }
         }
 

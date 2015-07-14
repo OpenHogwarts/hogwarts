@@ -320,6 +320,36 @@ public class PhotonConverter : Photon.MonoBehaviour
         File.WriteAllText(file, text);
     }
 
+
+    ///  default path: "Assets"
+    public static void ConvertRpcAttribute(string path)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            path = "Assets";
+        }
+
+        List<string> scripts = GetScriptsInFolder(path);
+        foreach (string file in scripts)
+        {
+            string text = File.ReadAllText(file);
+            string textCopy = text;
+            if (file.EndsWith("PhotonConverter.cs"))
+            {
+                continue;
+            }
+
+            text = text.Replace("[RPC]", "[PunRPC]");
+            text = text.Replace("@RPC", "@PunRPC");
+
+            if (!text.Equals(textCopy))
+            {
+                File.WriteAllText(file, text);
+                Debug.Log("Converted RPC to PunRPC in: " + file);
+            }
+        }
+    }
+
     static string PregReplace(string input, string[] pattern, string[] replacements)
     {
         if (replacements.Length != pattern.Length)

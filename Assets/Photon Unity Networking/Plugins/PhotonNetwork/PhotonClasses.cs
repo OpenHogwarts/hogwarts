@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
-using ExitGames.Client.Photon.Lite;
 using UnityEngine;
 
 using Hashtable = ExitGames.Client.Photon.Hashtable;
@@ -41,20 +40,20 @@ public interface IPunObservable
     /// This method will be called in scripts that are assigned as Observed component of a PhotonView.<br/>
     /// PhotonNetwork.sendRateOnSerialize affects how often this method is called.<br/>
     /// PhotonNetwork.sendRate affects how often packages are sent by this client.<br/>
-    /// 
-    /// Implementing this method, you can customize which data a PhotonView regularly synchronizes. 
+    ///
+    /// Implementing this method, you can customize which data a PhotonView regularly synchronizes.
     /// Your code defines what is being sent (content) and how your data is used by receiving clients.
-    /// 
-    /// Unlike other callbacks, <i>OnPhotonSerializeView only gets called when it is assigned 
+    ///
+    /// Unlike other callbacks, <i>OnPhotonSerializeView only gets called when it is assigned
     /// to a PhotonView</i> as PhotonView.observed script.
-    /// 
-    /// To make use of this method, the PhotonStream is essential. It will be in "writing" mode" on the 
+    ///
+    /// To make use of this method, the PhotonStream is essential. It will be in "writing" mode" on the
     /// client that controls a PhotonView (PhotonStream.isWriting == true) and in "reading mode" on the
     /// remote clients that just receive that the controlling client sends.
-    /// 
+    ///
     /// If you skip writing any value into the stream, PUN will skip the update. Used carefully, this can
     /// conserve bandwidth and messages (which have a limit per room/second).
-    /// 
+    ///
     /// Note that OnPhotonSerializeView is not called on remote clients when the sender does not send
     /// any update. This can't be used as "x-times per second Update()".
     /// </remarks>
@@ -68,9 +67,9 @@ public interface IPunObservable
 /// <remarks>
 /// PUN will call these methods on any script that implements them, analog to Unity's events and callbacks.
 /// The situation that triggers the call is described per method.
-/// 
+///
 /// Please simply extend PunBehaviour to implement individual methods.
-/// 
+///
 /// OnPhotonSerializeView is NOT called like these callbacks! It's usage frequency is much higher and it is implemented in: IPunObservable.
 /// </remarks>
 /// \ingroup publicApi
@@ -80,11 +79,11 @@ public interface IPunCallbacks
     /// Called when the initial connection got established but before you can use the server. OnJoinedLobby() or OnConnectedToMaster() are called when PUN is ready.
     /// </summary>
     /// <remarks>
-    /// This callback is only useful to detect if the server can be reached at all (technically). 
+    /// This callback is only useful to detect if the server can be reached at all (technically).
     /// Most often, it's enough to implement OnFailedToConnectToPhoton() and OnDisconnectedFromPhoton().
-    /// 
+    ///
     /// <i>OnJoinedLobby() or OnConnectedToMaster() are called when PUN is ready.</i>
-    /// 
+    ///
     /// When this is called, the low level connection is established and PUN will send your AppId, the user, etc in the background.
     /// This is not called for transitions from the masterserver to game servers.
     /// </remarks>
@@ -94,7 +93,7 @@ public interface IPunCallbacks
     /// Called when the local user/client left a room.
     /// </summary>
     /// <remarks>
-    /// When leaving a room, PUN brings you back to the Master Server. 
+    /// When leaving a room, PUN brings you back to the Master Server.
     /// Before you can use lobbies and join or create rooms, OnJoinedLobby() or OnConnectedToMaster() will get called again.
     /// </remarks>
     void OnLeftRoom();
@@ -132,11 +131,11 @@ public interface IPunCallbacks
     /// </summary>
     /// <remarks>
     /// This callback is only called on the client which created a room (see PhotonNetwork.CreateRoom).
-    /// 
-    /// As any client might close (or drop connection) anytime, there is a chance that the 
+    ///
+    /// As any client might close (or drop connection) anytime, there is a chance that the
     /// creator of a room does not execute OnCreatedRoom.
-    /// 
-    /// If you need specific room properties or a "start signal", it is safer to implement 
+    ///
+    /// If you need specific room properties or a "start signal", it is safer to implement
     /// OnMasterClientSwitched() and to make the new MasterClient check the room's state.
     /// </remarks>
     void OnCreatedRoom();
@@ -146,8 +145,9 @@ public interface IPunCallbacks
     /// </summary>
     /// <remarks>
     /// Note: When PhotonNetwork.autoJoinLobby is false, OnConnectedToMaster() will be called and the room list won't become available.
-    /// 
+    ///
     /// While in the lobby, the roomlist is automatically updated in fixed intervals (which you can't modify).
+    /// The room list gets available when OnReceivedRoomListUpdate() gets called after OnJoinedLobby().
     /// </remarks>
     void OnJoinedLobby();
 
@@ -155,8 +155,8 @@ public interface IPunCallbacks
     /// Called after leaving a lobby.
     /// </summary>
     /// <remarks>
-    /// When you leave a lobby, [CreateRoom](@ref PhotonNetwork.CreateRoom) and [JoinRandomRoom](@ref PhotonNetwork.JoinRandomRoom) 
-    /// automatically refer to the default lobby. 
+    /// When you leave a lobby, [CreateRoom](@ref PhotonNetwork.CreateRoom) and [JoinRandomRoom](@ref PhotonNetwork.JoinRandomRoom)
+    /// automatically refer to the default lobby.
     /// </remarks>
     void OnLeftLobby();
 
@@ -164,7 +164,7 @@ public interface IPunCallbacks
     /// Called if a connect call to the Photon server failed before the connection was established, followed by a call to OnDisconnectedFromPhoton().
     /// </summary>
     /// <remarks>
-    /// This is called when no connection could be established at all. 
+    /// This is called when no connection could be established at all.
     /// It differs from OnConnectionFail, which is called when an existing connection fails.
     /// </remarks>
     void OnFailedToConnectToPhoton(DisconnectCause cause);
@@ -196,13 +196,13 @@ public interface IPunCallbacks
     void OnPhotonInstantiate(PhotonMessageInfo info);
 
     /// <summary>
-    /// Called for any update of the room listing (no matter if "new" list or "update for known" list). Only called in the Lobby state (on master server).
+    /// Called for any update of the room-listing while in a lobby (PhotonNetwork.insideLobby) on the Master Server.
     /// </summary>
     /// <remarks>
-    /// Not all types of lobbies provive a listing of rooms to the client. Some are silent and specialized for server-side matchmaking.
-    /// 
     /// PUN provides the list of rooms by PhotonNetwork.GetRoomList().<br/>
     /// Each item is a RoomInfo which might include custom properties (provided you defined those as lobby-listed when creating a room).
+    ///
+    /// Not all types of lobbies provide a listing of rooms to the client. Some are silent and specialized for server-side matchmaking.
     /// </remarks>
     void OnReceivedRoomListUpdate();
 
@@ -210,11 +210,11 @@ public interface IPunCallbacks
     /// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client).
     /// </summary>
     /// <remarks>
-    /// This method is commonly used to instantiate player characters. 
-    /// If a match has to be started "actively", you can call an [RPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
-    /// 
+    /// This method is commonly used to instantiate player characters.
+    /// If a match has to be started "actively", you can call an [PunRPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
+    ///
     /// When this is called, you can usually already access the existing players in the room via PhotonNetwork.playerList.
-    /// Also, all custom properties should be already available as Room.customProperties. Check Room.playerCount to find out if 
+    /// Also, all custom properties should be already available as Room.customProperties. Check Room.playerCount to find out if
     /// enough players are in the room to start playing.
     /// </remarks>
     void OnJoinedRoom();
@@ -233,7 +233,7 @@ public interface IPunCallbacks
     /// </summary>
     /// <remarks>
     /// When your client calls PhotonNetwork.leaveRoom, PUN will call this method on the remaining clients.
-    /// When a remote client drops connection or gets closed, this callback gets executed. after a timeout 
+    /// When a remote client drops connection or gets closed, this callback gets executed. after a timeout
     /// of several seconds.
     /// </remarks>
     void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer);
@@ -254,7 +254,7 @@ public interface IPunCallbacks
     /// </summary>
     /// <remarks>
     /// If you set PhotonNetwork.autoJoinLobby to true, OnJoinedLobby() will be called instead of this.
-    /// 
+    ///
     /// You can join rooms and create them even without being in a lobby. The default lobby is used in that case.
     /// The list of available rooms won't become available unless you join a lobby via PhotonNetwork.joinLobby.
     /// </remarks>
@@ -287,11 +287,11 @@ public interface IPunCallbacks
     /// Since v1.25 this method has one parameter: object[] playerAndUpdatedProps, which contains two entries.<br/>
     /// [0] is the affected PhotonPlayer.<br/>
     /// [1] is the Hashtable of properties that changed.<br/>
-    /// 
+    ///
     /// We are using a object[] due to limitations of Unity's GameObject.SendMessage (which has only one optional parameter).
     ///
     /// Changing properties must be done by PhotonPlayer.SetCustomProperties, which causes this callback locally, too.
-    /// 
+    ///
     /// Example:<pre>
     /// void OnPhotonPlayerPropertiesChanged(object[] playerAndUpdatedProps) {
     ///     PhotonPlayer player = playerAndUpdatedProps[0] as PhotonPlayer;
@@ -306,7 +306,7 @@ public interface IPunCallbacks
     /// Called when the server sent the response to a FindFriends request and updated PhotonNetwork.Friends.
     /// </summary>
     /// <remarks>
-    /// The friends list is available as PhotonNetwork.Friends, listing name, online state and 
+    /// The friends list is available as PhotonNetwork.Friends, listing name, online state and
     /// the room a user is in (if any).
     /// </remarks>
     void OnUpdatedFriendList();
@@ -317,11 +317,11 @@ public interface IPunCallbacks
     /// <remarks>
     /// Custom Authentication can fail due to user-input, bad tokens/secrets.
     /// If authentication is successful, this method is not called. Implement OnJoinedLobby() or OnConnectedToMaster() (as usual).
-    /// 
-    /// During development of a game, it might also fail due to wrong configuration on the server side. 
-    /// In those cases, logging the debugMessage is very important. 
-    /// 
-    /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://cloud.exitgames.com/dashboard)), 
+    ///
+    /// During development of a game, it might also fail due to wrong configuration on the server side.
+    /// In those cases, logging the debugMessage is very important.
+    ///
+    /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://www.exitgames.com/dashboard)),
     /// this won't be called!
     /// </remarks>
     /// <param name="debugMessage">Contains a debug message why authentication failed. This has to be fixed during development time.</param>
@@ -350,9 +350,9 @@ public interface IPunCallbacks
     /// </summary>
     /// <remarks>
     /// The parameter viewAndPlayer contains:
-    /// 
+    ///
     /// PhotonView view = viewAndPlayer[0] as PhotonView;
-    /// 
+    ///
     /// PhotonPlayer requestingPlayer = viewAndPlayer[1] as PhotonPlayer;
     /// </remarks>
     /// <param name="viewAndPlayer">The PhotonView is viewAndPlayer[0] and the requesting player is viewAndPlayer[1].</param>
@@ -392,8 +392,8 @@ namespace Photon
     /// This class provides a .photonView and all callbacks/events that PUN can call. Override the events/methods you want to use.
     /// </summary>
     /// <remarks>
-    /// This class implements IPunCallbacks where the callback methods are described. 
-    /// By extending this class, you can implement individual methods as override. 
+    /// This class implements IPunCallbacks where the callback methods are described.
+    /// By extending this class, you can implement individual methods as override.
     /// Visual Studio and MonoDevelop should provide the list of methods when you begin typing "override".
     /// Your implementation does not have to call "base.method()".
     /// </remarks>
@@ -405,11 +405,11 @@ namespace Photon
         /// Called when the initial connection got established but before you can use the server. OnJoinedLobby() or OnConnectedToMaster() are called when PUN is ready.
         /// </summary>
         /// <remarks>
-        /// This callback is only useful to detect if the server can be reached at all (technically). 
+        /// This callback is only useful to detect if the server can be reached at all (technically).
         /// Most often, it's enough to implement OnFailedToConnectToPhoton() and OnDisconnectedFromPhoton().
-        /// 
+        ///
         /// <i>OnJoinedLobby() or OnConnectedToMaster() are called when PUN is ready.</i>
-        /// 
+        ///
         /// When this is called, the low level connection is established and PUN will send your AppId, the user, etc in the background.
         /// This is not called for transitions from the masterserver to game servers.
         /// </remarks>
@@ -421,7 +421,7 @@ namespace Photon
         /// Called when the local user/client left a room.
         /// </summary>
         /// <remarks>
-        /// When leaving a room, PUN brings you back to the Master Server. 
+        /// When leaving a room, PUN brings you back to the Master Server.
         /// Before you can use lobbies and join or create rooms, OnJoinedLobby() or OnConnectedToMaster() will get called again.
         /// </remarks>
         public virtual void OnLeftRoom()
@@ -467,11 +467,11 @@ namespace Photon
         /// </summary>
         /// <remarks>
         /// This callback is only called on the client which created a room (see PhotonNetwork.CreateRoom).
-        /// 
-        /// As any client might close (or drop connection) anytime, there is a chance that the 
+        ///
+        /// As any client might close (or drop connection) anytime, there is a chance that the
         /// creator of a room does not execute OnCreatedRoom.
-        /// 
-        /// If you need specific room properties or a "start signal", it is safer to implement 
+        ///
+        /// If you need specific room properties or a "start signal", it is safer to implement
         /// OnMasterClientSwitched() and to make the new MasterClient check the room's state.
         /// </remarks>
         public virtual void OnCreatedRoom()
@@ -483,8 +483,9 @@ namespace Photon
         /// </summary>
         /// <remarks>
         /// Note: When PhotonNetwork.autoJoinLobby is false, OnConnectedToMaster() will be called and the room list won't become available.
-        /// 
+        ///
         /// While in the lobby, the roomlist is automatically updated in fixed intervals (which you can't modify).
+        /// The room list gets available when OnReceivedRoomListUpdate() gets called after OnJoinedLobby().
         /// </remarks>
         public virtual void OnJoinedLobby()
         {
@@ -494,8 +495,8 @@ namespace Photon
         /// Called after leaving a lobby.
         /// </summary>
         /// <remarks>
-        /// When you leave a lobby, [CreateRoom](@ref PhotonNetwork.CreateRoom) and [JoinRandomRoom](@ref PhotonNetwork.JoinRandomRoom) 
-        /// automatically refer to the default lobby. 
+        /// When you leave a lobby, [CreateRoom](@ref PhotonNetwork.CreateRoom) and [JoinRandomRoom](@ref PhotonNetwork.JoinRandomRoom)
+        /// automatically refer to the default lobby.
         /// </remarks>
         public virtual void OnLeftLobby()
         {
@@ -505,7 +506,7 @@ namespace Photon
         /// Called if a connect call to the Photon server failed before the connection was established, followed by a call to OnDisconnectedFromPhoton().
         /// </summary>
         /// <remarks>
-        /// This is called when no connection could be established at all. 
+        /// This is called when no connection could be established at all.
         /// It differs from OnConnectionFail, which is called when an existing connection fails.
         /// </remarks>
         public virtual void OnFailedToConnectToPhoton(DisconnectCause cause)
@@ -545,13 +546,13 @@ namespace Photon
         }
 
         /// <summary>
-        /// Called for any update of the room listing (no matter if "new" list or "update for known" list). Only called in the Lobby state (on master server).
+        /// Called for any update of the room-listing while in a lobby (PhotonNetwork.insideLobby) on the Master Server.
         /// </summary>
         /// <remarks>
-        /// Not all types of lobbies provive a listing of rooms to the client. Some are silent and specialized for server-side matchmaking.
-        /// 
         /// PUN provides the list of rooms by PhotonNetwork.GetRoomList().<br/>
         /// Each item is a RoomInfo which might include custom properties (provided you defined those as lobby-listed when creating a room).
+        ///
+        /// Not all types of lobbies provide a listing of rooms to the client. Some are silent and specialized for server-side matchmaking.
         /// </remarks>
         public virtual void OnReceivedRoomListUpdate()
         {
@@ -561,11 +562,11 @@ namespace Photon
         /// Called when entering a room (by creating or joining it). Called on all clients (including the Master Client).
         /// </summary>
         /// <remarks>
-        /// This method is commonly used to instantiate player characters. 
-        /// If a match has to be started "actively", you can call an [RPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
-        /// 
+        /// This method is commonly used to instantiate player characters.
+        /// If a match has to be started "actively", you can call an [PunRPC](@ref PhotonView.RPC) triggered by a user's button-press or a timer.
+        ///
         /// When this is called, you can usually already access the existing players in the room via PhotonNetwork.playerList.
-        /// Also, all custom properties should be already available as Room.customProperties. Check Room.playerCount to find out if 
+        /// Also, all custom properties should be already available as Room.customProperties. Check Room.playerCount to find out if
         /// enough players are in the room to start playing.
         /// </remarks>
         public virtual void OnJoinedRoom()
@@ -588,7 +589,7 @@ namespace Photon
         /// </summary>
         /// <remarks>
         /// When your client calls PhotonNetwork.leaveRoom, PUN will call this method on the remaining clients.
-        /// When a remote client drops connection or gets closed, this callback gets executed. after a timeout 
+        /// When a remote client drops connection or gets closed, this callback gets executed. after a timeout
         /// of several seconds.
         /// </remarks>
         public virtual void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
@@ -613,7 +614,7 @@ namespace Photon
         /// </summary>
         /// <remarks>
         /// If you set PhotonNetwork.autoJoinLobby to true, OnJoinedLobby() will be called instead of this.
-        /// 
+        ///
         /// You can join rooms and create them even without being in a lobby. The default lobby is used in that case.
         /// The list of available rooms won't become available unless you join a lobby via PhotonNetwork.joinLobby.
         /// </remarks>
@@ -652,11 +653,11 @@ namespace Photon
         /// Since v1.25 this method has one parameter: object[] playerAndUpdatedProps, which contains two entries.<br/>
         /// [0] is the affected PhotonPlayer.<br/>
         /// [1] is the Hashtable of properties that changed.<br/>
-        /// 
+        ///
         /// We are using a object[] due to limitations of Unity's GameObject.SendMessage (which has only one optional parameter).
         ///
         /// Changing properties must be done by PhotonPlayer.SetCustomProperties, which causes this callback locally, too.
-        /// 
+        ///
         /// Example:<pre>
         /// void OnPhotonPlayerPropertiesChanged(object[] playerAndUpdatedProps) {
         ///     PhotonPlayer player = playerAndUpdatedProps[0] as PhotonPlayer;
@@ -673,7 +674,7 @@ namespace Photon
         /// Called when the server sent the response to a FindFriends request and updated PhotonNetwork.Friends.
         /// </summary>
         /// <remarks>
-        /// The friends list is available as PhotonNetwork.Friends, listing name, online state and 
+        /// The friends list is available as PhotonNetwork.Friends, listing name, online state and
         /// the room a user is in (if any).
         /// </remarks>
         public virtual void OnUpdatedFriendList()
@@ -686,11 +687,11 @@ namespace Photon
         /// <remarks>
         /// Custom Authentication can fail due to user-input, bad tokens/secrets.
         /// If authentication is successful, this method is not called. Implement OnJoinedLobby() or OnConnectedToMaster() (as usual).
-        /// 
-        /// During development of a game, it might also fail due to wrong configuration on the server side. 
-        /// In those cases, logging the debugMessage is very important. 
-        /// 
-        /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://cloud.exitgames.com/dashboard)), 
+        ///
+        /// During development of a game, it might also fail due to wrong configuration on the server side.
+        /// In those cases, logging the debugMessage is very important.
+        ///
+        /// Unless you setup a custom authentication service for your app (in the [Dashboard](https://www.exitgames.com/dashboard)),
         /// this won't be called!
         /// </remarks>
         /// <param name="debugMessage">Contains a debug message why authentication failed. This has to be fixed during development time.</param>
@@ -723,9 +724,9 @@ namespace Photon
         /// </summary>
         /// <remarks>
         /// The parameter viewAndPlayer contains:
-        /// 
+        ///
         /// PhotonView view = viewAndPlayer[0] as PhotonView;
-        /// 
+        ///
         /// PhotonPlayer requestingPlayer = viewAndPlayer[1] as PhotonPlayer;
         /// </remarks>
         /// <param name="viewAndPlayer">The PhotonView is viewAndPlayer[0] and the requesting player is viewAndPlayer[1].</param>
@@ -766,7 +767,12 @@ public class PhotonMessageInfo
 
     public double timestamp
     {
-        get { return ((double)(uint)this.timeInt) / 1000.0f; }
+        get
+        {
+            uint u = (uint)this.timeInt;
+            double t = u;
+            return t / 1000;
+        }
     }
 
     public override string ToString()
@@ -779,9 +785,6 @@ public class PhotonMessageInfo
 /// <remarks>This directly maps to what the fields in the Room class.</remarks>
 public class RoomOptions
 {
-    /// <summary>Max number of players that can be in the room at any time. 0 means "no limit".</summary>
-    public int maxPlayers;
-
     /// <summary>Defines if this room is listed in the lobby. If not, it also is not joined randomly.</summary>
     /// <remarks>
     /// A room that is not visible will be excluded from the room lists that are sent to the clients in lobbies.
@@ -801,6 +804,22 @@ public class RoomOptions
     /// </remarks>
     public bool isOpen { get { return this.isOpenField; } set { this.isOpenField = value; } }
     private bool isOpenField = true;
+
+    /// <summary>Max number of players that can be in the room at any time. 0 means "no limit".</summary>
+    public byte maxPlayers;
+
+    /// <summary>Time To Live (TTL) for an 'actor' in a room. If a client disconnects, this actor is inactive first and removed after this timeout. In milliseconds.</summary>
+    //public int PlayerTtl;
+
+    /// <summary>Time To Live (TTL) for a room when the last player leaves. Keeps room in memory for case a player re-joins soon. In milliseconds.</summary>
+    //public int EmptyRoomTtl;
+
+    /// <summary>Activates UserId checks on joining - allowing a users to be only once in the room.</summary>
+    /// <remarks>
+    /// Turnbased rooms should be created with this check turned on! They should also use custom authentication.
+    /// Disabled by default for backwards-compatibility.
+    /// </remarks>
+    //public bool CheckUserOnJoin = false;
 
     /// <summary>Removes a user's events and properties from the room when a user leaves.</summary>
     /// <remarks>
@@ -829,8 +848,18 @@ public class RoomOptions
     /// </remarks>
     public string[] customRoomPropertiesForLobby = new string[0];
 
-    /// <summary>Time To Live (TTL) for an 'actor' in a room. If a client disconnects, this actor is inactive first and removed after this timeout. In milliseconds.</summary>
-    //public int PlayerTtl;
+    /// <summary>
+    /// Tells the server to skip room events for joining and leaving players.
+    /// </summary>
+    /// <remarks>
+    /// Using this makes the client unaware of the other players in a room. 
+    /// That can save some traffic if you have some server logic that updates players
+    /// but it can also limit the client's usability.
+    /// 
+    /// PUN will break if you use this, so it's not settable.
+    /// </remarks>
+    public bool suppressRoomEvents { get { return this.suppressRoomEventsField; } /*set { this.suppressRoomEventsField = value; }*/ }
+    private bool suppressRoomEventsField = false;
 }
 
 
@@ -903,6 +932,9 @@ public class RaiseEventOptions
 
     /// <summary>Used along with CachingOption SliceSetIndex, SlicePurgeIndex or SlicePurgeUpToIndex if you want to set or purge a specific cache-slice.</summary>
     public int CacheSliceIndex;
+
+    /// <summary>Use rarely. The binary message gets encrpted before being sent. Any receiver in the room will be able to decrypt the message, of course.</summary>
+    public bool Encrypt;
 }
 
 /// <summary>Defines Photon event-codes as used by PUN.</summary>
@@ -1216,6 +1248,18 @@ public class PhotonStream
         }
     }
 }
+
+
+#if UNITY_5_0 || !UNITY_5
+/// <summary>Empty implementation of the upcoming HelpURL of Unity 5.1. This one is only for compatibility of attributes.</summary>
+/// <remarks>http://feedback.unity3d.com/suggestions/override-component-documentation-slash-help-link</remarks>
+public class HelpURL : Attribute
+{
+    public HelpURL(string url)
+    {
+    }
+}
+#endif
 
 
 /// <summary>Provides easy access to most common WebRpc-Response values.</summary>

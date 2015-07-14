@@ -120,7 +120,7 @@ public class PickupItem : Photon.MonoBehaviour, IPunObservable
     }
 
 
-    [RPC]
+    [PunRPC]
     public void PunPickup(PhotonMessageInfo msgInfo)
     {
         // when this client's RPC gets executed, this client no longer waits for a sent pickup and can try again
@@ -183,7 +183,7 @@ public class PickupItem : Photon.MonoBehaviour, IPunObservable
     }
 
 
-    [RPC]
+    [PunRPC]
     internal void PunRespawn(Vector3 pos)
     {
         Debug.Log("PunRespawn with Position.");
@@ -191,7 +191,7 @@ public class PickupItem : Photon.MonoBehaviour, IPunObservable
         this.gameObject.transform.position = pos;
     }
 
-    [RPC]
+    [PunRPC]
     internal void PunRespawn()
     {
         #if DEBUG

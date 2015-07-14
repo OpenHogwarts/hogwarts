@@ -1,11 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 
 public class Player : Photon.MonoBehaviour {
-
-	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
-	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
 
 	public int health
 	{
@@ -95,6 +92,7 @@ public class Player : Photon.MonoBehaviour {
 	}
 
 	public CharacterData characterData;
+	public NPC target;
 
 	Animator anim;
 	bool gotFirstUpdate = false;
@@ -114,6 +112,9 @@ public class Player : Photon.MonoBehaviour {
 			return _instance;
 		}
 	}
+
+	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
+	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
 
 
 	void Start () {
@@ -190,7 +191,7 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	[RPC]
+	[PunRPC]
 	void setNick (string name) {
 		namePlate.setName (name, NamePlate.COLOR_NORMAL);
 	}

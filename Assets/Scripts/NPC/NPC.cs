@@ -250,7 +250,9 @@ public class NPC : MonoBehaviour
 	}
 
 	public void setSelected () {
-		if (!data.isAggresive) {
+		if (data.isAggresive) {
+			Player.Instance.target = this;
+		} else {
 			namePlate.Name.color = NamePlate.COLOR_SELECTED;
 		}
 	}

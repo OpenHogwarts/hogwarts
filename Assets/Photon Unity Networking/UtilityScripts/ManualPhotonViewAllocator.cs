@@ -19,7 +19,7 @@ public class ManualPhotonViewAllocator : MonoBehaviour
         pv.RPC("InstantiateRpc", PhotonTargets.AllBuffered, viewID);
     }
 
-    [RPC]
+    [PunRPC]
     public void InstantiateRpc(int viewID)
     {
         GameObject go = GameObject.Instantiate(Prefab, InputToEvent.inputHitPos + new Vector3(0, 5f, 0), Quaternion.identity) as GameObject;

@@ -6,16 +6,16 @@ using System.Collections;
 /// </summary>
 /// <remarks>
 /// Using an RPC to Destroy a GameObject allows any player to Destroy a GameObject. But it might cause errors.
-/// RPC and the Instantiated GameObject are not fully linked on the server. One might stick in the server witout 
+/// RPC and the Instantiated GameObject are not fully linked on the server. One might stick in the server witout
 /// the other.
-/// 
+///
 /// A buffered RPC gets cleaned up when the sending player leaves the room. This means, the RPC gets lost.
-/// 
-/// Vice versus, a GameObject Instantiate might get cleaned up when the creating player leaves a room. 
+///
+/// Vice versus, a GameObject Instantiate might get cleaned up when the creating player leaves a room.
 /// This way, the GameObject that a RPC targets might become lost.
-/// 
+///
 /// It makes sense to test those cases. Many are not breaking errors and you just have to be aware of them.
-/// 
+///
 /// Gets OnClick() calls by InputToEvent class attached to a camera.
 /// </remarks>
 [RequireComponent(typeof(PhotonView))]
@@ -35,7 +35,7 @@ public class OnClickDestroy : Photon.MonoBehaviour
         }
     }
 
-    [RPC]
+    [PunRPC]
     public IEnumerator DestroyRpc()
     {
         GameObject.Destroy(this.gameObject);

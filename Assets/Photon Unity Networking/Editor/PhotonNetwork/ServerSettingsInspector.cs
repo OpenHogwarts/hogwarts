@@ -1,47 +1,76 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using ExitGames.Client.Photon;
-using UnityEngine;
-using System.Collections;
 using UnityEditor;
-using Debug = UnityEngine.Debug;
+using UnityEngine;
 
-
-
-[CustomEditor(typeof(ServerSettings))]
+[CustomEditor(typeof (ServerSettings))]
 public class ServerSettingsInspector : Editor
 {
+    public enum ProtocolChoices
+    {
+        Udp = ConnectionProtocol.Udp,
+        Tcp = ConnectionProtocol.Tcp
+    } // has to be extended when rHTTP becomes available
+
+    private bool showMustHaveRegion;
+    private bool showAppIdHint;
+
+
     public override void OnInspectorGUI()
     {
-        ServerSettings settings = (ServerSettings)this.target;
-
-        #if UNITY_3_5
-        EditorGUIUtility.LookLikeInspector();
-        #endif
+        ServerSettings settings = (ServerSettings) target;
 
 
-        settings.HostType = (ServerSettings.HostingOption)EditorGUILayout.EnumPopup("Hosting", settings.HostType);
+        settings.HostType = (ServerSettings.HostingOption) EditorGUILayout.EnumPopup("Hosting", settings.HostType);
         EditorGUI.indentLevel = 1;
 
         switch (settings.HostType)
         {
             case ServerSettings.HostingOption.BestRegion:
             case ServerSettings.HostingOption.PhotonCloud:
+                // region selection
                 if (settings.HostType == ServerSettings.HostingOption.PhotonCloud)
+                {
                     settings.PreferredRegion = (CloudRegionCode)EditorGUILayout.EnumPopup("Region", settings.PreferredRegion);
-                settings.AppID = EditorGUILayout.TextField("AppId", settings.AppID);
-                settings.Protocol = (ConnectionProtocol)EditorGUILayout.EnumPopup("Protocol", settings.Protocol);
+                }
+                else
+                {
+                    CloudRegionFlag valRegions = (CloudRegionFlag)EditorGUILayout.EnumMaskField("Enabled Regions", settings.EnabledRegions);
+                    
+                    if (valRegions != settings.EnabledRegions)
+                    {
+                        settings.EnabledRegions = valRegions;
+                        this.showMustHaveRegion = valRegions == 0;
+                    }
+                    if (this.showMustHaveRegion)
+                    {
+                        EditorGUILayout.HelpBox("You should enable at least two regions for 'Best Region' hosting.", MessageType.Warning);
+                    }
+                }
 
-                if (string.IsNullOrEmpty(settings.AppID) || settings.AppID.Equals("master"))
+                // appid
+                string valAppId = EditorGUILayout.TextField("AppId", settings.AppID);
+                if (valAppId != settings.AppID)
+                {
+                    settings.AppID = valAppId;
+                    this.showAppIdHint = !IsAppId(settings.AppID);
+                }
+                if (this.showAppIdHint)
                 {
                     EditorGUILayout.HelpBox("The Photon Cloud needs an AppId (GUID) set.\nYou can find it online in your Dashboard.", MessageType.Warning);
                 }
+
+                // protocol
+                ProtocolChoices valProtocol = settings.Protocol == ConnectionProtocol.Tcp ? ProtocolChoices.Tcp : ProtocolChoices.Udp;
+                valProtocol = (ProtocolChoices) EditorGUILayout.EnumPopup("Protocol", valProtocol);
+                settings.Protocol = (ConnectionProtocol) valProtocol;
+                #if UNITY_WEBGL
+                EditorGUILayout.HelpBox("WebGL always use Secure WebSockets as protocol.\nThis setting gets ignored in current export.", MessageType.Warning);
+                #endif
                 break;
 
             case ServerSettings.HostingOption.SelfHosted:
+                // address and port (depends on protocol below)
                 bool hidePort = false;
                 if (settings.Protocol == ConnectionProtocol.Udp && (settings.ServerPort == 4530 || settings.ServerPort == 0))
                 {
@@ -64,7 +93,16 @@ public class ServerSettingsInspector : Editor
                 {
                     settings.ServerPort = EditorGUILayout.IntField("Server Port", settings.ServerPort);
                 }
-                settings.Protocol = (ConnectionProtocol)EditorGUILayout.EnumPopup("Protocol", settings.Protocol);
+
+                // protocol
+                valProtocol = settings.Protocol == ConnectionProtocol.Tcp ? ProtocolChoices.Tcp : ProtocolChoices.Udp;
+                valProtocol = (ProtocolChoices) EditorGUILayout.EnumPopup("Protocol", valProtocol);
+                settings.Protocol = (ConnectionProtocol) valProtocol;
+                #if UNITY_WEBGL
+                EditorGUILayout.HelpBox("WebGL always use Secure WebSockets as protocol.\nThis setting gets ignored in current export.", MessageType.Warning);
+                #endif
+
+                // appid
                 settings.AppID = EditorGUILayout.TextField("AppId", settings.AppID);
                 break;
 
@@ -91,8 +129,10 @@ public class ServerSettingsInspector : Editor
 
         settings.AppID = settings.AppID.Trim();
 
+
+        // RPC-shortcut list
         EditorGUI.indentLevel = 0;
-        SerializedObject sObj = new SerializedObject(this.target);
+        SerializedObject sObj = new SerializedObject(target);
         SerializedProperty sRpcs = sObj.FindProperty("RpcList");
         EditorGUILayout.PropertyField(sRpcs, true);
         sObj.ApplyModifiedProperties();
@@ -127,13 +167,29 @@ public class ServerSettingsInspector : Editor
     private int RpcListHashCode()
     {
         // this is a hashcode generated to (more) easily compare this Editor's RPC List with some other
-        int hashCode = PhotonEditor.Current.RpcList.Count + 1;
-        foreach (string s in PhotonEditor.Current.RpcList)
+        int hashCode = PhotonNetwork.PhotonServerSettings.RpcList.Count + 1;
+        foreach (string s in PhotonNetwork.PhotonServerSettings.RpcList)
         {
             int h1 = s.GetHashCode();
             hashCode = ((h1 << 5) + h1) ^ hashCode;
         }
 
         return hashCode;
+    }
+
+    /// <summary>Checks if a string is a Guid by attempting to create one.</summary>
+    /// <param name="val">The potential guid to check.</param>
+    /// <returns>True if new Guid(val) did not fail.</returns>
+    public static bool IsAppId(string val)
+    {
+        try
+        {
+            new Guid(val);
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
     }
 }
