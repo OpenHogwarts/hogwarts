@@ -91,8 +91,15 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	public bool isMine {
+		get {
+			return photonView.isMine;
+		}
+	}
+
 	public CharacterData characterData;
 	public NPC target;
+	public bool isFlying = false;
 
 	Animator anim;
 	bool gotFirstUpdate = false;
@@ -229,5 +236,15 @@ public class Player : Photon.MonoBehaviour {
 		}
 
 		return success;
+	}
+
+	public void freeze () {
+		transform.GetComponent<Motor>().enabled = false;
+		anim.SetBool("Jumping", false);
+		anim.SetFloat("Speed", 0);
+	}
+
+	public void unfreeze () {
+		transform.GetComponent<Motor>().enabled = true;
 	}
 }

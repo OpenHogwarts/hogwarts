@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
 			y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
 		}
 
-		else if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0){
+		else if(!Player.Instance.isFlying && (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)) {
 			float targetRotationAngle = cameraTarget.eulerAngles.y;
 			float cameraRotationAngle = transform.eulerAngles.y;
 			x = Mathf.LerpAngle(cameraRotationAngle, targetRotationAngle, lerpRate * Time.deltaTime);
@@ -73,14 +73,14 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private static float ClampAngle(float angle, float min, float max){
-				if (angle < -360) {
-						angle += 360;
-				}
-				if (angle > 360) {
-						angle -= 360;
-				}
+		if (angle < -360) {
+				angle += 360;
+		}
+		if (angle > 360) {
+				angle -= 360;
+		}
 
-				return Mathf.Clamp (angle, min, max);
+		return Mathf.Clamp (angle, min, max);
 	}
 
 }
