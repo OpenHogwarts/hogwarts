@@ -242,6 +242,10 @@ public class Player : Photon.MonoBehaviour {
 		transform.GetComponent<Motor>().enabled = false;
 		anim.SetBool("Jumping", false);
 		anim.SetFloat("Speed", 0);
+
+		Rigidbody rigidbody = GetComponent<Rigidbody>();
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
 	}
 
 	public void unfreeze () {

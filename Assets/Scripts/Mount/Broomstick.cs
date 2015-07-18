@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Broomstick : MonoBehaviour
 {
+	public Transform exitPos;
 	public Transform playerPos;
 	public static Broomstick Instance;
 
@@ -50,12 +51,14 @@ public class Broomstick : MonoBehaviour
 		}
 
 		driver = player;
-		driver.transform.position = playerPos.position;
 		driver.transform.eulerAngles = new Vector3(0, 180f, 0);
 
 		driver.transform.SetParent(transform);
 		driver.freeze();
+		driver.GetComponent<Rigidbody>().useGravity = false;
+		driver.GetComponent<Collider>().enabled = false;
 		driver.isFlying = true;
+		driver.transform.position = playerPos.position;
 
 		Instance = this;
 	}
@@ -63,7 +66,10 @@ public class Broomstick : MonoBehaviour
 	public void leave ()
 	{
 		driver.transform.SetParent(null);
+		driver.transform.position = exitPos.position;
 		driver.unfreeze();
+		driver.GetComponent<Rigidbody>().useGravity = true;
+		driver.GetComponent<Collider>().enabled = true;
 		driver.isFlying = false;
 		driver = null;
 	}
