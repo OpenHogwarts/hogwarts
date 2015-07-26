@@ -10,10 +10,9 @@ public class LoadingPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		PhotonNetwork.isMessageQueueRunning = false;
-		AsyncOperation async = Application.LoadLevelAsync(Menu.defaultLevel);
-		StartCoroutine (loadLevel(async));
+		//PhotonNetwork.isMessageQueueRunning = false;
+		//AsyncOperation async = Application.LoadLevelAsync(Menu.defaultLevel);
+		//StartCoroutine (loadLevel(async));
 	}
 
 	IEnumerator loadLevel (AsyncOperation async) {

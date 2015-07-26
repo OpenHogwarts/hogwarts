@@ -37,6 +37,9 @@ public class NPC : MonoBehaviour
 	public AnimationClip attackAnimation;
 	public AnimationClip deathAnimation;
 	public Animation anim;
+	public bool check = false;
+	public bool resetDps = false;
+	public bool stunned = false;
 
 	private bool isRanged;
 	private float timeSinceLastAttack;
@@ -105,12 +108,14 @@ public class NPC : MonoBehaviour
 		}
 		if (this.isDead)
 		{
-			Player player = this.target.GetComponent<Player>();
-			int levelDiff = data.level - player.level;
-
-			// do not give exp if player has > 3 levels than the killed npc
-			if (levelDiff > -2) {
-				player.exp += data.expValue + levelDiff * 10;
+			if (this.target) {
+				Player player = this.target.GetComponent<Player>();
+				int levelDiff = data.level - player.level;
+				
+				// do not give exp if player has > 3 levels than the killed npc
+				if (levelDiff > -2) {
+					player.exp += data.expValue + levelDiff * 10;
+				}
 			}
 
 			anim.Play(this.deathAnimation.name);
@@ -217,6 +222,71 @@ public class NPC : MonoBehaviour
 		if (this.health < this.maxHealth) {
 			StartCoroutine (restoreHealth());
 		}
+	}
+
+
+	public IEnumerator TakeDamageByFlagType(Spell spell)
+	{
+		if(spell.spellFlag == Spell.SpellFlag.Slow)
+		{
+			/*
+			 * @ToDo: lower NPC speed
+			originalRunSpeed = data.runSpeed;
+			originalWalkSpeed = data.walkSpeed;
+			data.runSpeed = 1.5f;
+			data.walkSpeed = 0.5f;
+
+			yield return new WaitForSeconds(spell.slowDuration);
+			cont.runSpeed = originalRunSpeed;
+			cont.walkSpeed = originalWalkSpeed;
+			yield break;
+			*/
+			Debug.Log("Slowed");
+			
+		}
+		
+		else if(spell.spellFlag == Spell.SpellFlag.DamagePerSecond)
+		{
+			if(resetDps && check){
+				check = false;
+				resetDps = false;
+				StopAllCoroutines();
+			}
+			
+			if(!check)
+				StartCoroutine(DOT(spell.dotDamage, spell.dotTick, spell.dotSeconds, spell.dotEffect));
+			
+		}
+		
+		else
+		{
+			Debug.Log("don't have spell flag.");
+			yield break;
+		}
+		
+	}
+	
+	
+	public IEnumerator DOT (int damage, int over, int time, GameObject dotEffect)
+	{
+		int count = 0;
+		check = true;
+		
+		
+		while (count < over) {
+			yield return new WaitForSeconds(time);
+			getHit(damage);
+			Instantiate(dotEffect, transform.position, Quaternion.identity);
+			count ++;
+			
+		}
+		
+		check = false;
+	}
+
+	public void getHit (int damage) {
+		// this should also start a hit animation
+		health-= damage;
 	}
 
 	public IEnumerator restoreHealth () {

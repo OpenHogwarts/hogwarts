@@ -48,56 +48,12 @@ public class MainPanel : MonoBehaviour {
 		PhotonNetwork.player.SetCustomProperties(h);
 		PhotonNetwork.player.name = name;
 		
-		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+		NetworkManager.Instance.startConnection();
 		GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
 	}
 
 	public void joinTest () {
 		Menu.defaultLevel = Menu.debugLevel;
 		joinGame (1, "Tester");
-	}
-
-	void OnJoinedLobby () {
-		PhotonNetwork.JoinRandomRoom();
-	}
-
-	void OnJoinedRoom()
-	{
-		//PhotonNetwork.LoadLevel(defaultLevel);
-		Menu.Instance.showPanel ("LoadingPanel");
-	}
-
-	void OnCreatedRoom()
-	{
-		OnJoinedRoom ();
-	}
-
-	void OnPhotonRandomJoinFailed()
-	{
-		PhotonNetwork.CreateRoom(null);
-	}
-
-
-	public void OnPhotonCreateRoomFailed()
-	{
-
-		Debug.Log("OnPhotonCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
-	}
-	
-	public void OnPhotonJoinRoomFailed()
-	{
-
-		Debug.Log("OnPhotonJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
-	}
-
-	public void OnDisconnectedFromPhoton()
-	{
-		Debug.Log("Disconnected from Photon.");
-	}
-	
-	public void OnFailedToConnectToPhoton(object parameters)
-	{
-
-		Debug.Log("OnFailedToConnectToPhoton. StatusCode: " + parameters + " ServerAddress: " + PhotonNetwork.networkingPeer.ServerAddress);
 	}
 }

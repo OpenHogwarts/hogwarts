@@ -12,7 +12,9 @@ public class NamePlate : MonoBehaviour {
 	public static Color COLOR_ENEMY = Color.red;
 	
 	void Update () {
-		transform.LookAt (2 * transform.position - Camera.main.transform.position);
+		if (Camera.main) {
+			transform.LookAt (2 * transform.position - Camera.main.transform.position);
+		}
 	}
 
 	public void setName (string name, Color color) {

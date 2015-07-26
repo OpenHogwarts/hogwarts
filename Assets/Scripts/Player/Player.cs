@@ -140,11 +140,12 @@ public class Player : Photon.MonoBehaviour {
 			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
 		} else {
 			if (!gotFirstUpdate) {
-				this.GetComponent<PhotonView>().RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
-				healthBar = GameObject.Find ("Canvas/HP Orb").GetComponent<UIBar>();
-				expBar = GameObject.Find ("Canvas/ExpBar").GetComponent<UIBar>();
-				manaBar = GameObject.Find ("Canvas/Mana Semicircle").GetComponent<UIBar>();
+				photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
+
+				healthBar = GameObject.Find ("Canvas/PlayerPanel/HP Orb").GetComponent<UIBar>();
+				expBar = GameObject.Find ("Canvas/PlayerPanel/ExpBar").GetComponent<UIBar>();
+				manaBar = GameObject.Find ("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
 
 				healthBar.updateVertical(characterData.health, characterData.maxHealth);
 				expBar.updateHoritzontal(characterData.exp, 100);
