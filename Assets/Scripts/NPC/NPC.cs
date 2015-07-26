@@ -276,7 +276,7 @@ public class NPC : MonoBehaviour
 		while (count < over) {
 			yield return new WaitForSeconds(time);
 			getHit(damage);
-			Instantiate(dotEffect, transform.position, Quaternion.identity);
+			PhotonNetwork.Instantiate("Particles/" + dotEffect.name, transform.position, Quaternion.identity, 0);
 			count ++;
 			
 		}

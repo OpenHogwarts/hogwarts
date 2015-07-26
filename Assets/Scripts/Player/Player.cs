@@ -129,8 +129,10 @@ public class Player : Photon.MonoBehaviour {
 			_instance = this;
 		}
 		anim = GetComponent<Animator>();
-		namePlate = transform.FindChild ("NamePlate").GetComponent<NamePlate>();
 
+		if (namePlate == null) {
+			setNamePlate();
+		}
 	}
 
 	void Update()
@@ -199,8 +201,15 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	private void setNamePlate () {
+		namePlate = transform.FindChild ("NamePlate").GetComponent<NamePlate>();
+	}
+
 	[PunRPC]
 	void setNick (string name) {
+		if (namePlate == null) {
+			setNamePlate();
+		}
 		namePlate.setName (name, NamePlate.COLOR_NORMAL);
 	}
 

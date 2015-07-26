@@ -1,20 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestroyObject : MonoBehaviour {
+public class DestroyObject : Photon.MonoBehaviour {
+	
+	public float timeOut = 10.0f;
+	public bool detachChildren = false;
+	public bool isParticle = false;
+	
+	public void Awake ()
+	{
+		if (!photonView.isMine) {
+			return;
+		}
 
-	// Use this for initialization
-	public float destroyTime = 10.0f;
+		if (isParticle) {
+			ParticleSystem ps = GetComponentInChildren<ParticleSystem> ();
+			timeOut = ps.duration;
+		}
 
-	void Start () {
-		StartCoroutine (DestroyOverTime(destroyTime));
+		Invoke ("DestroyNow", timeOut);
 	}
 	
-	// Update is called once per frame
-	public IEnumerator DestroyOverTime (float time) {
+	public void DestroyNow ()
+	{
+		if (detachChildren) {
+			transform.DetachChildren ();
+		}
 
-		yield return new WaitForSeconds (time);
-		Destroy (this.gameObject);
-	
+		PhotonNetwork.Destroy(gameObject);
 	}
 }

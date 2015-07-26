@@ -44,6 +44,10 @@ public class Menu : MonoBehaviour {
 			break;
 		}
 	}
+
+	public void showPanelVoid (string name) {
+		showPanel(name);
+	}
 	
 	public GameObject showPanel (string name, bool hidePanels = true) {
 		if (hidePanels) {

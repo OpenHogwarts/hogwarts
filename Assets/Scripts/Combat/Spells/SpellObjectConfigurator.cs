@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpellObjectConfigurator : MonoBehaviour {
+public class SpellObjectConfigurator : Photon.MonoBehaviour {
 	
 	private Transform myTransform = null;
 	public Spell spell = null;
@@ -9,8 +9,11 @@ public class SpellObjectConfigurator : MonoBehaviour {
 	
 	void Start()
 	{
+		if (!photonView.isMine) {
+			return;
+		}
 		myTransform = transform;
-		spell = (Spell)Resources.Load("Spells/"+myTransform.gameObject.name,typeof(Spell));
+		spell = (Spell)Resources.Load("Spells/" + myTransform.gameObject.name, typeof(Spell));
 
 		if(spell != null)
 		{
@@ -47,7 +50,7 @@ public class SpellObjectConfigurator : MonoBehaviour {
 				for(int i = 0; i < hitColliders.Length;i++)
 				{
 					if(hitColliders[i].tag == "NPC"){
-						Instantiate(spell.spellCollisionParticle,hitColliders[i].transform.position,Quaternion.identity);
+						PhotonNetwork.Instantiate("Particles/" + spell.spellCollisionParticle.name, hitColliders[i].transform.position, Quaternion.identity, 0);
 
 						//You can implement a your own damage script.This is an example.(col) means a player.
 						//PlayerDamageScript pds = col.gameObject.GetComponent<PlayerDamageScript>();
@@ -98,6 +101,10 @@ public class SpellObjectConfigurator : MonoBehaviour {
 	
 	void Update()
 	{
+		if (!photonView.isMine) {
+			return;
+		}
+
 		if(spell != null){
 			if(spell.spellType == Spell.SpellType.Single)
 			{
@@ -112,12 +119,8 @@ public class SpellObjectConfigurator : MonoBehaviour {
 				{
 					FollowTarget();
 				}
-
-
 			}
 		}
-
-		
 	}
 	
 	
@@ -133,17 +136,20 @@ public class SpellObjectConfigurator : MonoBehaviour {
 		myTransform.rotation = Quaternion.Slerp(myTransform.rotation,
 											    Quaternion.LookRotation(myTarget.position - myTransform.position),
 											    5 * Time.deltaTime);
-		
 	}
 	
 	void OnCollisionEnter(Collision col)
 	{
+		if (!photonView.isMine) {
+			return;
+		}
+
 		if(col.gameObject.tag == "NPC")
 		{
 
 			ContactPoint cp = col.contacts[0];
 
-			Instantiate(spell.spellCollisionParticle,cp.point,Quaternion.identity);
+			PhotonNetwork.Instantiate("Particles/" + spell.spellCollisionParticle.name, cp.point, Quaternion.identity, 0);
 			
 			NPC npc = col.gameObject.GetComponent<NPC>();
 
@@ -169,8 +175,7 @@ public class SpellObjectConfigurator : MonoBehaviour {
 
 			col.gameObject.GetComponent<NPC>().getHit(Random.Range(spell.spellMinDamage,spell.spellMaxDamage));
 
-			Destroy(this.gameObject);
-			
+			PhotonNetwork.Destroy(this.gameObject);
 		}
 	}
 	

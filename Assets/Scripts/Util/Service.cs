@@ -9,7 +9,11 @@ public class Service {
 	public static DB.AutoBox db {
 		get { 
 			if (_db == null) {
+
+				#if UNITY_EDITOR
 				DB.Root (Application.persistentDataPath);
+				#endif
+
 				#if (UNITY_METRO || NETFX_CORE) && (!UNITY_EDITOR)
 				// from WSDatabaseConfig.cs
 				iBoxDB.WSDatabaseConfig.ResetStorage();
