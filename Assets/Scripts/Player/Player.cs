@@ -97,8 +97,28 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	public bool isFriendly {
+		get {
+			return true; // this will change when we have multiple classes
+		}
+	}
+
+	public new string name;
 	public CharacterData characterData;
-	public NPC target;
+	private NPC _target;
+	public NPC target {
+		get {
+			return _target;
+		}
+		set {
+			if (value == null) {
+				PlayerPanel.Instance.hideTargetPanel();
+			} else {
+				PlayerPanel.Instance.showTargetPanel(value.transform);
+			}
+			_target = value;
+		}
+	}
 	public bool isFlying = false;
 
 	Animator anim;
@@ -109,7 +129,7 @@ public class Player : Photon.MonoBehaviour {
 	public UIBar expBar;
 	public UIBar manaBar;
 
-	NamePlate namePlate;
+	public NamePlate namePlate;
 
 	public static Player _instance;
 	
@@ -129,10 +149,6 @@ public class Player : Photon.MonoBehaviour {
 			_instance = this;
 		}
 		anim = GetComponent<Animator>();
-
-		if (namePlate == null) {
-			setNamePlate();
-		}
 	}
 
 	void Update()
@@ -201,16 +217,10 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	private void setNamePlate () {
-		namePlate = transform.FindChild ("NamePlate").GetComponent<NamePlate>();
-	}
-
 	[PunRPC]
-	void setNick (string name) {
-		if (namePlate == null) {
-			setNamePlate();
-		}
-		namePlate.setName (name, NamePlate.COLOR_NORMAL);
+	void setNick (string nick) {
+		name = nick;
+		namePlate.setName (nick, NamePlate.COLOR_NORMAL);
 	}
 
 	private static Vector3 getVector3(string rString){

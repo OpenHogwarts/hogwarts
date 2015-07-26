@@ -25,10 +25,20 @@ public class NPC : MonoBehaviour
 			// @ToDo: Update UI bar
 		}
 	}
+	public new string name
+	{
+		get {return data.name;}
+	}
 
 	public List<WaypointData> waypoints
 	{
 		get {return data.waypoints;}
+	}
+
+	public bool isFriendly {
+		get {
+			return !data.isAggresive;
+		}
 	}
 
 	public GameObject projectilePrefab;

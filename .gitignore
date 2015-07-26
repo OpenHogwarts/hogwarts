@@ -8,6 +8,8 @@
 [Bb]in/
 sysinfo.txt
 Assets/Models/Hogwarts FBX.FBX
+*.box
+*.box.swp
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
