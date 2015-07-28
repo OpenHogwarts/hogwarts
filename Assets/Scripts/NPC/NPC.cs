@@ -330,6 +330,7 @@ public class NPC : MonoBehaviour
 	}
 
 	public void setSelected () {
+		PlayerHotkeys.isClickingATarget = true;
 		if (data.isAggresive) {
 			Player.Instance.target = this;
 		} else {

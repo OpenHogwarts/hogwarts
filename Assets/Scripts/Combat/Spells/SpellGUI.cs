@@ -10,17 +10,6 @@ public class SpellGUI : MonoBehaviour {
 	public bool showFireSpells = false;
 	public bool showFrostSpells = false;
 
-	void Start () {
-
-		List<Spell> spellDatabase = GameObject.Find ("SpellManager").GetComponent<SpellManager> ().spellList;
-
-		for(int i = 0; i < spellDatabase.Count; i++)
-		{
-			spellList.Add(spellDatabase[i]);
-		}
-	
-	}
-
 	void Update()
 	{
 		if (Input.GetKeyDown (KeyCode.P))

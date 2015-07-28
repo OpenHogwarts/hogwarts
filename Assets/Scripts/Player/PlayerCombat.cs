@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour {
 		spellList.Add((Spell)Resources.Load("Spells/Fireball"));
 		spellList.Add((Spell)Resources.Load("Spells/Frostbolt"));
 		spellList.Add((Spell)Resources.Load("Spells/Area test"));
+		SkillsUI.Instance.fillSlots();
 	}
 
 	// for numeric hotkeys

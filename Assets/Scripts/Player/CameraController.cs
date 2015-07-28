@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (1)) {
 			x += Input.GetAxis ("Mouse X") * mouseXSpeedMod;
 			y -= Input.GetAxis ("Mouse Y") * mouseYSpeedMod;
 		}

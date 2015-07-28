@@ -111,12 +111,15 @@ public class Player : Photon.MonoBehaviour {
 			return _target;
 		}
 		set {
+			_target = value;
+
 			if (value == null) {
 				PlayerPanel.Instance.hideTargetPanel();
 			} else {
 				PlayerPanel.Instance.showTargetPanel(value.transform);
 			}
-			_target = value;
+
+			SkillsUI.Instance.updateStatus();
 		}
 	}
 	public bool isFlying = false;
