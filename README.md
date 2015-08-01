@@ -11,7 +11,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 Requirements
 -------------
-- Unity Pro >= 4.6
+- Unity >= 5.1.1
 
 Setup
 -------------
@@ -27,7 +27,9 @@ Working features
 - Multiplayer
 - Chat
 - Inventory
-
+- NPCs (Agressives & sellers) + patrols
+- Spells combat
+- Flying Broomstick
 
 Credits
 -------------
@@ -37,6 +39,7 @@ Credits
 - Wand models: Ektorkrom
 - Spider model: https://www.assetstore.unity3d.com/en/#!/content/10104
 - Batuhan Evren: Spell maker
+- Broomstick controller: SunCube
 
 Special Thanks
 -------------
