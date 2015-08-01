@@ -4,13 +4,6 @@ using System.Collections;
 public class SmoothSyncMovement : Photon.MonoBehaviour
 {
     public float SmoothingDelay = 5;
-    public void Awake()
-    {
-        if (this.photonView == null || this.photonView.observed != this)
-        {
-            Debug.LogWarning(this + " is not observed by this object's photonView! OnPhotonSerializeView() in this class won't be used.");
-        }
-    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

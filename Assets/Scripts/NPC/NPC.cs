@@ -7,7 +7,7 @@ using System.Collections.Generic;
 This NPC brain is based on one-to-many way, which means that players set themself as target.
 */
 
-public class NPC : MonoBehaviour
+public class NPC : Photon.MonoBehaviour
 {
 	public int Id;
 
@@ -50,6 +50,7 @@ public class NPC : MonoBehaviour
 	public bool check = false;
 	public bool resetDps = false;
 	public bool stunned = false;
+	public float SmoothingDelay = 5;
 
 	private bool isRanged;
 	private float timeSinceLastAttack;
@@ -71,6 +72,9 @@ public class NPC : MonoBehaviour
 	private int currentWaypoint = 0;
 	private float curTime = 0;
 	private float pauseDuration = 2;
+	private Vector3 correctPlayerPos = Vector3.zero; //We lerp towards this
+	private Quaternion correctPlayerRot = Quaternion.identity; //We lerp towards this
+	private bool gotFirstUpdate = false;
 
 	protected NamePlate namePlate;
 	
@@ -103,10 +107,15 @@ public class NPC : MonoBehaviour
 	
 	private void Update()
 	{
+		if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
+			transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * this.SmoothingDelay);
+			transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * this.SmoothingDelay);
+		}
+
 		if (Application.isEditor) {
-			if (data.subType != NPCData.creatureSubType.Normal) {return;} // enable in debug to not verifiy if you are the master
+			if (data.subRace != NPCData.creatureSubRace.Normal) {return;} // enable in debug to not verifiy if you are the master
 		} else {
-			if (data.subType != NPCData.creatureSubType.Normal || !PhotonNetwork.isMasterClient) {return;}
+			if (data.subRace != NPCData.creatureSubRace.Normal || !PhotonNetwork.isMasterClient) {return;}
 		}
 
 		if (this.EnableCombat) {
@@ -127,7 +136,6 @@ public class NPC : MonoBehaviour
 					player.exp += data.expValue + levelDiff * 10;
 				}
 			}
-
 			anim.Play(this.deathAnimation.name);
 		}
 		else
@@ -196,6 +204,7 @@ public class NPC : MonoBehaviour
 					if (backToIPos) {
 						gotoInitialPoint();
 					} else {
+
 						if (waypoints.Count == 0) {
 							anim.Play(this.idleAnimation.name);
 						} else {
@@ -209,6 +218,28 @@ public class NPC : MonoBehaviour
 					}
 				}
 					
+			}
+		}
+	}
+	
+	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (PhotonNetwork.isMasterClient)
+		{
+			//We own this player: send the others our data
+			stream.SendNext(transform.position);
+			stream.SendNext(transform.rotation); 
+		}
+		else
+		{
+			//Network player, receive data
+			correctPlayerPos = (Vector3)stream.ReceiveNext();
+			correctPlayerRot = (Quaternion)stream.ReceiveNext();
+
+			if (!gotFirstUpdate) {
+				transform.position = correctPlayerPos;
+				transform.rotation = correctPlayerRot;
+				gotFirstUpdate = true;
 			}
 		}
 	}

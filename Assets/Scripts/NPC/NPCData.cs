@@ -7,25 +7,26 @@ public class NPCData {
 	protected string TABLE_NAME = "npc";
 
 	public int id;
+	public int template;
 	public string name;
 	public int level = 1;
 	public int health = 100;
-	public int _type;
-	public int _subType;
-	public creatureType type {
+	public int _race;
+	public int _subRace;
+	public creatureRace race {
 		get {
-			return (creatureType)_type;
+			return (creatureRace)_race;
 		}
 		set {
-			_type = (int)value;
+			_race = (int)value;
 		}
 	}
-	public creatureSubType subType {
+	public creatureSubRace subRace {
 		get {
-			return (creatureSubType)_subType;
+			return (creatureSubRace)_subRace;
 		}
 		set {
-			_subType = (int)value;
+			_subRace = (int)value;
 		}
 	}
 	public int damage = 50;
@@ -36,26 +37,34 @@ public class NPCData {
 	public float runSpeed = 8;
 	public float attacksPerSecond = 1;
 	private List<WaypointData> _waypoints = new List<WaypointData> ();
+	private bool firstSearch = true;
 	public List<WaypointData> waypoints {
 		get {
 			
-			if (_waypoints.Count == 0) {
-				foreach (WaypointData data in Service.db.Select<WaypointData>("FROM "+WaypointData.TABLE_NAME + " WHERE npc ==? ORDER BY id asc ", id)) {
+			if (firstSearch) {
+				foreach (WaypointData data in Service.db.Select<WaypointData>("FROM " + WaypointData.TABLE_NAME + " WHERE npc ==? ORDER BY id asc ", id)) {
 					_waypoints.Add(data);
 				}
+				firstSearch = false;
 			}
 			
 			return _waypoints;
 		}
 	}
 
-	public enum creatureType
+	public enum creatureTemplate
+	{
+		CastleSpider = 1,
+		Human = 2
+	}
+
+	public enum creatureRace
 	{
 		Monster = 1,
 		Human = 2
 	}
 
-	public enum creatureSubType {
+	public enum creatureSubRace {
 		Normal = 1,
 		Seller = 2,
 	}

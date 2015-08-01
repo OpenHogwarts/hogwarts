@@ -9,9 +9,12 @@ using System.Collections.Generic;
 public class DBSetup : MonoBehaviour {
 
 	public static void start () {
-		insertItems ();
-		insertTestItems ();
-		insertNPCs ();
+		insertItems();
+		insertTestItems();
+
+		// NPC Tables
+		insertNPCTemplates();
+		insertNPCs();
 	}
 
 	public static void insertItems () {
@@ -56,25 +59,67 @@ public class DBSetup : MonoBehaviour {
 		item.create();
 	}
 
+	public static void insertNPCTemplates () {
+		NPCTemplate template;
+
+		template = new NPCTemplate();
+		template.id = (int)NPCData.creatureTemplate.CastleSpider;
+		template.name = "Araña del castillo";
+		template.creatureRace = NPCData.creatureRace.Monster;
+		template.creatureSubRace = NPCData.creatureSubRace.Normal;
+		template.isAgressive = true;
+		template.healthBase = 100;
+		template.create ();
+
+		template = new NPCTemplate();
+		template.id = (int)NPCData.creatureTemplate.Human;
+		template.name = "Mike";
+		template.creatureRace = NPCData.creatureRace.Human;
+		template.creatureSubRace = NPCData.creatureSubRace.Normal;
+		template.isAgressive = false;
+		template.healthBase = 100;
+		template.create ();
+		
+	}
+
 	public static void insertNPCs () {
 
 		NPCData npc;
+		List<Vector3> waypoints = new List<Vector3>();
+		int i = 1;
 
-		npc = new NPCData ();
-		npc.id = 1;
+		npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 25);
+		npc.id = i++;
 		npc.name = "Mike Ghole";
-		npc.level = 25;
-		npc.type = NPCData.creatureType.Human;
-		npc.subType = NPCData.creatureSubType.Seller;
+		npc.subRace = NPCData.creatureSubRace.Seller;
 		npc.create ();
 
-		npc = new NPCData ();
-		npc.id = 2;
-		npc.name = "Araña del castillo";
-		npc.level = 5;
-		npc.type = NPCData.creatureType.Monster;
-		npc.subType = NPCData.creatureSubType.Normal;
-		npc.isAggresive = true;
+		// END -----------------
+
+		npc = NPCTemplate.fillById(NPCData.creatureTemplate.CastleSpider, 5);
+		npc.id = i++;
 		npc.create ();
+
+		waypoints = new List<Vector3>();
+		waypoints.Add(new Vector3(0.89f,0.50f,-78.00f));
+		waypoints.Add(new Vector3(7.37f,0.50f,-73.51f));
+		waypoints.Add(new Vector3(17.19f,0.50f,-78.83f));
+		waypoints.Add(new Vector3(8.10f,0.50f,-82.41f));
+		
+		insertWaypointsTo(npc.id, waypoints);
+		// END -----------------
+
+
+	}
+
+	public static void insertWaypointsTo (int id, List<Vector3> waypoints) {
+		WaypointData wp;
+
+		foreach (Vector3 waypoint in waypoints) {
+			wp = new WaypointData();
+			wp.npc = id;
+			wp.position = waypoint;
+			wp.create();
+		}
 	}
 }

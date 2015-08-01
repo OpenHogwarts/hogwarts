@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using iBoxDB.LocalServer;
 
 public class Service {
+
 	public static DB server = null;
 	public static DB.AutoBox _db;
 	public static DB.AutoBox db {
@@ -31,6 +32,7 @@ public class Service {
 				//server.GetConfig ().EnsureIndex<CharacterItem> ("inventory", isUnique, "_position");
 				server.GetConfig ().EnsureTable<Item> ("item", "id");
 				server.GetConfig ().EnsureTable<NPCData> ("npc", "id");
+				server.GetConfig ().EnsureTable<NPCTemplate> ("npc_template", "id");
 				server.GetConfig ().EnsureTable<WaypointData> ("waypoint_data", "id");
 				server.GetConfig ().EnsureIndex<WaypointData> ("waypoint_data", isNotUnique, "npc");
 				

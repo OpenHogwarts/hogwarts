@@ -18,8 +18,8 @@ public class PlayerHotkeys : MonoBehaviour
 
 		if (Player.Instance.target)
 		{
-			// unselect target, this should also check if is clicking over an NPC/Player
-			if (Input.GetKey(KeyCode.Mouse0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
+			// unselect target
+			if (Input.GetKeyUp(KeyCode.Mouse0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
 				if(isClickingATarget) {
 					isClickingATarget = false;
 				} else {

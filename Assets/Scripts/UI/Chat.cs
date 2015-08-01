@@ -11,11 +11,12 @@ public class Chat : MonoBehaviour {
 	public Text input;
 	public InputField input2;
 	public Scrollbar scroll;
-
 	public static bool isWritting = false;
-
-	public void setWritting (bool isIt) {
-		isWritting = isIt;
+	public static Chat Instance;
+	public static int MAX_CHARACTERS = 5000;
+	
+	void Start () {
+		Instance = this;
 	}
 	
 	// Update is called once per frame
@@ -42,21 +43,29 @@ public class Chat : MonoBehaviour {
 			isWritting = false;
 		}
 	}
+
+	public void setWritting (bool isIt) {
+		isWritting = isIt;
+	}
 	
 	//Needs to be RPC to work online
 	[PunRPC]
-	public void Msg(string msg){
+	public void Msg (string msg) {
 		AddMsg (msg);
 	}
 	
 	//Just add the msg to the chatbox
-	void AddMsg(string msg){
+	void AddMsg (string msg) {
 		chatbox.text = chatbox.text + "\n" + msg;
 		input.text = "";
 		input2.text = "";
+
+		if (chatbox.text.Length > MAX_CHARACTERS) {
+			chatbox.text = chatbox.text.Substring(MAX_CHARACTERS - 100);
+		}
 	}
 
-	public void LocalMsg(string msg){
+	public void LocalMsg (string msg) {
 		AddMsg (msg);
 	}
 }

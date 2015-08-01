@@ -6,7 +6,13 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
 
-	public void Start () {
+	public Text nickLabel;
+	public Text LevelLabel;
+	public Button JoinButton;
+
+	private int playerId;
+
+	public void OnEnable () {
 		bool hasPlayer = false;
 
 		if (Service.db.SelectCount("FROM item") < 1) {
@@ -16,10 +22,11 @@ public class MainPanel : MonoBehaviour {
 		// @ToDo: create a UI for selection
 		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
+			playerId = character.id;
 
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").GetComponent<Text>().text = character.name;
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").GetComponent<Text>().text = character.level.ToString();
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").GetComponent<Button>().onClick.AddListener(
+			nickLabel.text = character.name;
+			LevelLabel.text = character.level.ToString();
+			JoinButton.onClick.AddListener(
 				delegate {
 				this.joinGame(character.id, character.name);
 			});
@@ -28,9 +35,9 @@ public class MainPanel : MonoBehaviour {
 		if (hasPlayer) {
 			GameObject.Find ("Canvas/MainPanel/CreateButton").SetActive(false);
 		} else {
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/NickLabel").SetActive(false);
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/LevelLabel").SetActive(false);
-			GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton").SetActive(false);
+			nickLabel.transform.gameObject.SetActive(false);
+			LevelLabel.transform.gameObject.SetActive(false);
+			JoinButton.transform.gameObject.SetActive(false);
 			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(false);
 		}
 		 
@@ -54,6 +61,6 @@ public class MainPanel : MonoBehaviour {
 
 	public void joinTest () {
 		Menu.defaultLevel = Menu.debugLevel;
-		joinGame (1, "Tester");
+		joinGame (playerId, "Tester");
 	}
 }
