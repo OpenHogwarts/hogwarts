@@ -36,13 +36,17 @@ public class PlayerCombat : MonoBehaviour {
 			SkillsUI.Instance.disableSkill(1);// TMP TEMPORAL
 			castingSpell = true;
 			Player.Instance.mana -= spell.spellManaCost;
+
 			//Wait for choosen spell cast time.
+			Player.Instance.anim.SetBool("InvokeSpell", true);
 			yield return new WaitForSeconds(spell.spellCastTime);
 
-			// @ToDo: Play the spell cast animation
+			Player.Instance.anim.SetTrigger("SpellNormalAttack");
+			Player.Instance.anim.SetBool("InvokeSpell", false);
 
 			//Set up a spell and cast it.
 			SpellSetUp(spell);
+
 			SkillsUI.Instance.enableSkill(1);// TMP TEMPORAL
 		}
 		

@@ -130,8 +130,8 @@ public class Player : Photon.MonoBehaviour {
 	}
 	public bool isFlying = false;
 
-	Animator anim;
-	bool gotFirstUpdate = false;
+	public Animator anim;
+	private bool gotFirstUpdate = false;
 	public TextMesh nick;
 
 	public UIBar healthBar;
