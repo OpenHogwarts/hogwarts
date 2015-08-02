@@ -22,6 +22,12 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
+	public int maxHealth {
+		get {
+			return  characterData.maxHealth;
+		}
+	}
+
 	public int exp
 	{
 		get {return characterData.exp;}
@@ -273,5 +279,14 @@ public class Player : Photon.MonoBehaviour {
 
 	public void unfreeze () {
 		transform.GetComponent<Motor>().enabled = true;
+	}
+
+	[PunRPC]
+	public void getDamage (int amount, int attacker) {
+		health -= amount;
+
+		if (target == null) {
+			PhotonView.Find(attacker).gameObject.GetComponent<NPC>().setSelected();
+		}
 	}
 }

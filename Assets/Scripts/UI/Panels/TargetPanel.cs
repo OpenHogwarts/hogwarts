@@ -5,9 +5,9 @@ using System.Collections;
 public class TargetPanel : MonoBehaviour {
 
 	public new Text name;
-	public RectTransform health;
+	public Image health;
 	public Transform target;
-
+	
 	private bool isNPC = false;
 	private NPC npc;
 	private Player player;
@@ -40,5 +40,26 @@ public class TargetPanel : MonoBehaviour {
 				name.color = NamePlate.COLOR_ENEMY;
 			}
 		}
+
+		InvokeRepeating("updateHealth", 1f, 1f);
+	}
+
+	public void updateHealth () {
+		int currentHealth;
+		int maxHealth;
+
+		if (isNPC) {
+			currentHealth = npc.health;
+			maxHealth = npc.maxHealth;
+		} else {
+			currentHealth = player.health;
+			maxHealth = player.maxHealth;
+		}
+
+		health.fillAmount = currentHealth / (float)maxHealth;
+	}
+
+	void OnDisable () {
+		CancelInvoke("updateHealth");
 	}
 }

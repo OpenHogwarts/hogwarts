@@ -25,6 +25,7 @@ public class NPC : Photon.MonoBehaviour
 			// @ToDo: Update UI bar
 		}
 	}
+	public int maxHealth;
 	public new string name
 	{
 		get {return data.name;}
@@ -63,7 +64,6 @@ public class NPC : Photon.MonoBehaviour
 	private bool isKnockedBack = false;
 	private bool isAttacking = false;
 	private NPCData data;
-	private int maxHealth;
 	private GameObject target;
 	private Vector3 initialPos;
 	private float distanceFromIPos = 0;
@@ -190,7 +190,7 @@ public class NPC : Photon.MonoBehaviour
 					{
 						this.timeSinceLastAttack = 0.0f;
 						anim.Play(this.attackAnimation.name);
-						this.target.GetComponent<Player>().health -= data.damage;
+						this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
 					}
 					else
 					{
@@ -360,7 +360,13 @@ public class NPC : Photon.MonoBehaviour
 		}
 	}
 
-	public void setSelected () {
+	// Sets this NPC as player's target
+	public void setSelected (bool force = false) {
+
+		if (!force && Player.Instance.target != null) {
+			return;
+		}
+
 		PlayerHotkeys.isClickingATarget = true;
 		if (data.isAggresive) {
 			Player.Instance.target = this;
@@ -370,7 +376,7 @@ public class NPC : Photon.MonoBehaviour
 	}
 
 	public void OnMouseDown() {
-		setSelected ();
+		setSelected (true);
 	}
 	// Cursors resource: http://sethcoder.com/reference/wow/INTERFACE/CURSOR/
 	public void OnMouseOver () {
