@@ -378,13 +378,14 @@ public class NPC : Photon.MonoBehaviour
 	public void OnMouseDown() {
 		setSelected (true);
 	}
-	// Cursors resource: http://sethcoder.com/reference/wow/INTERFACE/CURSOR/
-	public void OnMouseOver () {
 
+	public void OnMouseOver () {
 		Texture2D texture = null;
 
 		if (data.isAggresive) {
-			texture = Resources.Load("2DTextures/Cursor/Attack") as Texture2D;
+			texture = GameCursor.Attack;
+		} else if (data.subRace == NPCData.creatureSubRace.Seller) {
+			texture = GameCursor.Buy;
 		}
 
 		if (texture != null) {

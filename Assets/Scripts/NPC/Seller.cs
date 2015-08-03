@@ -5,7 +5,7 @@ using System.Collections;
 public class Seller : NPC {
 	
 	new public void OnMouseDown() {
-		UIMenu.Instance.showPanel ("SellerPanel");
+		Menu.Instance.showPanel ("SellerPanel");
 		base.OnMouseDown();
 	}
 

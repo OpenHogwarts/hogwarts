@@ -33,6 +33,11 @@ public class MainPanel : MonoBehaviour {
 			break;
 		}
 		if (hasPlayer) {
+			nickLabel.transform.gameObject.SetActive(true);
+			LevelLabel.transform.gameObject.SetActive(true);
+			JoinButton.transform.gameObject.SetActive(true);
+			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(true);
+
 			GameObject.Find ("Canvas/MainPanel/CreateButton").SetActive(false);
 		} else {
 			nickLabel.transform.gameObject.SetActive(false);

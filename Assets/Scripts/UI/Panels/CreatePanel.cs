@@ -30,9 +30,7 @@ public class CreatePanel : MonoBehaviour {
 		bool sucess = character.create();
 
 		if (sucess) {
-			//Application.LoadLevel(Application.loadedLevel);
-			// TMP, if we reload Menu scene, Canvas & EventSystem objects will get duplicated and casue ingame errors
-			Application.Quit();
+			Menu.Instance.showPanel("MainPanel");
 		} else {
 			Debug.Log("Something went wrong");
 		}
