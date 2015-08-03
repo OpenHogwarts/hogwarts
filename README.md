@@ -40,10 +40,12 @@ Credits
 - Spider model: https://www.assetstore.unity3d.com/en/#!/content/10104
 - Batuhan Evren: Spell maker
 - Broomstick controller: SunCube
+- Music: Ektorkrom (http://www.goear.com/search/foxkrom)
 
 Special Thanks
 -------------
 - Bruce (iBoxDB creator) for the technical support given
+- Rusfighter for finding the OnMouse events - NPC bug
 
 Copyright Notice
 -------------

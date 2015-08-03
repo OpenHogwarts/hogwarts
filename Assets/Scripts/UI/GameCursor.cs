@@ -17,10 +17,19 @@ public class GameCursor {
 	public static Texture2D _buy;
 	public static Texture2D Buy {
 		get {
-			if (_attack == null) {
-				_attack = Resources.Load("2DTextures/Cursor/Buy") as Texture2D;
+			if (_buy == null) {
+				_buy = Resources.Load("2DTextures/Cursor/Buy") as Texture2D;
 			}
-			return _attack;
+			return _buy;
+		}
+	}
+	public static Texture2D _taxi;
+	public static Texture2D Taxi {
+		get {
+			if (_taxi == null) {
+				_taxi = Resources.Load("2DTextures/Cursor/Taxi") as Texture2D;
+			}
+			return _taxi;
 		}
 	}
 }
