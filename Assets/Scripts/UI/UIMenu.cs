@@ -11,7 +11,6 @@ public class UIMenu : MonoBehaviour {
 	public GameObject BagPanel;
 	public GameObject SellerPanel;
 	public GameObject CharacterPanel;
-	public GameObject ItemTooltipPanel;
 
 	public static UIMenu _instance;
 	
@@ -43,28 +42,5 @@ public class UIMenu : MonoBehaviour {
 		CharacterPanel.SetActive (false);
 	}
 
-	/**
-		Shows a tooltip near to item slot
-		@param Vector3 pos Position to show the tooltip
-		@param Item item Item which we want to show its information
 
-		@return void
-	 */
-	public void showTooltip (Vector3 pos, Item item) {
-		ItemTooltipPanel.SetActive (true);
-		ItemTooltipPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
-		ItemTooltipPanel.transform.position = pos;
-		
-		ItemTooltipPanel.transform.FindChild("TitleLabel").GetComponent<Text>().text = item.name;
-		ItemTooltipPanel.transform.FindChild("TextLabel").GetComponent<Text>().text = item.description;
-	}
-	
-	/**
-		hides the tooltip
-
-		@return void
-	*/
-	public void hideTooltip () {
-		ItemTooltipPanel.SetActive (false);
-	}
 }

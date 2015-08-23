@@ -27,7 +27,7 @@ public class Service {
 				server.GetConfig ().EnsureTable<CharacterData> ("characters", "id");
 				server.GetConfig ().EnsureIndex<CharacterData> ("characters", isUnique, "name");
 				
-				server.GetConfig ().EnsureTable<CharacterItem> ("inventory", "id");
+				server.GetConfig ().EnsureTable<CharacterItem> ("inventory", "item");
 
 				//server.GetConfig ().EnsureIndex<CharacterItem> ("inventory", isUnique, "_position");
 				server.GetConfig ().EnsureTable<Item> ("item", "id");

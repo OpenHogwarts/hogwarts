@@ -52,7 +52,6 @@ public class DBSetup : MonoBehaviour {
 
 	public static void insertTestItems () {
 		CharacterItem item = new CharacterItem ();
-		item.id = 1;
 		item.item = 1;
 		item.character = 1;
 		item.quantity = 2;

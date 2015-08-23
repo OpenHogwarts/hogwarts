@@ -6,11 +6,13 @@ using System.Collections.Generic;
 
 public class SellPanel : MonoBehaviour {
 
+	const int MAX_ITEMS = 3;
+
 	public static Item _selectedItem;
 	public static Item selectedItem {
 		set {
 			// check if player can buy it
-			if (value.price > Player.Instance.money) {
+			if (value == null || value.price > Player.Instance.money) {
 				SellPanel.Instance.transform.FindChild("BuyButton").GetComponent<Button>().interactable = false;
 				return;
 			} else {
@@ -20,8 +22,8 @@ public class SellPanel : MonoBehaviour {
 		}
 		get {return _selectedItem;}
 	}
-	const int MAX_ITEMS = 3;
-	List<Item> itemList = new List<Item>();
+	
+	public AudioSource sound;
 
 	public static SellPanel _instance;
 	public static SellPanel Instance {
@@ -31,12 +33,13 @@ public class SellPanel : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
-	void Start () {
+	private List<Item> itemList = new List<Item>();
+	
+	void OnEnable () {
 		_instance = this;
 
 		// @ToDo: select items depending on NPC level and area
-		foreach (Item itm in Service.db.Select<Item>("FROM item limit 0,"+MAX_ITEMS)) {
+		foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
 			itemList.Add(itm);
 		}
 
@@ -48,10 +51,10 @@ public class SellPanel : MonoBehaviour {
 			Vector3 price = Util.formatMoney (tItem.price);
 
 			newItem.SetActive(true);
-			newItem.gameObject.transform.FindChild("NameLabel").GetComponent<Text>().text = tItem.name;
-			newItem.gameObject.transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
-			newItem.gameObject.transform.FindChild ("SickleLabel").GetComponent<Text> ().text = price.y.ToString();
-			newItem.gameObject.transform.FindChild ("KnutLabel").GetComponent<Text> ().text = price.z.ToString();
+			newItem.gameObject.transform.FindChild("Button/NameLabel").GetComponent<Text>().text = tItem.name;
+			newItem.gameObject.transform.FindChild ("Button/GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
+			newItem.gameObject.transform.FindChild ("Button/SickleLabel").GetComponent<Text> ().text = price.y.ToString();
+			newItem.gameObject.transform.FindChild ("Button/KnutLabel").GetComponent<Text> ().text = price.z.ToString();
 			newItem.gameObject.transform.FindChild ("Icon").GetComponent<RawImage> ().texture = tItem.icon;
 
 			newItem.gameObject.transform.FindChild("Button").GetComponent<Button>().onClick.AddListener(
@@ -65,18 +68,24 @@ public class SellPanel : MonoBehaviour {
 		updateMoney();
 	}
 
+	void OnDisable () {
+		selectedItem = null;
+	}
+
 	public void updateMoney () {
 		Vector3 money = Util.formatMoney (Player.Instance.money);
 		transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
 		transform.FindChild ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
 		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
 	}
-
-	// @ToDo: buy sound
+	
 	public void buyButton () {
 		if (selectedItem == null || selectedItem.price > Player.Instance.money) {
 			return;
 		}
+
+		sound.clip = SoundManager.get(SoundManager.Effect.Buy);
+		sound.Play();
 
 		Player.Instance.money -= selectedItem.price;
 		Player.Instance.addItem (selectedItem.id);

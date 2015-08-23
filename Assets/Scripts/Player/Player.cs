@@ -251,12 +251,21 @@ public class Player : Photon.MonoBehaviour {
 	 */
 	public bool addItem (int id, int amount = 1) {
 
-		CharacterItem item = new CharacterItem {
-			item = id,
-			quantity = amount
-		};
-		bool success = item.create ();
-
+		bool success;
+		CharacterItem characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE item == ?", id);
+		
+		if (characterItem != null) {
+			characterItem.quantity += amount;
+			characterItem.save();
+			success = true;
+		} else {
+			CharacterItem item = new CharacterItem {
+				item = id,
+				quantity = amount
+			};
+			success = item.create ();
+		}
+		Debug.Log(success);
 		// reload inventory
 		if (success) {
 			try {

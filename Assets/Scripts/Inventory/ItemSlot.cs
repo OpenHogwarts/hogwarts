@@ -27,7 +27,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		initialPos = transform.position;
 		GetComponent<RectTransform> ().SetAsLastSibling ();
 
-		UIMenu.Instance.hideTooltip();
+		Menu.Instance.hideTooltip();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		foreach (RaycastResult raycast in raycastResults) {
 			try {
 				Slot slot = raycast.gameObject.GetComponent<Slot> ();
-				
+
 				if (!slot.available) {
 					resetPosition();
 				} else {
@@ -61,14 +61,13 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 					if (slot.type == Slot.slotType.equipment && !item.isValidEquipmentPosition(slot.subType)) {
 						break;
 					}
-
 					// @ToDo switch itemSlot parent to current panel since it could be changed (Inventory or CharacterPanel)
 					transform.position = slot.transform.position;
 
 					if (slot.type == Slot.slotType.equipment) {
-						transform.SetParent(UIMenu.Instance.CharacterPanel.transform);
+						transform.SetParent(Menu.Instance.getPanel("InventoryPanel").transform);
 					} else {
-						transform.SetParent(UIMenu.Instance.BagPanel.transform);
+						transform.SetParent(Menu.Instance.getPanel("BagPanel").transform);
 					}
 
 					slot.available = false;
@@ -103,11 +102,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 		Vector3 pos = new Vector3 (transform.position.x + 100, transform.position.y - 50, 0);
 
-		UIMenu.Instance.showTooltip (pos, item);
+		Menu.Instance.showTooltip (pos, item);
 	}
 	
 	public void OnPointerExit (PointerEventData eventData) {
-		UIMenu.Instance.hideTooltip();
+		Menu.Instance.hideTooltip();
 	}
 
 	public void OnPointerClick (PointerEventData data) {

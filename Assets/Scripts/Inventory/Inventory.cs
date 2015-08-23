@@ -93,6 +93,7 @@ public class Inventory : MonoBehaviour {
 		GameObject itemSlot;
 
 		characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], slot.num);
+
 		if (characterItem != null) {
 			isAssigned = true;
 			itemSlot = (GameObject)Instantiate(itemSlotPrefab);
@@ -102,9 +103,7 @@ public class Inventory : MonoBehaviour {
 			
 			itemSlot.transform.SetParent(this.gameObject.transform, false);
 			itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
-		}
-
-		if (!isAssigned) {
+		} else {
 			characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], 0);
 
 			if (characterItem != null) {
@@ -136,7 +135,7 @@ public class Inventory : MonoBehaviour {
 	public void showOptions (Vector3 pos, Item item) {
 		bool hasMenu = true;
 
-		UIMenu.Instance.hideTooltip ();
+		Menu.Instance.hideTooltip ();
 		optionsPanel.SetActive (true);
 		optionsPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
 		optionsPanel.transform.position = pos;
