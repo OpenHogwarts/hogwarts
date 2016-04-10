@@ -99,13 +99,13 @@ public class DBSetup : MonoBehaviour {
 		npc.id = i++;
 		npc.create ();
 
-		waypoints = new List<Vector3>();
-		waypoints.Add(new Vector3(0.89f,0.50f,-78.00f));
-		waypoints.Add(new Vector3(7.37f,0.50f,-73.51f));
-		waypoints.Add(new Vector3(17.19f,0.50f,-78.83f));
-		waypoints.Add(new Vector3(8.10f,0.50f,-82.41f));
-		
-		insertWaypointsTo(npc.id, waypoints);
+        waypoints = new List<Vector3>();
+        waypoints.Add(new Vector3(7.56f, 0.00f, -0.81f));
+        waypoints.Add(new Vector3(1.08f, 0.00f, -5.30f));
+        waypoints.Add(new Vector3(-8.74f, 0.00f, 0.02f));
+        waypoints.Add(new Vector3(0.35f, 0.00f, 3.60f));
+
+        insertWaypointsTo(npc.id, waypoints);
 		// END -----------------
 
 

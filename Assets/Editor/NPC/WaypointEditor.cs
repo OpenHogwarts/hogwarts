@@ -19,12 +19,13 @@ public class WaypointEditor : Editor
 
 	private string nothing = "";
 	public static string coords = "";
+    public static Vector3 npcPos;
 
 	void OnSceneGUI()
 	{
 		if (m_editMode)
 		{
-			// on middle mouse (wheel button) click
+			// on middle mouse (wheel button) click: create a waypoint
 			if (Event.current.type == EventType.MouseUp && Event.current.button == 2)
 			{
 				Ray worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
@@ -39,10 +40,16 @@ public class WaypointEditor : Editor
 	}
 	override public void OnInspectorGUI()
 	{
-		NPC npc = Selection.activeGameObject.GetComponent<NPC>();
+		// Do not enable the editor ingame
+        if (Application.isPlaying) {
+            return;
+        }
+            
+        NPC npc = Selection.activeGameObject.GetComponent<NPC>();
 		npc.Start(); // we load npcData
+        npcPos = npc.transform.position;
 
-		if (m_editMode)
+        if (m_editMode)
 		{
 			GUILayout.Label("To add a Waypoint: wheel/middle click in the desired position.\n To change the order, edit Waypoint's name.\n");
 			if (GUILayout.Button("Stop Editing"))
@@ -52,7 +59,7 @@ public class WaypointEditor : Editor
 				checkContainer();
 
 				// destroy old waypoints
-				foreach (WaypointData waypoint in Service.db.Select<WaypointData>("FROM " + WaypointData.TABLE_NAME+" WHERE npc==?", npc.Id)) {
+				foreach (WaypointData waypoint in Service.db.Select<WaypointData>("FROM " + WaypointData.TABLE_NAME + " WHERE npc==?", npc.Id)) {
 					waypoint.delete();
 				}
 
@@ -61,7 +68,7 @@ public class WaypointEditor : Editor
 				{
 					wp = new WaypointData();
 					wp.npc = npc.Id;
-					wp.position = child.transform.position;
+					wp.position = npcPos - child.transform.position; // save the relative pos
 					wp.create();
 				}
 				DestroyImmediate(m_container);
@@ -83,9 +90,9 @@ public class WaypointEditor : Editor
 				checkContainer();
 				resetList();
 
-				// show existing waypoints
-				foreach (WaypointData waypoint in npc.waypoints) {
-					createWaypoint(waypoint.position);
+                // show existing waypoints
+                foreach (WaypointData waypoint in npc.waypoints) {
+					createWaypoint(npcPos + waypoint.position);
 				}
 			}
 			if (coords.Length > 0) {
@@ -133,8 +140,9 @@ public class WaypointEditor : Editor
 		if (coords.Length == 0) {
 			resetList();
 		}
+        point = npcPos - point; // get the relative pos
 
-		coords += "waypoints.Add(new Vector3(" + point.x.ToString("0.00") + "f," + point.y.ToString("0.00") + "f," + point.z.ToString("0.00") + "f));\n";
+        coords += "waypoints.Add(new Vector3(" + point.x.ToString("0.00") + "f," + point.y.ToString("0.00") + "f," + point.z.ToString("0.00") + "f));\n";
 	}
 
 	

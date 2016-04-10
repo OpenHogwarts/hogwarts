@@ -75,8 +75,9 @@ public class NPC : Photon.MonoBehaviour
 	private Vector3 correctPlayerPos = Vector3.zero; //We lerp towards this
 	private Quaternion correctPlayerRot = Quaternion.identity; //We lerp towards this
 	private bool gotFirstUpdate = false;
+    private bool isLooted = false;
 
-	protected NamePlate namePlate;
+    protected NamePlate namePlate;
 	
 	public void Start()
 	{
@@ -382,7 +383,9 @@ public class NPC : Photon.MonoBehaviour
 	public void OnMouseOver () {
 		Texture2D texture = null;
 
-		if (data.isAggresive) {
+        if (isDead && !isLooted) {
+            texture = GameCursor.Buy;
+        } else if (data.isAggresive) {
 			texture = GameCursor.Attack;
 		} else if (data.subRace == NPCData.creatureSubRace.Seller) {
 			texture = GameCursor.Buy;
@@ -436,13 +439,12 @@ public class NPC : Photon.MonoBehaviour
 		yield return new WaitForSeconds(1);
 	}
 
-	void followPoint () {
-		
+	void followPoint ()
+    {	
 		Vector3 target = waypoints[currentWaypoint].position;
-		target.y = transform.position.y; // Keep waypoint at character's height
-		Vector3 moveDirection = target - transform.position;
-		
-		if (moveDirection.magnitude < 0.5f) {
+		Vector3 moveDirection = initialPos + target; // sum the relative pos
+
+		if (moveDirection.magnitude < 0.5f || moveDirection == this.transform.position) {
 			if (curTime == 0) {
 				curTime = Time.time; // Pause over the Waypoint
 			}
@@ -454,8 +456,8 @@ public class NPC : Photon.MonoBehaviour
 		} else {
 			anim.Play(this.runAnimation.name);
 
-			this.transform.position = Vector3.MoveTowards(this.transform.position, target, data.runSpeed * Time.deltaTime);
-			this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((target.x - this.transform.position.x), (target.z - this.transform.position.z)) * 57.29578f, 0.0f);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, moveDirection, data.runSpeed * Time.deltaTime);
+			this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((moveDirection.x - this.transform.position.x), (moveDirection.z - this.transform.position.z)) * 57.29578f, 0.0f);
 
 		}    
 	}

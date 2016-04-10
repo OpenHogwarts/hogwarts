@@ -133,7 +133,7 @@ public class Motor : MonoBehaviour
 			// Uses the input vector to affect the mid air direction
 			var velocityChange = transform.TransformDirection(inputVector) * inAirControl;
 			GetComponent<Rigidbody>().AddForce(velocityChange, ForceMode.VelocityChange);
-			anim.SetBool ("Jumping", true);
+			//anim.SetBool ("Jumping", true);
 		}
 	}
 	
