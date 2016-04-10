@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 58a7625302996c94ba07a8ca3351f668
+timeCreated: 1441719330
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - histogramComputeShader: {fileID: 7200000, guid: 5ee4b74fa28a3e74e89423dd49705fc5,
+      type: 3}
+  - histogramShader: {fileID: 4800000, guid: 9a8e838691462194482a43a02e424876, type: 3}
+  - userLutTex: {instanceID: 0}
+  - tonemapShader: {fileID: 4800000, guid: 964b34bbab7f5e64fa40f37eaccac1ad, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

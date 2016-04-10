@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 // Upgrade NOTE: unity_Scale shader variable was removed; replaced 'unity_Scale.w' with '1.0'
 
 
@@ -128,7 +130,7 @@ inline half FresnelViaTexture(half3 viewVector, half3 worldNormal, sampler2D fre
 inline half2 GetTileableUv(half4 vertex) 
 {
 	// @NOTE: use worldSpaceVertex.xz instead of ws to make it rotation independent
-	half2 ws = half2(_Object2World[0][3],_Object2World[2][3]);
+	half2 ws = half2(unity_ObjectToWorld[0][3],unity_ObjectToWorld[2][3]);
 	half2 tileableUv = (ws + vertex.xz/1.0);	
 	return tileableUv;
 }

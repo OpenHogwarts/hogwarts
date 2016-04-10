@@ -1,0 +1,62 @@
+RWStructuredBuffer<uint4> _Histogram;
+Texture2D<float4> _Source;
+half _Height;
+uint _IsLinear;
+
+// Linear to sRGB from http://entropymine.com/imageworsener/srgbformula/
+// using a bit more precise values than the IEC 61966-2-1 standard
+// See http://en.wikipedia.org/wiki/SRGB for more information
+half3 sRGB(half3 color)
+{
+    color = (color <= half3(0.0031308, 0.0031308, 0.0031308)) ? color * 12.9232102 : 1.055 * pow(color, 0.41666) - 0.055;
+    return color;
+}
+
+#pragma kernel KHistogram
+[numthreads(16,16,1)]
+void KHistogram(uint3 id : SV_DispatchThreadID)
+{
+    half3 color = saturate(_Source[id.xy].xyz);
+    if (_IsLinear > 0) color = sRGB(color);
+    uint3 idx_c = (uint3)(round(color * 255.0));
+    uint idx_l = (uint)(round(dot(color.rgb, half3(0.2125, 0.7154, 0.0721)) * 255.0));
+    InterlockedAdd(_Histogram[idx_c.x].x, 1); // Red
+    InterlockedAdd(_Histogram[idx_c.y].y, 1); // Green
+    InterlockedAdd(_Histogram[idx_c.z].z, 1); // Blue
+    InterlockedAdd(_Histogram[idx_l].w, 1); // Luminance
+}
+
+
+// Naive mono-threaded kernels, compile on all platforms, shouldn't really be an issue as we're only dealing with 256 elements
+#pragma kernel KScale
+[numthreads(1, 1, 1)]
+void KScale(uint3 idx : SV_DispatchThreadID)
+{
+    uint4 maxvalue = uint4(1, 1, 1, 1);
+
+    for (int i = 0; i < 256; i++)
+        maxvalue = max(maxvalue, _Histogram[i]);
+
+    half4 factor = _Height / (half4)maxvalue;
+    
+    for (int j = 0; j < 256; j++)
+        _Histogram[j] = (uint4)round(_Histogram[j] * factor);
+}
+
+#pragma kernel KScale_Log
+[numthreads(1, 1, 1)]
+void KScale_Log(uint3 idx : SV_DispatchThreadID)
+{
+    uint4 maxvalue = uint4(1, 1, 1, 1);
+
+    for (int i = 0; i < 256; i++)
+        maxvalue = max(maxvalue, _Histogram[i]);
+
+    half4 factor = _Height / log10((half)maxvalue);
+    
+    for (int j = 0; j < 256; j++)
+    {
+        // log10(0) = -Infinity
+        _Histogram[j] = (uint4)round(log10(_Histogram[j]) * factor);
+    }
+}
