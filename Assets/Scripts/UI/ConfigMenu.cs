@@ -47,15 +47,15 @@ public class ConfigMenu : MonoBehaviour {
 	}
 
 	public void OptionsSetFXAA(){
-		Camera.main.GetComponent<AntialiasingAsPostEffect> ().enabled = fxaa.isOn;
+		//Camera.main.GetComponent<AntialiasingAsPostEffect> ().enabled = fxaa.isOn;
 	}
 
 	public void OptionsSetSSAO(){
-		Camera.main.GetComponent<AmbientObscurance> ().enabled = ssao.isOn;
+		//Camera.main.GetComponent<AmbientObscurance> ().enabled = ssao.isOn;
 	}
 
 	public void OptionsSetDOF(){
-		Camera.main.GetComponent<DepthOfFieldScatter> ().enabled = dof.isOn;
+		//Camera.main.GetComponent<DepthOfFieldScatter> ().enabled = dof.isOn;
 	}
 
 	public void OptionsSetUIScale(){
