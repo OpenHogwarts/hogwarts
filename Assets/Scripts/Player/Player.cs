@@ -17,6 +17,7 @@ public class Player : Photon.MonoBehaviour {
 				value = 0;
 			}
 
+            // We dont check if health > maxHealth here, because player may have some temporal buff
 			characterData.health = value;
 
 			if (photonView.isMine) {
@@ -72,8 +73,9 @@ public class Player : Photon.MonoBehaviour {
 			if (value <  0) {
 				value = 0;
 			}
-			
-			characterData.mana = value;
+
+            // We dont check if mana > maxMana here, because player may have some temporal buff
+            characterData.mana = value;
 			
 			if (photonView.isMine) {
 				characterData.save();
