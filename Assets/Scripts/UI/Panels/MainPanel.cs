@@ -48,16 +48,6 @@ public class MainPanel : MonoBehaviour {
 		 
 	}
 
-	public void joinFast(){
-		string charName = "";
-
-		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
-			charName = character.name;
-		}
-
-		joinGame (1, charName);
-	}
-
 	public void joinGame (int characterId, string name) {
 
 		if (characterId < 1) {
