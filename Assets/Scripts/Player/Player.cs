@@ -155,7 +155,7 @@ public class Player : Photon.MonoBehaviour {
     public float lastHitTime;
     public bool isInCombat {
         get {
-            if (Time.time > (lastHitTime + 60)) {
+            if (Time.time > (lastHitTime + 10)) {
                 return false;
             }
             return true;
@@ -203,6 +203,8 @@ public class Player : Photon.MonoBehaviour {
 			_instance = this;
 		}
 		anim = GetComponent<Animator>();
+		startHealthRegeneration ();
+		startManaRegeneration ();
 	}
 
 	void Update()
@@ -260,12 +262,12 @@ public class Player : Photon.MonoBehaviour {
         while (health != maxHealth)
         {
             if (!isInCombat) {
-                health += HEALTH_REGEN_BASE + (level / 15);
+                health += 1;
             }
             if (health > maxHealth) {
                 health = maxHealth;
             }
-            yield return new WaitForSeconds(3);
+			yield return new WaitForSeconds(1f/(HEALTH_REGEN_BASE + (level / 15)));
         }
         healthRegenStarted = false;
     }
@@ -280,12 +282,12 @@ public class Player : Photon.MonoBehaviour {
         while (mana != maxMana)
         {
             if (!isInCombat) {
-                mana += MANA_REGEN_BASE + (level / 15);
+                mana += 1;
             }
             if (mana > maxMana) {
                 mana = maxMana;
             }
-            yield return new WaitForSeconds(3);
+			yield return new WaitForSeconds(1f/(MANA_REGEN_BASE + (level / 15)));
         }
         manaRegenStarted = false;
     }
