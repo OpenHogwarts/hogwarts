@@ -4,6 +4,10 @@ using System.Collections;
 
 public class Player : Photon.MonoBehaviour {
 
+    const int XP_BASE = 400;
+    const int HEALTH_REGEN_BASE = 5;
+    const int MANA_REGEN_BASE = 2;
+
 	public int health
 	{
 		get {return characterData.health;}
@@ -18,7 +22,8 @@ public class Player : Photon.MonoBehaviour {
 			if (photonView.isMine) {
 				characterData.save();
 				healthBar.updateVertical(characterData.health, characterData.maxHealth);
-			}
+                startHealthRegeneration();
+            }
 		}
 	}
 
@@ -28,7 +33,13 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	public int exp
+    public int maxMana {
+        get {
+            return characterData.maxMana;
+        }
+    }
+
+    public int exp
 	{
 		get {return characterData.exp;}
 		set {
@@ -39,14 +50,21 @@ public class Player : Photon.MonoBehaviour {
 			
 			characterData.exp = value;
 			
-			if (photonView.isMine) {
-				characterData.save();
+			if (photonView.isMine)
+            {
+                int nextLevelExp = XP_BASE * level;
+
+                if (exp >= nextLevelExp) {
+                    characterData.exp = exp - nextLevelExp;
+                    level += 1;
+                }
+                characterData.save();
 				expBar.updateHoritzontal(characterData.exp, 100);
 			}
 		}
 	}
 
-	public int mana
+    public int mana
 	{
 		get {return characterData.mana;}
 		set {
@@ -60,7 +78,8 @@ public class Player : Photon.MonoBehaviour {
 			if (photonView.isMine) {
 				characterData.save();
 				manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
-			}
+                startManaRegeneration();
+            }
 		}
 	}
 
@@ -128,9 +147,33 @@ public class Player : Photon.MonoBehaviour {
 			SkillsUI.Instance.updateStatus();
 		}
 	}
+    private bool healthRegenStarted = false;
+    private bool manaRegenStarted = false;
 	public bool isFlying = false;
+    public float lastHitTime;
+    public bool isInCombat {
+        get {
+            if (Time.time > (lastHitTime + 60)) {
+                return false;
+            }
+            return true;
+        }
+        set {
+            if (value) {
+                lastHitTime = Time.time;
+            }
+        }
+    }
+    public bool isDead {
+        get {
+            if (health < 1) {
+                return true;
+            }
+            return false;
+        }
+    }
 
-	public Animator anim;
+    public Animator anim;
 	private bool gotFirstUpdate = false;
 	public TextMesh nick;
 
@@ -188,12 +231,62 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	public bool isDead () {
-		if (health < 1) {
-			return true;
-		}
-		return false;
-	}
+    private void startHealthRegeneration()
+    {
+        if (healthRegenStarted) {
+            return;
+        }
+        StartCoroutine("regenerateHealth");
+    }
+
+    private void startManaRegeneration()
+    {
+        if (manaRegenStarted) {
+            return;
+        }
+        StartCoroutine("regenerateMana");
+    }
+    
+
+    IEnumerator regenerateHealth()
+    {
+        if (isDead) {
+            yield break;
+        }
+        healthRegenStarted = true;
+
+        while (health != maxHealth)
+        {
+            if (!isInCombat) {
+                health += HEALTH_REGEN_BASE + (level / 15);
+            }
+            if (health > maxHealth) {
+                health = maxHealth;
+            }
+            yield return new WaitForSeconds(3);
+        }
+        healthRegenStarted = false;
+    }
+
+    IEnumerator regenerateMana()
+    {
+        if (isDead) {
+            yield break;
+        }
+        manaRegenStarted = true;
+
+        while (mana != maxMana)
+        {
+            if (!isInCombat) {
+                mana += MANA_REGEN_BASE + (level / 15);
+            }
+            if (mana > maxMana) {
+                mana = maxMana;
+            }
+            yield return new WaitForSeconds(3);
+        }
+        manaRegenStarted = false;
+    }
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
@@ -292,9 +385,10 @@ public class Player : Photon.MonoBehaviour {
 
 	[PunRPC]
 	public void getDamage (int amount, int attacker) {
-		health -= amount;
+        isInCombat = true;
+        health -= amount;
 
-		if (target == null) {
+        if (target == null) {
 			PhotonView.Find(attacker).gameObject.GetComponent<NPC>().setSelected();
 		}
 	}
