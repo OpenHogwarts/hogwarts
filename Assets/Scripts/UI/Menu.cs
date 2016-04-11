@@ -37,10 +37,11 @@ public class Menu : MonoBehaviour {
 			showPanel("MainPanel");
 			break;
 		default:
-			showPanel("PlayerPanel");
-			showPanel("ChatPanel", false);
-			showPanel("TopMenu", false);
-			showPanel("MiniMap", false);
+			showPanel ("PlayerPanel");
+			showPanel ("ChatPanel", false);
+			showPanel ("TopMenu", false);
+			showPanel ("MiniMap", false);
+			GameObject.Find ("Canvas").GetComponent<CanvasScaler> ().enabled = false;
 			break;
 		}
 	}
