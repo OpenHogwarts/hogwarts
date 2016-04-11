@@ -1,14 +1,20 @@
 fileFormatVersion: 2
 guid: dda10f47e49a1954aaa6ba9cdb1af1f9
 TrueTypeFontImporter:
-  serializedVersion: 2
+  serializedVersion: 3
   fontSize: 16
   forceTextureCase: -2
   characterSpacing: 1
   characterPadding: 0
   includeFontData: 1
-  use2xBehaviour: 0
   fontNames: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9b36cd204eed5cd43b123b907cce4abf, type: 3}
+  - {fileID: 12800000, guid: a20501a86c5b7f94f8dd68aa6ddeefaf, type: 3}
+  - {fileID: 12800000, guid: 78a7bb1f32731904ab0b8f02aed5f945, type: 3}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 1
+  ascentCalculationMode: 1
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

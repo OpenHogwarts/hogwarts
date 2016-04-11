@@ -25,7 +25,7 @@ public class MainPanel : MonoBehaviour {
 			playerId = character.id;
 
 			nickLabel.text = character.name;
-			LevelLabel.text = character.level.ToString();
+			LevelLabel.text = "Nivel "+character.level.ToString();
 			JoinButton.onClick.AddListener(
 				delegate {
 				this.joinGame(character.id, character.name);
@@ -48,6 +48,16 @@ public class MainPanel : MonoBehaviour {
 		 
 	}
 
+	public void joinFast(){
+		string charName = "";
+
+		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
+			charName = character.name;
+		}
+
+		joinGame (1, charName);
+	}
+
 	public void joinGame (int characterId, string name) {
 
 		if (characterId < 1) {
@@ -61,7 +71,7 @@ public class MainPanel : MonoBehaviour {
 		PhotonNetwork.player.name = name;
 		
 		NetworkManager.Instance.startConnection();
-		GameObject.Find ("Canvas/MainPanel/CharacterPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
+		GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
 	}
 
 	public void joinTest () {
