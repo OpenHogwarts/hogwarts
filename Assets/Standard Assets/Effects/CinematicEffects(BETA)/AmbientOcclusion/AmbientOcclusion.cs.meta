@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e89654dcf6db746d2a57aeaaa14f5e83
+timeCreated: 1457327177
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
+  - _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

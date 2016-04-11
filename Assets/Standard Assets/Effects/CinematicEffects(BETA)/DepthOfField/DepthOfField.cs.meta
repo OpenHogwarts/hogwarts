@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8a338d679868f45439ea43c7ae035e36
+timeCreated: 1453985420
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_FilmicDepthOfFieldShader: {fileID: 4800000, guid: bff0e5458fb914f5c9985ba4f09171d2,
+      type: 3}
+  - m_MedianFilterShader: {fileID: 4800000, guid: a058b22d4123add4b807e832604e5e7b,
+      type: 3}
+  - m_TextureBokehShader: {fileID: 4800000, guid: c961b8ed1f00f924d804ada5143bd0e8,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
