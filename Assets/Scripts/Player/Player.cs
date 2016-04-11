@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : Photon.MonoBehaviour {
 
@@ -180,6 +181,7 @@ public class Player : Photon.MonoBehaviour {
 	public TextMesh nick;
 
 	public UIBar healthBar;
+	public Image healthBar2;
 	public UIBar expBar;
 	public UIBar manaBar;
 
@@ -218,6 +220,7 @@ public class Player : Photon.MonoBehaviour {
 				photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
 				healthBar = GameObject.Find ("Canvas/PlayerPanel/HP Orb").GetComponent<UIBar>();
+				healthBar2 = GameObject.Find ("Canvas/PlayerPanel/HP Orb 2").GetComponent<Image>();
 				expBar = GameObject.Find ("Canvas/PlayerPanel/ExpBar").GetComponent<UIBar>();
 				manaBar = GameObject.Find ("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
 
@@ -227,6 +230,10 @@ public class Player : Photon.MonoBehaviour {
 
 				gotFirstUpdate = true;
 			}
+
+			healthBar.GetComponent<Image> ().fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 4f*Time.deltaTime);
+			healthBar2.fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 0.5f*Time.deltaTime);
+
 
 			//looks like player is falling
 			if (transform.position.y < -100) {

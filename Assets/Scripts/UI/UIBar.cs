@@ -22,7 +22,7 @@ public class UIBar : MonoBehaviour {
 			current = max;
 		}
 
-		image.fillAmount = current / (float)max; // forces float return
+		//image.fillAmount = current / (float)max; // forces float return
 	}
 
 	public void updateHoritzontal (int current, int max) {

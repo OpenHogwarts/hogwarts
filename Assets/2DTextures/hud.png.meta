@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 6e8e34ab4100c364fa8f6fb40f54881d
+timeCreated: 1460403536
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: hud_0
@@ -21,6 +23,7 @@ TextureImporter:
     21300032: hud_16
     21300034: hud_17
     21300036: hud_18
+    21300038: hud_19
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,11 +37,14 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
@@ -49,12 +55,14 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -72,6 +80,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 23.5}
+        - {x: -46, y: 9.5}
+        - {x: -46, y: -20.5}
+        - {x: -29, y: -23.5}
+        - {x: 34, y: -23.5}
+        - {x: 46, y: -16.5}
+        - {x: 46, y: 17.5}
+        - {x: 28, y: 23.5}
     - name: hud_1
       rect:
         serializedVersion: 2
@@ -82,6 +99,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: 49}
+        - {x: -44, y: 49}
+        - {x: -49, y: 43}
+        - {x: -49, y: -49}
+        - {x: 32, y: -49}
+        - {x: 46, y: -42}
+        - {x: 49, y: -28}
+        - {x: 49, y: 46}
     - name: hud_2
       rect:
         serializedVersion: 2
@@ -92,6 +118,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 48}
+        - {x: -48, y: -48}
+        - {x: 48, y: -48}
+        - {x: 48, y: 48}
     - name: hud_3
       rect:
         serializedVersion: 2
@@ -102,6 +133,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 48}
+        - {x: -34, y: 46}
+        - {x: -48, y: 36}
+        - {x: -48, y: -31}
+        - {x: -41, y: -48}
+        - {x: 31, y: -48}
+        - {x: 48, y: -29}
+        - {x: 48, y: 29}
+        - {x: 26, y: 48}
     - name: hud_4
       rect:
         serializedVersion: 2
@@ -112,6 +153,22 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 35, y: 50}
+        - {x: -29, y: 50}
+        - {x: -50, y: 43}
+        - {x: -50, y: -27}
+        - {x: -48, y: -38}
+        - {x: -29, y: -50}
+        - {x: 24, y: -50}
+        - {x: 37, y: -47}
+        - {x: 50, y: -27}
+        - {x: 50, y: 28}
+        - {x: 48, y: 38}
+      - - {x: -39, y: -17}
+        - {x: -17, y: 39}
+        - {x: 39, y: 17}
+        - {x: 17, y: -39}
     - name: hud_5
       rect:
         serializedVersion: 2
@@ -122,6 +179,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 25}
+        - {x: -25, y: -25}
+        - {x: 25, y: -25}
+        - {x: 25, y: 25}
     - name: hud_6
       rect:
         serializedVersion: 2
@@ -132,6 +194,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_7
       rect:
         serializedVersion: 2
@@ -142,6 +205,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_8
       rect:
         serializedVersion: 2
@@ -152,6 +216,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -139, y: 59}
+        - {x: -139, y: -59}
+        - {x: 139, y: -59}
+        - {x: 139, y: 59}
     - name: hud_9
       rect:
         serializedVersion: 2
@@ -162,6 +231,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 16}
+        - {x: -49, y: -2}
+        - {x: -49, y: -16}
+        - {x: 49, y: -16}
+        - {x: 49, y: -3}
+        - {x: 24, y: 16}
     - name: hud_10
       rect:
         serializedVersion: 2
@@ -172,6 +248,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 17}
+        - {x: -29, y: 17}
+        - {x: -50, y: 3}
+        - {x: -50, y: -17}
+        - {x: 50, y: -17}
+        - {x: 50, y: 2}
+        - {x: 47, y: 12}
     - name: hud_11
       rect:
         serializedVersion: 2
@@ -182,6 +266,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -49, y: 28}
+        - {x: -49, y: -28}
+        - {x: 49, y: -28}
+        - {x: 49, y: 28}
     - name: hud_12
       rect:
         serializedVersion: 2
@@ -192,6 +281,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 16}
+        - {x: -16, y: 15}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
     - name: hud_13
       rect:
         serializedVersion: 2
@@ -202,6 +297,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_14
       rect:
         serializedVersion: 2
@@ -212,6 +308,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_15
       rect:
         serializedVersion: 2
@@ -222,6 +319,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 14}
+        - {x: 11, y: 16}
     - name: hud_16
       rect:
         serializedVersion: 2
@@ -232,6 +335,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_17
       rect:
         serializedVersion: 2
@@ -242,6 +346,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: hud_18
       rect:
         serializedVersion: 2
@@ -252,5 +357,35 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 166.5, y: 198}
+        - {x: 165.5, y: 200}
+        - {x: 162.5, y: 201}
+        - {x: -162.5, y: 201}
+        - {x: -165.5, y: 198}
+        - {x: -165.5, y: 196}
+        - {x: -166.5, y: 195}
+        - {x: -166.5, y: -199}
+        - {x: -164.5, y: -201}
+        - {x: 163.5, y: -201}
+        - {x: 166.5, y: -198}
+    - name: hud_19
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1682
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 48}
+        - {x: -48, y: -48}
+        - {x: 48, y: -48}
+        - {x: 48, y: 48}
+    outline: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
