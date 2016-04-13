@@ -7,7 +7,6 @@
 [Ll]ibrary/
 [Bb]in/
 sysinfo.txt
-Assets/Models/Hogwarts FBX.FBX
 *.box
 *.box.swp
  
@@ -23,6 +22,7 @@ Assets/Models/Hogwarts FBX.FBX
 /*.user
 /*.unityproj
 /*.booproj
+/.vs*
  
 # ============ #
 # OS generated #
@@ -37,3 +37,4 @@ ehthumbs.db
 /Assets/Props Animations
 /Assets/Gaia
 /Assets/ErosionBrush
+
