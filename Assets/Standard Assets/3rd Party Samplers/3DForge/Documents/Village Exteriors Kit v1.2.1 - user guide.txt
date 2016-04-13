@@ -1,0 +1,126 @@
+Thanks for purchasing this package, I hope you are going to have as much fun building your Exteriors, as I have had compiling this package.
+Please could you rate and possible review the package, it really assist others in making informed purchases when spending there hard earned money :)
+
+v1.2.1 FREE Update - Wagons/Carts/WheelBarrows/Wood/Wells
+This is the second update of many from the roadmap
+
+Features/prefabs added:
+
+Meshes added: 
+- 317
+
+Prefabs added: 
+- Wells X 22
+- Birch logs X 32
+- Elm logs X 33
+- Pine logs X 35
+- Axes X 4
+- Axe related props X 32
+- Woodchips X 3
+- Axles X 9
+- Broken Carts X 36
+- Broken Wagons X 41
+- Chassis Barrow X 18
+- Chassis Cart X 48
+- Chassis Wagon X 13
+- Wheelbarrow X 18
+- Carts X 46
+- Wagons X 10
+
+v1.1 FREE Update - Thatch
+This is the first update of many from the roadmap
+
+Features/prefabs added:
+New:
+- Ambient Occlusion maps for all textrures
+- Unity 5 Ready submission with all shaders pre-setup for Unity 5
+
+Prefabs added: 
+- Core parts X 4
+- Frames X 86
+- Dormer windows X 109
+- Thatch roofs X 70
+- Wooden Roofs X  50
+- Low walls X 9
+- Extentions X 44
+- Tries X 30
+- Walls X 12
+- Fences X 36
+
+NEW BLUEPRINT be done and added soon, so keep an eye out
+there is already 100 new buildings now at  http://www.3dforge.co.za/bpvillageexteriorskit.html#VillageExteriorsKitBLUEPRINTS
+
+Please dont forget to rate & review your purchase at 
+https://www.assetstore.unity3d.com/en/#!/content/38045
+
+Mobile & Desktop:
+The textures sheets has intuitive atlas textures usage, with a huge amount of prefabs reading of each textures sheet.
+This will assist with lowered draw calls especially when using Static Batching or MeshCombine functions.
+Lots of users have asked for Normal maps to be included with this package after the release of the Village Interiors Kit
+I have included them, but they are not required to run and have the package looking good.
+The Village Interiors Kit is getting it's HD update soon, but if you want the textures of the Village Exteriors to same resolution as the Village Interiors Kit for lower end devices, then reduce the 4096 down to 2048, so basically half the size.
+
+Technical:
+Rotation manipulations:
+Please make sure "Pivot" and not "Center" is checked/used
+Hinge axis for open and closing on all such items are as follows
+Doors - Y Axis
+Shutters
+     Up-opening versions - Z Axis
+     Sideways-opening versions - Y Axis
+     Fence Gates - Y Axis
+
+
+
+
+Grass and ground texture settings:
+There is no rule of it has to be this or it has to be that, at the end you can do them as you want or as your scene requires.
+To assist and act as a guideline, open the Viking Village scene and click on the terrain
+Go to the paint function, pick one of the textures that was used and check out what the settings are, but again,
+you might want much larger cobblestone in this scene and smaller in another, it is customizable.
+The textures are fairly high resolution, meaning you should be able to use it very large without spoiling the final look.
+Same goes for the terrain palatable grass, look at the current used items and their settings, but play around,
+maybe you need lower more dense grass, maybe tall thinner.
+
+Basement digging:
+VERY IMPORTANT!!!
+Unity Terrain can not be pushed down below "0"
+If you plan on doing any digging out, start a terrain by using the brush method that you specify the height. Sset it to more than enough, say 7 units, set brush to max size and strength to max and raise the whole terrain surface to that height.
+This will give you more than enough room for any digging.
+
+It is really easy, you going to be surprised that no one did it before.
+Open the basement scene and hide the building.
+You would use the second terrain manipulation too, the one that you can specify the hight you want to brush/sculpt terrain to.
+Just make sure that as in the example, the depth is set to at least 3.05 to sufficiently give room for the interiors.
+The extra .05 is just to make sure that the floor tiles that will be used for the interiors will not z-fight with them.
+You can add nice large basement, the whole size of a plinth
+
+See- through windows:
+
+I have supplied one window type, drag & drop, ready for use
+Also Included is the .png texture sheet with the UV unwrapped lines on to indicate where the mesh if grabbing the texture data from.
+I have premade 4 blank glass materials that you can assing these new textures too.
+But pleae go ahead and make as many as you desire.
+Once done, drag an empty frame and the glass mesh into the hierachy, they should already be in the correct 3D space.
+Drag the glass in as child of the parent frame.
+There is a left and a right of each frame exported with the Y Axis on the hinges.
+Now drag to the desired window that has an open hole or just the thin frames as child objects.
+copy these completed "walls" then to use in your project.
+
+
+There is a long FREE Update road map on the Unity Forum
+Head on over and add your suggestions, they might make there way in future updates.
+http://forum.unity3d.com/threads/3dforge-exteriors.316736/
+and be sure to check regularry for notification of extra FREE content that has been added.
+
+Enjoy
+Cobus
+info@3dforge.co.za
+
+Follow me on
+Twitter      >>> @3DForge
+Facebook >>>  https://www.facebook.com/pages/3DForge/535899169786851
+
+Website  >>> http://www.3dforge.co.za/ 
+You are allowed to use the textures with the 3D model but not extract and resell the texture itself
+One or more textures on these 3D models have been created with images from CGTextures.com 
