@@ -6,6 +6,9 @@ public class PlayerHotkeys : MonoBehaviour
 	public static bool isClickingATarget = false;
 
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.F1)) {
+			GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
+		}
 		if (Input.GetKey (KeyCode.F) && Player.Instance.isFlying) {
 			Broomstick.Instance.leave();
 		}

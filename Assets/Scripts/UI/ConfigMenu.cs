@@ -12,6 +12,9 @@ public class ConfigMenu : MonoBehaviour {
 	public Toggle performance;
 	public GameObject rightbar;
 	public GameObject perftext;
+	public GameObject[] panel;
+	public GameObject player;
+	public GameObject dev;
 
 
 	void LoadCfg(){
@@ -52,5 +55,20 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsPerformance(){
 		perftext.SetActive (performance.isOn);
+	}
+
+	public void ShowPanel(int p){
+		for (int i = 0; i < panel.Length; i++) {
+			panel [i].SetActive (false);
+		}
+		panel [p].SetActive (true);
+	}
+
+	public void Respawn(){
+		player.GetComponent<Player> ().Respawn ();
+	}
+
+	public void AddHP(int n){
+		Player.Instance.health += n;
 	}
 }

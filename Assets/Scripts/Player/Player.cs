@@ -237,9 +237,14 @@ public class Player : Photon.MonoBehaviour {
 
 			//looks like player is falling
 			if (transform.position.y < -100) {
-				transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+				Respawn ();
 			}
 		}
+	}
+
+	public void Respawn ()
+	{
+		transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
 	}
 
     private void startHealthRegeneration()

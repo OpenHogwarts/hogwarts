@@ -35,6 +35,8 @@ public class NetworkManager : Photon.MonoBehaviour {
 		GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
 		GameObject.Find("MiniMapElementsCamera").GetComponent<MiniMap>().target = player.transform;
 
+		GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().player = player;
+
 		player.transform.FindChild ("Indicator").GetComponent<Renderer>().material.mainTexture = mmarow;
 	}
 	/*
