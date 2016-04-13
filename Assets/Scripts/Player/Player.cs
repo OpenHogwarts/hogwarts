@@ -203,10 +203,10 @@ public class Player : Photon.MonoBehaviour {
 	void Start () {
 		if (photonView.isMine) {
 			_instance = this;
+			startHealthRegeneration ();
+			startManaRegeneration ();
 		}
 		anim = GetComponent<Animator>();
-		startHealthRegeneration ();
-		startManaRegeneration ();
 	}
 
 	void Update()
@@ -306,8 +306,8 @@ public class Player : Photon.MonoBehaviour {
 			// We own this player: send the others our data
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
-			stream.SendNext(anim.GetFloat("Speed"));
-			stream.SendNext(anim.GetBool("Jumping"));
+			stream.SendNext(anim.GetFloat("Forward"));
+			stream.SendNext(anim.GetFloat("Turn"));
 		}
 		else
 		{
@@ -316,8 +316,8 @@ public class Player : Photon.MonoBehaviour {
 			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
 
 			if (anim) {
-				anim.SetFloat("Speed", (float)stream.ReceiveNext());
-				anim.SetBool("Jumping", (bool)stream.ReceiveNext());
+				anim.SetFloat("Forward", (float)stream.ReceiveNext());
+				anim.SetFloat("Turn", (float)stream.ReceiveNext());
 			}
 
 			

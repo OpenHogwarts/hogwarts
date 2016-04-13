@@ -22,8 +22,10 @@ public class NetworkManager : Photon.MonoBehaviour {
 		// get character data
 		CharacterData character = Service.db.SelectKey<CharacterData> ("characters", PhotonNetwork.player.customProperties["characterId"]);
 		player.GetComponent<Player> ().characterData = character;
-		
-		player.GetComponent<Motor> ().enabled = true;
+
+		player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+		player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+		//player.GetComponent<Motor> ().enabled = true;
 		player.GetComponent<PlayerHotkeys> ().enabled = true;
 		player.GetComponent<PlayerCombat> ().enabled = true;
 		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
