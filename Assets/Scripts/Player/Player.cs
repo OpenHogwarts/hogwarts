@@ -394,7 +394,7 @@ public class Player : Photon.MonoBehaviour {
 	}
 
 	public void freeze () {
-		transform.GetComponent<Motor>().enabled = false;
+		transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
 		anim.SetBool("Jumping", false);
 		anim.SetFloat("Speed", 0);
 
@@ -404,7 +404,7 @@ public class Player : Photon.MonoBehaviour {
 	}
 
 	public void unfreeze () {
-		transform.GetComponent<Motor>().enabled = true;
+		transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
 	}
 
 	[PunRPC]
