@@ -26,9 +26,9 @@ public class FPS : MonoBehaviour {
 		if( timeleft <= 0.0 )
 		{
 			float fps = accum/frames;
-			string format = System.String.Format("{0:F2} FPS",fps);
+			string format = System.String.Format("{0:F0} FPS",fps);
 			if(ping){
-			fpst.text = "Ping: "+PhotonNetwork.GetPing().ToString()+"ms / "+format;
+			fpst.text = format+"\nPing: "+PhotonNetwork.GetPing().ToString()+"ms";
 			}else{
 			fpst.text = format;
 			}
