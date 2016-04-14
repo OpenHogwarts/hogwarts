@@ -14,7 +14,19 @@ public class PlayerHotkeys : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.F1)) {
 			GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
 		}
-		if (Input.GetKey (KeyCode.F) && Player.Instance.isFlying) {
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            string now = System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f");
+            Application.CaptureScreenshot("./Screenshots/" + string.Format("Screenshot{0}.png", now));
+
+            Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> Captura guardada como Screenshot" + now + ".png");
+        }
+        // Display/hide the UI
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            Menu.Instance.gameObject.SetActive(!Menu.Instance.gameObject.GetActive());
+        }
+
+        if (Input.GetKey (KeyCode.F) && Player.Instance.isFlying) {
 			Broomstick.Instance.leave();
 		}
 		if (Input.GetKeyDown (KeyCode.B)) {
