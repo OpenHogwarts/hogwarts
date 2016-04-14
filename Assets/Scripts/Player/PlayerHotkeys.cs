@@ -18,8 +18,11 @@ public class PlayerHotkeys : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.C)) {
 			Menu.Instance.togglePanel("CharacterPanel");
 		}
+        if (Input.GetKeyDown(KeyCode.T)) {
+            Chat.Instance.input2.ActivateInputField();
+        }
 
-		if (Player.Instance.target)
+            if (Player.Instance.target)
 		{
 			// unselect target
 			if (Input.GetKeyUp(KeyCode.Mouse0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {
