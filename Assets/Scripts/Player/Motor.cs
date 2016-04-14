@@ -71,7 +71,7 @@ public class Motor : MonoBehaviour
 	/// </summary>
 	void Update()
 	{
-		if (Input.GetButtonDown ("Jump") && !Chat.isWritting) {
+		if (Input.GetButtonDown ("Jump") && !Chat.Instance.isWritting) {
 			jumpFlag = true;
 		}
 		if (Input.GetKey (KeyCode.Mouse0) && Input.GetKey (KeyCode.Mouse1)) {
@@ -96,7 +96,7 @@ public class Motor : MonoBehaviour
 
 
 		//If is chating, do not move
-		if (Chat.isWritting) {
+		if (Chat.Instance.isWritting) {
 			inputVector.z = 0f;
 		} else {
 			if (isMouseControlled) {

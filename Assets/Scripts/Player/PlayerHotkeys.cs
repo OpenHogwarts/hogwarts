@@ -6,6 +6,11 @@ public class PlayerHotkeys : MonoBehaviour
 	public static bool isClickingATarget = false;
 
 	void Update () {
+
+        if (Chat.Instance.isWritting) {
+            return;
+        }
+
 		if (Input.GetKeyDown (KeyCode.F1)) {
 			GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
 		}
@@ -22,7 +27,7 @@ public class PlayerHotkeys : MonoBehaviour
             Chat.Instance.input2.ActivateInputField();
         }
 
-            if (Player.Instance.target)
+        if (Player.Instance.target)
 		{
 			// unselect target
 			if (Input.GetKeyUp(KeyCode.Mouse0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) {

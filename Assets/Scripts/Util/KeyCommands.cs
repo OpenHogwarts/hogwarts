@@ -8,7 +8,7 @@ public class KeyCommands : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.GetKeyDown (KeyCode.Z)) && (Chat.isWritting == false)) {
+		if ((Input.GetKeyDown (KeyCode.Z)) && (Chat.Instance.isWritting == false)) {
 			if(canvas.GetActive()){
 				canvas.SetActive(false);
 			}else{

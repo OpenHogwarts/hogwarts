@@ -11,25 +11,30 @@ public class Chat : MonoBehaviour {
 	public Text input;
 	public InputField input2;
 	public Scrollbar scroll;
-	public static bool isWritting = false;
+    public Image background;
+	public bool isWritting = false;
 	public static Chat Instance;
 	public static int MAX_CHARACTERS = 5000;
+    private bool hasMouseOver = false;
 	
 	void Start () {
 		Instance = this;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		//If the mouse position is not over the chat, scroll down
-		if ((Input.mousePosition.x > 296)&&(Input.mousePosition.y > 140)) {
-			scroll.value = 0;
-		}
-	}
 
-	public void setWritting (bool isIt) {
-		isWritting = isIt;
-	}
+    // used in Unity UI (when chat input gets clicked)
+    public void setWritting () {
+        isWritting = true;
+        background.enabled = true;
+    }
+
+    public void onPointerEnter () {
+        background.enabled = true;
+        hasMouseOver = true;
+    }
+    public void onPointerExit () {
+        background.enabled = false;
+        hasMouseOver = false;
+    }
 
     public void sendMessage ()
     {
@@ -40,7 +45,7 @@ public class Chat : MonoBehaviour {
         if (input.text.Length < 4) {
             this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.name + "] " + input.text });
         } else {
-            //We can use this to send special commands, like GM messages, Global Announcements, etc
+            // We can use this to send special commands, like GM messages, Global Announcements, etc
             if (input.text.Substring(0, 4) == "!gm ") {
                 this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "<color=\"#00c0ff\">[GM]</color> " + input.text.Replace("!gm ", "") });
             } else if (input.text.Substring(0, 4) == "!ga ") {
@@ -50,12 +55,18 @@ public class Chat : MonoBehaviour {
             }
         }
         isWritting = false;
+        background.enabled = false;
     }
 	
-	//Needs to be RPC to work online
+	// Needs to be RPC to work online
 	[PunRPC]
 	public void Msg (string msg) {
 		AddMsg (msg);
+
+        // if the mouse is not over the chat, scroll down automatically
+        if (!hasMouseOver) {
+            scroll.value = 0;
+        }
 	}
 	
 	//Just add the msg to the chatbox

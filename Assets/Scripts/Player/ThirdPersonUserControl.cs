@@ -45,7 +45,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
-            if (Chat.isWritting) {
+            if (Chat.Instance.isWritting) {
                 return;
             }
             // read inputs
