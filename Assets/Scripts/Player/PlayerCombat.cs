@@ -41,7 +41,7 @@ public class PlayerCombat : MonoBehaviour {
 			Player.Instance.anim.SetBool("InvokeSpell", true);
 			yield return new WaitForSeconds(spell.spellCastTime);
 
-			Player.Instance.anim.SetTrigger("SpellNormalAttack");
+			Player.Instance.anim.SetInteger("SpellType", 1);
 			Player.Instance.anim.SetBool("InvokeSpell", false);
 
 			//Set up a spell and cast it.
