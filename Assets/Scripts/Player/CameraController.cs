@@ -14,14 +14,15 @@ public class CameraController : MonoBehaviour {
 	public float minViewDistance = 1;
 	public int zoomRate = 30;
 	private int lerpRate = 5;
-	public float distance = 6;
+	private float distance = 6;
 	public float desiredDistance;
-	public float correctedDistance;
-	public float currentDistance;
+	private float correctedDistance;
+	private float currentDistance;
 	private float oldDistance;
 	private bool isHitting = false;
 	public float lastDistance;
 	private bool reachedDist = true;
+	public float cameraCollisionSpeed = 2f;
 
 	public float cameraTargetHeight = 1.0f;
 
@@ -69,17 +70,18 @@ public class CameraController : MonoBehaviour {
 		transform.position = position;
 
 		if (isHitting) {
-			desiredDistance -= 0.01f * Time.deltaTime * zoomRate * Mathf.Abs (desiredDistance);
+			desiredDistance -= 0.01f * (Time.deltaTime*cameraCollisionSpeed) * zoomRate * Mathf.Abs (desiredDistance);
 			desiredDistance = Mathf.Clamp (desiredDistance, minViewDistance, maxViewDistance);
 		} else {
 			Debug.DrawLine(transform.position - (transform.forward * 0.5f), transform.position - (transform.forward * (lastDistance-desiredDistance)));
 			if (desiredDistance < lastDistance) {
 				if ((!Physics.Raycast (transform.position - (transform.forward * 0.5f), -transform.forward, (lastDistance - desiredDistance)))&&(!Physics.Raycast(transform.position - (transform.forward * ((lastDistance - desiredDistance)+0.5f)), Vector3.down, 0.5f)))  {
-					desiredDistance += 0.01f * Time.deltaTime * zoomRate * Mathf.Abs (desiredDistance);
+					desiredDistance += 0.01f * (Time.deltaTime*cameraCollisionSpeed) * zoomRate * Mathf.Abs (desiredDistance);
 					desiredDistance = Mathf.Clamp (desiredDistance, minViewDistance, maxViewDistance);
 				}
 			} else {
 				reachedDist = true;
+				lastDistance = 0;
 			}
 		}
 	}
