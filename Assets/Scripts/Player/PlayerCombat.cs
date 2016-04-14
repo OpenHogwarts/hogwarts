@@ -25,33 +25,32 @@ public class PlayerCombat : MonoBehaviour {
 		if (Player.Instance.target == null) {
 			return;
 		}
-		StartCoroutine(SpellCast(spellList[key]));
+		StartCoroutine(SpellCast(spellList[key], key));
 	}
 
-	public IEnumerator SpellCast(Spell spell)
+	public IEnumerator SpellCast(Spell spell, int uiPos)
 	{
-		//If not out of mana.
-		if (spell.spellManaCost <= Player.Instance.mana)
-		{
-			SkillsUI.Instance.disableSkill(1);// TMP TEMPORAL
-			castingSpell = true;
-			Player.Instance.mana -= spell.spellManaCost;
+        if (spell.spellManaCost > Player.Instance.mana) {
+            yield break;
+        }
 
-			//Wait for choosen spell cast time.
-			Player.Instance.anim.SetBool("InvokeSpell", true);
-			yield return new WaitForSeconds(spell.spellCastTime);
+		SkillsUI.Instance.disableSkill(uiPos);
+		castingSpell = true;
+		Player.Instance.mana -= spell.spellManaCost;
 
-			Player.Instance.anim.SetInteger("SpellType", 1);
-			Player.Instance.anim.SetBool("InvokeSpell", false);
+		// Wait for choosen spell cast time.
+		Player.Instance.anim.SetBool("InvokeSpell", true);
+		yield return new WaitForSeconds(spell.spellCastTime);
 
-			//Set up a spell and cast it.
-			SpellSetUp(spell);
+		Player.Instance.anim.SetInteger("SpellType", 1);
+		Player.Instance.anim.SetBool("InvokeSpell", false);
 
-			SkillsUI.Instance.enableSkill(1);// TMP TEMPORAL
-		}
+		// Set up a spell and cast it.
+		SpellSetUp(spell);
+
+		SkillsUI.Instance.enableSkill(uiPos);
 		
 		castingSpell = false;
-		yield break;
 	}
 
 	void SpellSetUp(Spell spell)
