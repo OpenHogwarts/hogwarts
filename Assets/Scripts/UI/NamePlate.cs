@@ -1,20 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NamePlate : MonoBehaviour {
 
-	public TextMesh Name;
-	public TextMesh level;
-	public Transform health;
+	public Text Name;
+	public Text level;
+	public Image health;
 
 	public static Color COLOR_SELECTED = Color.green;
 	public static Color COLOR_NORMAL = Color.white;
 	public static Color COLOR_ENEMY = Color.red;
-	
-	void Update () {
-		if (Camera.main) {
-			transform.LookAt (2 * transform.position - Camera.main.transform.position);
-		}
+
+	void Start(){
+		gameObject.name = transform.parent.name;
+		transform.parent = GameObject.Find ("Canvas/Plates").transform;
 	}
 
 	public void setName (string name, Color color) {

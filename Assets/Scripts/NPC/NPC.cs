@@ -77,7 +77,7 @@ public class NPC : Photon.MonoBehaviour
 	private bool gotFirstUpdate = false;
     private bool isLooted = false;
 
-    protected NamePlate namePlate;
+    public NamePlate namePlate;
 	
 	public void Start()
 	{
@@ -90,8 +90,6 @@ public class NPC : Photon.MonoBehaviour
 		try {
 			anim = transform.FindChild("Model").GetComponent<Animation> ();
 		} catch (Exception) {}
-
-		namePlate = transform.FindChild ("NamePlate").GetComponent<NamePlate>();
 
 		this.OriginalAttacksPerSecond = data.attacksPerSecond;
 		this.initialPos = this.transform.position;
@@ -305,6 +303,8 @@ public class NPC : Photon.MonoBehaviour
 			Debug.Log("don't have spell flag.");
 			yield break;
 		}
+
+		namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / maxHealth, 4f * Time.deltaTime);
 		
 	}
 	

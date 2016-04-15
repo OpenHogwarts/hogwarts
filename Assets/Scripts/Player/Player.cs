@@ -178,7 +178,7 @@ public class Player : Photon.MonoBehaviour {
 
     public Animator anim;
 	private bool gotFirstUpdate = false;
-	public TextMesh nick;
+	public Text nick;
 
 	public UIBar healthBar;
 	public Image healthBar2;
@@ -233,7 +233,7 @@ public class Player : Photon.MonoBehaviour {
 
 			healthBar.GetComponent<Image> ().fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 4f*Time.deltaTime);
 			healthBar2.fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 0.5f*Time.deltaTime);
-
+			namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
 
 			//looks like player is falling
 			if (transform.position.y < -100) {
