@@ -219,6 +219,8 @@ public class NPC : Photon.MonoBehaviour
 					
 			}
 		}
+
+		namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / (float)maxHealth, 4f * Time.deltaTime);
 	}
 	
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -303,8 +305,6 @@ public class NPC : Photon.MonoBehaviour
 			Debug.Log("don't have spell flag.");
 			yield break;
 		}
-
-		namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / maxHealth, 4f * Time.deltaTime);
 		
 	}
 	

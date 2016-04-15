@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour {
 
 	public static PlayerCombat Instance;
 	public bool castingSpell = false;
+	private float spellAnimTime = 1.6f;
 	
 	public List<Spell> spellList = new List<Spell> ();
 
@@ -40,10 +41,12 @@ public class PlayerCombat : MonoBehaviour {
 
 		// Wait for choosen spell cast time.
 		Player.Instance.anim.SetBool("InvokeSpell", true);
-		yield return new WaitForSeconds(spell.spellCastTime);
+		yield return new WaitForSeconds(spell.spellCastTime-spellAnimTime);
 
 		Player.Instance.anim.SetInteger("SpellType", 1);
 		Player.Instance.anim.SetBool("InvokeSpell", false);
+
+		yield return new WaitForSeconds(spellAnimTime);
 
 		// Set up a spell and cast it.
 		SpellSetUp(spell);
