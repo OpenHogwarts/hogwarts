@@ -13,6 +13,10 @@ public class UIScreenPos : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (follow == null || Camera.main == null) {
+            return;
+        }
+
 		Vector3 screenPos = Camera.main.WorldToScreenPoint (follow.transform.position);
 
 		if (Vector3.Distance (Camera.main.transform.position, follow.transform.position) > 40) {

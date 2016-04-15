@@ -196,14 +196,16 @@ public class Player : Photon.MonoBehaviour {
 		}
 	}
 
-	private Vector3 correctPlayerPos = Vector3.zero; // We lerp towards this
-	private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
+	private Vector3 correctPlayerPos = Vector3.zero;
+	private Quaternion correctPlayerRot = Quaternion.identity;
 
 
 	void Start () {
-		if (photonView.isMine) {
+		if (photonView.isMine)
+        {
 			_instance = this;
-			startHealthRegeneration ();
+            SkillsUI.Instance.displayUnlockedSkills();
+            startHealthRegeneration ();
 			startManaRegeneration ();
 		}
 		anim = GetComponent<Animator>();
@@ -273,7 +275,7 @@ public class Player : Photon.MonoBehaviour {
 
         while (health != maxHealth)
         {
-            if (!isInCombat) {
+            if (!isInCombat && !target) {
                 health += 1;
             }
             if (health > maxHealth) {
@@ -293,7 +295,7 @@ public class Player : Photon.MonoBehaviour {
 
         while (mana != maxMana)
         {
-            if (!isInCombat) {
+            if (!isInCombat && !target) {
                 mana += 1;
             }
             if (mana > maxMana) {

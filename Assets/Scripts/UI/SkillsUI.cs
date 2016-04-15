@@ -14,7 +14,24 @@ public class SkillsUI : MonoBehaviour {
 		Instance = this;
 	}
 
-	public void fillSlots () {
+    public void displayUnlockedSkills ()
+    {
+        int playerLevel = Player.Instance.level;
+        playerLevel = 2;
+
+        if (playerLevel >= 2) {
+            Skills[2].transform.parent.gameObject.SetActive(true);
+        }
+        if (playerLevel >= 4) {
+            Skills[3].transform.parent.gameObject.SetActive(true);
+        }
+        if (playerLevel >= 6)  {
+            Skills[4].transform.parent.gameObject.SetActive(true);
+        }
+    }
+
+    public void fillSlots ()
+    {
 		int i = 0;
 		int total = PlayerCombat.Instance.spellList.Count;
 		SkillTooltip tooltip;
