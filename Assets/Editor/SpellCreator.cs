@@ -21,7 +21,8 @@ public class SpellCreator : EditorWindow {
 			
 			tempSpell.spellName = EditorGUILayout.TextField("Spell Name",tempSpell.spellName);
 			tempSpell.spellInfo = EditorGUILayout.TextField("Spell Info",tempSpell.spellInfo);
-			tempSpell.spellPrefab = (GameObject)EditorGUILayout.ObjectField("Spell prefab",tempSpell.spellPrefab,typeof(GameObject),false);
+            tempSpell.minLevel = EditorGUILayout.IntField("Min level", tempSpell.minLevel);
+            tempSpell.spellPrefab = (GameObject)EditorGUILayout.ObjectField("Spell prefab",tempSpell.spellPrefab,typeof(GameObject),false);
 			tempSpell.spellCollisionParticle = (GameObject)EditorGUILayout.ObjectField("Spell Collision Effect",tempSpell.spellCollisionParticle,typeof(GameObject),false);
 			tempSpell.spellManaCost = EditorGUILayout.IntField("Mana cost",tempSpell.spellManaCost);
 			tempSpell.spellIcon = (Texture2D)EditorGUILayout.ObjectField("Spell Icon",tempSpell.spellIcon,typeof(Texture2D),false);
@@ -139,7 +140,8 @@ public class SpellCreator : EditorWindow {
 			
 			tempSpell.spellName = "";
 			tempSpell.spellInfo = "";
-			tempSpell.dotDamage = 0;
+            tempSpell.minLevel = 0;
+            tempSpell.dotDamage = 0;
 			tempSpell.spellCastTime = 0;
 			tempSpell.spellIcon = null;
 			tempSpell.spellMaxDamage = 0;

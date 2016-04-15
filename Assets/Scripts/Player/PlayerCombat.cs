@@ -31,7 +31,7 @@ public class PlayerCombat : MonoBehaviour {
 
 	public IEnumerator SpellCast(Spell spell, int uiPos)
 	{
-        if (spell.spellManaCost > Player.Instance.mana) {
+        if (spell.spellManaCost > Player.Instance.mana || spell.minLevel > Player.Instance.level) {
             yield break;
         }
 

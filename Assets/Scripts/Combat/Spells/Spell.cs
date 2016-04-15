@@ -48,8 +48,9 @@ public class Spell : ScriptableObject {
 	
 	public string spellName = "";
 	public string spellInfo = "";
-	
-	public GameObject spellPrefab = null;
+    public int minLevel = 0;
+
+    public GameObject spellPrefab = null;
 	public GameObject spellCollisionParticle = null;
 	public GameObject dotEffect = null;
 	public Texture2D spellIcon = null;
@@ -72,6 +73,5 @@ public class Spell : ScriptableObject {
 	public SpellFlag spellFlag = SpellFlag.None;
 	public SpellPosition spellPosition = SpellPosition.MyTransform;
 	public SpellCategory spellCategory = SpellCategory.Fire;
-	
 	
 }
