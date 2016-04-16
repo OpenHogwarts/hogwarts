@@ -13,18 +13,29 @@ public class Player : Photon.MonoBehaviour {
     {
         get { return characterData.health; }
         set {
+            bool hasResurrected = false;
             //prevent negative health values
             if (value < 0) {
                 value = 0;
             }
 
+            // has resurrected
+            if (health == 0 && value > 0) {
+                hasResurrected = true;
+            }
+
             // We dont check if health > maxHealth here, because player may have some temporal buff
             characterData.health = value;
 
-            if (photonView.isMine) {
+            if (photonView.isMine)
+            {
                 characterData.save();
                 healthBar.updateVertical(characterData.health, characterData.maxHealth);
                 startHealthRegeneration();
+
+                if (hasResurrected) {
+                    startManaRegeneration();
+                }
             }
         }
     }
