@@ -9,7 +9,7 @@
 sysinfo.txt
 *.box
 *.box.swp
- 
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -23,7 +23,7 @@ sysinfo.txt
 /*.unityproj
 /*.booproj
 /.vs*
- 
+
 # ============ #
 # OS generated #
 # ============ #
@@ -35,7 +35,8 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 /Assets/Props Animations
+/Assets/Props Animations.meta
 /Assets/Gaia
+/Assets/Gaia.meta
 /Assets/ErosionBrush
-
 /Assets/Super Sampling (SSAA)
