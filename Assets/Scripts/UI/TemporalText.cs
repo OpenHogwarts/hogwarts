@@ -8,6 +8,9 @@ Used to display temporal messages like, hits damage, won xp, etc..
 
 public class TemporalText : MonoBehaviour {
 
+	public Text textObj;
+	public Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine ("Destroy");
@@ -15,9 +18,11 @@ public class TemporalText : MonoBehaviour {
 
 	public void setText(string t, Color c, TextAnchor a, int type) {
 		gameObject.GetComponent<Text> ().text = t;
-		gameObject.GetComponent<Text> ().color = c;
+		textObj.text = t;
+		textObj.color = c;
 		gameObject.GetComponent<Text> ().alignment = a;
-		gameObject.GetComponent<Animator> ().SetInteger ("Type", type);
+		textObj.alignment = a;
+		anim.SetInteger ("Type", type);
 	}
 
 	IEnumerator Destroy() {
