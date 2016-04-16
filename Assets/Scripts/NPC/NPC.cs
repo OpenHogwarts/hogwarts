@@ -316,7 +316,7 @@ public class NPC : Photon.MonoBehaviour
 		
 		while (count < over) {
 			yield return new WaitForSeconds(time);
-			getHit(damage, player);
+			getHit(damage, player, true);
 			PhotonNetwork.Instantiate("Particles/" + dotEffect.name, transform.position, Quaternion.identity, 0);
 			count ++;
 			
@@ -325,7 +325,7 @@ public class NPC : Photon.MonoBehaviour
 		check = false;
 	}
 
-	public void getHit (int damage, GameObject attacker)
+	public void getHit (int damage, GameObject attacker, bool isDPS = false)
     {
 		// @ToDo: start a hit animation
 		health-= damage;
@@ -342,7 +342,7 @@ public class NPC : Photon.MonoBehaviour
         }
 		// show our numeric damage in UI
         if (player.isMine) {
-            namePlate.setDamage(damage);
+            namePlate.setDamage(damage, isDPS);
         }
     }
 
