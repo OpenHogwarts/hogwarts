@@ -107,8 +107,14 @@ public class NPC : Photon.MonoBehaviour
 	
 	private void Update()
 	{
-        if (this.isDead) {
+        if (isDead) {
             return;
+        }
+
+        // check if target has died
+        if (target && target.GetComponent<Player>().isDead) {
+            EnableCombat = false;
+            target = null;
         }
 
         if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
