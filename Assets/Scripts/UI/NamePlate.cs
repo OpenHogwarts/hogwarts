@@ -7,19 +7,12 @@ public class NamePlate : MonoBehaviour {
 	public Text Name;
 	public Text level;
 	public Image health;
-	public Text damage;
-	public Text minorDamage;
 	public GameObject dmgPrefab;
 	public Transform dmgParent;
-    private float lastHitTime;
-    private float lastMinorHitTime;
-    private bool checkHideDamageStarted;
 
     public static Color COLOR_SELECTED = Color.green;
 	public static Color COLOR_NORMAL = Color.white;
 	public static Color COLOR_ENEMY = Color.red;
-
-    const float SHOW_DAMAGE_DURATION = 4f; // seconds
 
 	void Start() {
 		gameObject.name = transform.parent.name;
@@ -36,64 +29,18 @@ public class NamePlate : MonoBehaviour {
 	}
     public void setDamage (int amount, bool isDPS = false)
     {
-        int rand = Random.Range(0, 2);
-        TextAnchor alignment;
-
-        // make it look more dynamic
-        switch (rand)
-        {
-            case 0:
-                alignment = TextAnchor.MiddleLeft;
-                break;
-            case 1:
-                alignment = TextAnchor.MiddleCenter;
-                break;
-            case 2:
-            default:
-                alignment = TextAnchor.MiddleRight;
-                break;
-        }
-
         if (isDPS) {
 			GameObject inst = Instantiate(dmgPrefab) as GameObject;
 			inst.transform.parent = dmgParent.transform;
-			inst.GetComponent<DmgText>().SetDmg("-"+amount, Color.blue, TextAnchor.UpperRight, 2);
+			inst.GetComponent<TemporalText>().setText("-"+amount, Color.blue, TextAnchor.UpperRight, 2);
 			inst.transform.localScale = inst.transform.parent.transform.localScale;
 			inst.transform.localPosition = inst.transform.parent.localPosition;
-            //minorDamage.text = amount.ToString();
-            //minorDamage.alignment = alignment;
-            lastMinorHitTime = Time.time;
         } else {
 			GameObject inst2 = Instantiate(dmgPrefab) as GameObject;
 			inst2.transform.parent = dmgParent.transform;
-			inst2.GetComponent<DmgText>().SetDmg("-"+amount, Color.white, TextAnchor.UpperCenter, 1);
+			inst2.GetComponent<TemporalText>().setText("-"+amount, Color.white, TextAnchor.UpperCenter, 1);
 			inst2.transform.localScale = inst2.transform.parent.transform.localScale;
 			inst2.transform.localPosition = inst2.transform.parent.localPosition;
-            //damage.text = amount.ToString();
-            //damage.alignment = alignment;
-            lastHitTime = Time.time;
         }
-
-        if (!checkHideDamageStarted) {
-            StartCoroutine(checkHideDamage());
-        }
-    }
-
-    private IEnumerator checkHideDamage()
-    {
-        checkHideDamageStarted = true;
-
-        while (Time.time < (lastHitTime + SHOW_DAMAGE_DURATION)) {
-            yield return new WaitForSeconds(SHOW_DAMAGE_DURATION);
-        }
-
-        damage.text = "";
-
-        while (Time.time < (lastMinorHitTime + SHOW_DAMAGE_DURATION)) {
-            yield return new WaitForSeconds(SHOW_DAMAGE_DURATION);
-        }
-
-        minorDamage.text = "";
-        checkHideDamageStarted = false;
     }
 }
