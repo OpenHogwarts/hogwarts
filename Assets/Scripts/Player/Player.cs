@@ -61,7 +61,7 @@ public class Player : Photon.MonoBehaviour {
                     level += 1;
                 }
                 characterData.save();
-                expBar.updateHoritzontal(characterData.exp, 100);
+                expBar.updateHoritzontal(characterData.exp, XP_BASE * level);
             }
         }
     }
@@ -234,7 +234,7 @@ public class Player : Photon.MonoBehaviour {
                 manaBar = GameObject.Find("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
 
                 healthBar.updateVertical(characterData.health, characterData.maxHealth);
-                expBar.updateHoritzontal(characterData.exp, 100);
+                expBar.updateHoritzontal(characterData.exp, XP_BASE * level);
                 manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
 
                 gotFirstUpdate = true;
@@ -420,6 +420,7 @@ public class Player : Photon.MonoBehaviour {
     public void getDamage(int amount, int attacker) {
         isInCombat = true;
         health -= amount;
+        anim.Play("GettingHit");
 
         if (target == null) {
             PhotonView.Find(attacker).gameObject.GetComponent<NPC>().setSelected();
