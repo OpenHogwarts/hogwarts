@@ -9,6 +9,8 @@ public class NamePlate : MonoBehaviour {
 	public Image health;
 	public Text damage;
 	public Text minorDamage;
+	public GameObject dmgPrefab;
+	public Transform dmgParent;
     private float lastHitTime;
     private float lastMinorHitTime;
     private bool checkHideDamageStarted;
@@ -53,8 +55,13 @@ public class NamePlate : MonoBehaviour {
         }
 
         if (isDPS) {
-            minorDamage.text = amount.ToString();
-            minorDamage.alignment = alignment;
+			GameObject inst = Instantiate(dmgPrefab) as GameObject;
+			inst.transform.parent = dmgParent.transform;
+			inst.GetComponent<DmgText>().SetDmg("-"+amount);
+			inst.transform.localScale = inst.transform.parent.transform.localScale;
+			inst.transform.localPosition = inst.transform.parent.localPosition;
+            //minorDamage.text = amount.ToString();
+            //minorDamage.alignment = alignment;
             lastMinorHitTime = Time.time;
         } else {
             damage.text = amount.ToString();
