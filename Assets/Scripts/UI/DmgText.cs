@@ -9,12 +9,15 @@ public class DmgText : MonoBehaviour {
 		StartCoroutine ("Destroy");
 	}
 
-	public void SetDmg(string t){
+	public void SetDmg(string t, Color c, TextAnchor a, int type){
 		gameObject.GetComponent<Text> ().text = t;
+		gameObject.GetComponent<Text> ().color = c;
+		gameObject.GetComponent<Text> ().alignment = a;
+		gameObject.GetComponent<Animator> ().SetInteger ("Type", type);
 	}
 
 	IEnumerator Destroy(){
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (2f);
 		Destroy (gameObject);
 	}
 }

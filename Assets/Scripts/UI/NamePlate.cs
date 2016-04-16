@@ -57,15 +57,20 @@ public class NamePlate : MonoBehaviour {
         if (isDPS) {
 			GameObject inst = Instantiate(dmgPrefab) as GameObject;
 			inst.transform.parent = dmgParent.transform;
-			inst.GetComponent<DmgText>().SetDmg("-"+amount);
+			inst.GetComponent<DmgText>().SetDmg("-"+amount, Color.blue, TextAnchor.UpperRight, 2);
 			inst.transform.localScale = inst.transform.parent.transform.localScale;
 			inst.transform.localPosition = inst.transform.parent.localPosition;
             //minorDamage.text = amount.ToString();
             //minorDamage.alignment = alignment;
             lastMinorHitTime = Time.time;
         } else {
-            damage.text = amount.ToString();
-            damage.alignment = alignment;
+			GameObject inst2 = Instantiate(dmgPrefab) as GameObject;
+			inst2.transform.parent = dmgParent.transform;
+			inst2.GetComponent<DmgText>().SetDmg("-"+amount, Color.white, TextAnchor.UpperCenter, 1);
+			inst2.transform.localScale = inst2.transform.parent.transform.localScale;
+			inst2.transform.localPosition = inst2.transform.parent.localPosition;
+            //damage.text = amount.ToString();
+            //damage.alignment = alignment;
             lastHitTime = Time.time;
         }
 
