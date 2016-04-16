@@ -11,15 +11,16 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 Requirements
 -------------
-- Unity >= 5.1.1
+- Unity >= 5.3.4
 
 Setup
 -------------
 [![Analytics](https://ga-beacon.appspot.com/UA-17476024-7/hogwarts/readme?pixel)](https://github.com/OpenHogwarts/hogwarts)
 
-- Clone this repo
-- Open the folder in Unity
-- Enjoy
+- Clone/Download this repo (https://github.com/OpenHogwarts/hogwarts/archive/master.zip)
+- Open the downloaded folder in Unity (File -> Open Project)
+- In Unity project's folders double click MainMenu (Assets -> Scenes -> MainMenu)
+- Hit the start button from Game tab. Inside the game, click create a New Character, set the name and click on "Entrar".
 
 
 Working features
