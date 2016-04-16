@@ -72,10 +72,11 @@ public class NPC : Photon.MonoBehaviour
 	private int currentWaypoint = 0;
 	private float curTime = 0;
 	private float pauseDuration = 2;
-	private Vector3 correctPlayerPos = Vector3.zero; //We lerp towards this
-	private Quaternion correctPlayerRot = Quaternion.identity; //We lerp towards this
+	private Vector3 correctPlayerPos = Vector3.zero;
+	private Quaternion correctPlayerRot = Quaternion.identity;
 	private bool gotFirstUpdate = false;
     private bool isLooted = false;
+    private Dictionary<Player, int> attackers = new Dictionary<Player, int>();
 
     public NamePlate namePlate;
 	
@@ -106,12 +107,16 @@ public class NPC : Photon.MonoBehaviour
 	
 	private void Update()
 	{
-		if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
+        if (this.isDead) {
+            return;
+        }
+
+        if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
 			transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * this.SmoothingDelay);
 			transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * this.SmoothingDelay);
 		}
 
-		if (Application.isEditor) {
+        if (Application.isEditor) {
 			if (data.subRace != NPCData.creatureSubRace.Normal) {return;} // enable in debug to not verifiy if you are the master
 		} else {
 			if (data.subRace != NPCData.creatureSubRace.Normal || !PhotonNetwork.isMasterClient) {return;}
@@ -126,16 +131,10 @@ public class NPC : Photon.MonoBehaviour
 		}
 		if (this.isDead)
 		{
-			if (this.target) {
-				Player player = this.target.GetComponent<Player>();
-				int levelDiff = data.level - player.level;
-				
-				// do not give exp if player has > 3 levels than the killed npc
-				if (levelDiff > -2) {
-					player.exp += data.expValue + levelDiff * 10;
-				}
-			}
-			anim.Play(this.deathAnimation.name);
+            foreach (KeyValuePair<Player, int> entry in attackers) {
+                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, photonView.viewID, 1, data.level, entry.Value, data.health, data.expValue);
+            }
+            anim.Play(this.deathAnimation.name);
 		}
 		else
 		{
@@ -267,7 +266,7 @@ public class NPC : Photon.MonoBehaviour
 	}
 
 
-	public IEnumerator TakeDamageByFlagType(Spell spell)
+	public IEnumerator TakeDamageByFlagType(Spell spell, GameObject player)
 	{
 		if(spell.spellFlag == Spell.SpellFlag.Slow)
 		{
@@ -296,7 +295,7 @@ public class NPC : Photon.MonoBehaviour
 			}
 			
 			if(!check)
-				StartCoroutine(DOT(spell.dotDamage, spell.dotTick, spell.dotSeconds, spell.dotEffect));
+				StartCoroutine(DOT(spell.dotDamage, spell.dotTick, spell.dotSeconds, spell.dotEffect, player));
 			
 		}
 		
@@ -309,7 +308,7 @@ public class NPC : Photon.MonoBehaviour
 	}
 	
 	
-	public IEnumerator DOT (int damage, int over, int time, GameObject dotEffect)
+	public IEnumerator DOT (int damage, int over, int time, GameObject dotEffect, GameObject player)
 	{
 		int count = 0;
 		check = true;
@@ -317,7 +316,7 @@ public class NPC : Photon.MonoBehaviour
 		
 		while (count < over) {
 			yield return new WaitForSeconds(time);
-			getHit(damage);
+			getHit(damage, player);
 			PhotonNetwork.Instantiate("Particles/" + dotEffect.name, transform.position, Quaternion.identity, 0);
 			count ++;
 			
@@ -326,10 +325,22 @@ public class NPC : Photon.MonoBehaviour
 		check = false;
 	}
 
-	public void getHit (int damage) {
-		// this should also start a hit animation
+	public void getHit (int damage, GameObject attacker)
+    {
+		// @ToDo: start a hit animation
 		health-= damage;
-	}
+
+        Player player = attacker.GetComponent<Player>();
+        if (!attackers.ContainsKey(player)) {
+            attackers.Add(player, 0);
+        }
+
+        attackers[player] += damage;
+
+        if (!target) {
+            target = attacker;
+        }
+    }
 
 	public IEnumerator restoreHealth () {
 		while (this.health < this.maxHealth) {

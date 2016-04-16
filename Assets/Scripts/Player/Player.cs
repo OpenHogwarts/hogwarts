@@ -9,31 +9,31 @@ public class Player : Photon.MonoBehaviour {
     const int HEALTH_REGEN_BASE = 5;
     const int MANA_REGEN_BASE = 2;
 
-	public int health
-	{
-		get {return characterData.health;}
-		set {
-			//prevent negative health values
-			if (value <  0) {
-				value = 0;
-			}
+    public int health
+    {
+        get { return characterData.health; }
+        set {
+            //prevent negative health values
+            if (value < 0) {
+                value = 0;
+            }
 
             // We dont check if health > maxHealth here, because player may have some temporal buff
-			characterData.health = value;
+            characterData.health = value;
 
-			if (photonView.isMine) {
-				characterData.save();
-				healthBar.updateVertical(characterData.health, characterData.maxHealth);
+            if (photonView.isMine) {
+                characterData.save();
+                healthBar.updateVertical(characterData.health, characterData.maxHealth);
                 startHealthRegeneration();
             }
-		}
-	}
+        }
+    }
 
-	public int maxHealth {
-		get {
-			return  characterData.maxHealth;
-		}
-	}
+    public int maxHealth {
+        get {
+            return characterData.maxHealth;
+        }
+    }
 
     public int maxMana {
         get {
@@ -42,17 +42,17 @@ public class Player : Photon.MonoBehaviour {
     }
 
     public int exp
-	{
-		get {return characterData.exp;}
-		set {
-			//prevent negative values
-			if (value <  0) {
-				value = 0;
-			}
-			
-			characterData.exp = value;
-			
-			if (photonView.isMine)
+    {
+        get { return characterData.exp; }
+        set {
+            //prevent negative values
+            if (value < 0) {
+                value = 0;
+            }
+
+            characterData.exp = value;
+
+            if (photonView.isMine)
             {
                 int nextLevelExp = XP_BASE * level;
 
@@ -61,98 +61,105 @@ public class Player : Photon.MonoBehaviour {
                     level += 1;
                 }
                 characterData.save();
-				expBar.updateHoritzontal(characterData.exp, 100);
-			}
-		}
-	}
+                expBar.updateHoritzontal(characterData.exp, 100);
+            }
+        }
+    }
 
     public int mana
-	{
-		get {return characterData.mana;}
-		set {
-			//prevent negative values
-			if (value <  0) {
-				value = 0;
-			}
+    {
+        get { return characterData.mana; }
+        set {
+            //prevent negative values
+            if (value < 0) {
+                value = 0;
+            }
 
             // We dont check if mana > maxMana here, because player may have some temporal buff
             characterData.mana = value;
-			
-			if (photonView.isMine) {
-				characterData.save();
-				manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
+
+            if (photonView.isMine) {
+                characterData.save();
+                manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
                 startManaRegeneration();
             }
-		}
-	}
+        }
+    }
 
-	public int money
-	{
-		get {return characterData.money;}
-		set {
-			//prevent negative values
-			if (value <  0) {value = 0;}
+    public int money
+    {
+        get { return characterData.money; }
+        set {
+            //prevent negative values
+            if (value < 0) { value = 0; }
 
-			characterData.money = value;
-			
-			if (photonView.isMine) {
-				characterData.save();
-				try {
-					Inventory.Instance.updateMoney();
-				} catch (Exception) {}
-			}
-		}
-	}
+            characterData.money = value;
 
-	public int level
-	{
-		get {return characterData.level;}
-		set {
-			//prevent negative values
-			if (value <  0) {value = 0;}
-			
-			characterData.level = value;
-			
-			if (photonView.isMine) {
-				characterData.save();
-			}
-		}
-	}
+            if (photonView.isMine) {
+                characterData.save();
+                try {
+                    Inventory.Instance.updateMoney();
+                } catch (Exception) { }
+            }
+        }
+    }
 
-	public bool isMine {
-		get {
-			return photonView.isMine;
-		}
-	}
+    public int level
+    {
+        get { return characterData.level; }
+        set {
+            //prevent negative values
+            if (value < 0) { value = 0; }
 
-	public bool isFriendly {
-		get {
-			return true; // this will change when we have multiple classes
-		}
-	}
+            characterData.level = value;
 
-	public new string name;
-	public CharacterData characterData;
-	private NPC _target;
-	public NPC target {
-		get {
-			return _target;
-		}
-		set {
-			_target = value;
+            if (photonView.isMine) {
+                characterData.save();
+                SkillsUI.Instance.displayUnlockedSkills();
+            }
+        }
+    }
 
-			if (value == null) {
-				PlayerPanel.Instance.hideTargetPanel();
-			} else {
-				PlayerPanel.Instance.showTargetPanel(value.transform);
-			}
+    public bool isMine {
+        get {
+            return photonView.isMine;
+        }
+    }
 
-			SkillsUI.Instance.updateStatus();
-		}
-	}
+    public bool isFriendly {
+        get {
+            return true; // this will change when we have multiple classes
+        }
+    }
+
+    public int id {
+        get {
+            return photonView.ownerId;
+        }
+    }
+
+    public new string name;
+    public CharacterData characterData;
+    private NPC _target;
+    public NPC target {
+        get {
+            return _target;
+        }
+        set {
+            _target = value;
+
+            if (value == null) {
+                PlayerPanel.Instance.hideTargetPanel();
+            } else {
+                PlayerPanel.Instance.showTargetPanel(value.transform);
+            }
+
+            SkillsUI.Instance.updateStatus();
+        }
+    }
     private bool healthRegenStarted = false;
     private bool manaRegenStarted = false;
-	public bool isFlying = false;
+    public bool isFlying = false;
     public float lastHitTime;
     public bool isInCombat {
         get {
@@ -177,77 +184,77 @@ public class Player : Photon.MonoBehaviour {
     }
 
     public Animator anim;
-	private bool gotFirstUpdate = false;
-	public Text nick;
+    private bool gotFirstUpdate = false;
+    public Text nick;
 
-	public UIBar healthBar;
-	public Image healthBar2;
-	public UIBar expBar;
-	public UIBar manaBar;
+    public UIBar healthBar;
+    public Image healthBar2;
+    public UIBar expBar;
+    public UIBar manaBar;
 
-	public NamePlate namePlate;
+    public NamePlate namePlate;
 
-	public static Player _instance;
-	
-	public static Player Instance {
-		get
-		{
-			return _instance;
-		}
-	}
+    public static Player _instance;
 
-	private Vector3 correctPlayerPos = Vector3.zero;
-	private Quaternion correctPlayerRot = Quaternion.identity;
-
-
-	void Start () {
-		if (photonView.isMine)
+    public static Player Instance {
+        get
         {
-			_instance = this;
+            return _instance;
+        }
+    }
+
+    private Vector3 correctPlayerPos = Vector3.zero;
+    private Quaternion correctPlayerRot = Quaternion.identity;
+
+
+    void Start() {
+        if (photonView.isMine)
+        {
+            _instance = this;
             SkillsUI.Instance.displayUnlockedSkills();
-            startHealthRegeneration ();
-			startManaRegeneration ();
-		}
-		anim = GetComponent<Animator>();
-	}
+            startHealthRegeneration();
+            startManaRegeneration();
+        }
+        anim = GetComponent<Animator>();
+    }
 
-	void Update()
-	{
-		if (!photonView.isMine) {
-			transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
-			transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
-		} else {
-			if (!gotFirstUpdate) {
+    void Update()
+    {
+        if (!photonView.isMine) {
+            transform.position = Vector3.Lerp(transform.position, this.correctPlayerPos, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Lerp(transform.rotation, this.correctPlayerRot, Time.deltaTime * 5);
+        } else {
+            if (!gotFirstUpdate) {
 
-				photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
+                photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
-				healthBar = GameObject.Find ("Canvas/PlayerPanel/HP Orb").GetComponent<UIBar>();
-				healthBar2 = GameObject.Find ("Canvas/PlayerPanel/HP Orb 2").GetComponent<Image>();
-				expBar = GameObject.Find ("Canvas/PlayerPanel/ExpBar").GetComponent<UIBar>();
-				manaBar = GameObject.Find ("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
+                healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb").GetComponent<UIBar>();
+                healthBar2 = GameObject.Find("Canvas/PlayerPanel/HP Orb 2").GetComponent<Image>();
+                expBar = GameObject.Find("Canvas/PlayerPanel/ExpBar").GetComponent<UIBar>();
+                manaBar = GameObject.Find("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
 
-				healthBar.updateVertical(characterData.health, characterData.maxHealth);
-				expBar.updateHoritzontal(characterData.exp, 100);
-				manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
+                healthBar.updateVertical(characterData.health, characterData.maxHealth);
+                expBar.updateHoritzontal(characterData.exp, 100);
+                manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
 
-				gotFirstUpdate = true;
-			}
+                gotFirstUpdate = true;
+            }
 
-			healthBar.GetComponent<Image> ().fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 4f*Time.deltaTime);
-			healthBar2.fillAmount = Mathf.Lerp (healthBar.GetComponent<Image> ().fillAmount, health / 270f, 0.5f*Time.deltaTime);
-			namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
+            healthBar.GetComponent<Image>().fillAmount = Mathf.Lerp(healthBar.GetComponent<Image>().fillAmount, health / 270f, 4f * Time.deltaTime);
+            healthBar2.fillAmount = Mathf.Lerp(healthBar.GetComponent<Image>().fillAmount, health / 270f, 0.5f * Time.deltaTime);
+            namePlate.health.fillAmount = Mathf.Lerp(namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
 
-			//looks like player is falling
-			if (transform.position.y < -100) {
-				Respawn ();
-			}
-		}
-	}
+            //looks like player is falling
+            if (transform.position.y < -100) {
+                Respawn();
+            }
+        }
+    }
 
-	public void Respawn ()
-	{
-		transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
-	}
+    public void Respawn()
+    {
+        transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+    }
 
     private void startHealthRegeneration()
     {
@@ -264,7 +271,7 @@ public class Player : Photon.MonoBehaviour {
         }
         StartCoroutine("regenerateMana");
     }
-    
+
 
     IEnumerator regenerateHealth()
     {
@@ -281,7 +288,7 @@ public class Player : Photon.MonoBehaviour {
             if (health > maxHealth) {
                 health = maxHealth;
             }
-			yield return new WaitForSeconds(1f/(HEALTH_REGEN_BASE + (level / 15)));
+            yield return new WaitForSeconds(1f / (HEALTH_REGEN_BASE + (level / 15)));
         }
         healthRegenStarted = false;
     }
@@ -301,66 +308,66 @@ public class Player : Photon.MonoBehaviour {
             if (mana > maxMana) {
                 mana = maxMana;
             }
-			yield return new WaitForSeconds(1f/(MANA_REGEN_BASE + (level / 15)));
+            yield return new WaitForSeconds(1f / (MANA_REGEN_BASE + (level / 15)));
         }
         manaRegenStarted = false;
     }
 
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		if (stream.isWriting)
-		{
-			// We own this player: send the others our data
-			stream.SendNext(transform.position);
-			stream.SendNext(transform.rotation);
-			stream.SendNext(anim.GetFloat("Forward"));
-			stream.SendNext(anim.GetFloat("Turn"));
-			stream.SendNext(anim.GetFloat("Jump"));
-			stream.SendNext(anim.GetBool("OnGround"));
-			stream.SendNext(anim.GetBool("InvokeSpell"));
-			stream.SendNext(anim.GetInteger("SpellType"));
-		}
-		else
-		{
-			// Network player, receive data
-			this.correctPlayerPos = (Vector3)stream.ReceiveNext();
-			this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            // We own this player: send the others our data
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(anim.GetFloat("Forward"));
+            stream.SendNext(anim.GetFloat("Turn"));
+            stream.SendNext(anim.GetFloat("Jump"));
+            stream.SendNext(anim.GetBool("OnGround"));
+            stream.SendNext(anim.GetBool("InvokeSpell"));
+            stream.SendNext(anim.GetInteger("SpellType"));
+        }
+        else
+        {
+            // Network player, receive data
+            this.correctPlayerPos = (Vector3)stream.ReceiveNext();
+            this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
 
-			if (anim) {
-				anim.SetFloat("Forward", (float)stream.ReceiveNext());
-				anim.SetFloat("Turn", (float)stream.ReceiveNext());
-				anim.SetFloat("Jump", (float)stream.ReceiveNext());
-				anim.SetBool("OnGround", (bool)stream.ReceiveNext());
-				anim.SetBool("InvokeSpell", (bool)stream.ReceiveNext());
-				anim.SetInteger("SpellType", (int)stream.ReceiveNext());
-			}
+            if (anim) {
+                anim.SetFloat("Forward", (float)stream.ReceiveNext());
+                anim.SetFloat("Turn", (float)stream.ReceiveNext());
+                anim.SetFloat("Jump", (float)stream.ReceiveNext());
+                anim.SetBool("OnGround", (bool)stream.ReceiveNext());
+                anim.SetBool("InvokeSpell", (bool)stream.ReceiveNext());
+                anim.SetInteger("SpellType", (int)stream.ReceiveNext());
+            }
 
-			
-			if(gotFirstUpdate == false) {
-				transform.position = this.correctPlayerPos;
-				transform.rotation = this.correctPlayerRot;
-				gotFirstUpdate = true;
-			}
-			
-		}
-	}
 
-	[PunRPC]
-	void setNick (string nick) {
-		name = nick;
-		namePlate.setName (nick, NamePlate.COLOR_NORMAL);
-	}
+            if (gotFirstUpdate == false) {
+                transform.position = this.correctPlayerPos;
+                transform.rotation = this.correctPlayerRot;
+                gotFirstUpdate = true;
+            }
 
-	private static Vector3 getVector3(string rString){
-		string[] temp = rString.Substring(1, rString.Length-2).Split(',');
-		float x = float.Parse(temp[0]);
-		float y = float.Parse(temp[1]);
-		float z = float.Parse(temp[2]);
-		Vector3 rValue = new Vector3(x,y,z);
-		return rValue;
-	}
+        }
+    }
 
-	/**
+    [PunRPC]
+    void setNick(string nick) {
+        name = nick;
+        namePlate.setName(nick, NamePlate.COLOR_NORMAL);
+    }
+
+    private static Vector3 getVector3(string rString) {
+        string[] temp = rString.Substring(1, rString.Length - 2).Split(',');
+        float x = float.Parse(temp[0]);
+        float y = float.Parse(temp[1]);
+        float z = float.Parse(temp[2]);
+        Vector3 rValue = new Vector3(x, y, z);
+        return rValue;
+    }
+
+    /**
 	* Adds an item to current user
 	*
 	* @param int id item id
@@ -368,54 +375,73 @@ public class Player : Photon.MonoBehaviour {
 	* 
 	* @return bool
 	 */
-	public bool addItem (int id, int amount = 1) {
+    public bool addItem(int id, int amount = 1) {
 
-		bool success;
-		CharacterItem characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE item == ?", id);
-		
-		if (characterItem != null) {
-			characterItem.quantity += amount;
-			characterItem.save();
-			success = true;
-		} else {
-			CharacterItem item = new CharacterItem {
-				item = id,
-				quantity = amount
-			};
-			success = item.create ();
-		}
-		Debug.Log(success);
-		// reload inventory
-		if (success) {
-			try {
-				Inventory.Instance.reload();
-			} catch (Exception) {}
-		}
+        bool success;
+        CharacterItem characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE item == ?", id);
 
-		return success;
-	}
+        if (characterItem != null) {
+            characterItem.quantity += amount;
+            characterItem.save();
+            success = true;
+        } else {
+            CharacterItem item = new CharacterItem {
+                item = id,
+                quantity = amount
+            };
+            success = item.create();
+        }
+        Debug.Log(success);
+        // reload inventory
+        if (success) {
+            try {
+                Inventory.Instance.reload();
+            } catch (Exception) { }
+        }
 
-	public void freeze () {
-		transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
-		anim.SetBool("Jumping", false);
-		anim.SetFloat("Speed", 0);
+        return success;
+    }
 
-		Rigidbody rigidbody = GetComponent<Rigidbody>();
-		rigidbody.velocity = Vector3.zero;
-		rigidbody.angularVelocity = Vector3.zero;
-	}
+    public void freeze() {
+        transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = false;
+        anim.SetBool("Jumping", false);
+        anim.SetFloat("Speed", 0);
 
-	public void unfreeze () {
-		transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
-	}
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+    }
 
-	[PunRPC]
-	public void getDamage (int amount, int attacker) {
+    public void unfreeze() {
+        transform.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+    }
+
+    [PunRPC]
+    public void getDamage(int amount, int attacker) {
         isInCombat = true;
         health -= amount;
 
         if (target == null) {
-			PhotonView.Find(attacker).gameObject.GetComponent<NPC>().setSelected();
-		}
-	}
+            PhotonView.Find(attacker).gameObject.GetComponent<NPC>().setSelected();
+        }
+    }
+
+    // Has killed someone/NPC or made an assistance
+    [PunRPC]
+    public void addKill(int id, int type, int level, int damage, int totalHealth, int expValue)
+    {
+        int wonExp = 0;
+        int levelDiff = level - level;
+
+        // do not give exp if player has > 3 levels than the killed npc
+        if (levelDiff > -2)
+        {
+            if (damage >= totalHealth) {
+                wonExp = expValue;
+            } else {
+                wonExp = expValue / 2;
+            }
+            exp += wonExp + (levelDiff * 10);
+        }
+    }
 }
