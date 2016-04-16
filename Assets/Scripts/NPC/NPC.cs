@@ -340,6 +340,10 @@ public class NPC : Photon.MonoBehaviour
         if (!target) {
             target = attacker;
         }
+		// show our numeric damage in UI
+        if (player.isMine) {
+            namePlate.setDamage(damage);
+        }
     }
 
 	public IEnumerator restoreHealth () {
