@@ -9,6 +9,7 @@ public class ConfigMenu : MonoBehaviour {
 	public Dropdown qdrop;
 	public Toggle ssao;
 	public Toggle dof;
+	public Toggle bloom;
 	public Toggle performance;
 	public GameObject rightbar;
 	public GameObject perftext;
@@ -47,6 +48,10 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsSetDOF(){
 		Camera.main.GetComponent<DepthOfField> ().enabled = dof.isOn;
+	}
+
+	public void OptionsSetBloom(){
+		Camera.main.GetComponent<Bloom> ().enabled = bloom.isOn;
 	}
 
 	public void OptionsRightBar(){
