@@ -25,6 +25,18 @@ public class Task
     public int id;
     public int quest;
     public int taskId; // iBoxDB forces to have a unique id
+    public string _phrase;
+    public string phrase {
+        get {
+            if (_phrase == null || _phrase == "") {
+                return buildPhrase();
+            }
+            return _phrase;
+        }
+        set {
+            _phrase = value;
+        }
+    }
     public int _type;
     public int _action;
     public ActorType type
@@ -55,7 +67,7 @@ public class Task
     public bool isCompleted = false;
     public TaskUI ui;
 
-    public string buildName ()
+    public string buildPhrase()
     {
         string name = "";
 

@@ -86,7 +86,7 @@ public class PlayerPanel : MonoBehaviour {
                 taskInst.transform.SetParent(questContainer.transform);
                 task.ui = taskInst.GetComponent<TaskUI>();
 
-                task.ui.setName(task.buildName());
+                task.ui.setName(task.phrase);
                 task.ui.setStatus(task.isCompleted);
             }
         }
