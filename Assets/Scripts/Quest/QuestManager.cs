@@ -28,7 +28,10 @@ public class QuestManager : MonoBehaviour
             }
             quests[task.quest].tasks.Add(task.id, task);
         }
-        PlayerPanel.Instance.showActiveQuests();
+        try {
+            PlayerPanel.Instance.showActiveQuests();
+        } catch (System.Exception) {
+        }
     }
 
     public void addQuest (Quest quest) {

@@ -229,7 +229,6 @@ public class Player : Photon.MonoBehaviour {
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>());
             Destroy(GetComponent<Rigidbody>());
         }
-        anim = GetComponent<Animator>();
     }
 
     void Update()

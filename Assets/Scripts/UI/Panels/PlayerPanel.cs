@@ -21,9 +21,15 @@ public class PlayerPanel : MonoBehaviour {
         Exp = 3
     }
 
-    void Start () {
+    void Start ()
+    {
 		Instance = this;
-	}
+
+        try {
+            showActiveQuests();
+        } catch (System.Exception) {
+        }
+    }
 
 	public void showTargetPanel (Transform target) {
 		targetPanel.gameObject.SetActive(true);
