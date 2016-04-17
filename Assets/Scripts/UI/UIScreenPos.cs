@@ -12,7 +12,7 @@ public class UIScreenPos : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (follow == null || Camera.main == null) {
             return;
         }
