@@ -329,12 +329,12 @@ public class Player : Photon.MonoBehaviour {
             // We own this player: send the others our data
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(anim.GetFloat("Forward"));
+            /*stream.SendNext(anim.GetFloat("Forward"));
             stream.SendNext(anim.GetFloat("Turn"));
             stream.SendNext(anim.GetFloat("Jump"));
             stream.SendNext(anim.GetBool("OnGround"));
             stream.SendNext(anim.GetBool("InvokeSpell"));
-            stream.SendNext(anim.GetInteger("SpellType"));
+            stream.SendNext(anim.GetInteger("SpellType"));*/
         }
         else
         {
@@ -343,12 +343,12 @@ public class Player : Photon.MonoBehaviour {
             this.correctPlayerRot = (Quaternion)stream.ReceiveNext();
 
             if (anim) {
-                anim.SetFloat("Forward", (float)stream.ReceiveNext());
+                /*anim.SetFloat("Forward", (float)stream.ReceiveNext());
                 anim.SetFloat("Turn", (float)stream.ReceiveNext());
                 anim.SetFloat("Jump", (float)stream.ReceiveNext());
                 anim.SetBool("OnGround", (bool)stream.ReceiveNext());
                 anim.SetBool("InvokeSpell", (bool)stream.ReceiveNext());
-                anim.SetInteger("SpellType", (int)stream.ReceiveNext());
+                anim.SetInteger("SpellType", (int)stream.ReceiveNext());*/
             }
 
 
