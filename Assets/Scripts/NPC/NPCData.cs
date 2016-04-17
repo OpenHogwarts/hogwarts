@@ -31,10 +31,10 @@ public class NPCData {
 	}
 	public int damage = 50;
 	public int expValue = 1;
-	public float attackRange = 1;
+	public float attackRange = 2;
 	public bool isAggresive = false;
 	public float distanceToLoseAggro = 30;
-	public float runSpeed = 8;
+	public float runSpeed = 5;
 	public float attacksPerSecond = 1;
 	private List<WaypointData> _waypoints = new List<WaypointData> ();
 	private bool firstSearch = true;

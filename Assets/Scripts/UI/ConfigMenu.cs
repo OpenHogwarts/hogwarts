@@ -78,7 +78,10 @@ public class ConfigMenu : MonoBehaviour {
 		Player.Instance.health += n;
 	}
 
-	void Update(){
-		GameObject.Find("Luces").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider> ().value;
-	}
+    public void updateDaytime () {
+        try {
+            GameObject.Find("Luces").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider>().value;
+        } catch (System.Exception) {
+        }
+    }
 }
