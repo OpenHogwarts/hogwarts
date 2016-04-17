@@ -67,7 +67,8 @@ public class NPCData {
 	public enum creatureSubRace {
 		Normal = 1,
 		Seller = 2,
-	}
+        Quest = 3,
+    }
 
 	public void save () {
 		Service.db.Update (TABLE_NAME, this);

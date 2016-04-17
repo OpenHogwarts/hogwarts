@@ -408,9 +408,17 @@ public class NPC : Photon.MonoBehaviour
             texture = GameCursor.Buy;
         } else if (data.isAggresive) {
 			texture = GameCursor.Attack;
-		} else if (data.subRace == NPCData.creatureSubRace.Seller) {
-			texture = GameCursor.Buy;
-		}
+		} else {
+            switch (data.subRace)
+            {
+                case NPCData.creatureSubRace.Seller:
+                    texture = GameCursor.Buy;
+                    break;
+                case NPCData.creatureSubRace.Quest:
+                    texture = GameCursor.QuestAvailable;
+                    break;
+            }
+        }
 
 		if (texture != null) {
 			Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);

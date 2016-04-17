@@ -32,4 +32,28 @@ public class GameCursor {
 			return _taxi;
 		}
 	}
+    public static Texture2D _questAvailable;
+    public static Texture2D QuestAvailable
+    {
+        get
+        {
+            if (_questAvailable == null)
+            {
+                _questAvailable = Resources.Load("2DTextures/Cursor/QuestAvailable") as Texture2D;
+            }
+            return _questAvailable;
+        }
+    }
+    public static Texture2D _questComplete;
+    public static Texture2D QuestComplete
+    {
+        get
+        {
+            if (_questComplete == null)
+            {
+                _questComplete = Resources.Load("2DTextures/Cursor/QuestComplete") as Texture2D;
+            }
+            return _questComplete;
+        }
+    }
 }

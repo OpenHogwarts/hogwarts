@@ -35,8 +35,11 @@ public class Service {
 				server.GetConfig ().EnsureTable<NPCTemplate> ("npc_template", "id");
 				server.GetConfig ().EnsureTable<WaypointData> ("waypoint_data", "id");
 				server.GetConfig ().EnsureIndex<WaypointData> ("waypoint_data", isNotUnique, "npc");
-				
-				_db = server.Open ();
+
+                server.GetConfig().EnsureTable<Task>("tasks", "taskId");
+                server.GetConfig().EnsureIndex<Task>("tasks", isNotUnique, "quest");
+
+                _db = server.Open ();
 			}
 			return _db;
 		}

@@ -92,7 +92,6 @@ public class DBSetup : MonoBehaviour {
 		npc.name = "Mike Ghole";
 		npc.subRace = NPCData.creatureSubRace.Seller;
 		npc.create ();
-
 		// END -----------------
 
 		npc = NPCTemplate.fillById(NPCData.creatureTemplate.CastleSpider, 5);
@@ -106,12 +105,19 @@ public class DBSetup : MonoBehaviour {
         waypoints.Add(new Vector3(0.35f, 0.00f, 3.60f));
 
         insertWaypointsTo(npc.id, waypoints);
-		// END -----------------
+        // END -----------------
+
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 25);
+        npc.id = i++;
+        npc.name = "Instructor";
+        npc.subRace = NPCData.creatureSubRace.Quest;
+        npc.create();
+        // END -----------------
 
 
-	}
+    }
 
-	public static void insertWaypointsTo (int id, List<Vector3> waypoints) {
+    public static void insertWaypointsTo (int id, List<Vector3> waypoints) {
 		WaypointData wp;
 
 		foreach (Vector3 waypoint in waypoints) {
