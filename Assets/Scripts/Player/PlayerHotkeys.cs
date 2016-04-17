@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerHotkeys : MonoBehaviour
 {	
 	public static bool isClickingATarget = false;
+	public GameObject lumos;
 
 	void Update () {
 
@@ -38,6 +39,9 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) {
             Chat.Instance.input2.ActivateInputField();
         }
+		if(Input.GetKeyDown(KeyCode.Q)){
+			lumos.SetActive (!lumos.activeSelf);
+		}
 
         if (Player.Instance.target)
 		{

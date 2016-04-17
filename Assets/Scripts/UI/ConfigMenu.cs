@@ -16,6 +16,7 @@ public class ConfigMenu : MonoBehaviour {
 	public GameObject[] panel;
 	public GameObject player;
 	public GameObject dev;
+	public GameObject lightSlider;
 
 
 	void LoadCfg(){
@@ -75,5 +76,9 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void AddHP(int n){
 		Player.Instance.health += n;
+	}
+
+	void Update(){
+		GameObject.Find("Luces").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider> ().value;
 	}
 }
