@@ -72,6 +72,7 @@ public class Player : Photon.MonoBehaviour {
                     level += 1;
                 }
                 characterData.save();
+                PlayerPanel.Instance.showWonXP(value);
                 PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Exp, characterData.exp, XP_BASE * level);
             }
         }

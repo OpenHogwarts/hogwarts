@@ -31,10 +31,19 @@ public class PlayerPanel : MonoBehaviour {
 		targetPanel.gameObject.SetActive(false);
 	}
 
-    public void showWonXP (int amount) {
+    public void showWonXP (int amount)
+    {
+        Vector3 pos;
         GameObject inst = Instantiate(temporalTextPrefab) as GameObject;
-        inst.transform.parent = transform;
+        inst.transform.SetParent(transform);
 
+        inst.GetComponent<TemporalText>().setText("+" + amount, Color.yellow, TextAnchor.UpperCenter, 1);
+
+        inst.transform.localScale = transform.localScale;
+
+        pos = manaBar.transform.position;
+        pos.y += 100;
+        inst.transform.position = pos;
     }
 
     public void updateBar (BarType type, int current, int max)
