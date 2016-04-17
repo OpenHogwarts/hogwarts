@@ -85,7 +85,7 @@ public class PlayerPanel : MonoBehaviour {
         {
             questContainer = Instantiate(questPrefab) as GameObject;
             questContainer.transform.SetParent(activeQuestsContainer.transform);
-            quest.ui = questContainer.GetComponentInChildren<Text>();
+            quest.ui = questContainer.GetComponent<Text>();
             quest.ui.text = quest.name;
 
             foreach (Task task in quest.tasks.Values)
@@ -94,7 +94,7 @@ public class PlayerPanel : MonoBehaviour {
                 taskInst.transform.SetParent(questContainer.transform);
                 task.ui = taskInst.GetComponent<TaskUI>();
 
-                task.ui.setName(task.phrase);
+                task.ui.setPhrase(task.phrase);
                 task.ui.setStatus(task.isCompleted);
             }
         }

@@ -4,17 +4,16 @@ using System.Collections;
 
 public class TaskUI : MonoBehaviour
 {
-    public Text taskName;
-    public Text taskStatus;
+    private string text;
 
-	public void setName (string name) {
-        taskName.text = name;
+	public void setPhrase (string phrase) {
+        text = phrase;
     }
     public void setStatus (bool completed) {
         if (completed) {
-            taskStatus.text = "✔";
+            GetComponent<Text>().text = text + "✔";
         } else {
-            taskStatus.text = "✘";
+            GetComponent<Text>().text = text + "✘";
         }
     }
 }
