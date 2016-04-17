@@ -30,7 +30,7 @@ public class Player : Photon.MonoBehaviour {
             if (photonView.isMine)
             {
                 characterData.save();
-                healthBar.updateVertical(characterData.health, characterData.maxHealth);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Health, characterData.health, characterData.maxHealth);
                 startHealthRegeneration();
 
                 if (hasResurrected) {
@@ -72,7 +72,7 @@ public class Player : Photon.MonoBehaviour {
                     level += 1;
                 }
                 characterData.save();
-                expBar.updateHoritzontal(characterData.exp, XP_BASE * level);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Exp, characterData.exp, XP_BASE * level);
             }
         }
     }
@@ -91,7 +91,7 @@ public class Player : Photon.MonoBehaviour {
 
             if (photonView.isMine) {
                 characterData.save();
-                manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Mana, characterData.mana, characterData.maxMana);
                 startManaRegeneration();
             }
         }
@@ -198,10 +198,8 @@ public class Player : Photon.MonoBehaviour {
     private bool gotFirstUpdate = false;
     public Text nick;
 
-    public UIBar healthBar;
+    public Image healthBar;
     public Image healthBar2;
-    public UIBar expBar;
-    public UIBar manaBar;
 
     public NamePlate namePlate;
 
@@ -239,21 +237,21 @@ public class Player : Photon.MonoBehaviour {
 
                 photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
-                healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb").GetComponent<UIBar>();
+                healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb").GetComponent<Image>();
                 healthBar2 = GameObject.Find("Canvas/PlayerPanel/HP Orb 2").GetComponent<Image>();
-                expBar = GameObject.Find("Canvas/PlayerPanel/ExpBar").GetComponent<UIBar>();
-                manaBar = GameObject.Find("Canvas/PlayerPanel/Mana Semicircle").GetComponent<UIBar>();
 
-                healthBar.updateVertical(characterData.health, characterData.maxHealth);
-                expBar.updateHoritzontal(characterData.exp, XP_BASE * level);
-                manaBar.updateHoritzontal(characterData.mana, characterData.maxMana);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Health, characterData.health, characterData.maxHealth);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Exp, characterData.exp, XP_BASE * level);
+                PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Mana, characterData.mana, characterData.maxMana);
 
                 gotFirstUpdate = true;
             }
 
-            healthBar.GetComponent<Image>().fillAmount = Mathf.Lerp(healthBar.GetComponent<Image>().fillAmount, health / 270f, 4f * Time.deltaTime);
-            healthBar2.fillAmount = Mathf.Lerp(healthBar.GetComponent<Image>().fillAmount, health / 270f, 0.5f * Time.deltaTime);
-            namePlate.health.fillAmount = Mathf.Lerp(namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
+            if (healthBar.fillAmount != health) {
+                healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / 270f, 4f * Time.deltaTime);
+                healthBar2.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / 270f, 0.5f * Time.deltaTime);
+                namePlate.health.fillAmount = Mathf.Lerp(namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
+            }
 
             //looks like player is falling
             if (transform.position.y < -100) {

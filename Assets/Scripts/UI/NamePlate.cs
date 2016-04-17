@@ -16,7 +16,7 @@ public class NamePlate : MonoBehaviour {
 
 	void Start() {
 		gameObject.name = transform.parent.name;
-		transform.parent = GameObject.Find ("Canvas/Plates").transform;
+		transform.SetParent(GameObject.Find ("Canvas/Plates").transform);
 	}
 
 	public void setName (string name, Color color) {
@@ -30,7 +30,7 @@ public class NamePlate : MonoBehaviour {
     public void setDamage (int amount, bool isDPS = false)
     {
         GameObject inst = Instantiate(dmgPrefab) as GameObject;
-        inst.transform.parent = dmgParent.transform;
+        inst.transform.SetParent(dmgParent.transform);
 
         if (isDPS) {
 			inst.GetComponent<TemporalText>().setText("-" + amount, Color.blue, TextAnchor.UpperRight, 2);
