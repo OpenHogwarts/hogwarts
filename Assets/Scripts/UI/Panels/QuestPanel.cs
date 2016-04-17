@@ -16,10 +16,17 @@ public class QuestPanel : MonoBehaviour
         title.text = quest.name;
 
         if (quest.isCompleted) {
-            text.text = quest.after;
+            text.text = processText(quest.after);
         } else {
-            text.text = quest.pre;
+            text.text = processText(quest.pre);
         }
+    }
+
+    private string processText (string message)
+    {
+        message = message.Replace("{{username}}", Player.Instance.characterData.name);
+
+        return message;
     }
 
     public void OnAccept ()

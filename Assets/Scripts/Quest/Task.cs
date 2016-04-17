@@ -53,6 +53,40 @@ public class Task
     public int quantity = 0;
     public int currentQuantity = 0;
     public bool isCompleted = false;
+    public TaskUI ui;
+
+    public string buildName ()
+    {
+        string name = "";
+
+        switch (action) {
+            case ActionType.Kill:
+                name += "Mata";
+                break;
+            case ActionType.Visit:
+                name += "Ve a";
+                break;
+            case ActionType.Talk:
+                name += "Habla con";
+                break;
+            default:
+                break;
+        }
+        name += " ";
+
+        switch (type) {
+            case ActorType.NPC:
+                var data = NPC.get(id);
+                name += data.name;
+                break;
+        }
+        name += " ";
+
+        if (quantity > 1) {
+            name += currentQuantity + "/" + quantity;
+        }
+        return name;
+    }
 
     public void save()
     {

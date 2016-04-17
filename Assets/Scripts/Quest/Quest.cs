@@ -9,7 +9,7 @@ public class Quest
     public string name;
     public string pre;
     public string after;
-    public List<Task> tasks = new List<Task>();
+    public Dictionary<int, Task> tasks = new Dictionary<int, Task>();
 
     private bool _isCompleted = false;
     public bool isCompleted

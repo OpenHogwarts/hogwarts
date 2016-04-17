@@ -22,23 +22,25 @@ public class QuestManager : MonoBehaviour
             if (!quests.ContainsKey(task.quest))
             {
                 quest = allQuests[task.quest];
-                quest.tasks = new List<Task>(); // tasks are begin recovered from db
+                quest.tasks = new Dictionary<int, Task>(); // tasks are begin recovered from db
 
                 quests.Add(task.quest, quest);
             }
-            quests[task.quest].tasks.Add(task);
+            quests[task.quest].tasks.Add(task.id, task);
         }
+        PlayerPanel.Instance.showActiveQuests();
     }
 
     public void addQuest (Quest quest) {
         quests.Add(quest.id, quest);
+        PlayerPanel.Instance.showActiveQuests();
     }
 
     public void sendAction(int id, Task.ActorType type, Task.ActionType action, int quantity = 0)
     {
         foreach (Quest quest in quests.Values)
         {
-            foreach (Task task in quest.tasks)
+            foreach (Task task in quest.tasks.Values)
             {
                 if (task.id == id && task.type == type && task.action == action)
                 {
@@ -99,7 +101,7 @@ public class QuestManager : MonoBehaviour
         task.type = Task.ActorType.NPC;
         task.action = Task.ActionType.Kill;
 
-        quest.tasks.Add(task);
+        quest.tasks.Add(task.id, task);
 
         allQuests.Add(quest.id, quest);
         // -- end quest

@@ -10,6 +10,9 @@ public class PlayerPanel : MonoBehaviour {
     public Image expBar;
     public Image manaBar;
     public Text healthBarText;
+    public GameObject questPrefab;
+    public GameObject taskPrefab;
+    public GameObject activeQuestsContainer;
 
     public enum BarType
     {
@@ -64,6 +67,28 @@ public class PlayerPanel : MonoBehaviour {
             case BarType.Exp:
                 expBar.fillAmount = fillAmount;
                 break;
+        }
+    }
+
+    public void showActiveQuests()
+    {
+        GameObject questContainer;
+        GameObject taskInst;
+
+        foreach (Quest quest in QuestManager.Instance.quests.Values)
+        {
+            questContainer = Instantiate(questPrefab) as GameObject;
+            questContainer.transform.SetParent(activeQuestsContainer.transform);
+
+            foreach (Task task in quest.tasks.Values)
+            {
+                taskInst = Instantiate(taskPrefab) as GameObject;
+                taskInst.transform.SetParent(questContainer.transform);
+                task.ui = taskInst.GetComponent<TaskUI>();
+
+                task.ui.setName(task.buildName());
+                task.ui.setStatus(task.isCompleted);
+            }
         }
     }
 }

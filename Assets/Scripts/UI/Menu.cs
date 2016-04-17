@@ -37,8 +37,6 @@ public class Menu : MonoBehaviour {
 			showPanel("MainPanel");
 			break;
 		default:
-            gameObject.AddComponent<QuestManager>();
-
             showPanel ("PlayerPanel");
 			showPanel ("ChatPanel", false);
 			showPanel ("TopMenu", false);
