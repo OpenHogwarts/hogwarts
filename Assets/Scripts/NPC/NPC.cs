@@ -138,7 +138,7 @@ public class NPC : Photon.MonoBehaviour
 		if (this.isDead)
 		{
             foreach (KeyValuePair<Player, int> entry in attackers) {
-                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, photonView.viewID, 1, data.level, entry.Value, data.health, data.expValue);
+                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.template, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue);
             }
             anim.Play(this.deathAnimation.name);
 		}

@@ -44,14 +44,13 @@ public class QuestManager : MonoBehaviour
             {
                 if (task.id == id && task.type == type && task.action == action)
                 {
-                    if (task.quantity > 0)
-                    {
+                    if (task.quantity > 0) {
                         task.currentQuantity += quantity;
                     }
 
-                    if (task.quantity == 0 || task.quantity == task.currentQuantity)
-                    {
+                    if (task.quantity == 0 || task.quantity == task.currentQuantity)  {
                         task.isCompleted = true;
+                        task.ui.setStatus(task.isCompleted);
                     }
                     task.save();
 

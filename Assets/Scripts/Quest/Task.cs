@@ -88,7 +88,7 @@ public class Task
 
         switch (type) {
             case ActorType.NPC:
-                var data = NPC.get(id);
+                NPCTemplate data = NPCTemplate.get(id);
                 name += data.name;
                 break;
         }

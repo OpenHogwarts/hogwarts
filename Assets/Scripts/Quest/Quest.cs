@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -10,6 +11,7 @@ public class Quest
     public string pre;
     public string after;
     public Dictionary<int, Task> tasks = new Dictionary<int, Task>();
+    public Text ui;
 
     private bool _isCompleted = false;
     public bool isCompleted
