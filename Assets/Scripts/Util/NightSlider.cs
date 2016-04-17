@@ -20,6 +20,6 @@ public class NightSlider : MonoBehaviour {
 		secLight.GetComponent<Light> ().color = Color.Lerp (secLightDay, secLightNight, slider);
 		mainLight.transform.localEulerAngles = Vector3.Lerp (new Vector3 (dayAngle, 200, 0), new Vector3 (nightAngle, 200, 0), slider);
 		RenderSettings.skybox.SetFloat("_Exposure", Mathf.Lerp(1f, 0.75f, slider));
-		RenderSettings.ambientIntensity = Mathf.Lerp (1.1f, 0.6f, slider);
+		RenderSettings.ambientIntensity = Mathf.Lerp (1.1f, 0.5f, slider);
 	}
 }

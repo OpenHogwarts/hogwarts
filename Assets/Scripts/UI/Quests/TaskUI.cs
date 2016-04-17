@@ -11,9 +11,9 @@ public class TaskUI : MonoBehaviour
     }
     public void setStatus (bool completed) {
         if (completed) {
-            GetComponent<Text>().text = text + "✔";
+			GetComponent<Text>().text = "✔ " + text;
         } else {
-            GetComponent<Text>().text = text + "✘";
+			GetComponent<Text>().text = "✘ " + text;
         }
     }
 }
