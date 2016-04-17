@@ -399,7 +399,11 @@ public class NPC : Photon.MonoBehaviour
 
 	public void OnMouseDown() {
 		setSelected (true);
-	}
+
+        if (!data.isAggresive) {
+            QuestManager.Instance.sendAction(data.template, Task.ActorType.NPC, Task.ActionType.Talk);
+        }
+    }
 
 	public void OnMouseOver () {
 		Texture2D texture = null;

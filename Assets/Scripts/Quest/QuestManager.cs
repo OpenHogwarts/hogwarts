@@ -105,6 +105,14 @@ public class QuestManager : MonoBehaviour
 
         quest.tasks.Add(task.id, task);
 
+        task = new Task();
+        task.taskId = taskId++;
+        task.id = (int)NPCData.creatureTemplate.Human;
+        task.type = Task.ActorType.NPC;
+        task.action = Task.ActionType.Talk;
+
+        quest.tasks.Add(task.id, task);
+
         allQuests.Add(quest.id, quest);
         // -- end quest
     }
