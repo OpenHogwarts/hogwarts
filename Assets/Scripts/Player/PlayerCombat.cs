@@ -41,6 +41,7 @@ public class PlayerCombat : MonoBehaviour {
 
 		// Wait for choosen spell cast time.
 		Player.Instance.anim.SetBool("InvokeSpell", true);
+		Menu._instance.Menus[13].GetComponent<CastingPanel>().Cast(spell.spellName, spell.spellCastTime);
 		yield return new WaitForSeconds(spell.spellCastTime-spellAnimTime);
 
 		Player.Instance.anim.SetInteger("SpellType", 1);
