@@ -10,6 +10,7 @@ public class PlayerPanel : MonoBehaviour {
     public Image expBar;
     public Image manaBar;
     public Text healthBarText;
+	public GameObject questFlag;
     public GameObject questPrefab;
     public GameObject taskPrefab;
     public GameObject activeQuestsContainer;
@@ -87,6 +88,10 @@ public class PlayerPanel : MonoBehaviour {
             questContainer.transform.SetParent(activeQuestsContainer.transform);
             quest.ui = questContainer.GetComponent<Text>();
             quest.ui.text = quest.name;
+			taskInst = Instantiate (questFlag) as GameObject;
+			taskInst.transform.SetParent(questContainer.transform);
+			taskInst.GetComponentInChildren<Text> ().text = quest.name;
+			taskInst.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (0, -20, 0);
 
             foreach (Task task in quest.tasks.Values)
             {
