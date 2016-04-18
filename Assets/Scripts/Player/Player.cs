@@ -442,7 +442,7 @@ public class Player : Photon.MonoBehaviour {
 
     // Has killed someone/NPC or made an assistance
     [PunRPC]
-    public void addKill(int id, Task.ActorType type, int level, int damage, int totalHealth, int expValue)
+    public void addKill(int id, Task.ActorType type, int level, int damage, int totalHealth, int expValue, int templateId = 0)
     {
         int wonExp = 0;
         int levelDiff = level - level;
@@ -458,6 +458,6 @@ public class Player : Photon.MonoBehaviour {
             exp += wonExp + (levelDiff * 10);
         }
 
-        QuestManager.Instance.sendAction(id, type, Task.ActionType.Kill, 1);
+        QuestManager.Instance.sendAction(id, type, Task.ActionType.Kill, 1, templateId);
     }
 }

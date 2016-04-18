@@ -138,7 +138,7 @@ public class NPC : Photon.MonoBehaviour
 		if (this.isDead)
 		{
             foreach (KeyValuePair<Player, int> entry in attackers) {
-                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.template, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue);
+                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.id, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue, data.template);
             }
             anim.Play(this.deathAnimation.name);
 		}
@@ -401,7 +401,7 @@ public class NPC : Photon.MonoBehaviour
 		setSelected (true);
 
         if (!data.isAggresive) {
-            QuestManager.Instance.sendAction(data.template, Task.ActorType.NPC, Task.ActionType.Talk);
+            QuestManager.Instance.sendAction(data.id, Task.ActorType.NPC, Task.ActionType.Talk, 0, data.template);
         }
     }
 

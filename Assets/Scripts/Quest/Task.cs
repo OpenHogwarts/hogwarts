@@ -22,6 +22,12 @@ public class Task
         Item = 3
     }
 
+    public enum IdType
+    {
+        Id = 1,
+        Template = 2,
+    }
+
     public int id;
     public int quest;
     public int taskId; // iBoxDB forces to have a unique id
@@ -37,8 +43,21 @@ public class Task
             _phrase = value;
         }
     }
+
+    public int _idType = 2;
+    public IdType idType
+    {
+        get
+        {
+            return (IdType)_idType;
+        }
+        set
+        {
+            _idType = (int)value;
+        }
+    }
+
     public int _type;
-    public int _action;
     public ActorType type
     {
         get
@@ -50,6 +69,8 @@ public class Task
             _type = (int)value;
         }
     }
+
+    public int _action;
     public ActionType action
     {
         get
@@ -88,8 +109,13 @@ public class Task
 
         switch (type) {
             case ActorType.NPC:
-                NPCTemplate data = NPCTemplate.get(id);
-                name += data.name;
+                if (idType == IdType.Template) {
+                    NPCTemplate data = NPCTemplate.get(id);
+                    name += data.name;
+                } else {
+                    NPCData data = NPC.get(id);
+                    name += data.name;
+                }
                 break;
         }
         name += " ";

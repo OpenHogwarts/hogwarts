@@ -26,7 +26,7 @@ public class QuestManager : MonoBehaviour
 
                 quests.Add(task.quest, quest);
             }
-            quests[task.quest].tasks.Add(task.id, task);
+            quests[task.quest].tasks.Add(task.taskId, task);
         }
         try {
             PlayerPanel.Instance.showActiveQuests();
@@ -39,14 +39,17 @@ public class QuestManager : MonoBehaviour
         PlayerPanel.Instance.showActiveQuests();
     }
 
-    public void sendAction(int id, Task.ActorType type, Task.ActionType action, int quantity = 0)
+    public void sendAction(int id, Task.ActorType type, Task.ActionType action, int quantity = 0, int extraId = 0)
     {
         foreach (Quest quest in quests.Values)
         {
             foreach (Task task in quest.tasks.Values)
             {
-                if (task.id == id && task.type == type && task.action == action)
-                {
+                if (task.type == type && task.action == action &&
+                    ( (task.type != Task.ActorType.NPC && task.id == id) ||
+                      (task.type == Task.ActorType.NPC && ((task.idType == Task.IdType.Id && task.id == id) || (task.idType == Task.IdType.Template && task.id == extraId)))
+                    )
+                ) {
                     if (task.quantity > 0) {
                         task.currentQuantity += quantity;
                     }
@@ -65,8 +68,7 @@ public class QuestManager : MonoBehaviour
 
     public List<int> getByNPC(int id)
     {
-        if (npcQuests.ContainsKey(id))
-        {
+        if (npcQuests.ContainsKey(id)) {
             return npcQuests[id];
         }
         return new List<int>();
@@ -74,8 +76,7 @@ public class QuestManager : MonoBehaviour
 
     private void assignToNPC(Quest quest)
     {
-        if (!npcQuests.ContainsKey(quest.assigner))
-        {
+        if (!npcQuests.ContainsKey(quest.assigner)) {
             npcQuests.Add(quest.assigner, new List<int>());
         }
         npcQuests[quest.assigner].Add(quest.id);
@@ -99,19 +100,21 @@ public class QuestManager : MonoBehaviour
         task = new Task();
         task.taskId = taskId++;
         task.id = (int)NPCData.creatureTemplate.CastleSpider;
+        task.idType = Task.IdType.Template;
         task.quantity = 1;
         task.type = Task.ActorType.NPC;
         task.action = Task.ActionType.Kill;
 
-        quest.tasks.Add(task.id, task);
+        quest.tasks.Add(task.taskId, task);
 
         task = new Task();
         task.taskId = taskId++;
-        task.id = (int)NPCData.creatureTemplate.Human;
+        task.id = 1;
+        task.idType = Task.IdType.Id;
         task.type = Task.ActorType.NPC;
         task.action = Task.ActionType.Talk;
 
-        quest.tasks.Add(task.id, task);
+        quest.tasks.Add(task.taskId, task);
 
         allQuests.Add(quest.id, quest);
         // -- end quest
