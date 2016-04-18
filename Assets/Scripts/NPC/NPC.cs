@@ -56,7 +56,14 @@ public class NPC : Photon.MonoBehaviour
 	private bool isRanged;
 	private float timeSinceLastAttack;
 	private bool inCombat;
-	private bool isDead;
+	private bool isDead {
+        get {
+            if (health < 1) {
+                return true;
+            }
+            return false;
+        }
+    }
 	private bool EnableCombat;
 	private bool isUseless = false;
 	private bool isStunned = false;
@@ -75,8 +82,10 @@ public class NPC : Photon.MonoBehaviour
 	private Vector3 correctPlayerPos = Vector3.zero;
 	private Quaternion correctPlayerRot = Quaternion.identity;
 	private bool gotFirstUpdate = false;
+    private bool killNotiSent = false;
     private bool isLooted = false;
     private Dictionary<Player, int> attackers = new Dictionary<Player, int>();
+    private Vector3 originalPosition;
 
     public NamePlate namePlate;
 	
@@ -103,18 +112,25 @@ public class NPC : Photon.MonoBehaviour
 		}
 		namePlate.setName (data.name, color);
 		namePlate.setLevel (data.level);
-	}
+        originalPosition = transform.position;
+    }
 	
 	private void Update()
 	{
-        if (isDead) {
-            return;
-        }
+        if (isDead)
+        {
+            if (!killNotiSent && PhotonNetwork.isMasterClient)
+            {
+                namePlate.health.fillAmount = 0;
 
-        // check if target has died
-        if (target && target.GetComponent<Player>().isDead) {
-            EnableCombat = false;
-            target = null;
+                foreach (KeyValuePair<Player, int> entry in attackers) {
+                    entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.id, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue, data.template);
+                }
+                anim.Play(this.deathAnimation.name);
+                NPCManager.Instance.prepareRespawn(this);
+                killNotiSent = true;
+            }
+            return;
         }
 
         if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
@@ -128,104 +144,98 @@ public class NPC : Photon.MonoBehaviour
 			if (data.subRace != NPCData.creatureSubRace.Normal || !PhotonNetwork.isMasterClient) {return;}
 		}
 
-		if (this.EnableCombat) {
+        // check if target has died
+        if (target && target.GetComponent<Player>().isDead) {
+            EnableCombat = false;
+            target = null;
+        }
+
+        if (this.EnableCombat) {
 			this.timeSinceLastAttack += Time.deltaTime;
 		}
+		
+		float num = 0;
+		distanceFromIPos = Vector3.Distance(this.transform.position, this.initialPos);
 
-		if (this.health < 1) {
-			this.isDead = true;
+		if (isTooFar()) {
+			backToIPos = true;
+		} else if (this.transform.position == initialPos) {
+			backToIPos = false;
 		}
-		if (this.isDead)
+
+		if (target != null) {
+			num = Vector3.Distance(this.transform.position, target.transform.position);
+
+			if (this.inCombat && !isTooFar() || num < data.distanceToLoseAggro && data.isAggresive && !isTooFar()) {
+				this.EnableCombat = true;
+			} else {
+				this.EnableCombat = false;
+				this.inCombat = false;
+				this.target = null;
+			}
+		}
+
+		if (this.isKnockedBack)
 		{
-            foreach (KeyValuePair<Player, int> entry in attackers) {
-                entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.id, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue, data.template);
-            }
-            anim.Play(this.deathAnimation.name);
+			Transform transform = this.transform;
+			Vector3 vector3 = transform.position + (this.target.transform.forward * 15f * Time.deltaTime);
+			transform.position = vector3;
 		}
 		else
 		{
-			float num = 0;
-			distanceFromIPos = Vector3.Distance(this.transform.position, this.initialPos);
-
-			if (isTooFar()) {
-				backToIPos = true;
-			} else if (this.transform.position == initialPos) {
-				backToIPos = false;
+			if (this.isStunned) {
+				this.EnableCombat = false;
 			}
-
-			if (target != null) {
-				num = Vector3.Distance(this.transform.position, target.transform.position);
-
-				if (this.inCombat && !isTooFar() || num < data.distanceToLoseAggro && data.isAggresive && !isTooFar()) {
-					this.EnableCombat = true;
-				} else {
-					this.EnableCombat = false;
-					this.inCombat = false;
-					this.target = null;
-				}
-			}
-
-
-			if (this.isKnockedBack)
-			{
-				Transform transform = this.transform;
-				Vector3 vector3 = transform.position + (this.target.transform.forward * 15f * Time.deltaTime);
-				transform.position = vector3;
-			}
-			else
-			{
-				if (this.isStunned) {
-					this.EnableCombat = false;
-				}
 					
-				if (this.isUseless) {
-					return;
-				}
+			if (this.isUseless) {
+				return;
+			}
 					
-				if (this.EnableCombat)
+			if (this.EnableCombat)
+			{
+				this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.target.transform.position.x - this.transform.position.x), (this.target.transform.position.z - this.transform.position.z)) * 57.29578f, 0.0f);
+				if (Vector3.Distance(this.transform.position, this.target.transform.position) > data.attackRange)
 				{
-					this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.target.transform.position.x - this.transform.position.x), (this.target.transform.position.z - this.transform.position.z)) * 57.29578f, 0.0f);
-					if (Vector3.Distance(this.transform.position, this.target.transform.position) > data.attackRange)
-					{
-						anim.Play(this.runAnimation.name);
-						transform.position = Vector3.MoveTowards(this.transform.position, this.target.transform.position, data.runSpeed * Time.deltaTime);
-					}
-					if (this.timeSinceLastAttack > 1.0 / data.attacksPerSecond && !this.isAttacking && num < data.attackRange)
-					{
-						this.timeSinceLastAttack = 0.0f;
-						anim.Play(this.attackAnimation.name);
-						this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
-					}
-					else
-					{
-						if (anim.isPlaying) {
-							return;
-						}
-						anim.Play(this.idleAnimation.name);
-					}
+					anim.Play(this.runAnimation.name);
+					transform.position = Vector3.MoveTowards(this.transform.position, this.target.transform.position, data.runSpeed * Time.deltaTime);
 				}
-				else {
-					if (backToIPos) {
-						gotoInitialPoint();
-					} else {
-
-						if (waypoints.Count == 0) {
-							anim.Play(this.idleAnimation.name);
-						} else {
-							// run points in loop
-							if (currentWaypoint < waypoints.Count) {
-								followPoint ();
-							} else {
-								currentWaypoint = 0;
-							}
-						}
-					}
+				if (this.timeSinceLastAttack > 1.0 / data.attacksPerSecond && !this.isAttacking && num < data.attackRange)
+				{
+					this.timeSinceLastAttack = 0.0f;
+					anim.Play(this.attackAnimation.name);
+					this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
 				}
-					
+				else
+				{
+					if (anim.isPlaying) {
+						return;
+					}
+					anim.Play(this.idleAnimation.name);
+				}
 			}
-		}
+			else {
+				if (backToIPos) {
+					gotoInitialPoint();
+				} else {
 
-		namePlate.health.fillAmount = Mathf.Lerp (namePlate.health.fillAmount, health / (float)maxHealth, 4f * Time.deltaTime);
+					if (waypoints.Count == 0) {
+						anim.Play(this.idleAnimation.name);
+					} else {
+						// run points in loop
+						if (currentWaypoint < waypoints.Count) {
+							followPoint ();
+						} else {
+							currentWaypoint = 0;
+						}
+					}
+				}
+			}
+					
+		}
+		
+        if (health != maxHealth) {
+            namePlate.health.fillAmount = Mathf.Lerp(namePlate.health.fillAmount, health / (float)maxHealth, 4f * Time.deltaTime);
+        }
 	}
 	
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -257,11 +267,26 @@ public class NPC : Photon.MonoBehaviour
 		return false;
 	}
 
+    public void reset ()
+    {
+        health = maxHealth;
+        namePlate.health.fillAmount = health;
+        target = null;
+        EnableCombat = false;
+
+        transform.position = originalPosition;
+        currentWaypoint = 0;
+        attackers = new Dictionary<Player, int>();
+        isLooted = false;
+		killNotiSent = false;
+    }
+
 	/**
 	 * Points NPC back to initial position
 	 *
 	 */
-	public void gotoInitialPoint () {
+	public void gotoInitialPoint ()
+    {
 		anim.Play(this.runAnimation.name);
 		this.transform.position = Vector3.MoveTowards(this.transform.position, this.initialPos, data.runSpeed * Time.deltaTime);
 		this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.initialPos.x - this.transform.position.x), (this.initialPos.z - this.transform.position.z)) * 57.29578f, 0.0f);
@@ -270,7 +295,6 @@ public class NPC : Photon.MonoBehaviour
 			StartCoroutine (restoreHealth());
 		}
 	}
-
 
 	public IEnumerator TakeDamageByFlagType(Spell spell, GameObject player)
 	{
@@ -313,7 +337,6 @@ public class NPC : Photon.MonoBehaviour
 		
 	}
 	
-	
 	public IEnumerator DOT (int damage, int over, int time, GameObject dotEffect, GameObject player)
 	{
 		int count = 0;
@@ -325,7 +348,6 @@ public class NPC : Photon.MonoBehaviour
 			getHit(damage, player, true);
 			PhotonNetwork.Instantiate("Particles/" + dotEffect.name, transform.position, Quaternion.identity, 0);
 			count ++;
-			
 		}
 		
 		check = false;
