@@ -241,8 +241,7 @@ public class Player : Photon.MonoBehaviour {
 
                 photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
 
-                healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb").GetComponent<Image>();
-                healthBar2 = GameObject.Find("Canvas/PlayerPanel/HP Orb 2").GetComponent<Image>();
+                healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb Bg/HP").GetComponent<Image>();
 
                 PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Health, characterData.health, characterData.maxHealth);
                 PlayerPanel.Instance.updateBar(PlayerPanel.BarType.Exp, characterData.exp, XP_BASE * level);
@@ -253,7 +252,6 @@ public class Player : Photon.MonoBehaviour {
 
             if (healthBar.fillAmount != health) {
                 healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / 270f, 4f * Time.deltaTime);
-                healthBar2.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / 270f, 0.5f * Time.deltaTime);
                 namePlate.health.fillAmount = Mathf.Lerp(namePlate.health.fillAmount, health / 270f, 4f * Time.deltaTime);
             }
 
