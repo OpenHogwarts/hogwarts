@@ -11,6 +11,7 @@ public class ConfigMenu : MonoBehaviour {
 	public Toggle dof;
 	public Toggle bloom;
 	public Toggle performance;
+	public Toggle map;
 	public GameObject rightbar;
 	public GameObject perftext;
 	public GameObject[] panel;
@@ -61,6 +62,14 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void OptionsPerformance(){
 		perftext.SetActive (performance.isOn);
+	}
+
+	public void MapPos(){
+		if (map.isOn) {
+			GameObject.Find ("Canvas/MiniMap").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (-6, 10, 1);
+		} else {
+			GameObject.Find ("Canvas/MiniMap").GetComponent<RectTransform> ().anchoredPosition = new Vector3 (-6, 66, 1);
+		}
 	}
 
 	public void ShowPanel(int p){
