@@ -14,6 +14,7 @@ public class PlayerPanel : MonoBehaviour {
     public GameObject questPrefab;
     public GameObject taskPrefab;
     public GameObject activeQuestsContainer;
+    public CastingPanel castingPanel;
 
     public enum BarType
     {
