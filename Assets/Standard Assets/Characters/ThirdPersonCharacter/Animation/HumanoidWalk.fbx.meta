@@ -484,7 +484,10 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    pivotNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 0
     animationRotationError: .5
     animationPositionError: .5
@@ -514,7 +517,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .369844049
+        functionName: Footstep
+        data: Step
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .907697737
+        functionName: Footstep
+        data: Step
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
@@ -529,6 +546,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -1371,3 +1389,4 @@ ModelImporter:
   additionalBone: 0
   userData: 
   assetBundleName: 
+  assetBundleVariant: 

@@ -144,14 +144,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (m_IsGrounded && move.magnitude > 0)
 			{
 				m_Animator.speed = m_AnimSpeedMultiplier;
-				gameObject.GetComponent<AudioSource> ().enabled = true;
-				gameObject.GetComponent<AudioSource> ().volume = Random.Range (0.05f, 0.12f); 
 			}
 			else
 			{
 				// don't use that while airborne
 				m_Animator.speed = 1;
-				gameObject.GetComponent<AudioSource> ().enabled = false;
 			}
 		}
 
