@@ -5,6 +5,7 @@ public class PlayerHotkeys : MonoBehaviour
 {	
 	public static bool isClickingATarget = false;
 	public GameObject lumos;
+	public GameObject broom;
 
 	void Update () {
 
@@ -39,8 +40,26 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) {
             Chat.Instance.input2.ActivateInputField();
         }
+
 		if(Input.GetKeyDown(KeyCode.Q)){
 			lumos.SetActive (!lumos.activeSelf);
+		}
+
+		if(Input.GetKeyDown(KeyCode.E)){
+			if (!broom.activeSelf) {
+				gameObject.GetComponent<Animator> ().SetBool ("Broomstick", true);
+				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = false;
+				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = false;
+				gameObject.GetComponent<Rigidbody> ().useGravity = false;
+				gameObject.GetComponent<BroomstickControl> ().enabled = true;
+			}else{
+				gameObject.GetComponent<Animator> ().SetBool ("Broomstick", false);
+				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = true;
+				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = true;
+				gameObject.GetComponent<Rigidbody> ().useGravity = true;
+				gameObject.GetComponent<BroomstickControl> ().enabled = false;
+			}
+			broom.SetActive (!broom.activeSelf);
 		}
 
         if (Player.Instance.target)
