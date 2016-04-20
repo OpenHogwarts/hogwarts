@@ -20,6 +20,8 @@ public class QuestPanel : MonoBehaviour
             text.text = processText(quest.after);
             acceptButton.SetActive(false);
             completeButton.SetActive(true);
+        } else if (QuestManager.Instance.quests.ContainsKey(quest.id)) { // quest accepted, but not finished
+            text.text = "Aún... Sigues aquí?... ¿Qué tal si vas por ahí a completarla?";
         } else {
             text.text = processText(quest.pre);
             acceptButton.SetActive(true);
