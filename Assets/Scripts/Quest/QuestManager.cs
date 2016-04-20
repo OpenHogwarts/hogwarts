@@ -39,6 +39,16 @@ public class QuestManager : MonoBehaviour
         PlayerPanel.Instance.showActiveQuests();
     }
 
+    public void completeQuest (Quest quest)
+    {
+        foreach (int id in quest.tasks.Keys) {
+            Service.db.Delete("tasks", id);
+        }
+
+        quests.Remove(quest.id);
+        Destroy(quest.ui.gameObject);
+    }
+
     public void sendAction(int id, Task.ActorType type, Task.ActionType action, int quantity = 0, int extraId = 0)
     {
         foreach (Quest quest in quests.Values)

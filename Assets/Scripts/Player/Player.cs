@@ -402,7 +402,6 @@ public class Player : Photon.MonoBehaviour {
             };
             success = item.create();
         }
-        Debug.Log(success);
         // reload inventory
         if (success) {
             try {

@@ -18,16 +18,16 @@ public class Quest
     {
         get
         {
-            return _isCompleted;
-        }
-        set
-        {
-            _isCompleted = value;
-
-            if (_isCompleted)
-            {
+            if (!_isCompleted) {
+                foreach (Task task in tasks.Values) {
+                    if (!task.isCompleted) {
+                        return false;
+                    }
+                }
                 // UI effects (tachar la quest)
+                _isCompleted = true;
             }
+            return _isCompleted;
         }
     }
     public List<ItemData> loot;
