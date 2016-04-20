@@ -41,8 +41,14 @@ public class QuestManager : MonoBehaviour
 
     public void completeQuest (Quest quest)
     {
+        // remove it from pending quests
         foreach (int id in quest.tasks.Keys) {
             Service.db.Delete("tasks", id);
+        }
+
+        // give quest's loot
+        foreach (KeyValuePair<int, int> entry in quest.loot) {
+            Player.Instance.addItem(entry.Key, entry.Value);
         }
 
         quests.Remove(quest.id);
@@ -106,7 +112,8 @@ public class QuestManager : MonoBehaviour
         quest.name = "Iniciación";
         quest.pre = "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='" + (int)NPCData.creatureTemplate.CastleSpider + "'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!";
         quest.after = "¡Excelente! La próxima vez tendrás recompensa.";
-
+        quest.loot.Add(3, 4); // id, quantity
+        
         task = new Task();
         task.taskId = taskId++;
         task.id = (int)NPCData.creatureTemplate.CastleSpider;

@@ -30,5 +30,5 @@ public class Quest
             return _isCompleted;
         }
     }
-    public List<ItemData> loot;
+    public Dictionary<int, int> loot = new Dictionary<int, int>();
 }

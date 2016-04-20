@@ -62,8 +62,8 @@ public class Item : ItemData
 		}
 	}
 
-	public Item  get (CharacterItem cItem) {
-		Item itm = Service.db.SelectKey<Item> ("item", cItem.item);
+	public Item get (CharacterItem cItem) {
+		Item itm = Item.get(cItem.item);
 		itm.characterItem = cItem;
 		return itm;
 	}
