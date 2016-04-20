@@ -4,12 +4,9 @@ using System.Collections;
 public class BroomstickControl : MonoBehaviour {
 
 	public Rigidbody rigidbody;
-	public GameObject models;
 	public float curSpeed = 0f;
 	public float maxSpeed = 10.0f;
-	public float curVSpeed = 0f;
-	public float verticalSpeed = 2.0f;
-	public float rotateSpeed = 1.0f;
+	public float damping = 1f;
 	private Vector3 rotation;
 	private Vector3 targetVelocity;
 
@@ -19,25 +16,16 @@ public class BroomstickControl : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		curVSpeed = Input.GetAxis ("Jump") * verticalSpeed;
-		if(Input.GetKey(KeyCode.LeftControl)){
-			curVSpeed = -1 * verticalSpeed;
-		}
 		curSpeed = Mathf.Lerp(curSpeed, (Input.GetAxis ("Vertical"))*maxSpeed, 0.1f);
-		targetVelocity = new Vector3 (0, curVSpeed, curSpeed);
-		targetVelocity = transform.TransformDirection (targetVelocity);
+		targetVelocity = new Vector3 (0, 0, curSpeed);
+		targetVelocity = Camera.main.transform.TransformDirection (targetVelocity);
+
 
 		rigidbody.velocity = targetVelocity;
+	}
 
-		if (Input.GetAxis ("Vertical") > 0) {
-			rotation = new Vector3 (0f, Input.GetAxis ("Horizontal"), 0f);
-		} else if (Input.GetAxis ("Vertical") < 0) {
-			rotation = new Vector3 (0f, -(Input.GetAxis ("Horizontal")), 0f);
-		} else {
-			rotation = new Vector3 (0f, Input.GetAxis ("Horizontal"), 0f);
-		}
-		rotation *= rotateSpeed;
-
-		rigidbody.MoveRotation (transform.rotation * Quaternion.Euler (rotation));
+	void Update(){
+		var rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 	}
 }
