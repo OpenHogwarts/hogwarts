@@ -8,23 +8,67 @@ ModelImporter:
     100004: patio ravenclaw_MeshPart1
     100006: patio ravenclaw_MeshPart2
     100008: patio ravenclaw_MeshPart3
+    100010: Cinema4D_Editor
+    100012: patio_ravenclaw
+    100014: patio_ravenclaw_2
+    100016: patio_ravenclaw_3
+    100018: patio_ravenclaw_4
+    100020: patio_ravenclaw_5
+    100022: patio_ravenclaw_6
+    100024: patio_ravenclaw_7
     400000: //RootNode
     400002: patio ravenclaw_MeshPart0
     400004: patio ravenclaw_MeshPart1
     400006: patio ravenclaw_MeshPart2
     400008: patio ravenclaw_MeshPart3
+    400010: Cinema4D_Editor
+    400012: patio_ravenclaw
+    400014: patio_ravenclaw_2
+    400016: patio_ravenclaw_3
+    400018: patio_ravenclaw_4
+    400020: patio_ravenclaw_5
+    400022: patio_ravenclaw_6
+    400024: patio_ravenclaw_7
     2300000: patio ravenclaw_MeshPart0
     2300002: patio ravenclaw_MeshPart1
     2300004: patio ravenclaw_MeshPart2
     2300006: patio ravenclaw_MeshPart3
+    2300008: patio_ravenclaw
+    2300010: patio_ravenclaw_2
+    2300012: patio_ravenclaw_3
+    2300014: patio_ravenclaw_4
+    2300016: patio_ravenclaw_5
+    2300018: patio_ravenclaw_6
+    2300020: patio_ravenclaw_7
     3300000: patio ravenclaw_MeshPart0
     3300002: patio ravenclaw_MeshPart1
     3300004: patio ravenclaw_MeshPart2
     3300006: patio ravenclaw_MeshPart3
+    3300008: patio_ravenclaw
+    3300010: patio_ravenclaw_2
+    3300012: patio_ravenclaw_3
+    3300014: patio_ravenclaw_4
+    3300016: patio_ravenclaw_5
+    3300018: patio_ravenclaw_6
+    3300020: patio_ravenclaw_7
     4300000: patio ravenclaw_MeshPart0
     4300002: patio ravenclaw_MeshPart1
     4300004: patio ravenclaw_MeshPart2
     4300006: patio ravenclaw_MeshPart3
+    4300008: patio_ravenclaw
+    4300010: patio_ravenclaw_2
+    4300012: patio_ravenclaw_3
+    4300014: patio_ravenclaw_4
+    4300016: patio_ravenclaw_5
+    4300018: patio_ravenclaw_6
+    4300020: patio_ravenclaw_7
+    6400000: patio_ravenclaw
+    6400002: patio_ravenclaw_2
+    6400004: patio_ravenclaw_3
+    6400006: patio_ravenclaw_4
+    6400008: patio_ravenclaw_5
+    6400010: patio_ravenclaw_6
+    6400012: patio_ravenclaw_7
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -52,7 +96,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

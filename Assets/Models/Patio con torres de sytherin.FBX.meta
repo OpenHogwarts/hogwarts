@@ -6,15 +6,41 @@ ModelImporter:
     100000: //RootNode
     100002: patio Slytherin_MeshPart0
     100004: patio Slytherin_MeshPart1
+    100006: Cinema4D_Editor
+    100008: patio_Slytherin
+    100010: patio_Slytherin_2
+    100012: patio_Slytherin_3
+    100014: patio_Slytherin_4
     400000: //RootNode
     400002: patio Slytherin_MeshPart0
     400004: patio Slytherin_MeshPart1
+    400006: Cinema4D_Editor
+    400008: patio_Slytherin
+    400010: patio_Slytherin_2
+    400012: patio_Slytherin_3
+    400014: patio_Slytherin_4
     2300000: patio Slytherin_MeshPart0
     2300002: patio Slytherin_MeshPart1
+    2300004: patio_Slytherin
+    2300006: patio_Slytherin_2
+    2300008: patio_Slytherin_3
+    2300010: patio_Slytherin_4
     3300000: patio Slytherin_MeshPart0
     3300002: patio Slytherin_MeshPart1
+    3300004: patio_Slytherin
+    3300006: patio_Slytherin_2
+    3300008: patio_Slytherin_3
+    3300010: patio_Slytherin_4
     4300000: patio Slytherin_MeshPart0
     4300002: patio Slytherin_MeshPart1
+    4300004: patio_Slytherin
+    4300006: patio_Slytherin_2
+    4300008: patio_Slytherin_3
+    4300010: patio_Slytherin_4
+    6400000: patio_Slytherin
+    6400002: patio_Slytherin_2
+    6400004: patio_Slytherin_3
+    6400006: patio_Slytherin_4
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -42,7 +68,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

@@ -8,23 +8,73 @@ ModelImporter:
     100004: patio trasero puente de madera_MeshPart2
     100006: patio trasero puente de madera_MeshPart3
     100008: //RootNode
+    100010: Cinema4D_Editor
+    100012: patio_trasero_puente_de_madera
+    100014: patio_trasero_puente_de_madera_2
+    100016: patio_trasero_puente_de_madera_3
+    100018: patio_trasero_puente_de_madera_4
+    100020: patio_trasero_puente_de_madera_5
+    100022: patio_trasero_puente_de_madera_6
+    100024: patio_trasero_puente_de_madera_7
+    100026: patio_trasero_puente_de_madera_8
     400000: patio trasero puente de madera_MeshPart0
     400002: patio trasero puente de madera_MeshPart1
     400004: patio trasero puente de madera_MeshPart2
     400006: patio trasero puente de madera_MeshPart3
     400008: //RootNode
+    400010: Cinema4D_Editor
+    400012: patio_trasero_puente_de_madera
+    400014: patio_trasero_puente_de_madera_2
+    400016: patio_trasero_puente_de_madera_3
+    400018: patio_trasero_puente_de_madera_4
+    400020: patio_trasero_puente_de_madera_5
+    400022: patio_trasero_puente_de_madera_6
+    400024: patio_trasero_puente_de_madera_7
+    400026: patio_trasero_puente_de_madera_8
     2300000: patio trasero puente de madera_MeshPart0
     2300002: patio trasero puente de madera_MeshPart1
     2300004: patio trasero puente de madera_MeshPart2
     2300006: patio trasero puente de madera_MeshPart3
+    2300008: patio_trasero_puente_de_madera
+    2300010: patio_trasero_puente_de_madera_2
+    2300012: patio_trasero_puente_de_madera_3
+    2300014: patio_trasero_puente_de_madera_4
+    2300016: patio_trasero_puente_de_madera_5
+    2300018: patio_trasero_puente_de_madera_6
+    2300020: patio_trasero_puente_de_madera_7
+    2300022: patio_trasero_puente_de_madera_8
     3300000: patio trasero puente de madera_MeshPart0
     3300002: patio trasero puente de madera_MeshPart1
     3300004: patio trasero puente de madera_MeshPart2
     3300006: patio trasero puente de madera_MeshPart3
+    3300008: patio_trasero_puente_de_madera
+    3300010: patio_trasero_puente_de_madera_2
+    3300012: patio_trasero_puente_de_madera_3
+    3300014: patio_trasero_puente_de_madera_4
+    3300016: patio_trasero_puente_de_madera_5
+    3300018: patio_trasero_puente_de_madera_6
+    3300020: patio_trasero_puente_de_madera_7
+    3300022: patio_trasero_puente_de_madera_8
     4300000: patio trasero puente de madera_MeshPart0
     4300002: patio trasero puente de madera_MeshPart1
     4300004: patio trasero puente de madera_MeshPart2
     4300006: patio trasero puente de madera_MeshPart3
+    4300008: patio_trasero_puente_de_madera_MeshPart0
+    4300010: patio_trasero_puente_de_madera_2
+    4300012: patio_trasero_puente_de_madera_3
+    4300014: patio_trasero_puente_de_madera_4
+    4300016: patio_trasero_puente_de_madera_5
+    4300018: patio_trasero_puente_de_madera_6
+    4300020: patio_trasero_puente_de_madera_7
+    4300022: patio_trasero_puente_de_madera_8
+    6400000: patio_trasero_puente_de_madera
+    6400002: patio_trasero_puente_de_madera_2
+    6400004: patio_trasero_puente_de_madera_3
+    6400006: patio_trasero_puente_de_madera_4
+    6400008: patio_trasero_puente_de_madera_5
+    6400010: patio_trasero_puente_de_madera_6
+    6400012: patio_trasero_puente_de_madera_7
+    6400014: patio_trasero_puente_de_madera_8
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -52,7 +102,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

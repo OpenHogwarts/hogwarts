@@ -7,22 +7,60 @@ ModelImporter:
     100002: escaleras y cobertizo_MeshPart0
     100004: escaleras y cobertizo_MeshPart1
     100006: escaleras y cobertizo_MeshPart2
+    100008: Cinema4D_Editor
+    100010: escaleras_y_cobertizo
+    100012: escaleras_y_cobertizo_2
+    100014: escaleras_y_cobertizo_3
+    100016: escaleras_y_cobertizo_4
+    100018: escaleras_y_cobertizo_5
+    100020: escaleras_y_cobertizo_6
     400000: //RootNode
     400002: escaleras y cobertizo_MeshPart0
     400004: escaleras y cobertizo_MeshPart1
     400006: escaleras y cobertizo_MeshPart2
+    400008: Cinema4D_Editor
+    400010: escaleras_y_cobertizo
+    400012: escaleras_y_cobertizo_2
+    400014: escaleras_y_cobertizo_3
+    400016: escaleras_y_cobertizo_4
+    400018: escaleras_y_cobertizo_5
+    400020: escaleras_y_cobertizo_6
     2300000: escaleras y cobertizo_MeshPart0
     2300002: escaleras y cobertizo_MeshPart1
     2300004: escaleras y cobertizo_MeshPart2
+    2300006: escaleras_y_cobertizo
+    2300008: escaleras_y_cobertizo_2
+    2300010: escaleras_y_cobertizo_3
+    2300012: escaleras_y_cobertizo_4
+    2300014: escaleras_y_cobertizo_5
+    2300016: escaleras_y_cobertizo_6
     3300000: escaleras y cobertizo_MeshPart0
     3300002: escaleras y cobertizo_MeshPart1
     3300004: escaleras y cobertizo_MeshPart2
+    3300006: escaleras_y_cobertizo
+    3300008: escaleras_y_cobertizo_2
+    3300010: escaleras_y_cobertizo_3
+    3300012: escaleras_y_cobertizo_4
+    3300014: escaleras_y_cobertizo_5
+    3300016: escaleras_y_cobertizo_6
     4300000: escaleras y cobertizo_MeshPart0
     4300002: escaleras y cobertizo_MeshPart1
     4300004: escaleras y cobertizo_MeshPart2
+    4300006: escaleras_y_cobertizo
+    4300008: escaleras_y_cobertizo_2
+    4300010: escaleras_y_cobertizo_3
+    4300012: escaleras_y_cobertizo_4
+    4300014: escaleras_y_cobertizo_5
+    4300016: escaleras_y_cobertizo_6
     6400000: escaleras y cobertizo_MeshPart0
     6400002: escaleras y cobertizo_MeshPart1
     6400004: escaleras y cobertizo_MeshPart2
+    6400006: escaleras_y_cobertizo
+    6400008: escaleras_y_cobertizo_2
+    6400010: escaleras_y_cobertizo_3
+    6400012: escaleras_y_cobertizo_4
+    6400014: escaleras_y_cobertizo_5
+    6400016: escaleras_y_cobertizo_6
     9500000: //RootNode
   materials:
     importMaterials: 1

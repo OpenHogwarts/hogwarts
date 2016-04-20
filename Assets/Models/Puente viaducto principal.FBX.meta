@@ -4,11 +4,37 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cinema4D_Editor
+    100004: puente_principal
+    100006: puente_principal_2
+    100008: puente_principal_3
+    100010: puente_principal_4
     400000: //RootNode
+    400002: Cinema4D_Editor
+    400004: puente_principal
+    400006: puente_principal_2
+    400008: puente_principal_3
+    400010: puente_principal_4
     2300000: //RootNode
+    2300002: puente_principal
+    2300004: puente_principal_2
+    2300006: puente_principal_3
+    2300008: puente_principal_4
     3300000: //RootNode
+    3300002: puente_principal
+    3300004: puente_principal_2
+    3300006: puente_principal_3
+    3300008: puente_principal_4
     4300000: puente principal
+    4300002: puente_principal
+    4300004: puente_principal_2
+    4300006: puente_principal_3
+    4300008: puente_principal_4
     6400000: //RootNode
+    6400002: puente_principal
+    6400004: puente_principal_2
+    6400006: puente_principal_3
+    6400008: puente_principal_4
     9500000: //RootNode
   materials:
     importMaterials: 1

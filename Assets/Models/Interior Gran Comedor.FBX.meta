@@ -32,6 +32,26 @@ ModelImporter:
     100052: puerta7
     100054: quiddicht
     100056: rieles puerta entrada castillo 1
+    100058: antorchas_depie
+    100060: casa_gryffindor
+    100062: Cinema4D_Editor
+    100064: cortinas_entrada_castillo
+    100066: Cuadros_escalera_magica
+    100068: Cuadros_escalera_magica_2
+    100070: el_gran_comedor
+    100072: el_gran_comedor_2
+    100074: el_gran_comedor_3
+    100076: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS
+    100078: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    100080: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    100082: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    100084: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    100086: paredes_objetos_escaleras
+    100088: patio_del_relog
+    100090: puerta_biblioteca
+    100092: puerta_entrada_castillo_1
+    100094: puerta_entrada_castillo_2
+    100096: rieles_puerta_entrada_castillo_1
     400000: antorchas depie
     400002: casa gryffindor
     400004: cortinas entrada castillo
@@ -61,6 +81,26 @@ ModelImporter:
     400052: puerta7
     400054: quiddicht
     400056: rieles puerta entrada castillo 1
+    400058: antorchas_depie
+    400060: casa_gryffindor
+    400062: Cinema4D_Editor
+    400064: cortinas_entrada_castillo
+    400066: Cuadros_escalera_magica
+    400068: Cuadros_escalera_magica_2
+    400070: el_gran_comedor
+    400072: el_gran_comedor_2
+    400074: el_gran_comedor_3
+    400076: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS
+    400078: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    400080: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    400082: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    400084: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    400086: paredes_objetos_escaleras
+    400088: patio_del_relog
+    400090: puerta_biblioteca
+    400092: puerta_entrada_castillo_1
+    400094: puerta_entrada_castillo_2
+    400096: rieles_puerta_entrada_castillo_1
     2300000: antorchas depie
     2300002: casa gryffindor
     2300004: cortinas entrada castillo
@@ -86,6 +126,24 @@ ModelImporter:
     2300044: puerta7
     2300046: quiddicht
     2300048: rieles puerta entrada castillo 1
+    2300050: antorchas_depie
+    2300052: casa_gryffindor
+    2300054: cortinas_entrada_castillo
+    2300056: Cuadros_escalera_magica
+    2300058: Cuadros_escalera_magica_2
+    2300060: el_gran_comedor
+    2300062: el_gran_comedor_2
+    2300064: el_gran_comedor_3
+    2300066: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    2300068: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    2300070: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    2300072: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    2300074: paredes_objetos_escaleras
+    2300076: patio_del_relog
+    2300078: puerta_biblioteca
+    2300080: puerta_entrada_castillo_1
+    2300082: puerta_entrada_castillo_2
+    2300084: rieles_puerta_entrada_castillo_1
     3300000: antorchas depie
     3300002: casa gryffindor
     3300004: cortinas entrada castillo
@@ -111,6 +169,24 @@ ModelImporter:
     3300044: puerta7
     3300046: quiddicht
     3300048: rieles puerta entrada castillo 1
+    3300050: antorchas_depie
+    3300052: casa_gryffindor
+    3300054: cortinas_entrada_castillo
+    3300056: Cuadros_escalera_magica
+    3300058: Cuadros_escalera_magica_2
+    3300060: el_gran_comedor
+    3300062: el_gran_comedor_2
+    3300064: el_gran_comedor_3
+    3300066: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    3300068: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    3300070: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    3300072: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    3300074: paredes_objetos_escaleras
+    3300076: patio_del_relog
+    3300078: puerta_biblioteca
+    3300080: puerta_entrada_castillo_1
+    3300082: puerta_entrada_castillo_2
+    3300084: rieles_puerta_entrada_castillo_1
     4300000: el gran comedor_MeshPart0
     4300002: el gran comedor_MeshPart1
     4300004: Cuadros escalera magica
@@ -136,6 +212,51 @@ ModelImporter:
     4300044: patio transformaciones
     4300046: puerta entrada castillo 1
     4300048: cortinas entrada castillo
+    4300050: el_gran_comedor
+    4300052: el_gran_comedor_2
+    4300054: el_gran_comedor_3
+    4300056: Cuadros_escalera_magica
+    4300058: Cuadros_escalera_magica_2
+    4300060: paredes_objetos_escaleras
+    4300062: antorchas_depie
+    4300064: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    4300066: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    4300068: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    4300070: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    4300072: casa_gryffindor
+    4300074: puerta_entrada_castillo_2
+    4300076: patio_del_relog
+    4300078: rieles_puerta_entrada_castillo_1
+    4300080: puerta_biblioteca
+    4300082: puerta_entrada_castillo_1
+    4300084: cortinas_entrada_castillo
+    6400000: antorchas_depie
+    6400002: casa_gryffindor
+    6400004: cortinas_entrada_castillo
+    6400006: Cuadros_escalera_magica
+    6400008: Cuadros_escalera_magica_2
+    6400010: DrawCall_0000
+    6400012: DrawCall_0051
+    6400014: DrawCall_0052
+    6400016: DrawCall_1996
+    6400018: el_gran_comedor
+    6400020: el_gran_comedor_2
+    6400022: el_gran_comedor_3
+    6400024: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_2
+    6400026: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_3
+    6400028: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart0
+    6400030: EL_GRAN_COMEDOR_Y_ESCALERAS_MAGICAS_MeshPart1
+    6400032: paredes_objetos_escaleras
+    6400034: patio_del_relog
+    6400036: pociones
+    6400038: puerta4
+    6400040: puerta5
+    6400042: puerta6
+    6400044: puerta_biblioteca
+    6400046: puerta_entrada_castillo_1
+    6400048: puerta_entrada_castillo_2
+    6400050: quiddicht
+    6400052: rieles_puerta_entrada_castillo_1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -163,7 +284,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

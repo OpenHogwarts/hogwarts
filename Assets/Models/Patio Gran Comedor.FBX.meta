@@ -9,27 +9,65 @@ ModelImporter:
     100006: paio gran comedor_MeshPart3
     100008: paio gran comedor_MeshPart4
     100010: //RootNode
+    100012: Cinema4D_Editor
+    100014: paio_gran_comedor
+    100016: paio_gran_comedor_2
+    100018: paio_gran_comedor_3
+    100020: paio_gran_comedor_4
+    100022: paio_gran_comedor_5
+    100024: paio_gran_comedor_6
     400000: paio gran comedor_MeshPart0
     400002: paio gran comedor_MeshPart1
     400004: paio gran comedor_MeshPart2
     400006: paio gran comedor_MeshPart3
     400008: paio gran comedor_MeshPart4
     400010: //RootNode
+    400012: Cinema4D_Editor
+    400014: paio_gran_comedor
+    400016: paio_gran_comedor_2
+    400018: paio_gran_comedor_3
+    400020: paio_gran_comedor_4
+    400022: paio_gran_comedor_5
+    400024: paio_gran_comedor_6
     2300000: paio gran comedor_MeshPart0
     2300002: paio gran comedor_MeshPart1
     2300004: paio gran comedor_MeshPart2
     2300006: paio gran comedor_MeshPart3
     2300008: paio gran comedor_MeshPart4
+    2300010: paio_gran_comedor
+    2300012: paio_gran_comedor_2
+    2300014: paio_gran_comedor_3
+    2300016: paio_gran_comedor_4
+    2300018: paio_gran_comedor_5
+    2300020: paio_gran_comedor_6
     3300000: paio gran comedor_MeshPart0
     3300002: paio gran comedor_MeshPart1
     3300004: paio gran comedor_MeshPart2
     3300006: paio gran comedor_MeshPart3
     3300008: paio gran comedor_MeshPart4
+    3300010: paio_gran_comedor
+    3300012: paio_gran_comedor_2
+    3300014: paio_gran_comedor_3
+    3300016: paio_gran_comedor_4
+    3300018: paio_gran_comedor_5
+    3300020: paio_gran_comedor_6
     4300000: paio gran comedor_MeshPart0
     4300002: paio gran comedor_MeshPart1
     4300004: paio gran comedor_MeshPart2
     4300006: paio gran comedor_MeshPart3
     4300008: paio gran comedor_MeshPart4
+    4300010: paio_gran_comedor_MeshPart0
+    4300012: paio_gran_comedor_2
+    4300014: paio_gran_comedor_3
+    4300016: paio_gran_comedor_4
+    4300018: paio_gran_comedor_5
+    4300020: paio_gran_comedor_6
+    6400000: paio_gran_comedor
+    6400002: paio_gran_comedor_2
+    6400004: paio_gran_comedor_3
+    6400006: paio_gran_comedor_4
+    6400008: paio_gran_comedor_5
+    6400010: paio_gran_comedor_6
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -57,7 +95,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
