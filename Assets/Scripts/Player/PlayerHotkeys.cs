@@ -47,20 +47,20 @@ public class PlayerHotkeys : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.E)){
 			if (!broom.activeSelf) {
-				gameObject.GetComponent<Animator> ().SetBool ("Broomstick", true);
-				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = false;
-				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = false;
-				gameObject.GetComponent<Rigidbody> ().useGravity = false;
-				gameObject.GetComponent<BroomstickControl> ().enabled = true;
+				if ((!PlayerCombat.Instance.castingSpell)&&(!Player.Instance.isInCombat)&&(!PlayerPanel.Instance.castingPanel.isCasting)) {
+					StartCoroutine ("Broom");
+				}
 			}else{
 				gameObject.GetComponent<Animator> ().SetBool ("Broomstick", false);
 				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = true;
 				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = true;
 				gameObject.GetComponent<Rigidbody> ().useGravity = true;
 				gameObject.GetComponent<BroomstickControl> ().enabled = false;
+				broom.SetActive (!broom.activeSelf);
+				transform.localEulerAngles = new Vector3 (0, transform.eulerAngles.y, 0);
 			}
-			broom.SetActive (!broom.activeSelf);
 		}
+
 
         if (Player.Instance.target)
 		{
@@ -81,5 +81,16 @@ public class PlayerHotkeys : MonoBehaviour
 				PlayerCombat.Instance.spellCast(2);
 			}
 		}
+	}
+
+	IEnumerator Broom(){
+		PlayerPanel.Instance.castingPanel.Cast ("Escoba voladora", 1);
+		yield return new WaitForSeconds(1);
+		gameObject.GetComponent<Animator> ().SetBool ("Broomstick", true);
+		gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = false;
+		gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = false;
+		gameObject.GetComponent<Rigidbody> ().useGravity = false;
+		gameObject.GetComponent<BroomstickControl> ().enabled = true;
+		broom.SetActive (!broom.activeSelf);
 	}
 }

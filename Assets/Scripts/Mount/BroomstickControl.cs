@@ -25,7 +25,7 @@ public class BroomstickControl : MonoBehaviour {
 	}
 
 	void Update(){
-		var rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+		var rotation = Quaternion.LookRotation(transform.position - Vector3.Scale(Camera.main.transform.position, new Vector3(1, 0.99f, 1)));
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
 	}
 }

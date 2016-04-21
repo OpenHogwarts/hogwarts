@@ -9,6 +9,7 @@ public class CastingPanel : MonoBehaviour {
 	public Image bar;
 	private float skillTime = 10f;
 	private float curTime = 10f;
+	public bool isCasting = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,9 +20,12 @@ public class CastingPanel : MonoBehaviour {
 	void Update () {
 			curTime -= Time.deltaTime;
 			bar.fillAmount = curTime / skillTime;
-			if (curTime / skillTime <= 0) {
-				gameObject.SetActive (false);
-			}
+		if (curTime / skillTime <= 0) {
+			gameObject.SetActive (false);
+			isCasting = false;
+		} else {
+			isCasting = true;
+		}
 	}
 
 	public void Cast(string n, float t){
