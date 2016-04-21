@@ -324,6 +324,8 @@ public class Player : Photon.MonoBehaviour {
         manaRegenStarted = false;
     }
 
+	private bool broom;
+
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
@@ -337,6 +339,7 @@ public class Player : Photon.MonoBehaviour {
             stream.SendNext(anim.GetBool("OnGround"));
             stream.SendNext(anim.GetBool("InvokeSpell"));
             stream.SendNext(anim.GetInteger("SpellType"));
+			stream.SendNext(anim.GetBool("Broomstick"));
         }
         else
         {
@@ -351,7 +354,15 @@ public class Player : Photon.MonoBehaviour {
                 anim.SetBool("OnGround", (bool)stream.ReceiveNext());
                 anim.SetBool("InvokeSpell", (bool)stream.ReceiveNext());
                 anim.SetInteger("SpellType", (int)stream.ReceiveNext());
+				broom = (bool)stream.ReceiveNext();
+				anim.SetBool ("Broomstick", broom);
             }
+
+			if (broom) {
+				gameObject.GetComponent<PlayerHotkeys> ().broom.SetActive (true);
+			} else {
+				gameObject.GetComponent<PlayerHotkeys> ().broom.SetActive (false);
+			}
 
 
             if (gotFirstUpdate == false) {
