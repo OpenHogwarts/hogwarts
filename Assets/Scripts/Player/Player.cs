@@ -204,6 +204,8 @@ public class Player : Photon.MonoBehaviour {
 
     public NamePlate namePlate;
 
+	public GameObject trailRenderer;
+
     public static Player _instance;
 
     public static Player Instance {
@@ -224,6 +226,7 @@ public class Player : Photon.MonoBehaviour {
             SkillsUI.Instance.displayUnlockedSkills();
             startHealthRegeneration();
             startManaRegeneration();
+			Destroy (trailRenderer);
         } else {
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>());
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>());
