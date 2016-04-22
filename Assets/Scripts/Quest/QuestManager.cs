@@ -36,6 +36,12 @@ public class QuestManager : MonoBehaviour
 
     public void addQuest (Quest quest) {
         quests.Add(quest.id, quest);
+
+        // save the new tasks on db
+        foreach (Task task in quest.tasks.Values) {
+            task.create();
+        }
+
         PlayerPanel.Instance.showActiveQuests();
     }
 
@@ -115,6 +121,7 @@ public class QuestManager : MonoBehaviour
         quest.loot.Add(3, 4); // id, quantity
         
         task = new Task();
+        task.quest = quest.id;
         task.taskId = taskId++;
         task.id = (int)NPCData.creatureTemplate.CastleSpider;
         task.idType = Task.IdType.Template;
@@ -125,6 +132,7 @@ public class QuestManager : MonoBehaviour
         quest.tasks.Add(task.taskId, task);
 
         task = new Task();
+        task.quest = quest.id;
         task.taskId = taskId++;
         task.id = 1;
         task.idType = Task.IdType.Id;
