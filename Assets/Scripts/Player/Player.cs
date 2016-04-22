@@ -226,6 +226,7 @@ public class Player : Photon.MonoBehaviour {
             SkillsUI.Instance.displayUnlockedSkills();
             startHealthRegeneration();
             startManaRegeneration();
+			GetComponent<NPCActivator> ().enabled = true;
 			Destroy (trailRenderer);
         } else {
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>());

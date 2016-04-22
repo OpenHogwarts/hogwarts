@@ -103,20 +103,26 @@ public class CameraController : MonoBehaviour {
 		return Mathf.Clamp (angle, min, max);
 	}
 
-	void OnTriggerEnter(){
-		isHitting = true;
-		if (reachedDist) {
-			lastDistance = currentDistance;
-			reachedDist = false;
+	void OnTriggerEnter(Collider col){
+		if (!col.isTrigger) {
+			isHitting = true;
+			if (reachedDist) {
+				lastDistance = currentDistance;
+				reachedDist = false;
+			}
 		}
 	}
 
-	void OnTriggerStay(){
-		isHitting = true;
+	void OnTriggerStay(Collider col){
+		if (!col.isTrigger) {
+			isHitting = true;
+		}
 	}
 
-	void OnTriggerExit(){
-		isHitting = false;
+	void OnTriggerExit(Collider col){
+		if (!col.isTrigger) {
+			isHitting = false;
+		}
 	}
 
 }
