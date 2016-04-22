@@ -7,8 +7,8 @@ public class NPCActivator : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		if (col.tag == "NPC") {
-			if ((col.gameObject.GetComponent<PhotonView> ().owner == PhotonNetwork.masterClient)||(col.gameObject.GetComponent<PhotonView> ().owner == null)) {
+		if ((col.tag == "NPC")&&(!col.isTrigger)) {
+			if (col.gameObject.GetComponent<PhotonView> ().owner == null) {
 				Debug.Log ("Now you are the owner");
 				col.gameObject.GetComponent<PhotonView> ().TransferOwnership (PhotonNetwork.player);
 			}
@@ -19,8 +19,8 @@ public class NPCActivator : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider col){
-		if (col.tag == "NPC") {
-			Debug.Log ("Now the scene owns the object");
+		if ((col.tag == "NPC")&&(!col.isTrigger)) {
+			Debug.Log ("Now the scene owns the object, previous owner was "+col.gameObject.GetComponent<PhotonView> ().owner.name);
 			col.gameObject.GetComponent<PhotonView> ().TransferOwnership (PhotonNetwork.masterClient);
 			col.gameObject.GetComponent<Animation> ().enabled = false;
 			col.gameObject.GetComponent<NPC> ().enabled = false;
