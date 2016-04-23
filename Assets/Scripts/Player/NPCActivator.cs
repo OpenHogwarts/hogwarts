@@ -13,7 +13,7 @@ public class NPCActivator : MonoBehaviour {
 				col.gameObject.GetComponent<PhotonView> ().TransferOwnership (PhotonNetwork.player);
 			}
 			col.gameObject.GetComponent<Animation> ().enabled = true;
-			col.gameObject.GetComponent<NPC> ().enabled = true;
+			//col.gameObject.GetComponent<NPC> ().enabled = true;
 			col.gameObject.transform.FindChild ("Model").gameObject.SetActive (true);
 		}
 	}
@@ -23,7 +23,7 @@ public class NPCActivator : MonoBehaviour {
 			Debug.Log ("Now the scene owns the object, previous owner was "+col.gameObject.GetComponent<PhotonView> ().owner.name);
 			col.gameObject.GetComponent<PhotonView> ().TransferOwnership (PhotonNetwork.masterClient);
 			col.gameObject.GetComponent<Animation> ().enabled = false;
-			col.gameObject.GetComponent<NPC> ().enabled = false;
+			//col.gameObject.GetComponent<NPC> ().enabled = false;
 			col.gameObject.transform.FindChild ("Model").gameObject.SetActive (false);
 		}
 	}
