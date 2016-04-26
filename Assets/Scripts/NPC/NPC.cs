@@ -53,7 +53,10 @@ public class NPC : Photon.MonoBehaviour
 	public bool stunned = false;
 	public float SmoothingDelay = 5;
 
-	private bool isRanged;
+    [Tooltip("Objects to disable when NPC is disabled")]
+    public List<GameObject> toDisable = new List<GameObject>();
+
+    private bool isRanged;
 	private float timeSinceLastAttack;
 	private bool inCombat;
 	private bool isDead {
@@ -113,13 +116,18 @@ public class NPC : Photon.MonoBehaviour
 		namePlate.setName (data.name, color);
 		namePlate.setLevel (data.level);
         originalPosition = transform.position;
+
+        // all NPCs start disabled, player will automatically, enable the nearest ones.
+        #if !UNITY_EDITOR
+        setEnabled(false);
+        # endif
     }
 	
 	private void Update()
 	{
         if (isDead)
         {
-            if (!killNotiSent && PhotonNetwork.isMasterClient)
+            if (!killNotiSent && photonView.isMine)
             {
                 namePlate.health.fillAmount = 0;
 
@@ -133,7 +141,12 @@ public class NPC : Photon.MonoBehaviour
             return;
         }
 
-        if (!PhotonNetwork.isMasterClient && gotFirstUpdate) {
+        // static NPCs like vendors, dont have photonView as they dont perfom any action
+        if (!photonView) {
+            return;
+        }
+
+        if (!photonView.isMine && gotFirstUpdate) {
 			transform.position = Vector3.Lerp(transform.position, correctPlayerPos, Time.deltaTime * this.SmoothingDelay);
 			transform.rotation = Quaternion.Lerp(transform.rotation, correctPlayerRot, Time.deltaTime * this.SmoothingDelay);
 		}
@@ -141,7 +154,7 @@ public class NPC : Photon.MonoBehaviour
         if (Application.isEditor) {
 			if (data.subRace != NPCData.creatureSubRace.Normal) {return;} // enable in debug to not verifiy if you are the master
 		} else {
-			if (data.subRace != NPCData.creatureSubRace.Normal || !PhotonNetwork.isMasterClient) {return;}
+			if (data.subRace != NPCData.creatureSubRace.Normal || !photonView.isMine) {return;}
 		}
 
         // check if target has died
@@ -240,15 +253,13 @@ public class NPC : Photon.MonoBehaviour
 	
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
-		if (PhotonNetwork.isMasterClient)
-		{
-			//We own this player: send the others our data
+		if (photonView.isMine) {
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation); 
 		}
 		else
 		{
-			//Network player, receive data
+			//Network NPC, receive data
 			correctPlayerPos = (Vector3)stream.ReceiveNext();
 			correctPlayerRot = (Quaternion)stream.ReceiveNext();
 
@@ -259,6 +270,25 @@ public class NPC : Photon.MonoBehaviour
 			}
 		}
 	}
+
+    /**
+    * Toggles NPC status and disables some of its components to get better perfomance
+    */
+    public void setEnabled (bool status)
+    {
+        // already enabled
+        if (status && enabled) {
+            return;
+        }
+
+        GetComponent<Animation>().enabled = status;
+        enabled = status;
+        namePlate.gameObject.SetActive(status);
+
+        foreach (GameObject obj in toDisable) {
+            obj.SetActive(status);
+        }
+    }
 
 	public bool isTooFar () {
 		if (distanceFromIPos >= data.distanceToLoseAggro) {

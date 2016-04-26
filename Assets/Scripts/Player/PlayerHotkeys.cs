@@ -27,10 +27,7 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z)) {
             Menu.Instance.gameObject.SetActive(!Menu.Instance.gameObject.GetActive());
         }
-
-        if (Input.GetKey (KeyCode.F) && Player.Instance.isFlying) {
-			Broomstick.Instance.leave();
-		}
+        
 		if (Input.GetKeyDown (KeyCode.B)) {
 			Menu.Instance.togglePanel("BagPanel");
 		}
