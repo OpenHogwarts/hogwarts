@@ -116,6 +116,9 @@ public class NPC : Photon.MonoBehaviour
 		namePlate.setName (data.name, color);
 		namePlate.setLevel (data.level);
         originalPosition = transform.position;
+
+        // all NPCs start disabled, player will automatically, enable the nearest ones.
+        setEnabled(false);
     }
 	
 	private void Update()
