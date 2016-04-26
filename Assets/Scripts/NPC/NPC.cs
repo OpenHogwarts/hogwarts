@@ -118,7 +118,9 @@ public class NPC : Photon.MonoBehaviour
         originalPosition = transform.position;
 
         // all NPCs start disabled, player will automatically, enable the nearest ones.
+        #if !UNITY_EDITOR
         setEnabled(false);
+        # endif
     }
 	
 	private void Update()
