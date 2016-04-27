@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8b765e0b5af3bcf4a9deb5895e477da8
+labels:
+- Glow
+- Effect
+- Outline
+- Highlight
+- Selection
+- System
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
