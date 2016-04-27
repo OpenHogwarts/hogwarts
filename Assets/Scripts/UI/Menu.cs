@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour {
 
 	public void OnLevelWasLoaded(int level) {
 		switch (level) {
-		case 0: // Main
+		case 1: // Main
 			showPanel("MainPanel");
 			break;
 		default:
