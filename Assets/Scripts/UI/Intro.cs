@@ -18,7 +18,7 @@ public class Intro : MonoBehaviour {
 	}
 
 	IEnumerator WaitForMovie(){
-		yield return new WaitForSeconds (10);
+		yield return new WaitForSeconds (10.5f);
 		Application.LoadLevel ("MainMenu");
 	}
 }
