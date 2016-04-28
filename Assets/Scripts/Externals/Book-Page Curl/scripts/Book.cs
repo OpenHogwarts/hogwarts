@@ -246,7 +246,9 @@ public class Book : MonoBehaviour {
 			currentL.text = pageText [currentPage - 1];
 		}
 		nextL.text = pageText [currentPage];
-		nextR.text = pageText [currentPage + 1];
+		if (currentPage != bookPages.Length) {
+			nextR.text = pageText [currentPage + 1];
+		}
 		if (currentPage + 2 != bookPages.Length) {
 			currentR.text = pageText [currentPage + 2];
 		}
