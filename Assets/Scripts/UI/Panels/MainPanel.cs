@@ -19,8 +19,10 @@ public class MainPanel : MonoBehaviour {
 			DBSetup.start();
 		}
 
-		// @ToDo: create a UI for selection
-		foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
+        NetworkManager.validateGameVersion();
+
+        // @ToDo: create a UI for selection
+        foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
 			playerId = character.id;
 
