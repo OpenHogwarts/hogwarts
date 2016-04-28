@@ -536,10 +536,11 @@ public class NPC : Photon.MonoBehaviour
 			if ((Time.time - curTime) >= pauseDuration) {
 				currentWaypoint++;
 				curTime = 0;
-			}
+                pauseDuration = UnityEngine.Random.Range(1f, 3f);
+            }
 			anim.Play(this.idleAnimation.name);
 		} else {
-			anim.Play(this.runAnimation.name);
+            anim.Play(this.runAnimation.name);
 
             this.transform.position = Vector3.MoveTowards(this.transform.position, moveDirection, data.runSpeed * Time.deltaTime);
 			this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((moveDirection.x - this.transform.position.x), (moveDirection.z - this.transform.position.z)) * 57.29578f, 0.0f);

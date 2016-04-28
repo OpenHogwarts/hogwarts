@@ -403,8 +403,8 @@ public class Player : Photon.MonoBehaviour {
 	* 
 	* @return bool
 	 */
-    public bool addItem(int id, int amount = 1) {
-
+    public bool addItem(int id, int amount = 1)
+    {
         bool success;
         CharacterItem characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE item == ?", id);
 
@@ -422,6 +422,7 @@ public class Player : Photon.MonoBehaviour {
         // reload inventory
         if (success) {
             try {
+                QuestManager.Instance.sendAction(id, Task.ActorType.Item, Task.ActionType.GetItem, amount);
                 Inventory.Instance.reload();
             } catch (Exception) { }
         }
