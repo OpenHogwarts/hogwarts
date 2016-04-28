@@ -14,6 +14,7 @@ public class Book : MonoBehaviour {
     RectTransform BookPanel;
     public Sprite background;
     public Sprite[] bookPages;
+	public string[] pageText;
     public bool interactable=true;
     public bool enableShadowEffect=true;
     //represent the index of the sprite shown in the right page
@@ -47,6 +48,10 @@ public class Book : MonoBehaviour {
     public Image RightNext;
     public UnityEvent OnFlip;
     float radius1, radius2;
+	public Text currentL;
+	public Text currentR;
+	public Text nextL;
+	public Text nextR;
     //Spine Bottom
     Vector3 sb;
     //Spine Top
@@ -237,6 +242,15 @@ public class Book : MonoBehaviour {
         NextPageClip.rectTransform.pivot = new Vector2(0, 0.12f);
         ClippingPlane.rectTransform.pivot = new Vector2(1, 0.12f);
 
+		if (currentPage != 0) {
+			currentL.text = pageText [currentPage - 1];
+		}
+		nextL.text = pageText [currentPage];
+		nextR.text = pageText [currentPage + 1];
+		if (currentPage + 2 != bookPages.Length) {
+			currentR.text = pageText [currentPage + 2];
+		}
+
         Left.gameObject.SetActive(true);
         Left.rectTransform.pivot = new Vector2(0, 0);
         Left.transform.position = RightNext.transform.position;
@@ -270,6 +284,11 @@ public class Book : MonoBehaviour {
 
         NextPageClip.rectTransform.pivot = new Vector2(1, 0.12f);
         ClippingPlane.rectTransform.pivot = new Vector2(0, 0.12f);
+
+		if (currentPage - 3 > 0) {
+			currentL.text = pageText [currentPage - 3];
+		}
+		nextR.text = pageText [currentPage - 1];
 
         Right.gameObject.SetActive(true);
         Right.transform.position = LeftNext.transform.position;
@@ -320,6 +339,12 @@ public class Book : MonoBehaviour {
     {
         LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
         RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
+		if (currentPage != 0) {
+			currentL.text = pageText [currentPage - 1];
+		}
+		if (currentPage != bookPages.Length) {
+			currentR.text = pageText [currentPage];
+		}
     }
     public void TweenForward()
     {
