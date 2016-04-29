@@ -227,8 +227,8 @@ public class Player : Photon.MonoBehaviour {
             startHealthRegeneration();
             startManaRegeneration();
 			Destroy (trailRenderer);
-			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> "+photonView.owner.name+" entró");
         } else {
+			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> "+photonView.owner.name+" entró");
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>());
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>());
             Destroy(GetComponent<Rigidbody>());

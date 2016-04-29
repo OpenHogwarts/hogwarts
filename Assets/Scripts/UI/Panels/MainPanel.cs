@@ -38,7 +38,9 @@ public class MainPanel : MonoBehaviour {
 			nickLabel.transform.gameObject.SetActive(true);
 			LevelLabel.transform.gameObject.SetActive(true);
 			JoinButton.transform.gameObject.SetActive(true);
+			#if UNITY_EDITOR
 			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(true);
+			#endif
 
 			GameObject.Find ("Canvas/MainPanel/CreateButton").SetActive(false);
 		} else {
