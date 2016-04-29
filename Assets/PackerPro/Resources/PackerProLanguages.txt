@@ -1,0 +1,60 @@
+id		en	en-context		zh	zh-context		ja	ja-context		ko	ko-context
+mainSetting_setName		Name Set	A name for this packing set		名称设定	该包装集的名称		セットに名前を付ける	このパッキンセットの名前		세트의 이름을	이 포장 세트의 이름
+mainSetting_maxSize		Maximum Size	Select the maximum texture size you want to allow in the packing process.		最大尺寸	选择要允许在包装过程中的最大纹理尺寸。		最大サイズ	あなたはパッキングプロセスに許可する最大テクスチャサイズを選択します。		최대 크기	당신이 포장 과정에서 허용 할 최대 텍스처 크기를 선택합니다.
+mainSetting_pixPadding		Padding Size	Padding space in pixels between each packed cluster.		填充尺寸	在每个像素堆团簇之间填充空间。		パディングサイズ	各パッククラスタ間のピクセル単位でのパディングスペース。		패딩 크기	각 포장 클러스터 사이의 픽셀의 여백 공간.
+mainSetting_createNewSet		Create new Set	Create a new Packing Set without removing any current packed sets.		创建新组	创建一个新的包装设置而不删除任何现有包装套。		新しいセットを作成	任意の現在のパックセットを削除せずに新しい梱包セットを作成します。		새 집합 만들기	현재의 모든 포장 세트를 제거하지 않고 새로운 포장 세트를 만듭니다.
+mainSetting_packItems		Pack @ items	"Pack the UV's of the objects that are in the selection list."		@包项目	“包中的紫外线的是在选择列表中的对象。”		項目@パック	「UVの選択リストにあるオブジェクトのパック。 "		상품 포장 @	"UV의 선택 목록에있는 개체의 팩."
+												
+progressBarBuild_title		Building Atlas			建筑图集			建物アトラス			건물의 아틀라스	
+progressBarAssign_title		Assign Textures & UV's			指定纹理和紫外线的			割り当てるテクスチャ＆紫外線の			할당 질감 및 UV의	
+												
+												
+												
+mainSettingAdvanced_title		Advanced Settings			高级设置			[詳細設定]			고급 설정	
+mainSettingAdvanced_titleTexture		Texture			质地			テクスチャー			조직	
+mainSettingAdvanced_forceSquare		Square Texture	This will force the generated texture to always be square.		方形纹理	这将迫使生成的纹理始终不散。		正方形のテクスチャ	これは、常に正方形である生成されたテクスチャを強制します。		평방 텍스처	이것은 항상 사각형으로 생성 된 텍스처를 강제 할 것이다.
+mainSettingAdvanced_pixelPad		Pixel Extending	Add pixels around the packed clusters to avoid seams when your models use mip mapping.		像素扩展	新增围的水泄不通集群像素，以避免接缝时，你的模型使用MIP映射。		ピクセル拡張	お使いのモデルがミップマッピングを使用するときに継ぎ目を避けるために、パックされたクラスタの周辺の画素を追加します。		픽셀 확장	당신의 모델은 밉 매핑을 사용할 때 솔기를 방지하기 위해 포장 클러스터 주변에 픽셀을 추가합니다.
+mainSettingAdvanced_ignoreAlphaChannel		Ignore Alpha Channel	Ignores the alpha channel of any packed texture.		忽略Alpha通道	忽略任何包装的纹理的alpha通道。		アルファチャンネルを無視	いずれのパックテクスチャのアルファチャンネルを無視します。		알파 채널에게 무시	모든 포장 텍스처의 알파 채널을 무시합니다.
+mainSettingAdvanced_titleMaterial		Material			材料			素材			자료	
+mainSettingsAdvanced_material		Shared Material	The shared material to assign. If not assigned Packer Pro will create one for you.		共享材料	共用材料分配。如果没有指定帕克Pro将会为您创建一个。		共有素材	割り当てるための共有材料。割り当てられていない場合パッカーProはあなたのための1が作成されます。		공유 자료	할당하는 공유 소재. 패커를 지정하지 않으면 프로 당신을 위해 하나를 만들 것입니다.
+mainSettingAdvanced_titleStack		Stack Elements			堆栈元素			スタックの要素			스택 요소	
+mainSettingAdvanced_stackIfEnable		Stack Similar Items	When enabled this will stack similar UV clusters or clusters that share the same texture region.		栈相似资料	当启用此将堆叠类似紫外线集群或集群共享相同的纹理区域。		同様の商品を積み重ねる	有効にするとこれは、同じテクスチャ領域を共有して同様のUVクラスタまたはクラスタをスタックします。		유사 항목 스택	활성화되면이 비슷한 UV 클러스터 또는 같은 질감 영역을 공유 클러스터 스택됩니다.
+mainSettingAdvanced_stackIfOverlaps		Stack if matches	When UV clusters match the same texture area they can be stacked. This value describes the volume booth areas need to share at least in order to stack.		如果堆火柴	当紫外线集群匹配相同的纹理区域，他们可以堆叠。这个值说明音量摊位内需要共享至少为叠加。		一致した場合、スタック	UVのクラスタが同じテクスチャ領域と一致する場合、それらは積層することができる。この値は、ブースエリアは、スタックするためには、少なくとも共有する必要があるボリュームについて説明します。		스택과 일치하는 경우	UV 클러스터가 동일한 텍스처 영역 합하면 그들이 적층 될 수있다. 이 값은 영역이 적어도 스택하기 위해 공유해야하는 볼륨 부스를 설명합니다.
+mainSettingAdvanced_titleTexel		Uniform Texel Scale			统一特克塞尔规模			均一なテクセルスケール			균일 한 텍셀 규모	
+mainSettingAdvanced_texelDo		Scale Uniform	These options let you match all pixels on the mesh surfaces (texels) to be consistent.		规模统一	这些选项可让您匹​​配的网格曲面上的所有像素（纹理）是一致的。		スケールの制服	これらのオプションは、一貫して、メッシュの表面上の全てのピクセル（テクセル）と一致してみましょう。		스케일 유니폼	이 옵션을 사용하면 일관성이 있어야 메쉬 표면에 모든 픽셀 (텍셀)와 일치 할 수 있습니다.
+mainSettingAdvanced_texelReference		Reference Object	A gameobject that will be used as a reference to match its texel density		参考对象	将被用作参考，以匹配其纹理像素密度一个物体		参照物体	そのテクセル密度を一致させる基準として使用されるゲームオブジェクト		참조 개체	그 텍셀 밀도를 일치하는 기준으로 사용됩니다 게임 오브젝트
+mainSettingAdvanced_texelSmoothResize		Billinear Filtering	Uses billinear filtering over point sampling for better quality but slower calculations.		Billinear过滤	使用billinear过滤过采样点为更好的质量，但速度较慢的计算。		Billinearフィルタリング	より良い品質、より遅い計算のポイントサンプリングを介しbillinearフィルタリングを使用しています。		Billinear 필터링	더 나은 품질하지만 느린 계산 포인트 샘플링을 통해 필터링 billinear 사용합니다.
+												
+mainTextures_title		Textures	List of the textures from the objects to pack.		纹理	从物体的纹理包的列表。		テクスチャ	パックするオブジェクトからテクスチャのリスト。		텍스처	포장하는 객체에서 텍스처의 목록입니다.
+mainTextures_titleContains		Textures @	Select and deselect the textures to be included in the packing process.		纹理@	选择和取消选择要包含在包装过程中的纹理。		テクスチャ@	パッキングプロセスに含まれるテクスチャを選択し、選択を解除します。		질감 @	선택과 포장 과정에 포함 할 텍스처를 선택 취소합니다.
+mainSelect_title		Packing Set	List that contains the objects to pack together.		包装组	列表中包含的对象打包在一起。		パッキンセット	一緒にパックするためのオブジェクトが含まれて一覧。		포장 세트	개체가 함께 팩을 포함 목록.
+mainSelect_titleContains		Packing Set @x	You have @ objects in the packing list.		包装集@ x	你有@的包装清单对象。		パッキンセットは@ X	あなたは、パッキングリスト内のオブジェクト@持っています。		포장 세트 인자 X	당신은 포장 목록에서 개체 @있다.
+mainSelect_info_noSelectionAndItems		Select 3D objects from the scene or Project view and press 'Add'.			从现场的3D对象或项目视图，然后按下“添加”。			シーンやプロジェクトビューおよびプレスから3Dオブジェクトを選択して「追加」。			3D 장면에서 객체 나 프로젝트보기를 눌러 '추가'를 선택합니다.	
+mainSelect_info_alreadyItems		You can add more 3D objects or remove them by clicking the 'x' individually.			您可以添加更多的3D对象或通过点击单独的“X”删除它们。			あなたはより多くの3Dオブジェクトを追加したり、個別に「X」をクリックすることで削除できます。			당신은 더 많은 3D 객체를 추가하거나 개별적으로 'X'를 클릭하여 제거 할 수 있습니다.	
+mainSelect_btn_addEmpty		Add			加			加える			추가	
+mainSelect_btn_addAmount		Add @x	Add currently selected GameObjects from your scene to the packing list.		添加@ x	添加当前选定的游戏物体从场景到装箱单。		@ xを追加	シーンからパッキングリストに現在選択されているゲームオブジェクトを追加します。		@ x를 추가	장면에서 포장 목록에 현재 선택된 게임 오브젝트를 추가합니다.
+mainSelect_btn_selectSet		Select All @x	Select this entire set.		全选@ x	选择这个整个集合。		すべての@ Xを選択	このセット全体を選択します。		모든 @ x를 선택	이 전체 세트를 선택합니다.
+mainSelect_btn_clearAll		Remove Set	Remove all items from this packing set and undo any existing packed PackerPro components.		删除组	从这个包装集中删除所有项目，并取消任何现有的包装PackerPro组件。		セットを削除	このパッキンセットからすべての項目を削除し、既存のパックPackerProコンポーネントを元に戻す。		설정 옵션 해제	이 포장 세트에서 모든 항목을 제거하고 기존 포장 PackerPro 구성 요소를 취소.
+mainSelect_dragDrop_message		Drop Models Here			滴塑这里			ここではモデルをドロップ			여기에 모델 드롭	
+mainSelect_btn_listRemoveItem		X	Remove this item from the packing list.		X	从包装清单删除该商品。		X	パッキングリストからこの項目を削除します。		엑스	포장 목록에서 항목을 제거합니다.
+mainSelect_btn_listRemoveItemComponent		X	Remove this item from the packing list and undo the packed component result from this object.		X	从包装列表中删除此项目，并从该对象撤消包装组件的结果。		X	パッキングリストからこの項目を削除し、このオブジェクトからパックされたコンポーネントの結果を元に戻す。		엑스	포장 목록에서 항목을 제거하고이 개체에서 포장 된 구성 요소의 결과를 취소합니다.
+												
+mainResult_title		Result			结果			結果			결과	
+mainResult_btn_assignResultWithMaterial		Assign Material	Assign the material with the packed texture and the UV's to the objects in the packing set. You can always undo this afterwards.		指定材质	与填充纹理和紫外线的在包装组中的对象分配的材料。你总是可以事后撤消此。		マテリアルを割り当て	パッキンセット内のオブジェクトにパックされたテクスチャとUVの材料を割り当てます。あなたはいつも後から、これを取り消すことができます。		물자 지정	포장 세트의 개체에 대한 압축 된 텍스처와 UV의 소재를 할당합니다. 당신은 항상 나중에이를 취소 할 수 있습니다.
+mainResult_btn_createMesh		Create single Mesh	Creates a new single combined mesh with single texture assigned to it.		创建单个网	创建一个具有单一的纹理一个新的单目组合分配给它。		単一のメッシュを作成します。	それに割り当てられた単一のテクスチャを使用して新しい単一の複合メッシュを作成します。		하나의 메쉬를 만듭니다	할당 한 질감을 가진 새로운 하나의 결합 된 메쉬를 작성합니다.
+mainResult_btn_exportMesh		Export single OBJ	Exports a single OBJ mesh file and a PNG texture.		出口单OBJ	导出一个OBJ网格文件和PNG质感。		輸出シングルOBJ	シングルのOBJメッシュファイルとPNGテクスチャをエクスポートします。		수출 단일 OBJ	하나의 OBJ 메쉬 파일과 PNG 텍스처를 보냅니다.
+mainResult_msg_filesDirtySaveMessage		Don't forget to save your scene.			不要忘记保存你的场景。			シーンを保存することを忘れないでください。			장면을 저장하는 것을 잊지 마세요.	
+mainResult_setting_showWireFrame		Show Wireframe			显示线框			表示するワイヤフレーム			보기 와이어 프레임	
+mainResult_errorPackingSize		Error, texture to small	The texture could not be packed into the maximum specified size. Consider increasing the maximum size in the settings.		错误，纹理小	纹理不能被包装成规定的最大尺寸。考虑增加最大尺寸的设置。		小さな間違いが、食感	テクスチャは、最大指定したサイズにパックすることができなかった。設定で最大サイズを増やすことを検討してください。		작은에 오류, 텍스처	텍스처는 지정된 최대 크기로 포장 할 수 없습니다. 설정에서 최대 크기를 늘리는 것이 좋습니다.
+mainResult_errorPackingNoMeshes		Error, no meshes found	There were no packable meshes found. Make sure that all listed objects have assigned materials and textures to them.		错误，没有发现网	有没有发现能收藏网格。确保所有列出的对象已指定的材质和纹理给他们。		エラーはありませんがメッシュ見つからない	見つから収納可能メッシュはありませんでした。リストされたすべてのオブジェクトがそれらにマテリアルとテクスチャが割り当てられていることを確認してください。		오류, 아니 망을 찾을 수 없습니다	발견에는 수납 메쉬가 없었다. 나열된 모든 개체가 그들에게 재료 및 질감을 할당해야합니다.
+mainResult_errorPackingGeneral		Error, could not pack objects	There was an unkown error packing the objects.		错误，无法收拾的对象	有一个未知错误包装的对象。		エラーは、オブジェクトをパックことができませんでした	オブジェクトをパッキングUNKOWNにエラーが発生しました。		오류 개체를 포장 할 수 없습니다	객체를 포장하는 알 수없는 오류가 발생했습니다.
+mainResult_errorAssignGeneral		Error, could not assign textures	There was an unkown error assigning the materials and textures to the objects.		错误，无法分配纹理	有一个未知的错误分配的材质和纹理的对象。		エラーは、テクスチャを割り当てることができませんでした	オブジェクトにマテリアルとテクスチャの割り当てUNKOWNにエラーが発生しました。		오류, 텍스처를 할당 할 수	개체에 대한 재료 및 질감을 할당하는 알 수없는 오류가 발생했습니다.
+mainResult_errorBuildGeneral		Error, could not create combined mesh	There was an unkown error while creating the combined mesh.		错误，无法创建联合网	在创建相结合网格有一个未知的错误。		エラーは、複合メッシュを作成できませんでした	組み合わせたメッシュを作成中UNKOWNにエラーが発生しました。		오류가 결합 된 메쉬를 만들 수 없습니다	결합 된 메쉬를 작성하는 동안 알 수없는 오류가 발생했습니다.
+component_errorNoRuntimeEditing		PackerPro doesn't support runtime editing.			PackerPro不支持运行时编辑。			PackerProは、ランタイム編集をサポートしていません。			PackerPro 런타임 편집을 지원하지 않습니다.	
+exportObj_success		Your packed set was successfully exported as a single OBJ model.			你装一套已成功导出为一个OBJ模型。			あなたのパックセットが成功し、単一のOBJモデルとして輸出された。			귀하의 포장 세트가 성공적으로 단일 OBJ 모델로 수출했다.	
+												
+component_btnSelectSet		Select "@" Set	Select the objects that are part of this packed set.		选择“@”设置	选择此包装集的一部分的对象。		選択 "@"に設定	このパックされたセットの一部であるオブジェクトを選択します。		선택 "@"로 설정	이 포장 세트에 포함 된 개체를 선택합니다.
+component_labelTextureBefore		Original Texture	The original texture that was used before packing this set.		原始纹理	原始纹理被包装这集之前使用。		元のテクスチャ	このセットをパックする前に使用した元のテクスチャ。		기존 텍스처	이 세트를 포장하기 전에 사용 된 본래의 감촉.
+component_labelTextureAfter		Packed Texture	The new texture that was used after packing this set.		盒装纹理	新的纹理被包装这一套后使用。		ランチテクスチャ	このセットをパックした後に使用した新食感。		포장 텍스처	이 세트를 포장 한 후 사용 된 새로운 질감.
+component_btnRemoveSet		Remove Set	Undo and remove this entire set of the packed texture and its related objects.		删除组	松开并取下这一整套的包装质地和其相关的对象。		セットを削除	パックされたテクスチャとその関連オブジェクトのこのセット全体を取り消して削除します。		설정 옵션 해제	취소하고 포장 질감 및 관련 개체의이 전체 세트를 제거합니다.
+component_btnEditSet		Edit "@" Set	Edit this texture set in Packer Pro		编辑“@”设置	编辑本质地打包机专业设置		編集 "@"に設定	パッカーProで設定し、このテクスチャを編集		편집 "@"로 설정	패커 설정이 텍스처를 편집 프로

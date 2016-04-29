@@ -381,9 +381,10 @@ public class Player : Photon.MonoBehaviour {
     }
 
     [PunRPC]
-    void setNick(string nick) {
-        name = nick;
-        namePlate.setName(nick, NamePlate.COLOR_NORMAL);
+    void setNick(string nickName) {
+        //name = nickName;
+        namePlate.setName(nickName, NamePlate.COLOR_NORMAL);
+		namePlate.gameObject.SetActive (true);
     }
 
     private static Vector3 getVector3(string rString) {

@@ -233,7 +233,7 @@ public class Book : MonoBehaviour {
     }
     public void DragRightPageToPoint(Vector3 point)
     {
-        if (currentPage >= bookPages.Length) return;
+        if (currentPage + 1 >= bookPages.Length) return;
         pageDragging = true;
         mode = FlipMode.RightToLeft;
         f = point;
@@ -243,14 +243,14 @@ public class Book : MonoBehaviour {
         ClippingPlane.rectTransform.pivot = new Vector2(1, 0.12f);
 
 		if (currentPage != 0) {
-			currentL.text = pageText [currentPage - 1];
+			currentL.text = pageText [currentPage - 1].Replace("<br>", "\n");
 		}
-		nextL.text = pageText [currentPage];
+		nextL.text = pageText [currentPage].Replace("<br>", "\n");
 		if (currentPage != bookPages.Length) {
-			nextR.text = pageText [currentPage + 1];
+			nextR.text = pageText [currentPage + 1].Replace("<br>", "\n");
 		}
 		if (currentPage + 2 != bookPages.Length) {
-			currentR.text = pageText [currentPage + 2];
+			currentR.text = pageText [currentPage + 2].Replace("<br>", "\n");
 		}
 
         Left.gameObject.SetActive(true);
@@ -288,9 +288,9 @@ public class Book : MonoBehaviour {
         ClippingPlane.rectTransform.pivot = new Vector2(0, 0.12f);
 
 		if (currentPage - 3 > 0) {
-			currentL.text = pageText [currentPage - 3];
+			currentL.text = pageText [currentPage - 3].Replace("<br>", "\n");
 		}
-		nextR.text = pageText [currentPage - 1];
+		nextR.text = pageText [currentPage - 1].Replace("<br>", "\n");
 
         Right.gameObject.SetActive(true);
         Right.transform.position = LeftNext.transform.position;
@@ -342,10 +342,10 @@ public class Book : MonoBehaviour {
         LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
         RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
 		if (currentPage != 0) {
-			currentL.text = pageText [currentPage - 1];
+			currentL.text = pageText [currentPage - 1].Replace("<br>", "\n");
 		}
 		if (currentPage != bookPages.Length) {
-			currentR.text = pageText [currentPage];
+			currentR.text = pageText [currentPage].Replace("<br>", "\n");
 		}
     }
     public void TweenForward()
