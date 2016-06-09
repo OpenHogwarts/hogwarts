@@ -31,6 +31,7 @@ Working features
 - NPCs (Agressives & sellers) + patrols
 - Spells combat
 - Flying Broomstick
+- Quests
 
 Credits
 -------------
@@ -40,7 +41,6 @@ Credits
 - Wand models: Ektorkrom
 - Spider model: https://www.assetstore.unity3d.com/en/#!/content/10104
 - Batuhan Evren: Spell maker
-- Broomstick controller: SunCube
 - Music: Ektorkrom (http://www.goear.com/search/foxkrom)
 
 Special Thanks
