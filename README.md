@@ -36,7 +36,7 @@ Working features
 Credits
 -------------
 
-- Hogwarts model: Dani Moreno (danimorenoanimacion.com)
+- Hogwarts model: Dani Moreno (danimoreno3d.com)
 - student & teacher models: Spider-Z
 - Wand models: Ektorkrom
 - Spider model: https://www.assetstore.unity3d.com/en/#!/content/10104
