@@ -13,9 +13,12 @@ public class PlayerHotkeys : MonoBehaviour
             return;
         }
 
-		if (Input.GetKeyDown (KeyCode.F1)) {
-			GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
-		}
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Menu.Instance.togglePanel("ConfigPanel");
+        }
+	if (Input.GetKeyDown (KeyCode.F1)) {
+            GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
+	}
         if (Input.GetKeyDown(KeyCode.F2))
         {
             string now = System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f");
