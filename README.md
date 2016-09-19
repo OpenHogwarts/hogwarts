@@ -33,6 +33,20 @@ Working features
 - Flying Broomstick
 - Quests
 
+Hotkeys
+------------------
+Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blob/master/Assets/Scripts/Player/PlayerHotkeys.cs to ensure which are the latest assigned for each action.
+- F1: Config
+- F2: Take screenshot
+- Z: Hide UI
+- E: Spell broomstick
+- Q: Lumos
+- T: Chat
+- B: Bag
+- C: Character
+- Left mouse: select target
+- 1, 2, 3.. keys: Spell cast
+
 Credits
 -------------
 
