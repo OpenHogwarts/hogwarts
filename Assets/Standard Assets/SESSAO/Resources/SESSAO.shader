@@ -1,4 +1,8 @@
-﻿Shader "Hidden/SESSAO" {
+﻿// Upgrade NOTE: commented out 'float4x4 _CameraToWorld', a built-in variable
+// Upgrade NOTE: commented out 'float4x4 _WorldToCamera', a built-in variable
+// Upgrade NOTE: replaced '_WorldToCamera' with 'unity_WorldToCamera'
+
+Shader "Hidden/SESSAO" {
 Properties {
 	_MainTex ("Base (RGB)", 2D) = "white" {}
 }
@@ -50,8 +54,8 @@ CGINCLUDE
 	sampler2D _MainTex;
 	sampler2D _ColorDownsampled;
 	
-	float4x4 _WorldToCamera;
-	float4x4 _CameraToWorld;
+	// float4x4 _WorldToCamera;
+	// float4x4 _CameraToWorld;
 	
 	float3 GetViewSpacePosition(float2 coord)
 	{
@@ -161,7 +165,7 @@ SubShader
 				
 				float3 bleed = float3(0.0, 0.0, 0.0);
 				
-				float4 emphasisDir = mul(_WorldToCamera, float4(0.0, -1.0, 0.0, 0.0));
+				float4 emphasisDir = mul(unity_WorldToCamera, float4(0.0, -1.0, 0.0, 0.0));
 				emphasisDir.xyz = normalize(emphasisDir.xyz);
 				emphasisDir.x *= -1.0f;
 				emphasisDir.y *= -1.0f;
@@ -261,7 +265,7 @@ SubShader
 				
 				float3 bleed = float3(0.0, 0.0, 0.0);
 				
-				float4 emphasisDir = mul(_WorldToCamera, float4(0.0, -1.0, 0.0, 0.0));
+				float4 emphasisDir = mul(unity_WorldToCamera, float4(0.0, -1.0, 0.0, 0.0));
 				emphasisDir.xyz = normalize(emphasisDir.xyz);
 				emphasisDir.x *= -1.0f;
 				emphasisDir.y *= -1.0f;
