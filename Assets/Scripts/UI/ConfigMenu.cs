@@ -89,7 +89,7 @@ public class ConfigMenu : MonoBehaviour {
 
     public void updateDaytime () {
         try {
-            GameObject.Find("Luces").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider>().value;
+            GameObject.Find("Lights").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider>().value;
         } catch (System.Exception) {
         }
     }
