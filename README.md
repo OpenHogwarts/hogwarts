@@ -33,19 +33,30 @@ Working features
 - Flying Broomstick
 - Quests
 
+¿Why development is so slow?
+------------------
+Because everyone wants to play, but no one wants to code/design/mod/help.
+
+
 Hotkeys
 ------------------
 Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blob/master/Assets/Scripts/Player/PlayerHotkeys.cs to ensure which are the latest assigned for each action.
-- F1: Config
+- ESC: Config
+- F1: Enable Dev options in ESC menu
 - F2: Take screenshot
 - Z: Hide UI
-- E: Spell broomstick
+- E: Broomstick spell 
 - Q: Lumos
 - T: Chat
 - B: Bag
 - C: Character
-- Left mouse: select target
+- Left mouse: Select target
 - 1, 2, 3.. keys: Spell cast
+
+ToDo
+------
+Check the wiki https://github.com/OpenHogwarts/hogwarts/wiki
+
 
 Credits
 -------------
