@@ -12,7 +12,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 Requirements
 -------------
-- Unity >= 5.3.4
+- Unity >= 5.4.2
 
 Setup
 -------------
