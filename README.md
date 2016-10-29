@@ -42,6 +42,7 @@ Because everyone wants to play, but no one wants to code/design/mod/help.
 Hotkeys
 ------------------
 Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blob/master/Assets/Scripts/Player/PlayerHotkeys.cs to ensure which are the latest assigned for each action.
+- WASD: Player control
 - ESC: Config
 - F1: Enable Dev options in ESC menu
 - F2: Take screenshot
@@ -53,6 +54,11 @@ Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blo
 - C: Character
 - Left mouse: Select target
 - 1, 2, 3.. keys: Spell cast
+
+Broomstick hotkeys
+------------------
+- WASD: Basic control
+- Right mouse: 3D Direction control
 
 ToDo
 ------
