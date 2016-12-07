@@ -143,5 +143,29 @@ public class QuestManager : MonoBehaviour
 
         allQuests.Add(quest.id, quest);
         // -- end quest
+
+        // -- start quest
+        quest = new Quest();
+        quest.id = 2;
+        quest.assigner = 4; // hagrid
+        assignToNPC(quest);
+        quest.name = "Iniciación";
+        quest.pre = "{{username}}, necesitamos almacenar troncos para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par.";
+        quest.after = "¿Sólo me has traído esto? ... Bueno... Ya es algo.";
+        quest.loot.Add(3, 4); // id, quantity
+
+        task = new Task();
+        task.quest = quest.id;
+        task.taskId = taskId++;
+        task.id = 17;
+        task.idType = Task.IdType.Id;
+        task.quantity = 4;
+        task.type = Task.ActorType.Item;
+        task.action = Task.ActionType.GetItem;
+
+        quest.tasks.Add(task.taskId, task);
+
+        allQuests.Add(quest.id, quest);
+        // -- end quest
     }
 }

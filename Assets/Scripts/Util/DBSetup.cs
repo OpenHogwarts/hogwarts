@@ -262,14 +262,13 @@ public class DBSetup : MonoBehaviour {
 
 		template = new NPCTemplate();
 		template.id = (int)NPCData.creatureTemplate.Human;
-		template.name = "Mike";
+		template.name = "Default name";
 		template.creatureRace = NPCData.creatureRace.Human;
 		template.creatureSubRace = NPCData.creatureSubRace.Normal;
 		template.isAgressive = false;
 		template.healthBase = 100;
 		template.create ();
-		
-	}
+    }
 
 	public static void insertNPCs () {
 
@@ -303,7 +302,11 @@ public class DBSetup : MonoBehaviour {
         npc.subRace = NPCData.creatureSubRace.Quest;
         npc.create();
         // END -----------------
-
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++;
+        npc.name = "Hagrid";
+        npc.subRace = NPCData.creatureSubRace.Quest;
+        npc.create();
 
     }
 
