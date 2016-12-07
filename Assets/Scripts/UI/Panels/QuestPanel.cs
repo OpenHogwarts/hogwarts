@@ -42,6 +42,10 @@ public class QuestPanel : MonoBehaviour
 
         text.text = "¡Perfecto!";
         acceptButton.SetActive(false);
+
+        AudioSource sound = GetComponent<AudioSource>();
+        sound.clip = SoundManager.get(SoundManager.Effect.QuestAccept);
+        sound.Play();
     }
 
     public void OnAcceptReward()
@@ -50,5 +54,9 @@ public class QuestPanel : MonoBehaviour
 
         text.text = "¡Perfecto!";
         acceptButton.SetActive(false);
+
+        AudioSource sound = GetComponent<AudioSource>();
+        sound.clip = SoundManager.get(SoundManager.Effect.QuestComplete);
+        sound.Play();
     }
 }

@@ -4,8 +4,10 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
 	public enum Effect {
-		Buy
-	}
+		Buy,
+        QuestComplete,
+        QuestAccept
+    }
 
 	public static SoundManager Instance;
 

@@ -91,7 +91,7 @@ public class Task
     public string buildPhrase()
     {
         string phrase = "";
-        Debug.Log(action);
+
         switch (action) {
             case ActionType.Kill:
                 phrase += "Mata";
