@@ -244,7 +244,7 @@ namespace UnityStandardAssets.CinematicEffects
 
         private void SetLUTImportSettings(TextureImporter importer)
         {
-            importer.textureType = TextureImporterType.Advanced;
+            importer.textureType = TextureImporterType.Default;
             importer.anisoLevel = 0;
             importer.mipmapEnabled = false;
             importer.linearTexture = true;

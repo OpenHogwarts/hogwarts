@@ -1799,7 +1799,7 @@ public class PackerPro : EditorWindow {
 				//SET TEXTURE SETTINGS....
 				texImporter = TextureImporter.GetAtPath( AssetDatabase.GetAssetPath( tex ) ) as TextureImporter;
 				if (texImporter != null){//IS AN ASSET THAT EXISTS IN THE ASSET FOLDER - NOT JUST MEMORY
-					texImporter.textureType = TextureImporterType.Advanced;
+					texImporter.textureType = TextureImporterType.Default;
 					texImporter.maxTextureSize = sizeMax;
 					texImporter.isReadable = false;//UNDO AGAIN FOR PERFORMACE
 					
