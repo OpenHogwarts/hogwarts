@@ -187,6 +187,15 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
+        item.name = "Amuleto multicolor";
+        item.description = "Sín descripción";
+        item.price = 40;
+        item.type = Item.ItemType.Armor;
+        item.subType = Item.ItemSubType.Necklace;
+        item.create();
+
+        item = new ItemData();
+        item.id = id++;
         item.name = "Amuleto simple";
         item.description = "Sín descripción";
         item.price = 40;
@@ -235,6 +244,15 @@ public class DBSetup : MonoBehaviour {
         item.name = "Diamante rosa normal";
         item.description = "Sín descripción";
         item.price = 40;
+        item.type = Item.ItemType.Useless;
+        item.subType = Item.ItemSubType.Scrap;
+        item.create();
+
+        item = new ItemData();
+        item.id = id++;
+        item.name = "Madera";
+        item.description = "Combustible para el fuego";
+        item.price = 15;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
         item.create();

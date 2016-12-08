@@ -74,6 +74,9 @@ public class QuestManager : MonoBehaviour
                 ) {
                     if (task.quantity > 0) {
                         task.currentQuantity += quantity;
+                        // update phrase too as it displays the current quantity
+                        task.ui.setPhrase(task.buildPhrase());
+                        task.ui.setStatus(task.isCompleted);
                     }
 
                     if (task.quantity == 0 || task.quantity == task.currentQuantity)  {
@@ -150,16 +153,16 @@ public class QuestManager : MonoBehaviour
         quest.assigner = 4; // hagrid
         assignToNPC(quest);
         quest.name = "Iniciación";
-        quest.pre = "{{username}}, necesitamos almacenar troncos para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par.";
+        quest.pre = "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par.";
         quest.after = "¿Sólo me has traído esto? ... Bueno... Ya es algo.";
         quest.loot.Add(3, 4); // id, quantity
 
         task = new Task();
         task.quest = quest.id;
         task.taskId = taskId++;
-        task.id = 17;
+        task.id = 26;
         task.idType = Task.IdType.Id;
-        task.quantity = 4;
+        task.quantity = 8;
         task.type = Task.ActorType.Item;
         task.action = Task.ActionType.GetItem;
 
