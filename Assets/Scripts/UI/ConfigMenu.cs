@@ -21,7 +21,7 @@ public class ConfigMenu : MonoBehaviour {
 
 
 	void LoadCfg(){
-		ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
+		//ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
 		dof.isOn = Camera.main.GetComponent<DepthOfField> ().enabled;
 		qdrop.value = QualitySettings.GetQualityLevel ();
 	}
@@ -45,7 +45,7 @@ public class ConfigMenu : MonoBehaviour {
 	}
 
 	public void OptionsSetSSAO(){
-		Camera.main.GetComponent<SESSAO> ().enabled = ssao.isOn;
+		//Camera.main.GetComponent<SESSAO> ().enabled = ssao.isOn;
 	}
 
 	public void OptionsSetDOF(){
