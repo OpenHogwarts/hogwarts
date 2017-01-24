@@ -19,7 +19,7 @@ public class MainPanel : MonoBehaviour {
 			DBSetup.start();
 		}
 
-        NetworkManager.validateGameVersion();
+        //NetworkManager.validateGameVersion();
 
         // @ToDo: create a UI for selection
         foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
