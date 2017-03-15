@@ -62,7 +62,7 @@ Broomstick hotkeys
 
 ToDo
 ------
-Check the wiki https://github.com/OpenHogwarts/hogwarts/wiki
+Check the wiki https://github.com/OpenHogwarts/hogwarts/wiki/ToDo
 
 
 Credits
