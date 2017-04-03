@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 #ifndef __MOTION_BLUR__
 #define __MOTION_BLUR__
 
@@ -58,7 +60,7 @@ struct VaryingsMultitex
 VaryingsMultitex VertMultitex(AttributesDefault v)
 {
     VaryingsMultitex o;
-    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+    o.pos = UnityObjectToClipPos(v.vertex);
     o.uv0 = v.texcoord.xy;
     o.uv1 = v.texcoord.xy;
 

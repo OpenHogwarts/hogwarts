@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: commented out 'float4x4 _WorldToCamera', a built-in variable
 // Upgrade NOTE: replaced '_WorldToCamera' with 'unity_WorldToCamera'
 
@@ -295,7 +297,7 @@ Shader "Hidden/Image Effects/Cinematic/AmbientOcclusion"
         float vflip = sign(_MainTex_TexelSize.y);
 
         v2f_multitex o;
-        o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+        o.pos = UnityObjectToClipPos(v.vertex);
         o.uv0 = v.texcoord.xy;
         o.uv1 = (v.texcoord.xy - 0.5) * float2(1, vflip) + 0.5;
         return o;

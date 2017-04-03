@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 /**
 \author Michael Mara and Morgan McGuire, Casual Effects. 2015.
 */
@@ -97,7 +99,7 @@ Shader "Hidden/Post FX/Screen Space Reflection"
         {
             v2f o;
 
-            o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+            o.pos = UnityObjectToClipPos(v.vertex);
             o.uv = v.texcoord.xy;
             o.uv2 = v.texcoord.xy;
 

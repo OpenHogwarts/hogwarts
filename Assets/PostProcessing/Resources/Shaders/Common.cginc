@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 #ifndef __COMMON__
 #define __COMMON__
 
@@ -39,7 +41,7 @@ struct VaryingsDefault
 VaryingsDefault VertDefault(AttributesDefault v)
 {
     VaryingsDefault o;
-    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+    o.pos = UnityObjectToClipPos(v.vertex);
     o.uv = v.texcoord.xy;
     o.uvSPR = UnityStereoScreenSpaceUVAdjust(v.texcoord.xy, _MainTex_ST);
     return o;

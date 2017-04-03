@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: commented out 'float4x4 _WorldToCamera', a built-in variable
 // Upgrade NOTE: replaced '_WorldToCamera' with 'unity_WorldToCamera'
 
@@ -164,7 +166,7 @@ VaryingsMultitex VertMultitex(AttributesDefault v)
 #endif
 
     VaryingsMultitex o;
-    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+    o.pos = UnityObjectToClipPos(v.vertex);
     o.uv = v.texcoord.xy;
     o.uv01 = uvAlt;
     o.uvSPR = UnityStereoTransformScreenSpaceTex(uvAlt);
