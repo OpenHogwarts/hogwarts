@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	bool isDragging = false;
 	bool isDeciding = false;
 	Vector3 initialPos;
+    public GameObject parentContainer;
 	public Slot currentSlot;
 	
 	public Item item {
@@ -23,6 +24,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	public void OnBeginDrag (PointerEventData eventData) {
 		GamePanel.isMovingAPanel = true;
+
 		isDragging = true;
 		initialPos = transform.position;
 		GetComponent<RectTransform> ().SetAsLastSibling ();
@@ -67,7 +69,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 					if (slot.type == Slot.slotType.equipment) {
 						transform.SetParent(Menu.Instance.getPanel("InventoryPanel").transform);
 					} else {
-						transform.SetParent(Menu.Instance.getPanel("BagPanel").transform);
+                        //transform.SetParent(Menu.Instance.getPanel("BagPanel").transform);
+                        // New Parent
+                        transform.SetParent(parentContainer.transform);
+                        transform.GetComponent<RectTransform>().SetSiblingIndex(transform.GetComponent<ItemSlot>().currentSlot.num);
 					}
 
 					slot.available = false;
@@ -113,6 +118,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (isDragging || data.button != PointerEventData.InputButton.Right) {
 			return;
 		}
+        parentContainer = transform.parent.gameObject;
 
 		Vector3 pos = new Vector3 (transform.position.x + 100, transform.position.y - 50, 0);
 

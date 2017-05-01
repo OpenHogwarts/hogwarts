@@ -34,8 +34,8 @@ public class Inventory : MonoBehaviour {
 
 	public void reload () {
 
-		x = -110;
-		y = 110;
+		//x = -110;
+		//y = 110;
 
 		// remove old items
 		destroyOldIcons ();
@@ -47,12 +47,12 @@ public class Inventory : MonoBehaviour {
 				GameObject slot = (GameObject)Instantiate(slotPrefab);
 				slot.tag = "TemporalPanel";
 				slot.transform.SetParent(this.gameObject.transform, false);
-				slot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
+				//slot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
 				slot.GetComponent<Slot>().num = slotNum;
 				
 				// check if we can fill this slot
 				fillSlot(slot.GetComponent<Slot>());
-				
+				/*
 				if (slotWidth == 0) {
 					RectTransform rect = slot.GetComponent<RectTransform>();
 					slotWidth = (int)rect.rect.width + margin;
@@ -64,6 +64,7 @@ public class Inventory : MonoBehaviour {
 					x = -110;
 					y = y - slotHeight;
 				}
+                */
 				slotNum++;
 			}
 		}
@@ -79,6 +80,13 @@ public class Inventory : MonoBehaviour {
 		children.ForEach(child => Destroy(child));
 	}
 
+    public CharacterItem GetInventoryItemBySlot(int _pos, object _characterID, int _slotNum)
+    {
+        CharacterItem itemInfo;
+        itemInfo = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", _pos, _characterID, _slotNum);
+        return itemInfo;
+    }
+
 	/**
 		Tries to fill the given slot
 		@param Slot slot slot to fill
@@ -91,8 +99,13 @@ public class Inventory : MonoBehaviour {
 		Item itm = new Item ();
 		CharacterItem characterItem;
 		GameObject itemSlot;
-
-		characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], slot.num);
+        // for Grid Layoutt, calculate how big the RectTransform for the inventory is.
+        // Calculated automatically depending on grid width setting in Grid Layout Options
+        var localScale = transform.parent.transform.localScale;
+        Debug.Log("localScale x: " + localScale.x + " localScale y: " + localScale.y);
+        var rectWidth = transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta / transform.GetComponent<GridLayoutGroup>().constraintCount * localScale.x;
+        
+        characterItem = GetInventoryItemBySlot(0, PhotonNetwork.player.customProperties["characterId"], slot.num);
 
 		if (characterItem != null) {
 			isAssigned = true;
@@ -100,15 +113,25 @@ public class Inventory : MonoBehaviour {
 			itemSlot.tag = "TemporalPanel";
 			itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
 			itemSlot.GetComponent<ItemSlot>().currentSlot = slot;
-			
-			itemSlot.transform.SetParent(this.gameObject.transform, false);
-			itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
+            itemSlot.GetComponent<RectTransform>().SetSiblingIndex(slot.num);
+
+            itemSlot.transform.SetParent(this.gameObject.transform, false);
+			//itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
 		} else {
-			characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], 0);
+			characterItem = GetInventoryItemBySlot(0, PhotonNetwork.player.customProperties["characterId"], slot.num);
 
-			if (characterItem != null) {
+            if (characterItem != null) {
 				isAssigned = true;
+                // Need to delete the itemslot that matches this item
 
+                foreach(Transform child in transform.parent.transform)
+                {
+                    if(child.GetComponent<ItemSlot>() != null)
+                    {
+                        if (child.GetComponent<ItemSlot>().currentSlot.num == slot.num)
+                            Destroy(child);
+                    }
+                }
 				// assign this slot to the item
 				characterItem.slot = slot.num;
 				characterItem.save();
@@ -117,19 +140,21 @@ public class Inventory : MonoBehaviour {
 				itemSlot.tag = "TemporalPanel";
 				itemSlot.GetComponent<ItemSlot>().item = itm.get(characterItem);
 				itemSlot.GetComponent<ItemSlot>().currentSlot = slot;
-				
-				itemSlot.transform.SetParent(this.gameObject.transform, false);
-				itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
-			}
+                
+                itemSlot.GetComponent<RectTransform>().SetSiblingIndex(slot.num);
+                itemSlot.transform.SetParent(this.gameObject.transform, false);
+				//itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
+                
+            }
 		}
 		slot.available = !isAssigned;
 	}
 
 	public void updateMoney () {
 		Vector3 money = Util.formatMoney (Player.Instance.money);
-		transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
-		transform.FindChild ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
-		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
+		transform.parent.FindChild ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
+		transform.parent.FindChild ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
+		transform.parent.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
 	}
 
 	public void showOptions (Vector3 pos, Item item) {
@@ -137,7 +162,7 @@ public class Inventory : MonoBehaviour {
 
 		Menu.Instance.hideTooltip ();
 		optionsPanel.SetActive (true);
-		optionsPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
+		optionsPanel.GetComponent<RectTransform> ().SetAsLastSibling();
 		optionsPanel.transform.position = pos;
 
 		switch(item.type) {

@@ -39,15 +39,15 @@ public class MainPanel : MonoBehaviour {
 			LevelLabel.transform.gameObject.SetActive(true);
 			JoinButton.transform.gameObject.SetActive(true);
 			#if UNITY_EDITOR
-			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(true);
+			GameObject.Find ("Canvas/MainPanel/LoginOptions/TestButton").SetActive(true);
 			#endif
 
-			GameObject.Find ("Canvas/MainPanel/CreateButton").SetActive(false);
+			GameObject.Find ("Canvas/MainPanel/LoginOptions/CreateButton").SetActive(false);
 		} else {
 			nickLabel.transform.gameObject.SetActive(false);
 			LevelLabel.transform.gameObject.SetActive(false);
 			JoinButton.transform.gameObject.SetActive(false);
-			GameObject.Find ("Canvas/MainPanel/TestButton").SetActive(false);
+			GameObject.Find ("Canvas/MainPanel/LoginOptions/TestButton").SetActive(false);
 		}
 		 
 	}
@@ -65,7 +65,7 @@ public class MainPanel : MonoBehaviour {
 		PhotonNetwork.player.name = name;
 		
 		NetworkManager.Instance.startConnection();
-		GameObject.Find ("Canvas/MainPanel/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
+		GameObject.Find ("Canvas/MainPanel/LoginOptions/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
 	}
 
 	public void joinTest () {
