@@ -33,13 +33,25 @@ public class SellPanel : MonoBehaviour {
 		}
 	}
 
-	private List<Item> itemList = new List<Item>();
-	
-	void OnEnable () {
+    private List<Item> itemList = new List<Item>();
+
+    void destroyOldIcons() {
+        var children = new List<GameObject>();
+        foreach (Transform child in transform) {
+            if (child.tag == "TemporalPanel") {
+                children.Add(child.gameObject);
+            }
+        }
+        children.ForEach(child => Destroy(child));
+    }
+
+    void OnEnable () {
 		_instance = this;
 
-		// @ToDo: select items depending on NPC level and area
-		foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
+        destroyOldIcons(); // Removes Items in Seller Menu
+
+        // @ToDo: select items depending on NPC level and area
+        foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
 			itemList.Add(itm);
 		}
 

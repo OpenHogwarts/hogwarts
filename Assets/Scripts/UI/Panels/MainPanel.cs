@@ -5,7 +5,6 @@ using System.Collections;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
-    public Locales myLocale;
     public Text nickLabel;
 	public Text LevelLabel;
     public Toggle translateEN;
@@ -14,7 +13,6 @@ public class MainPanel : MonoBehaviour {
 	private int playerId;
 
 	public void OnEnable () {
-        myLocale = GetComponent<Locales>();
         bool hasPlayer = false;
 
 		if (Service.db.SelectCount("FROM item") < 1) {
