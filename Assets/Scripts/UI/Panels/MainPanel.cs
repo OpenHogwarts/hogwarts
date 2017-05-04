@@ -5,15 +5,17 @@ using System.Collections;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MainPanel : MonoBehaviour {
-
-	public Text nickLabel;
+    public Locales myLocale;
+    public Text nickLabel;
 	public Text LevelLabel;
+    public Toggle translateEN;
 	public Button JoinButton;
 
 	private int playerId;
 
 	public void OnEnable () {
-		bool hasPlayer = false;
+        myLocale = GetComponent<Locales>();
+        bool hasPlayer = false;
 
 		if (Service.db.SelectCount("FROM item") < 1) {
 			DBSetup.start();
@@ -26,8 +28,11 @@ public class MainPanel : MonoBehaviour {
 			hasPlayer = true;
 			playerId = character.id;
 
-			nickLabel.text = character.name;
-			LevelLabel.text = "Nivel "+character.level.ToString();
+            if (PlayerPrefs.GetString("Locale") == "es_en")
+                translateEN.isOn = true;
+         
+            nickLabel.text = character.name;
+			LevelLabel.text = "Nivel " + character.level.ToString();
 			JoinButton.onClick.AddListener(
 				delegate {
 				this.joinGame(character.id, character.name);
@@ -52,13 +57,23 @@ public class MainPanel : MonoBehaviour {
 		 
 	}
 
+    public void TranslationToggle() {
+        if(translateEN.isOn) {
+            PlayerPrefs.SetString("Locale", "es_en");
+        } else {
+            PlayerPrefs.SetString("Locale","es");
+        }
+        PlayerPrefs.Save();
+    }
+
 	public void joinGame (int characterId, string name) {
 
 		if (characterId < 1) {
 			return;
 		}
+        TranslationToggle();
 
-		Hashtable h = new Hashtable(1);
+        Hashtable h = new Hashtable(1);
 		h.Add("characterId", characterId);
 
 		PhotonNetwork.player.SetCustomProperties(h);
