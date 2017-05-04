@@ -450,7 +450,7 @@ public class NPC : Photon.MonoBehaviour
 	}
 
 	public void OnMouseDown() {
-		setSelected (true);
+        setSelected (true);
 
         if (!data.isAggresive) {
             QuestManager.Instance.sendAction(data.id, Task.ActorType.NPC, Task.ActionType.Talk, 0, data.template);

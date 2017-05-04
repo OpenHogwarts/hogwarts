@@ -37,7 +37,7 @@ public class SellPanel : MonoBehaviour {
 
     void destroyOldIcons() {
         var children = new List<GameObject>();
-        foreach (Transform child in transform) {
+        foreach (Transform child in scrollPanel.transform) {
             if (child.tag == "TemporalPanel") {
                 children.Add(child.gameObject);
             }
@@ -47,8 +47,7 @@ public class SellPanel : MonoBehaviour {
 
     void OnEnable () {
 		_instance = this;
-
-        destroyOldIcons(); // Removes Items in Seller Menu
+        itemList.Clear();
 
         // @ToDo: select items depending on NPC level and area
         foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
@@ -81,7 +80,8 @@ public class SellPanel : MonoBehaviour {
 	}
 
 	void OnDisable () {
-		selectedItem = null;
+        destroyOldIcons(); // Removes Items in Seller Menu
+        selectedItem = null;
 	}
 
 	public void updateMoney () {
