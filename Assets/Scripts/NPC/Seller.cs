@@ -5,8 +5,7 @@ using System.Collections;
 public class Seller : NPC {
 	
 	new public void OnMouseDown() {
-        var distanceToTarget = Vector3.Distance(transform.position, Player.Instance.transform.position);
-        if (distanceToTarget >= 5.0f) {
+        if (!isInInteractionRange) {
             // Alert User Somehow?
             setSelected(true);
             Debug.Log("[User Cannot See This] Target Too Far Away To Interact With.");

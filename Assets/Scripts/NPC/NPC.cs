@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /*
-This NPC brain is based on one-to-many way, which means that players set themself as target.
+This NPC brain is based on one-to-many way, which means that players set themself as target once they enter in NPC action radius
 */
 
 public class NPC : Photon.MonoBehaviour
@@ -69,6 +69,17 @@ public class NPC : Photon.MonoBehaviour
     }
 
     public const float maxInteractionRange = 5.0f;
+    public bool isInInteractionRange
+    {
+        get {
+            if (Vector3.Distance(transform.position, Player.Instance.transform.position) >= maxInteractionRange) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
     private bool EnableCombat;
 	private bool isUseless = false;
 	private bool isStunned = false;
@@ -93,6 +104,7 @@ public class NPC : Photon.MonoBehaviour
     private Vector3 originalPosition;
 
     public NamePlate namePlate;
+
 	
 	public void Start()
 	{
