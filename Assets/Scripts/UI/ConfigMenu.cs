@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityStandardAssets.CinematicEffects;
 
@@ -18,13 +19,33 @@ public class ConfigMenu : MonoBehaviour {
 	public GameObject player;
 	public GameObject dev;
 	public GameObject lightSlider;
+    public Dropdown languageDropdown;
 
 
-	void LoadCfg(){
+    void LoadCfg(){
 		//ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
 		dof.isOn = Camera.main.GetComponent<DepthOfField> ().enabled;
 		qdrop.value = QualitySettings.GetQualityLevel ();
-	}
+
+        List<Dropdown.OptionData> list = new List<Dropdown.OptionData>();
+        int currentIndex = -1;
+        int selectedLangIndex = 0;
+
+        foreach (SystemLanguage lang in LanguageManager.availableLanguages)
+        {
+            currentIndex++;
+            list.Add(new Dropdown.OptionData() { text = lang.ToString() });
+
+            if (lang == LanguageManager.playerLanguage)
+            {
+                selectedLangIndex = currentIndex;
+            }
+        }
+
+        languageDropdown.ClearOptions();
+        languageDropdown.AddOptions(list);
+        languageDropdown.value = selectedLangIndex;
+    }
 
 	public void ConfigShow(){
 		menu.SetActive(!menu.activeSelf);
@@ -40,7 +61,12 @@ public class ConfigMenu : MonoBehaviour {
 		Application.Quit ();
 	}
 
-	public void OptionsSetQuality(){
+    public void OptionsSetLanguage()
+    {
+        LanguageManager.playerLanguage = LanguageManager.stringToSystemLanguage(languageDropdown.captionText.text);
+    }
+
+    public void OptionsSetQuality(){
 		QualitySettings.SetQualityLevel (qdrop.value);
 	}
 

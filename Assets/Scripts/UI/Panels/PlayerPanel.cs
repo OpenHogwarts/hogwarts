@@ -88,10 +88,10 @@ public class PlayerPanel : MonoBehaviour {
             questContainer = Instantiate(questPrefab) as GameObject;
             questContainer.transform.SetParent(activeQuestsContainer.transform);
             quest.ui = questContainer.GetComponent<Text>();
-            quest.ui.text = quest.name;
+            quest.ui.text = LanguageManager.get(quest.name);
 			taskInst = Instantiate (questFlag) as GameObject;
 			taskInst.transform.SetParent(questContainer.transform);
-			taskInst.GetComponentInChildren<Text> ().text = quest.name;
+			taskInst.GetComponentInChildren<Text> ().text = LanguageManager.get(quest.name);
 			taskInst.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (0, -20, 0);
 
             foreach (Task task in quest.tasks.Values)
