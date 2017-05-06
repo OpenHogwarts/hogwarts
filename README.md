@@ -74,6 +74,8 @@ Credits
 - Spider model: https://www.assetstore.unity3d.com/en/#!/content/10104
 - Spell maker: Batuhan Evren
 - Music: Ektorkrom (http://www.goear.com/search/foxkrom)
+- Scenario & UI (mostly): Vancete
+- Backend/Programming: Kardall, Vancete, Seyji, etc.. (https://github.com/OpenHogwarts/hogwarts/graphs/contributors)
 
 Special Thanks
 -------------
