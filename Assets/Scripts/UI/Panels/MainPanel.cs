@@ -7,7 +7,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class MainPanel : MonoBehaviour {
     public Text nickLabel;
 	public Text LevelLabel;
-    public Toggle translateEN;
 	public Button JoinButton;
 
 	private int playerId;
@@ -25,9 +24,6 @@ public class MainPanel : MonoBehaviour {
         foreach (CharacterData character in Service.db.Select<CharacterData>("FROM characters")) {
 			hasPlayer = true;
 			playerId = character.id;
-
-            if (PlayerPrefs.GetString("Locale") == "es_en")
-                translateEN.isOn = true;
          
             nickLabel.text = character.name;
 			LevelLabel.text = "Nivel " + character.level.ToString();
@@ -55,21 +51,11 @@ public class MainPanel : MonoBehaviour {
 		 
 	}
 
-    public void TranslationToggle() {
-        if(translateEN.isOn) {
-            PlayerPrefs.SetString("Locale", "es_en");
-        } else {
-            PlayerPrefs.SetString("Locale","es");
-        }
-        PlayerPrefs.Save();
-    }
-
 	public void joinGame (int characterId, string name) {
 
 		if (characterId < 1) {
 			return;
 		}
-        TranslationToggle();
 
         Hashtable h = new Hashtable(1);
 		h.Add("characterId", characterId);

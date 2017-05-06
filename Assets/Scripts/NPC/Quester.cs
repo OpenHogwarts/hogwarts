@@ -8,7 +8,7 @@ public class Quester : NPC
 
     new public void OnMouseDown()
     {
-        var distanceToTarget = Vector3.Distance(transform.position, GameObject.Find("Player(Clone)").transform.position);
+        var distanceToTarget = Vector3.Distance(transform.position, Player.Instance.transform.position);
         if(distanceToTarget >= 5.0f) {
             // Alert User Somehow?
             setSelected(true);
