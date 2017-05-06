@@ -10,7 +10,7 @@ This NPC brain is based on one-to-many way, which means that players set themsel
 public class NPC : Photon.MonoBehaviour
 {
 	public int Id;
-
+    
 	public int health
 	{
 		get {return data.health;}
@@ -67,7 +67,9 @@ public class NPC : Photon.MonoBehaviour
             return false;
         }
     }
-	private bool EnableCombat;
+
+    public const float maxInteractionRange = 5.0f;
+    private bool EnableCombat;
 	private bool isUseless = false;
 	private bool isStunned = false;
 	private float amountSlowedBy;
@@ -122,8 +124,17 @@ public class NPC : Photon.MonoBehaviour
         setEnabled(false);
         # endif
     }
-	
-	private void Update()
+
+    public static bool isNPCInRange(GameObject target, GameObject player) { 
+     
+        if (Vector3.Distance(target.transform.position, player.transform.position) >= maxInteractionRange) {
+            return false; 
+        } else {
+            return true;
+        }
+    }
+
+private void Update()
 	{
         if (isDead)
         {
@@ -450,7 +461,7 @@ public class NPC : Photon.MonoBehaviour
 	}
 
 	public void OnMouseDown() {
-		setSelected (true);
+        setSelected (true);
 
         if (!data.isAggresive) {
             QuestManager.Instance.sendAction(data.id, Task.ActorType.NPC, Task.ActionType.Talk, 0, data.template);

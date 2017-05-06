@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class SellPanel : MonoBehaviour {
 
 	const int MAX_ITEMS = 3;
-
+    public RectTransform scrollPanel;
 	public static Item _selectedItem;
 	public static Item selectedItem {
 		set {
@@ -33,17 +33,28 @@ public class SellPanel : MonoBehaviour {
 		}
 	}
 
-	private List<Item> itemList = new List<Item>();
-	
-	void OnEnable () {
-		_instance = this;
+    private List<Item> itemList = new List<Item>();
 
-		// @ToDo: select items depending on NPC level and area
-		foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
+    void destroyOldIcons() {
+        var children = new List<GameObject>();
+        foreach (Transform child in scrollPanel.transform) {
+            if (child.tag == "TemporalPanel") {
+                children.Add(child.gameObject);
+            }
+        }
+        children.ForEach(child => Destroy(child));
+    }
+
+    void OnEnable () {
+		_instance = this;
+        itemList.Clear();
+
+        // @ToDo: select items depending on NPC level and area
+        foreach (Item itm in Service.db.Select<Item>("FROM item limit 0," + MAX_ITEMS)) {
 			itemList.Add(itm);
 		}
 
-		ScrollableList scroll = gameObject.transform.FindChild("ContainerPanel/Panel").GetComponent<ScrollableList>();
+		ScrollableList scroll = scrollPanel.GetComponent<ScrollableList>();
 		scroll.itemCount = MAX_ITEMS;
 		scroll.load(delegate (GameObject newItem, int num) {
 
@@ -52,10 +63,10 @@ public class SellPanel : MonoBehaviour {
 
 			newItem.SetActive(true);
 			newItem.gameObject.transform.FindChild("Button/NameLabel").GetComponent<Text>().text = tItem.name;
-			newItem.gameObject.transform.FindChild ("Button/GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
-			newItem.gameObject.transform.FindChild ("Button/SickleLabel").GetComponent<Text> ().text = price.y.ToString();
-			newItem.gameObject.transform.FindChild ("Button/KnutLabel").GetComponent<Text> ().text = price.z.ToString();
-			newItem.gameObject.transform.FindChild ("Icon").GetComponent<RawImage> ().texture = tItem.icon;
+			newItem.gameObject.transform.FindChild("Button/GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
+			newItem.gameObject.transform.FindChild("Button/SickleLabel").GetComponent<Text> ().text = price.y.ToString();
+			newItem.gameObject.transform.FindChild("Button/KnutLabel").GetComponent<Text> ().text = price.z.ToString();
+			newItem.gameObject.transform.FindChild("Icon").GetComponent<RawImage> ().texture = tItem.icon;
 
 			newItem.gameObject.transform.FindChild("Button").GetComponent<Button>().onClick.AddListener(
 				delegate {
@@ -69,7 +80,8 @@ public class SellPanel : MonoBehaviour {
 	}
 
 	void OnDisable () {
-		selectedItem = null;
+        destroyOldIcons(); // Removes Items in Seller Menu
+        selectedItem = null;
 	}
 
 	public void updateMoney () {
