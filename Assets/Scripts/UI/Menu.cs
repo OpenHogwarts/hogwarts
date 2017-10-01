@@ -96,14 +96,14 @@ public class Menu : MonoBehaviour {
 		ItemTooltipPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
 		ItemTooltipPanel.transform.position = pos;
 		
-		ItemTooltipPanel.transform.FindChild("TitleLabel").GetComponent<Text>().text = item.name;
-		ItemTooltipPanel.transform.FindChild("TextLabel").GetComponent<Text>().text = item.description;
+		ItemTooltipPanel.transform.Find("TitleLabel").GetComponent<Text>().text = item.name;
+		ItemTooltipPanel.transform.Find("TextLabel").GetComponent<Text>().text = item.description;
 	}
 
 	public void showSkillTooltip(string description, string cooldown){
-		SkillTooltip.transform.FindChild ("Description").GetComponent<Text> ().text = description;
-		SkillTooltip.transform.FindChild ("Cooldown").GetComponent<Text> ().text = cooldown;
-		SkillTooltip.GetComponent<RectTransform> ().sizeDelta = new Vector2 (416, SkillTooltip.transform.FindChild ("Description").GetComponent<RectTransform> ().sizeDelta.y + 12);
+		SkillTooltip.transform.Find ("Description").GetComponent<Text> ().text = description;
+		SkillTooltip.transform.Find ("Cooldown").GetComponent<Text> ().text = cooldown;
+		SkillTooltip.GetComponent<RectTransform> ().sizeDelta = new Vector2 (416, SkillTooltip.transform.Find ("Description").GetComponent<RectTransform> ().sizeDelta.y + 12);
 		SkillTooltip.GetComponent<RectTransform>().anchoredPosition = new Vector2(Input.mousePosition.x ,68);
 		SkillTooltip.SetActive (true);
 	}

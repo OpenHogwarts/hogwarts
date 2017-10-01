@@ -75,7 +75,7 @@ public class PlayerEquipment : MonoBehaviour {
 	}
 
 	void unsetItem (GameObject obj) {
-		Destroy(obj.transform.FindChild("Item").gameObject);
+		Destroy(obj.transform.Find("Item").gameObject);
 	}
 
 	GameObject getGameObject (int pos) {

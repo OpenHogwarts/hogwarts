@@ -13,11 +13,11 @@ public class SellPanel : MonoBehaviour {
 		set {
 			// check if player can buy it
 			if (value == null || value.price > Player.Instance.money) {
-				SellPanel.Instance.transform.FindChild("BuyButton").GetComponent<Button>().interactable = false;
+				SellPanel.Instance.transform.Find("BuyButton").GetComponent<Button>().interactable = false;
 				return;
 			} else {
 				_selectedItem = value;
-				SellPanel.Instance.transform.FindChild("BuyButton").GetComponent<Button>().interactable = true;
+				SellPanel.Instance.transform.Find("BuyButton").GetComponent<Button>().interactable = true;
 			}
 		}
 		get {return _selectedItem;}
@@ -62,13 +62,13 @@ public class SellPanel : MonoBehaviour {
 			Vector3 price = Util.formatMoney (tItem.price);
 
 			newItem.SetActive(true);
-			newItem.gameObject.transform.FindChild("Button/NameLabel").GetComponent<Text>().text = tItem.name;
-			newItem.gameObject.transform.FindChild("Button/GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
-			newItem.gameObject.transform.FindChild("Button/SickleLabel").GetComponent<Text> ().text = price.y.ToString();
-			newItem.gameObject.transform.FindChild("Button/KnutLabel").GetComponent<Text> ().text = price.z.ToString();
-			newItem.gameObject.transform.FindChild("Icon").GetComponent<RawImage> ().texture = tItem.icon;
+			newItem.gameObject.transform.Find("Button/NameLabel").GetComponent<Text>().text = tItem.name;
+			newItem.gameObject.transform.Find("Button/GalleonLabel").GetComponent<Text> ().text = price.x.ToString();
+			newItem.gameObject.transform.Find("Button/SickleLabel").GetComponent<Text> ().text = price.y.ToString();
+			newItem.gameObject.transform.Find("Button/KnutLabel").GetComponent<Text> ().text = price.z.ToString();
+			newItem.gameObject.transform.Find("Icon").GetComponent<RawImage> ().texture = tItem.icon;
 
-			newItem.gameObject.transform.FindChild("Button").GetComponent<Button>().onClick.AddListener(
+			newItem.gameObject.transform.Find("Button").GetComponent<Button>().onClick.AddListener(
 				delegate {
 				selectedItem = tItem;
 			});
@@ -86,9 +86,9 @@ public class SellPanel : MonoBehaviour {
 
 	public void updateMoney () {
 		Vector3 money = Util.formatMoney (Player.Instance.money);
-		transform.FindChild ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
-		transform.FindChild ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
-		transform.FindChild ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
+		transform.Find ("GalleonLabel").GetComponent<Text> ().text = money.x.ToString();
+		transform.Find ("SickleLabel").GetComponent<Text> ().text = money.y.ToString();
+		transform.Find ("KnutLabel").GetComponent<Text> ().text = money.z.ToString();
 	}
 	
 	public void buyButton () {

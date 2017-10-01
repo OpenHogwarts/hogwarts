@@ -127,9 +127,9 @@ public class Inventory : MonoBehaviour {
 
     public void updateMoney() {
         Vector3 money = Util.formatMoney(Player.Instance.money);
-        transform.FindChild("GalleonLabel").GetComponent<Text>().text = money.x.ToString();
-        transform.FindChild("SickleLabel").GetComponent<Text>().text = money.y.ToString();
-        transform.FindChild("KnutLabel").GetComponent<Text>().text = money.z.ToString();
+        transform.Find("GalleonLabel").GetComponent<Text>().text = money.x.ToString();
+        transform.Find("SickleLabel").GetComponent<Text>().text = money.y.ToString();
+        transform.Find("KnutLabel").GetComponent<Text>().text = money.z.ToString();
     }
 
     public void showOptions(Vector3 pos, Item item) {
@@ -142,8 +142,8 @@ public class Inventory : MonoBehaviour {
 
         switch (item.type) {
             case Item.ItemType.Consumable:
-                optionsPanel.transform.FindChild("Button1/Text").GetComponent<Text>().text = "Usar";
-                optionsPanel.gameObject.transform.FindChild("Button1").GetComponent<Button>().onClick.AddListener(
+                optionsPanel.transform.Find("Button1/Text").GetComponent<Text>().text = "Usar";
+                optionsPanel.gameObject.transform.Find("Button1").GetComponent<Button>().onClick.AddListener(
                     delegate {
                         item.use();
                         reload();
