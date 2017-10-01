@@ -94,16 +94,16 @@ public class Task
 
         switch (action) {
             case ActionType.Kill:
-                phrase += "Mata";
+                phrase += LanguageManager.get("Mata");
                 break;
             case ActionType.Visit:
-                phrase += "Ve a";
+                phrase += LanguageManager.get("Ve a");
                 break;
             case ActionType.Talk:
-                phrase += "Habla con";
+                phrase += LanguageManager.get("Habla con");
                 break;
             case ActionType.GetItem:
-                phrase += "Consigue";
+                phrase += LanguageManager.get("Consigue");
                 break;
             default:
                 break;

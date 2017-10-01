@@ -1,0 +1,34 @@
+[
+    {
+        "key": "Conectando...",
+        "translation": "Connecting..."
+    },
+    {
+        "key": "Consigue",
+        "translation": "Get"
+    },
+    {
+        "key": "Habla con",
+        "translation": "Talk with"
+    },
+    {
+        "key": "Mata",
+        "translation": "Kill"
+    },
+    {
+        "key": "Ve a",
+        "translation": "Go to"
+    },
+    {
+        "key": "Iniciación",
+        "translation": "Initiation"
+    },
+    {
+        "key": "Crear personaje",
+        "translation": "Create character"
+    },
+    {
+        "key": "Entrar",
+        "translation": "Play"
+    }
+]
