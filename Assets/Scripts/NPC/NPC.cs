@@ -115,7 +115,7 @@ public class NPC : Photon.MonoBehaviour
 		Color color;
 
 		try {
-			anim = transform.FindChild("Model").GetComponent<Animation> ();
+			anim = transform.Find("Model").GetComponent<Animation> ();
 		} catch (Exception) {}
 
 		this.OriginalAttacksPerSecond = data.attacksPerSecond;

@@ -22,7 +22,7 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F2))
         {
             string now = System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f");
-            Application.CaptureScreenshot("./Screenshots/" + string.Format("Screenshot{0}.png", now));
+            ScreenCapture.CaptureScreenshot("./Screenshots/" + string.Format("Screenshot{0}.png", now));
 
             Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> Captura guardada como Screenshot" + now + ".png");
         }
