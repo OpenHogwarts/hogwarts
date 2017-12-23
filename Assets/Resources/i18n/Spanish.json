@@ -1,0 +1,123 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Crear personaje"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nick"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Modelo"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Presiona enter y escribe un mensaje.."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Nivel"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Cargando"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Conectando"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Gráficos"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interfície"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Salir"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Jugar"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Mochila"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Vendedor"
+    },
+    {
+        "key": "BUY",
+        "translation": "Comprar"
+    },
+    {
+        "key": "SELL",
+        "translation": "Vender"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Tu dinero:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Recompensa"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Aceptar"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "Aún..... Sigues aquí?... ¿Por qué no vas por ahí a completarla?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Perfecto!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Mata"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Ve a"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Habla con"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Consigue"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Inicialización"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='11'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "¡Excelente! La próxima vez tendrás recompensa."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Invierno frío"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "¿Sólo me has traído esto? ... Bueno... Ya es algo."
+    }
+
+]

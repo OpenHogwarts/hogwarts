@@ -21,7 +21,7 @@ public class QuestPanel : MonoBehaviour
             acceptButton.SetActive(false);
             completeButton.SetActive(true);
         } else if (QuestManager.Instance.quests.ContainsKey(quest.id)) { // quest accepted, but not finished
-            text.text = "Aún... Sigues aquí?... ¿Qué tal si vas por ahí a completarla?";
+            text.text = LanguageManager.get("QUEST_NOT_FINISHED");
         } else {
             text.text = processText(quest.pre);
             acceptButton.SetActive(true);
@@ -40,7 +40,7 @@ public class QuestPanel : MonoBehaviour
     {
         QuestManager.Instance.addQuest(quest);
 
-        text.text = "¡Perfecto!";
+        text.text = LanguageManager.get("QUEST_ACCEPTED");
         acceptButton.SetActive(false);
 
         AudioSource sound = GetComponent<AudioSource>();
@@ -52,7 +52,7 @@ public class QuestPanel : MonoBehaviour
     {
         QuestManager.Instance.completeQuest(quest);
 
-        text.text = "¡Perfecto!";
+        text.text = LanguageManager.get("QUEST_ACCEPTED");
         acceptButton.SetActive(false);
 
         AudioSource sound = GetComponent<AudioSource>();

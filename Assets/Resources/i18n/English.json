@@ -1,0 +1,123 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Create character"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nick"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Model"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Press enter & write a message.."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Level"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Loading"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Connecting"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Graphics"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interface"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Exit"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Play"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Bag"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Seller"
+    },
+    {
+        "key": "BUY",
+        "translation": "Buy"
+    },
+    {
+        "key": "SELL",
+        "translation": "Sell"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Your funds:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Rewards"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Accept"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "You..... Still here?... Why don't you go and finish it?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Great!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Kill"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Go to"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Speak with"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Get"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Initiation"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='11'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "¡Excelente! La próxima vez tendrás recompensa."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Cold winter"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "¿Sólo me has traído esto? ... Bueno... Ya es algo."
+    }
+
+]

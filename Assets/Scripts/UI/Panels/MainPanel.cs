@@ -64,7 +64,7 @@ public class MainPanel : MonoBehaviour {
 		PhotonNetwork.player.name = name;
 		
 		NetworkManager.Instance.startConnection();
-		GameObject.Find ("Canvas/MainPanel/LoginOptions/JoinButton/Text").GetComponent<Text> ().text = "Conectando...";
+		GameObject.Find ("Canvas/MainPanel/LoginOptions/JoinButton/Text").GetComponent<Text> ().text = LanguageManager.get("CONNECTING") + "...";
 	}
 
 	public void joinTest () {

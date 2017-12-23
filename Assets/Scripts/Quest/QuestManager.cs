@@ -61,6 +61,10 @@ public class QuestManager : MonoBehaviour
         Destroy(quest.ui.gameObject);
     }
 
+    /**
+     * Everytime players make an action like interact with an npc, kill an npc or collect an object, etc.. QuestManager is notified
+     * using this method, to check if that action is part of a mission
+    */
     public void sendAction(int id, Task.ActorType type, Task.ActionType action, int quantity = 0, int extraId = 0)
     {
         foreach (Quest quest in quests.Values)
@@ -118,9 +122,6 @@ public class QuestManager : MonoBehaviour
         quest.id = 1;
         quest.assigner = 3; // NPC who assigned it
         assignToNPC(quest);
-        quest.name = "Iniciación";
-        quest.pre = "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='" + (int)NPCData.creatureTemplate.CastleSpider + "'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!";
-        quest.after = "¡Excelente! La próxima vez tendrás recompensa.";
         quest.loot.Add(3, 4); // id, quantity
         
         task = new Task();
@@ -152,9 +153,6 @@ public class QuestManager : MonoBehaviour
         quest.id = 2;
         quest.assigner = 4; // hagrid
         assignToNPC(quest);
-        quest.name = "Iniciación";
-        quest.pre = "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par.";
-        quest.after = "¿Sólo me has traído esto? ... Bueno... Ya es algo.";
         quest.loot.Add(3, 4); // id, quantity
 
         task = new Task();

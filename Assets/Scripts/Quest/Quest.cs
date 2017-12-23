@@ -7,9 +7,21 @@ public class Quest
 {
     public int id;
     public int assigner;
-    public string name;
-    public string pre;
-    public string after;
+    public string name {
+        get {
+            return LanguageManager.get("QUEST_" + id + "_TITLE");
+        }
+    }
+    public string pre {
+        get {
+            return LanguageManager.get("QUEST_" + id + "_PRE");
+        }
+    }
+    public string after {
+        get {
+            return LanguageManager.get("QUEST_" + id + "_AFTER");
+        }
+    }
     public Dictionary<int, Task> tasks = new Dictionary<int, Task>();
     public Text ui;
 
