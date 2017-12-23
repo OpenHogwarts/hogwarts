@@ -473,11 +473,26 @@ private void Update()
 	}
 
 	public void OnMouseDown() {
-        setSelected (true);
+        setSelected(true);
+
+        if (!isInInteractionRange) {
+            // alert player somehow?
+            Debug.Log("[User Cannot See This] Target Too Far Away To Interact With.");
+            return;
+        }
 
         if (!data.isAggresive) {
             QuestManager.Instance.sendAction(data.id, Task.ActorType.NPC, Task.ActionType.Talk, 0, data.template);
         }
+
+        try {
+            OnClick();
+        } catch (Exception) {
+        }
+    }
+
+    public virtual void OnClick() {
+
     }
 
 	public void OnMouseOver () {
