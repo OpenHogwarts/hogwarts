@@ -118,6 +118,233 @@
     {
         "key": "QUEST_2_AFTER",
         "translation": "¿Sólo me has traído esto? ... Bueno... Ya es algo."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "Estoy deseando retomar las clases"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "Cuando vayas a usar los baños, recuerda que los cuadros te observan"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Queso de cabra"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Hecho en el mejor caserío muggle"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Colgante de Dermor"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "No se me ocurre nada bueno"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Varita de principiante"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "La varita reglamentaria del centro"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Fibra"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Pieza de mecanismo"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Llave desconocida"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "Bufanda de estudiante"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "¿Qué habrá sido del resto?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Carne de araña"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Manuscrito antiguo"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Hoja de algo"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Piel de animal"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Manzana"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Anillo simple"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Antigua capa de maga"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Antigua capa de mago"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Platano"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "No tiene mucho misterio"
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Mineral de Draconita"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Cosa rara"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Amuleto multicolor"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Amuleto simple"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Amuleto simple"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Diamante rosa adulterado"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Polvos mágicos"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "Guantes de estudiante"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Diamante rosa normal"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Madera"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "Combustible para el fuego"
     }
-
 ]

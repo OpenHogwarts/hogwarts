@@ -13,13 +13,13 @@ public class TalkPanel : MonoBehaviour {
 
         switch (npcId) {
             case 5: // regular student
-                text.text = "¿Sabías que el que no deber ser nombrado estudió en este colegio?";
+                text.text = LanguageManager.get("RANDOM_STUDENT_PHRASE_1");
                 break;
             case 6: // regular student
-                text.text = "Estoy deseando retomar las clases";
+                text.text = LanguageManager.get("RANDOM_STUDENT_PHRASE_2");
                 break;
             case 7: // regular student
-                text.text = "Cuando vayas a usar los baños, recuerda que los cuadros te observan";
+                text.text = LanguageManager.get("RANDOM_STUDENT_PHRASE_3");
                 break;
         }
     }

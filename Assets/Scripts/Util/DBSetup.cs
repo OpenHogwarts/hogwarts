@@ -25,8 +25,6 @@ public class DBSetup : MonoBehaviour {
 
 		item = new ItemData ();
 		item.id = id++;
-		item.name = "Queso de cabra";
-		item.description = "Hecho en el mejor caserío muggle";
 		item.price = 40;
 		item.health = 20;
 		item.type = Item.ItemType.Consumable;
@@ -36,8 +34,6 @@ public class DBSetup : MonoBehaviour {
 		
 		item = new ItemData ();
 		item.id = id++;
-		item.name = "Colgante de Dermor";
-		item.description = "No se me ocurre nada bueno";
 		item.price = 2500;
 		item.type = Item.ItemType.Armor;
 		item.subType = Item.ItemSubType.Necklace;
@@ -45,8 +41,6 @@ public class DBSetup : MonoBehaviour {
 
 		item = new ItemData ();
 		item.id = id++;
-		item.name = "Varita de principiante";
-		item.description = "La varita reglamentaria del centro";
 		item.price = 40;
 		item.type = Item.ItemType.Weapon;
 		item.subType = Item.ItemSubType.Wand;
@@ -54,8 +48,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Fibra";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -63,8 +55,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Pieza de mecanismo";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -72,8 +62,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Llave desconocida";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -81,8 +69,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Bufanda de estudiante";
-        item.description = "¿Qué habrá sido del resto?";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -90,8 +76,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Carne de araña";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -99,8 +83,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Manuscrito antiguo";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -108,8 +90,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Hoja de algo";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -117,8 +97,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Piel de animal";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -126,8 +104,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Manzana";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -135,8 +111,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Anillo simple";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Ring;
@@ -144,8 +118,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Antigua capa de maga";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Chest;
@@ -153,8 +125,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Antigua capa de mago";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Chest;
@@ -162,8 +132,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Platano";
-        item.description = "No tiene mucho misterio";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -171,8 +139,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Mineral de Draconita";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -180,8 +146,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Cosa rara";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -189,8 +153,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Amuleto multicolor";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Necklace;
@@ -198,8 +160,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Amuleto simple";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Necklace;
@@ -207,8 +167,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Amuleto simple";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Necklace;
@@ -216,8 +174,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Diamante rosa adulterado";
-        item.description = "Sín descripción";
         item.price = 4000;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -225,8 +181,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Polvos mágicos";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -234,8 +188,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Guantes de estudiante";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Armor;
         item.subType = Item.ItemSubType.Hands;
@@ -243,8 +195,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Diamante rosa normal";
-        item.description = "Sín descripción";
         item.price = 40;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
@@ -252,8 +202,6 @@ public class DBSetup : MonoBehaviour {
 
         item = new ItemData();
         item.id = id++;
-        item.name = "Madera";
-        item.description = "Combustible para el fuego";
         item.price = 15;
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
