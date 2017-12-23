@@ -11,8 +11,9 @@ public class Service {
 		get { 
 			if (_db == null) {
 
-				#if UNITY_EDITOR
-				DB.Root (Application.persistentDataPath);
+                #if UNITY_EDITOR
+                //Debug.Log(Application.persistentDataPath);
+                DB.Root (Application.persistentDataPath);
 				#endif
 
 				#if (UNITY_METRO || NETFX_CORE) && (!UNITY_EDITOR)

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 /*
 	This class is used to setup DB items
+    After making any change/addition remember to delete your existing db so changes get populated
+    https://github.com/OpenHogwarts/hogwarts/wiki/Access-game-DB#adding-new-entries
  **/
 
 public class DBSetup : MonoBehaviour {
@@ -326,6 +328,12 @@ public class DBSetup : MonoBehaviour {
         npc.subRace = NPCData.creatureSubRace.Quest;
         npc.create();
 
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++;
+        npc.name = "Estudiante";
+        npc.subRace = NPCData.creatureSubRace.Talker;
+        npc.create();
     }
 
     public static void insertWaypointsTo (int id, List<Vector3> waypoints) {

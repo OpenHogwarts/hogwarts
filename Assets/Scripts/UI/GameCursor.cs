@@ -56,4 +56,13 @@ public class GameCursor {
             return _questComplete;
         }
     }
+    public static Texture2D _talk;
+    public static Texture2D Talk {
+        get {
+            if (_talk == null) {
+                _talk = Resources.Load("2DTextures/Cursor/Talk") as Texture2D;
+            }
+            return _talk;
+        }
+    }
 }
