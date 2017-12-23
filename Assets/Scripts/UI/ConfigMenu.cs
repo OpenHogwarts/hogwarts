@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets.CinematicEffects;
+using UnityEngine.SceneManagement;
+using System;
 
 public class ConfigMenu : MonoBehaviour {
 
@@ -22,7 +23,10 @@ public class ConfigMenu : MonoBehaviour {
 
 	void LoadCfg(){
 		//ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
-		dof.isOn = Camera.main.GetComponent<DepthOfField> ().enabled;
+        try {
+            dof.isOn = Camera.main.GetComponent<DepthOfField>().enabled;
+        } catch(Exception e) { }
+		
 		qdrop.value = QualitySettings.GetQualityLevel ();
 	}
 
@@ -33,7 +37,7 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void ConfigDisconnect(){
 		PhotonNetwork.Disconnect ();
-		Application.LoadLevel ("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	public void ConfigQuit(){
