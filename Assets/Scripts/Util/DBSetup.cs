@@ -334,6 +334,24 @@ public class DBSetup : MonoBehaviour {
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Talker;
         npc.create();
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++;
+        npc.name = "Estudiante";
+        npc.subRace = NPCData.creatureSubRace.Talker;
+        npc.create();
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++;
+        npc.name = "Estudiante";
+        npc.subRace = NPCData.creatureSubRace.Talker;
+        npc.create();
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++;
+        npc.name = "Estudiante";
+        npc.subRace = NPCData.creatureSubRace.Normal;
+        npc.create();
     }
 
     public static void insertWaypointsTo (int id, List<Vector3> waypoints) {
