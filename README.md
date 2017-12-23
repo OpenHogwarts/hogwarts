@@ -12,7 +12,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 Requirements
 -------------
-- Unity >= 2017.1.1f
+- Unity >= [ProjectVersion.txt](https://github.com/OpenHogwarts/hogwarts/blob/master/ProjectSettings/ProjectVersion.txt)
 
 Setup
 -------------
@@ -29,7 +29,7 @@ Working features
 - Multiplayer
 - Chat
 - Inventory
-- NPCs (Agressives & sellers) + patrols
+- NPCs (Agressives, sellers, questers, talkers) + patrols
 - Spells combat
 - Flying Broomstick
 - Quests
