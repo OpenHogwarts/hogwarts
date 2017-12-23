@@ -346,5 +346,21 @@
     {
         "key": "ITEM_26_DESCRIPTION",
         "translation": "Combustible para el fuego"
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Escoba voladora algo vieja"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "Genera un destello en el extremo de tu varita capaz de iluminar la más profunda de las oscuridades"
     }
 ]

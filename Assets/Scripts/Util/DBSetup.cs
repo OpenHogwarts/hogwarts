@@ -206,6 +206,13 @@ public class DBSetup : MonoBehaviour {
         item.type = Item.ItemType.Useless;
         item.subType = Item.ItemSubType.Scrap;
         item.create();
+
+        item = new ItemData();
+        item.id = id++;
+        item.price = 1500;
+        item.type = Item.ItemType.Useless;
+        item.subType = Item.ItemSubType.Scrap;
+        item.create();
     }
 
 	public static void insertTestItems () {
