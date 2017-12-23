@@ -3,11 +3,16 @@ using System.Collections;
 
 public class PlayerHotkeys : MonoBehaviour
 {	
+	public static PlayerHotkeys Instance;
 	public static bool isClickingATarget = false;
 	public GameObject lumos;
 	public GameObject broom;
 
-	void Update () {
+    private void Awake() {
+        Instance = this;
+    }
+
+    void Update () {
 
         if (Chat.Instance.isWritting) {
             return;
@@ -16,9 +21,9 @@ public class PlayerHotkeys : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Menu.Instance.togglePanel("ConfigPanel");
         }
-	if (Input.GetKeyDown (KeyCode.F1)) {
-            GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
-	}
+	    if (Input.GetKeyDown (KeyCode.F1)) {
+                GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().dev.SetActive (true);
+	    }
         if (Input.GetKeyDown(KeyCode.F2))
         {
             string now = System.DateTime.Now.ToString("_d-MMM-yyyy-HH-mm-ss-f");
@@ -42,23 +47,11 @@ public class PlayerHotkeys : MonoBehaviour
         }
 
 		if(Input.GetKeyDown(KeyCode.Q)){
-			lumos.SetActive (!lumos.activeSelf);
-		}
+            toggleLight();
+        }
 
 		if(Input.GetKeyDown(KeyCode.E)){
-			if (!broom.activeSelf) {
-				if ((!PlayerCombat.Instance.castingSpell)&&(!Player.Instance.isInCombat)&&(!PlayerPanel.Instance.castingPanel.isCasting)) {
-					StartCoroutine ("Broom");
-				}
-			}else{
-				gameObject.GetComponent<Animator> ().SetBool ("Broomstick", false);
-				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl> ().enabled = true;
-				gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter> ().enabled = true;
-				gameObject.GetComponent<Rigidbody> ().useGravity = true;
-				gameObject.GetComponent<BroomstickControl> ().enabled = false;
-				broom.SetActive (!broom.activeSelf);
-				transform.localEulerAngles = new Vector3 (0, transform.eulerAngles.y, 0);
-			}
+            toggleBroomStick();
 		}
 
 
@@ -82,6 +75,26 @@ public class PlayerHotkeys : MonoBehaviour
 			}
 		}
 	}
+
+    public void toggleLight () {
+        lumos.SetActive(!lumos.activeSelf);
+    }
+
+    public void toggleBroomStick () {
+        if (!broom.activeSelf) {
+            if ((!PlayerCombat.Instance.castingSpell) && (!Player.Instance.isInCombat) && (!PlayerPanel.Instance.castingPanel.isCasting)) {
+                StartCoroutine("Broom");
+            }
+        } else {
+            gameObject.GetComponent<Animator>().SetBool("Broomstick", false);
+            gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
+            gameObject.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            gameObject.GetComponent<BroomstickControl>().enabled = false;
+            broom.SetActive(!broom.activeSelf);
+            transform.localEulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        }
+    }
 
 	IEnumerator Broom(){
 		PlayerPanel.Instance.castingPanel.Cast ("Escoba voladora", 1);
