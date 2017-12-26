@@ -221,27 +221,27 @@
     },
     {
         "key": "ITEM_11_NAME",
-        "translation": "Piel de animal"
+        "translation": "animal skin"
     },
     {
         "key": "ITEM_11_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_12_NAME",
-        "translation": "Manzana"
+        "translation": "apple"
     },
     {
         "key": "ITEM_12_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_13_NAME",
-        "translation": "Anillo simple"
+        "translation": "simple ring"
     },
     {
         "key": "ITEM_13_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_14_NAME",
@@ -249,7 +249,7 @@
     },
     {
         "key": "ITEM_14_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_15_NAME",
@@ -257,15 +257,15 @@
     },
     {
         "key": "ITEM_15_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no descriptionn"
     },
     {
         "key": "ITEM_16_NAME",
-        "translation": "Platano"
+        "translation": "banana"
     },
     {
         "key": "ITEM_16_DESCRIPTION",
-        "translation": "No tiene mucho misterio"
+        "translation": "It doesn't has much mystery"
     },
     {
         "key": "ITEM_17_NAME",
@@ -273,39 +273,39 @@
     },
     {
         "key": "ITEM_17_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_18_NAME",
-        "translation": "Cosa rara"
+        "translation": "strange thing"
     },
     {
         "key": "ITEM_18_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_19_NAME",
-        "translation": "Amuleto multicolor"
+        "translation": "multicolored amulet"
     },
     {
         "key": "ITEM_19_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_20_NAME",
-        "translation": "Amuleto simple"
+        "translation": "simple amulet"
     },
     {
         "key": "ITEM_20_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_21_NAME",
-        "translation": "Amuleto simple"
+        "translation": "simple amulet"
     },
     {
         "key": "ITEM_21_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_22_NAME",
@@ -313,39 +313,39 @@
     },
     {
         "key": "ITEM_22_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_23_NAME",
-        "translation": "Polvos mágicos"
+        "translation": "magic powder"
     },
     {
         "key": "ITEM_23_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_24_NAME",
-        "translation": "Guantes de estudiante"
+        "translation": "student gloves"
     },
     {
         "key": "ITEM_24_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_25_NAME",
-        "translation": "Diamante rosa normal"
+        "translation": "normal pink diamond"
     },
     {
         "key": "ITEM_25_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "no description"
     },
     {
         "key": "ITEM_26_NAME",
-        "translation": "Madera"
+        "translation": "wood"
     },
     {
         "key": "ITEM_26_DESCRIPTION",
-        "translation": "Combustible para el fuego"
+        "translation": "it burns"
     },
     {
         "key": "ITEM_27_NAME",
@@ -361,6 +361,6 @@
     },
     {
         "key": "SKILL_LUMOS_DESCRIPTION",
-        "translation": "Genera un destello en el extremo de tu varita capaz de iluminar la más profunda de las oscuridades"
+        "translation": "lights your wand tip. Its capable of illumintaing the darker as dark"
     }
 ]
