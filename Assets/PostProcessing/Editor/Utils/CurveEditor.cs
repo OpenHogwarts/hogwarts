@@ -347,7 +347,7 @@ namespace UnityEditor.PostProcessing
                 // Draw
                 if (state.showNonEditableHandles)
                 {
-                    if (e.type == EventType.repaint)
+                    if (e.type == EventType.Repaint)
                     {
                         var selectedColor = (isCurrentlySelectedCurve && isCurrentlySelectedKeyframe)
                             ? settings.selectionColor
@@ -393,7 +393,7 @@ namespace UnityEditor.PostProcessing
                     }
 
                     // Keyframe selection
-                    if (e.type == EventType.mouseDown && rect.Contains(e.mousePosition))
+                    if (e.type == EventType.MouseDown && rect.Contains(e.mousePosition))
                     {
                         if (hitRect.Contains(e.mousePosition))
                         {
@@ -404,7 +404,7 @@ namespace UnityEditor.PostProcessing
                     }
 
                     // Tangent selection & edit mode
-                    if (e.type == EventType.mouseDown && rect.Contains(e.mousePosition))
+                    if (e.type == EventType.MouseDown && rect.Contains(e.mousePosition))
                     {
                         if (inTangentHitRect.Contains(e.mousePosition) && (k > 0 || state.loopInBounds))
                         {
@@ -450,7 +450,7 @@ namespace UnityEditor.PostProcessing
             var e = Event.current;
 
             // Selection
-            if (e.type == EventType.mouseDown)
+            if (e.type == EventType.MouseDown)
             {
                 GUI.FocusControl(null);
                 m_SelectedCurve = null;
@@ -507,7 +507,7 @@ namespace UnityEditor.PostProcessing
             }
 
             // Delete selected key(s)
-            if (e.type == EventType.keyDown && (e.keyCode == KeyCode.Delete || e.keyCode == KeyCode.Backspace))
+            if (e.type == EventType.KeyDown && (e.keyCode == KeyCode.Delete || e.keyCode == KeyCode.Backspace))
             {
                 if (m_SelectedKeyframeIndex != -1 && m_SelectedCurve != null)
                 {

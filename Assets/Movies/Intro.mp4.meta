@@ -8,45 +8,16 @@ VideoClipImporter:
   useLegacyImporter: 0
   quality: 0.5
   isColorLinear: 0
-  originalWidth: 1920
-  originalHeight: 792
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 264
-  frameRate: 24
   colorSpace: 0
   deinterlace: 0
-  sourceFileSize: 1782235
   encodeAlpha: 0
-  sourceHasAlpha: 0
   flipVertical: 0
   flipHorizontal: 0
-  pixelAspectRatioNumerator: 1
-  pixelAspectRatioDenominator: 1
   importAudio: 1
-  sourceAudioChannelCount: 0200
-  sourceAudioSampleRate: 44ac0000
   targetSettings: {}
-  output:
-    format: 1
-    settings:
-      enableTranscoding: 0
-      codec: 0
-      resizeFormat: 0
-      aspectRatio: 0
-      customWidth: 1920
-      customHeight: 792
-      bitrateMode: 2
-      spatialQuality: 2
-    encodedWidth: 1920
-    encodedHeight: 792
-    encodedStartFrame: 0
-    encodedEndFrame: 264
-    streamedResource:
-      source: 
-      offset: 0
-      size: 1782235
   userData: 
   assetBundleName: 
   assetBundleVariant: 
