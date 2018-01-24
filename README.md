@@ -1,4 +1,4 @@
-Hogwarts Sandbox
+﻿Hogwarts Sandbox
 ========
 
 A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
@@ -81,6 +81,7 @@ Credits
 - Music: Ektorkrom (http://www.goear.com/search/foxkrom)
 - Scenario & UI (mostly): Vancete
 - Backend/Programming: Kardall, Vancete, Seyji, etc.. (https://github.com/OpenHogwarts/hogwarts/graphs/contributors)
+- Hagrid's Hut model: Ecelon
 
 Special Thanks
 -------------
