@@ -1,0 +1,486 @@
+fileFormatVersion: 2
+guid: e21d60fe7d2e4454da289d9159af0dd3
+timeCreated: 1516821538
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: defaultobject
+    100002: defaultobject 1
+    100004: defaultobject 10
+    100006: defaultobject 11
+    100008: defaultobject 12
+    100010: defaultobject 13
+    100012: defaultobject 14
+    100014: defaultobject 15
+    100016: defaultobject 16
+    100018: defaultobject 17
+    100020: defaultobject 18
+    100022: defaultobject 19
+    100024: defaultobject 2
+    100026: defaultobject 20
+    100028: defaultobject 21
+    100030: defaultobject 22
+    100032: defaultobject 23
+    100034: defaultobject 24
+    100036: defaultobject 25
+    100038: defaultobject 26
+    100040: defaultobject 27
+    100042: defaultobject 28
+    100044: defaultobject 29
+    100046: defaultobject 3
+    100048: defaultobject 30
+    100050: defaultobject 31
+    100052: defaultobject 32
+    100054: defaultobject 33
+    100056: defaultobject 34
+    100058: defaultobject 35
+    100060: defaultobject 36
+    100062: defaultobject 37
+    100064: defaultobject 38
+    100066: defaultobject 39
+    100068: defaultobject 4
+    100070: defaultobject 40
+    100072: defaultobject 41
+    100074: defaultobject 42
+    100076: defaultobject 43
+    100078: defaultobject 44
+    100080: defaultobject 45
+    100082: defaultobject 46
+    100084: defaultobject 47
+    100086: defaultobject 48
+    100088: defaultobject 49
+    100090: defaultobject 5
+    100092: defaultobject 50
+    100094: defaultobject 51
+    100096: defaultobject 52
+    100098: defaultobject 53
+    100100: defaultobject 54
+    100102: defaultobject 55
+    100104: defaultobject 56
+    100106: defaultobject 57
+    100108: defaultobject 58
+    100110: defaultobject 59
+    100112: defaultobject 6
+    100114: defaultobject 60
+    100116: defaultobject 61
+    100118: defaultobject 62
+    100120: defaultobject 63
+    100122: defaultobject 64
+    100124: defaultobject 65
+    100126: defaultobject 66
+    100128: defaultobject 67
+    100130: defaultobject 68
+    100132: defaultobject 69
+    100134: defaultobject 7
+    100136: defaultobject 70
+    100138: defaultobject 71
+    100140: defaultobject 72
+    100142: defaultobject 73
+    100144: defaultobject 74
+    100146: defaultobject 75
+    100148: defaultobject 76
+    100150: defaultobject 77
+    100152: defaultobject 8
+    100154: defaultobject 9
+    100156: Null
+    100158: //RootNode
+    400000: defaultobject
+    400002: defaultobject 1
+    400004: defaultobject 10
+    400006: defaultobject 11
+    400008: defaultobject 12
+    400010: defaultobject 13
+    400012: defaultobject 14
+    400014: defaultobject 15
+    400016: defaultobject 16
+    400018: defaultobject 17
+    400020: defaultobject 18
+    400022: defaultobject 19
+    400024: defaultobject 2
+    400026: defaultobject 20
+    400028: defaultobject 21
+    400030: defaultobject 22
+    400032: defaultobject 23
+    400034: defaultobject 24
+    400036: defaultobject 25
+    400038: defaultobject 26
+    400040: defaultobject 27
+    400042: defaultobject 28
+    400044: defaultobject 29
+    400046: defaultobject 3
+    400048: defaultobject 30
+    400050: defaultobject 31
+    400052: defaultobject 32
+    400054: defaultobject 33
+    400056: defaultobject 34
+    400058: defaultobject 35
+    400060: defaultobject 36
+    400062: defaultobject 37
+    400064: defaultobject 38
+    400066: defaultobject 39
+    400068: defaultobject 4
+    400070: defaultobject 40
+    400072: defaultobject 41
+    400074: defaultobject 42
+    400076: defaultobject 43
+    400078: defaultobject 44
+    400080: defaultobject 45
+    400082: defaultobject 46
+    400084: defaultobject 47
+    400086: defaultobject 48
+    400088: defaultobject 49
+    400090: defaultobject 5
+    400092: defaultobject 50
+    400094: defaultobject 51
+    400096: defaultobject 52
+    400098: defaultobject 53
+    400100: defaultobject 54
+    400102: defaultobject 55
+    400104: defaultobject 56
+    400106: defaultobject 57
+    400108: defaultobject 58
+    400110: defaultobject 59
+    400112: defaultobject 6
+    400114: defaultobject 60
+    400116: defaultobject 61
+    400118: defaultobject 62
+    400120: defaultobject 63
+    400122: defaultobject 64
+    400124: defaultobject 65
+    400126: defaultobject 66
+    400128: defaultobject 67
+    400130: defaultobject 68
+    400132: defaultobject 69
+    400134: defaultobject 7
+    400136: defaultobject 70
+    400138: defaultobject 71
+    400140: defaultobject 72
+    400142: defaultobject 73
+    400144: defaultobject 74
+    400146: defaultobject 75
+    400148: defaultobject 76
+    400150: defaultobject 77
+    400152: defaultobject 8
+    400154: defaultobject 9
+    400156: Null
+    400158: //RootNode
+    2100000: m0DefaultMaterial
+    2300000: defaultobject
+    2300002: defaultobject 1
+    2300004: defaultobject 10
+    2300006: defaultobject 11
+    2300008: defaultobject 12
+    2300010: defaultobject 13
+    2300012: defaultobject 14
+    2300014: defaultobject 15
+    2300016: defaultobject 16
+    2300018: defaultobject 17
+    2300020: defaultobject 18
+    2300022: defaultobject 19
+    2300024: defaultobject 2
+    2300026: defaultobject 20
+    2300028: defaultobject 21
+    2300030: defaultobject 22
+    2300032: defaultobject 23
+    2300034: defaultobject 24
+    2300036: defaultobject 25
+    2300038: defaultobject 26
+    2300040: defaultobject 27
+    2300042: defaultobject 28
+    2300044: defaultobject 29
+    2300046: defaultobject 3
+    2300048: defaultobject 30
+    2300050: defaultobject 31
+    2300052: defaultobject 32
+    2300054: defaultobject 33
+    2300056: defaultobject 34
+    2300058: defaultobject 35
+    2300060: defaultobject 36
+    2300062: defaultobject 37
+    2300064: defaultobject 38
+    2300066: defaultobject 39
+    2300068: defaultobject 4
+    2300070: defaultobject 40
+    2300072: defaultobject 41
+    2300074: defaultobject 42
+    2300076: defaultobject 43
+    2300078: defaultobject 44
+    2300080: defaultobject 45
+    2300082: defaultobject 46
+    2300084: defaultobject 47
+    2300086: defaultobject 48
+    2300088: defaultobject 49
+    2300090: defaultobject 5
+    2300092: defaultobject 50
+    2300094: defaultobject 51
+    2300096: defaultobject 52
+    2300098: defaultobject 53
+    2300100: defaultobject 54
+    2300102: defaultobject 55
+    2300104: defaultobject 56
+    2300106: defaultobject 57
+    2300108: defaultobject 58
+    2300110: defaultobject 59
+    2300112: defaultobject 6
+    2300114: defaultobject 60
+    2300116: defaultobject 61
+    2300118: defaultobject 62
+    2300120: defaultobject 63
+    2300122: defaultobject 64
+    2300124: defaultobject 65
+    2300126: defaultobject 66
+    2300128: defaultobject 67
+    2300130: defaultobject 68
+    2300132: defaultobject 69
+    2300134: defaultobject 7
+    2300136: defaultobject 70
+    2300138: defaultobject 71
+    2300140: defaultobject 72
+    2300142: defaultobject 73
+    2300144: defaultobject 74
+    2300146: defaultobject 75
+    2300148: defaultobject 76
+    2300150: defaultobject 77
+    2300152: defaultobject 8
+    2300154: defaultobject 9
+    2300156: Null
+    3300000: defaultobject
+    3300002: defaultobject 1
+    3300004: defaultobject 10
+    3300006: defaultobject 11
+    3300008: defaultobject 12
+    3300010: defaultobject 13
+    3300012: defaultobject 14
+    3300014: defaultobject 15
+    3300016: defaultobject 16
+    3300018: defaultobject 17
+    3300020: defaultobject 18
+    3300022: defaultobject 19
+    3300024: defaultobject 2
+    3300026: defaultobject 20
+    3300028: defaultobject 21
+    3300030: defaultobject 22
+    3300032: defaultobject 23
+    3300034: defaultobject 24
+    3300036: defaultobject 25
+    3300038: defaultobject 26
+    3300040: defaultobject 27
+    3300042: defaultobject 28
+    3300044: defaultobject 29
+    3300046: defaultobject 3
+    3300048: defaultobject 30
+    3300050: defaultobject 31
+    3300052: defaultobject 32
+    3300054: defaultobject 33
+    3300056: defaultobject 34
+    3300058: defaultobject 35
+    3300060: defaultobject 36
+    3300062: defaultobject 37
+    3300064: defaultobject 38
+    3300066: defaultobject 39
+    3300068: defaultobject 4
+    3300070: defaultobject 40
+    3300072: defaultobject 41
+    3300074: defaultobject 42
+    3300076: defaultobject 43
+    3300078: defaultobject 44
+    3300080: defaultobject 45
+    3300082: defaultobject 46
+    3300084: defaultobject 47
+    3300086: defaultobject 48
+    3300088: defaultobject 49
+    3300090: defaultobject 5
+    3300092: defaultobject 50
+    3300094: defaultobject 51
+    3300096: defaultobject 52
+    3300098: defaultobject 53
+    3300100: defaultobject 54
+    3300102: defaultobject 55
+    3300104: defaultobject 56
+    3300106: defaultobject 57
+    3300108: defaultobject 58
+    3300110: defaultobject 59
+    3300112: defaultobject 6
+    3300114: defaultobject 60
+    3300116: defaultobject 61
+    3300118: defaultobject 62
+    3300120: defaultobject 63
+    3300122: defaultobject 64
+    3300124: defaultobject 65
+    3300126: defaultobject 66
+    3300128: defaultobject 67
+    3300130: defaultobject 68
+    3300132: defaultobject 69
+    3300134: defaultobject 7
+    3300136: defaultobject 70
+    3300138: defaultobject 71
+    3300140: defaultobject 72
+    3300142: defaultobject 73
+    3300144: defaultobject 74
+    3300146: defaultobject 75
+    3300148: defaultobject 76
+    3300150: defaultobject 77
+    3300152: defaultobject 8
+    3300154: defaultobject 9
+    3300156: Null
+    4300000: Null
+    4300002: defaultobject
+    4300004: defaultobject
+    4300006: defaultobject
+    4300008: defaultobject
+    4300010: defaultobject
+    4300012: defaultobject
+    4300014: defaultobject
+    4300016: defaultobject
+    4300018: defaultobject
+    4300020: defaultobject
+    4300022: defaultobject
+    4300024: defaultobject
+    4300026: defaultobject
+    4300028: defaultobject
+    4300030: defaultobject
+    4300032: defaultobject
+    4300034: defaultobject
+    4300036: defaultobject
+    4300038: defaultobject
+    4300040: defaultobject
+    4300042: defaultobject
+    4300044: defaultobject
+    4300046: defaultobject
+    4300048: defaultobject
+    4300050: defaultobject
+    4300052: defaultobject
+    4300054: defaultobject
+    4300056: defaultobject
+    4300058: defaultobject
+    4300060: defaultobject
+    4300062: defaultobject
+    4300064: defaultobject
+    4300066: defaultobject
+    4300068: defaultobject
+    4300070: defaultobject
+    4300072: defaultobject
+    4300074: defaultobject
+    4300076: defaultobject
+    4300078: defaultobject
+    4300080: defaultobject
+    4300082: defaultobject
+    4300084: defaultobject
+    4300086: defaultobject
+    4300088: defaultobject
+    4300090: defaultobject
+    4300092: defaultobject
+    4300094: defaultobject
+    4300096: defaultobject
+    4300098: defaultobject
+    4300100: defaultobject
+    4300102: defaultobject
+    4300104: defaultobject
+    4300106: defaultobject
+    4300108: defaultobject
+    4300110: defaultobject
+    4300112: defaultobject
+    4300114: defaultobject
+    4300116: defaultobject
+    4300118: defaultobject
+    4300120: defaultobject
+    4300122: defaultobject
+    4300124: defaultobject
+    4300126: defaultobject
+    4300128: defaultobject
+    4300130: defaultobject
+    4300132: defaultobject
+    4300134: defaultobject
+    4300136: defaultobject
+    4300138: defaultobject
+    4300140: defaultobject
+    4300142: defaultobject
+    4300144: defaultobject
+    4300146: defaultobject
+    4300148: defaultobject
+    4300150: defaultobject
+    4300152: defaultobject
+    4300154: defaultobject
+    4300156: defaultobject
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

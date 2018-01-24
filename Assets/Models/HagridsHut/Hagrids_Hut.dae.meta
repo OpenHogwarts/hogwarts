@@ -68,6 +68,18 @@ ModelImporter:
     4300018: defaultobject
     4300020: defaultobject
     4300022: defaultobject
+    6400000: defaultobject
+    6400002: defaultobject 1
+    6400004: defaultobject 10
+    6400006: defaultobject 11
+    6400008: defaultobject 2
+    6400010: defaultobject 3
+    6400012: defaultobject 4
+    6400014: defaultobject 5
+    6400016: defaultobject 6
+    6400018: defaultobject 7
+    6400020: defaultobject 8
+    6400022: defaultobject 9
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -101,7 +113,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
