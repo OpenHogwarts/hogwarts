@@ -19,7 +19,7 @@ Development requirements
 -------------
 - Unity >= [ProjectVersion.txt](https://github.com/OpenHogwarts/hogwarts/blob/master/ProjectSettings/ProjectVersion.txt)
 
-Setup
+Development setup
 -------------
 [![Analytics](https://ga-beacon.appspot.com/UA-17476024-7/hogwarts/readme?pixel)](https://github.com/OpenHogwarts/hogwarts)
 
