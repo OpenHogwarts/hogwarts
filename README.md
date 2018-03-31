@@ -1,4 +1,16 @@
-﻿Hogwarts Sandbox
+## Table of Contents
+- [Hogwarts Sandbox](#hogwarts-sandbox)
+- [Binary download](#binary-download)
+- [Development requirements](#development-requirements)
+- [Development setup](#development-setup)
+- [Working features](#working-features)
+- [¿Why development is so slow?](#why-so-slow)
+- [Hotkeys](#hotkeys)
+- [Broomstick hotkeys](#broomstick-hotkeys)
+- [ToDo](#todo)
+- [Credits](#credits)
+
+##Hogwarts Sandbox
 ========
 
 A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
@@ -10,16 +22,16 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 ![hogwars4](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen4.jpg)
 ![hogwars5](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen5.jpg)
 
-Binary download
+##Binary download
 -------------
 
 You can download the latest compiled binary here: https://github.com/OpenHogwarts/hogwarts/releases
 
-Development requirements
+##Development requirements
 -------------
 - Unity >= [ProjectVersion.txt](https://github.com/OpenHogwarts/hogwarts/blob/master/ProjectSettings/ProjectVersion.txt)
 
-Development setup
+##Development setup
 -------------
 [![Analytics](https://ga-beacon.appspot.com/UA-17476024-7/hogwarts/readme?pixel)](https://github.com/OpenHogwarts/hogwarts)
 
@@ -29,7 +41,7 @@ Development setup
 - Hit the start button from Game tab. Inside the game, click create a New Character, set the name and click on "Enter".
 
 
-Working features
+##Working features
 -------------
 - Multiplayer
 - Chat
@@ -39,12 +51,12 @@ Working features
 - Flying Broomstick
 - Quests
 
-¿Why development is so slow?
+##¿Why development is so slow?
 ------------------
 Because everyone wants to play, but no one wants to code/design/mod/help.
 
 
-Hotkeys
+##Hotkeys
 ------------------
 Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blob/master/Assets/Scripts/Player/PlayerHotkeys.cs to ensure which are the latest assigned for each action.
 - WASD: Player control
@@ -60,17 +72,17 @@ Since they may change, always check https://github.com/OpenHogwarts/hogwarts/blo
 - Left mouse: Select target
 - 1, 2, 3.. keys: Spell cast
 
-Broomstick hotkeys
+##Broomstick hotkeys
 ------------------
 - WASD: Basic control
 - Right mouse: 3D Direction control
 
-ToDo
+##ToDo
 ------
 Check the wiki https://github.com/OpenHogwarts/hogwarts/wiki/ToDo
 
 
-Credits
+##Credits
 -------------
 
 - Hogwarts model: Dani Moreno (danimoreno3d.com)
