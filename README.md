@@ -1,7 +1,7 @@
-A Hogwarts (Harry Potter) open sandbox game made in Unity.
+A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
 ## Table of Contents
-- [Hogwarts Sandbox](#hogwarts-sandbox)
+- [Video Demo](#hogwarts-sandbox)
 - [Binary download](#binary-download)
 - [Development requirements](#development-requirements)
 - [Development setup](#development-setup)
@@ -14,10 +14,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity.
 - [Special Thanks](#special-thanks)
 - [Copyright Notice](#copyright-notice)
 
-## Hogwarts Sandbox
-========
-
-A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
+## Video Demo
 
 [![OpenHogwarts demo](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/video_preview.jpg)](https://www.youtube.com/watch?v=Kra8mhuHzx4 "OpenHogwarts demo")
 ![hogwarts](https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/Screenshots/screen1.jpg)
