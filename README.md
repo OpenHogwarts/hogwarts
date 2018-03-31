@@ -1,3 +1,5 @@
+A Hogwarts (Harry Potter) open sandbox game made in Unity.
+
 ## Table of Contents
 - [Hogwarts Sandbox](#hogwarts-sandbox)
 - [Binary download](#binary-download)
