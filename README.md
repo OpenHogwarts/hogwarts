@@ -6,7 +6,7 @@ A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 - [Development requirements](#development-requirements)
 - [Development setup](#development-setup)
 - [Working features](#working-features)
-- [¿Why development is so slow?](#¿why-development-is-so-slow?)
+- [¿Why development is so slow?](#why-development-is-so-slow)
 - [Hotkeys](#hotkeys)
 - [Broomstick hotkeys](#broomstick-hotkeys)
 - [ToDo](#todo)
