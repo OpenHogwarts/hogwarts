@@ -73,7 +73,7 @@
     },
     {
         "key": "QUEST_NOT_FINISHED",
-        "translation": "You..... Still here?... Why don't you go and finish it?"
+        "translation": "You're still here? Why don't you go and finish that quest?"
     },
     {
         "key": "QUEST_ACCEPTED",
@@ -101,11 +101,11 @@
     },
     {
         "key": "QUEST_1_PRE",
-        "translation": "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='11'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!"
+        "translation": "Welcome {{username}}! \nYour initiation into Hogwarts is to kill one of those horrible <npc id='11'>arañas</npc> that haunt the vicinity of the castle.\n Be careful and take your wand!"
     },
     {
         "key": "QUEST_1_AFTER",
-        "translation": "¡Excelente! La próxima vez tendrás recompensa."
+        "translation": "Excellent! Next time you will have a reward."
     },
     {
         "key": "QUEST_2_TITLE",
@@ -113,7 +113,7 @@
     },
     {
         "key": "QUEST_2_PRE",
-        "translation": "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par."
+        "translation": "{{username}}, we need to store firewood to keep all the fires burning during the winter. Go find and bring me a pair."
     },
     {
         "key": "QUEST_2_AFTER",
@@ -121,23 +121,23 @@
     },
     {
         "key": "RANDOM_STUDENT_PHRASE_1",
-        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+        "translation": "Did you know that He Who Must Not Be Named studied here?"
     },
     {
         "key": "RANDOM_STUDENT_PHRASE_2",
-        "translation": "Estoy deseando retomar las clases"
+        "translation": "I'm looking forward to taking classes again"
     },
     {
         "key": "RANDOM_STUDENT_PHRASE_3",
-        "translation": "Cuando vayas a usar los baños, recuerda que los cuadros te observan"
+        "translation": "When you go to use the bathrooms, remember that the paintings are watching you"
     },
     {
         "key": "RANDOM_STUDENT_PHRASE_4",
-        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+        "translation": "I can't wait to go to Hogsmead again!"
     },
     {
         "key": "RANDOM_STUDENT_PHRASE_5",
-        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+        "translation": "Are you looking forward to the next Quidditch game?"
     },
     {
         "key": "ITEM_1_NAME",
@@ -145,19 +145,19 @@
     },
     {
         "key": "ITEM_1_DESCRIPTION",
-        "translation": "Hecho en el mejor caserío muggle"
+        "translation": "Made in the best Muggle farmhouse"
     },
     {
         "key": "ITEM_2_NAME",
-        "translation": "Colgante de Dermor"
+        "translation": "Dermor Pendant"
     },
     {
         "key": "ITEM_2_DESCRIPTION",
-        "translation": "No se me ocurre nada bueno"
+        "translation": "I can not think of anything good to say about this"
     },
     {
         "key": "ITEM_3_NAME",
-        "translation": "Varita de principiante"
+        "translation": "Beginner's Wand"
     },
     {
         "key": "ITEM_3_DESCRIPTION",
@@ -165,51 +165,51 @@
     },
     {
         "key": "ITEM_4_NAME",
-        "translation": "Fibra"
+        "translation": "Fiber"
     },
     {
         "key": "ITEM_4_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_5_NAME",
-        "translation": "Pieza de mecanismo"
+        "translation": "Mechanism part"
     },
     {
         "key": "ITEM_5_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_6_NAME",
-        "translation": "Llave desconocida"
+        "translation": "Unknown key"
     },
     {
         "key": "ITEM_6_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "I wonder what it unlocks?"
     },
     {
         "key": "ITEM_7_NAME",
-        "translation": "Bufanda de estudiante"
+        "translation": "A student's scarf"
     },
     {
         "key": "ITEM_7_DESCRIPTION",
-        "translation": "¿Qué habrá sido del resto?"
+        "translation": "What will have happened to the rest?"
     },
     {
         "key": "ITEM_8_NAME",
-        "translation": "Carne de araña"
+        "translation": "Spider meat"
     },
     {
         "key": "ITEM_8_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "Not too tasty"
     },
     {
         "key": "ITEM_9_NAME",
-        "translation": "Manuscrito antiguo"
+        "translation": "Ancient manuscript"
     },
     {
         "key": "ITEM_9_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_10_NAME",
@@ -217,135 +217,135 @@
     },
     {
         "key": "ITEM_10_DESCRIPTION",
-        "translation": "Sín descripción"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_11_NAME",
-        "translation": "animal skin"
+        "translation": "Animal skin"
     },
     {
         "key": "ITEM_11_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_12_NAME",
-        "translation": "apple"
+        "translation": "Apple"
     },
     {
         "key": "ITEM_12_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_13_NAME",
-        "translation": "simple ring"
+        "translation": "Simple ring"
     },
     {
         "key": "ITEM_13_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_14_NAME",
-        "translation": "Antigua capa de maga"
+        "translation": "Ancient mantle of magician"
     },
     {
         "key": "ITEM_14_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_15_NAME",
-        "translation": "Antigua capa de mago"
+        "translation": "Old magician's cloak"
     },
     {
         "key": "ITEM_15_DESCRIPTION",
-        "translation": "no descriptionn"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_16_NAME",
-        "translation": "banana"
+        "translation": "Banana"
     },
     {
         "key": "ITEM_16_DESCRIPTION",
-        "translation": "It doesn't has much mystery"
+        "translation": "Not much to say about this"
     },
     {
         "key": "ITEM_17_NAME",
-        "translation": "Mineral de Draconita"
+        "translation": "Draconite mineral"
     },
     {
         "key": "ITEM_17_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_18_NAME",
-        "translation": "strange thing"
+        "translation": "Strange thing"
     },
     {
         "key": "ITEM_18_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_19_NAME",
-        "translation": "multicolored amulet"
+        "translation": "Multicolored amulet"
     },
     {
         "key": "ITEM_19_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_20_NAME",
-        "translation": "simple amulet"
+        "translation": "Simple amulet"
     },
     {
         "key": "ITEM_20_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_21_NAME",
-        "translation": "simple amulet"
+        "translation": "Simple amulet"
     },
     {
         "key": "ITEM_21_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_22_NAME",
-        "translation": "Diamante rosa adulterado"
+        "translation": "Pink diamond adulterated"
     },
     {
         "key": "ITEM_22_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_23_NAME",
-        "translation": "magic powder"
+        "translation": "Magic powder"
     },
     {
         "key": "ITEM_23_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_24_NAME",
-        "translation": "student gloves"
+        "translation": "A student's gloves"
     },
     {
         "key": "ITEM_24_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_25_NAME",
-        "translation": "normal pink diamond"
+        "translation": "Normal pink diamond"
     },
     {
         "key": "ITEM_25_DESCRIPTION",
-        "translation": "no description"
+        "translation": "Without description"
     },
     {
         "key": "ITEM_26_NAME",
-        "translation": "wood"
+        "translation": "Wood"
     },
     {
         "key": "ITEM_26_DESCRIPTION",
-        "translation": "it burns"
+        "translation": "It burns"
     },
     {
         "key": "ITEM_27_NAME",
