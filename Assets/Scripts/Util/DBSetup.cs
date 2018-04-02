@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 /*
-	This class is used to setup DB items
-    After making any change/addition remember to delete your existing db so changes get populated
+	This class is used to:
+    - Setup DB entries
+    - List NPC related things like their quests or phrases
+
+    After making any change/addition on entries saved in db, remember to delete your existing db so changes get populated:
     https://github.com/OpenHogwarts/hogwarts/wiki/Access-game-DB#adding-new-entries
+
+    New entries/changes on other methods like "getTalkerPhrase" don't require deleting the db, as they are not saved there.
  **/
 
 public class DBSetup : MonoBehaviour {
@@ -307,6 +312,81 @@ public class DBSetup : MonoBehaviour {
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Normal;
         npc.create();
+    }
+
+    public static string getTalkerPhrase (int npcId) {
+        switch (npcId) {
+            case 5: // regular student
+                return LanguageManager.get("RANDOM_STUDENT_PHRASE_1");
+                break;
+            case 6: // regular student
+                return LanguageManager.get("RANDOM_STUDENT_PHRASE_2");
+                break;
+            case 7: // regular student
+                return LanguageManager.get("RANDOM_STUDENT_PHRASE_3");
+                break;
+            default:
+                return "ERROR_PHRASE_NOT_SET_FOR_NPC_" + npcId;
+                break;
+        }
+    }
+
+    public static void setAllQuests() {
+        Quest quest;
+        Task task;
+        int taskId = 1;
+
+        // -- start quest
+        quest = new Quest();
+        quest.id = 1;
+        quest.assigner = 3; // NPC who assigned it
+        QuestManager.Instance.assignToNPC(quest);
+        quest.loot.Add(3, 4); // id, quantity
+
+        task = new Task();
+        task.quest = quest.id;
+        task.taskId = taskId++;
+        task.id = (int)NPCData.creatureTemplate.CastleSpider;
+        task.idType = Task.IdType.Template;
+        task.quantity = 1;
+        task.type = Task.ActorType.NPC;
+        task.action = Task.ActionType.Kill;
+
+        quest.tasks.Add(task.taskId, task);
+
+        task = new Task();
+        task.quest = quest.id;
+        task.taskId = taskId++;
+        task.id = 1;
+        task.idType = Task.IdType.Id;
+        task.type = Task.ActorType.NPC;
+        task.action = Task.ActionType.Talk;
+
+        quest.tasks.Add(task.taskId, task);
+
+        QuestManager.Instance.allQuests.Add(quest.id, quest);
+        // -- end quest
+
+        // -- start quest
+        quest = new Quest();
+        quest.id = 2;
+        quest.assigner = 4; // hagrid
+        QuestManager.Instance.assignToNPC(quest);
+        quest.loot.Add(3, 4); // id, quantity
+
+        task = new Task();
+        task.quest = quest.id;
+        task.taskId = taskId++;
+        task.id = 26;
+        task.idType = Task.IdType.Id;
+        task.quantity = 8;
+        task.type = Task.ActorType.Item;
+        task.action = Task.ActionType.GetItem;
+
+        quest.tasks.Add(task.taskId, task);
+
+        QuestManager.Instance.allQuests.Add(quest.id, quest);
+        // -- end quest
     }
 
     public static void insertWaypointsTo (int id, List<Vector3> waypoints) {
