@@ -312,6 +312,12 @@ public class DBSetup : MonoBehaviour {
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Normal;
         npc.create();
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
+        npc.id = i++; //This is 10
+        npc.name = "Student";
+        npc.subRace = NPCData.creatureSubRace.Talker;
+        npc.create();
     }
 
     public static string getTalkerPhrase (int npcId) {
@@ -324,6 +330,9 @@ public class DBSetup : MonoBehaviour {
                 break;
             case 7: // regular student
                 return LanguageManager.get("RANDOM_STUDENT_PHRASE_3");
+                break;
+            case 9: // regular student
+                return LanguageManager.get("RANDOM_STUDENT_PHRASE_4");
                 break;
             default:
                 return "ERROR_PHRASE_NOT_SET_FOR_NPC_" + npcId;
