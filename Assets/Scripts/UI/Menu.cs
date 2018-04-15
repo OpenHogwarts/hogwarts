@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
@@ -23,27 +23,27 @@ public class Menu : MonoBehaviour {
 		}
 	}
 
-	void Start () {
-		_instance = this;
-	}
+    void Awake() {
+        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
-	void Awake() {
-		DontDestroyOnLoad(transform.gameObject);
-		DontDestroyOnLoad(GameObject.Find("EventSystem"));
-	}
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        _instance = this;
+    }
 
-	public void OnLevelWasLoaded(int level) {
-		switch (level) {
-		case 1: // Main
-			showPanel("MainPanel");
-			break;
-		default:
-            showPanel ("PlayerPanel");
-			showPanel ("ChatPanel", false);
-			showPanel ("TopMenu", false);
-			showPanel ("MiniMap", false);
-            // Canvas Scaler was making the bags and menus look broken
-            //gameObject.GetComponent<CanvasScaler> ().enabled = false;
+    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+
+        switch (scene.name) {
+		    case "MainMenu": // Main
+			    showPanel("MainPanel");
+			    break;
+		    default:
+                showPanel("PlayerPanel");
+			    showPanel("ChatPanel", false);
+			    showPanel("TopMenu", false);
+			    showPanel("MiniMap", false);
+                // Canvas Scaler was making the bags and menus look broken
+                //gameObject.GetComponent<CanvasScaler> ().enabled = false;
 			break;
 		}
 	}
