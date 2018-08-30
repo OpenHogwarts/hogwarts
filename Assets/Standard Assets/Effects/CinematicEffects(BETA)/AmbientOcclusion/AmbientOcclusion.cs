@@ -17,7 +17,7 @@ namespace UnityStandardAssets.CinematicEffects
         /// Checks if the ambient-only mode is supported under the current settings.
         public bool isAmbientOnlySupported
         {
-            get { return targetCamera.hdr && isGBufferAvailable; }
+            get { return targetCamera.allowHDR && isGBufferAvailable; }
         }
 
         #endregion
