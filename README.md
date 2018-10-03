@@ -1,5 +1,10 @@
 A Hogwarts (Harry Potter) open sandbox game made in Unity. NOT FINISHED
 
+Good news! An official Harry potter RPG game is in development: 
+https://download.void.cat/20037112355c696ce37131b173d245f8489ce8d2
+
+https://my.mixtape.moe/scyeev.mp4
+
 ## Table of Contents
 - [Video Demo](#hogwarts-sandbox)
 - [Binary download](#binary-download)
