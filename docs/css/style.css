@@ -6,6 +6,8 @@
     --nav-1: #222;
     --nav-2: #333;
     --nav-3: #444;
+
+    --nav-height: 50px;
 }
 
 *,
@@ -21,15 +23,75 @@ body {
     background: var(--bg);
 }
 
+/*Global*/
+.bold {
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1em 2em;
+    margin: 1em 2em;
+    color: var(--white);
+    background: #1e1e1e;
+    text-decoration: none;
+    transition: background .2s ease-in-out;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    background: var(--bg);
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*Sections*/
+section {
+    position: relative;
+    top: 0;
+    z-index: 0;
+}
+
+section.large {
+    height: 100vh;
+}
+
+section.medium {
+    height: 70vh;
+}
+
+section.small {
+    height: 50vh;
+}
+
+/* Navbar */
+.nav-container {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+}
+
 nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
 
     padding: 0 3em;
-    height: 50px;
+    height: var(--nav-height);
     background: var(--nav-1);
     overflow: hidden;
+}
+
+.sticky-nav {
+    position: fixed;
+    width: 100%;
 }
 
 nav a {
@@ -102,14 +164,131 @@ ul li a:hover {
     margin: 0 auto;
 }
 
-.btn {
-    display: inline-block;
-    padding: 1em 2em;
-    color: var(--white);
-    background: #00000050;
-    text-decoration: none;
-}
-
 .card-action {
     margin-top: 2em;
+}
+
+/* Hero */
+.hero::after {
+    content: "";
+    /* Photo 1 by Isa Martine on Unsplash */
+    /* Photo 2 by Jack Anstey on Unsplash */
+    background-image: url('../assets/pic2.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.hero {
+    width: 100%;
+    padding-top: var(--nav-height);
+}
+
+.hero-text {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+}
+
+.hero-title {
+    font-size: 4rem;
+}
+
+.hero-subtitle {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.hero-btn {
+    margin-top: 2rem;
+    margin-left: 0;
+}
+
+/* Gallery */
+.section-title {
+    font-size: 3rem;
+    color: var(--white);
+    margin: 5rem auto;
+    text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-item {
+    width: 13vw;
+}
+
+.flex-item .icon {
+    margin: 1rem;
+}
+
+/* Download */
+section.download {
+    width: 70%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download .right {
+    width: 50%;
+}
+
+.download .fas {
+    color: white;
+    font-size: 5rem;
+}
+
+.download .download-text {
+    color: var(--white);
+    line-height: 48px;
+}
+
+.download .lead {
+    font-style: italic;
+}
+
+.download a {
+    color: var(--white);
+}
+
+/* Docs (Home page)*/
+section.docs .card-content {
+    align-items: center;
+}
+
+section.docs .card-text{
+    text-align: left;
+    width: 50%;
+}
+
+section.docs .icon {
+    font-size: 5rem;
+}
+
+/* Coder Notice */
+.notice {
+    font-style: italic;
+    text-align: center;
+    color: var(--white);
+    padding: 1em;
+}
+
+.notice a {
+    color: var(--white);
 }

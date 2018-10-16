@@ -1,0 +1,303 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel .carousel-container {
+  width: 100%;
+  position: relative;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  left: -100%;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.carousel .carousel-container .carousel-item {
+  display: block;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+}
+
+.carousel .carousel-container .carousel-item.has-background .is-background {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel .carousel-container .carousel-item .title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5em;
+  margin: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+
+.carousel .carousel-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  pointer-events: none;
+}
+
+.carousel .carousel-navigation .carousel-nav-left,
+.carousel .carousel-navigation .carousel-nav-right {
+  padding: 1em;
+  pointer-events: auto;
+}
+
+.carousel .carousel-navigation.is-centered {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.carousel .carousel-navigation.is-overlay {
+  top: 50%;
+  -webkit-transform: perspective(1px) translateY(-50%);
+          transform: perspective(1px) translateY(-50%);
+  bottom: auto;
+  left: auto;
+  right: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 99;
+}
+
+.carousel .carousel-navigation.is-overlay .carousel-nav-left,
+.carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  height: 2.2em;
+  width: 2em;
+  background: rgba(255, 255, 255, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #4a4a4a;
+  position: absolute;
+  left: 0;
+}
+
+.carousel .carousel-navigation.is-overlay .carousel-nav-left:hover,
+.carousel .carousel-navigation.is-overlay .carousel-nav-right:hover {
+  cursor: pointer;
+}
+
+.carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  left: auto;
+  right: 0;
+}
+
+.carousel.is-reversing .carousel-container {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.carousel[data-size]:not(.carousel-animate-fade) .carousel-container .carousel-item {
+  padding: 1em;
+}
+
+.hero.has-carousel {
+  position: relative;
+}
+
+.hero.has-carousel + .hero-body,
+.hero.has-carousel + .hero-head,
+.hero.has-carousel + .hero-footer {
+  z-index: 1;
+}
+
+.hero.has-carousel .hero-carousel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: auto;
+  border: none;
+  margin: auto;
+  padding: 0;
+  z-index: 0;
+}
+
+.hero.has-carousel .hero-carousel .carousel-container {
+  height: auto !important;
+}
+
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-carousel .carousel-container {
+  width: 100%;
+  position: relative;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  left: -100%;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.hero-carousel .carousel-container .carousel-item {
+  display: block;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+}
+
+.hero-carousel .carousel-container .carousel-item.has-background .is-background {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+  height: 100%;
+  width: 100%;
+}
+
+.hero-carousel .carousel-container .carousel-item .title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5em;
+  margin: 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+}
+
+.hero-carousel .carousel-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  pointer-events: none;
+}
+
+.hero-carousel .carousel-navigation .carousel-nav-left,
+.hero-carousel .carousel-navigation .carousel-nav-right {
+  padding: 1em;
+  pointer-events: auto;
+}
+
+.hero-carousel .carousel-navigation.is-centered {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hero-carousel .carousel-navigation.is-overlay {
+  top: 50%;
+  -webkit-transform: perspective(1px) translateY(-50%);
+          transform: perspective(1px) translateY(-50%);
+  bottom: auto;
+  left: auto;
+  right: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  z-index: 99;
+}
+
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-left,
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  height: 2.2em;
+  width: 2em;
+  background: rgba(255, 255, 255, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #4a4a4a;
+  position: absolute;
+  left: 0;
+}
+
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-left:hover,
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right:hover {
+  cursor: pointer;
+}
+
+.hero-carousel .carousel-navigation.is-overlay .carousel-nav-right {
+  left: auto;
+  right: 0;
+}
+
+.hero-carousel.is-reversing .carousel-container {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.carousel.carousel-animate-slide.carousel-animated .carousel-container,
+.hero-carousel.carousel-animate-slide.carousel-animated .carousel-container {
+  -webkit-transform: none !important;
+          transform: none !important;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+.carousel.carousel-animate-fade .carousel-item,
+.hero-carousel.carousel-animate-fade .carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel.carousel-animate-fade .carousel-item.is-active,
+.hero-carousel.carousel-animate-fade .carousel-item.is-active {
+  opacity: 1;
+}
+
+.carousel.carousel-animate-fade .carousel-item:not(.is-active),
+.hero-carousel.carousel-animate-fade .carousel-item:not(.is-active) {
+  opacity: 0;
+}
+/*# sourceMappingURL=bulma-carousel.css.map */
