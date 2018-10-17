@@ -4,7 +4,7 @@
 
 /* pic1.jpg by Isa Martine on Unsplash */
 /* pic2.jpg by Jack Anstey on Unsplash */
-const pics = ["url(assets/pic1.jpg)", "url(../Screenshots/screen3.jpg)", "url(assets/pic2.jpg)", "url(../Screenshots/screen1.jpg)", "url(../Screenshots/screen2.jpg)"];
+const pics = ["url(assets/pic1.jpg)", "url(assets/screen3.jpg)", "url(assets/pic2.jpg)", "url(assets/screen1.jpg)", "url(assets/screen2.jpg)"];
 
 const slider = document.querySelector('.slider');
 let current = 0;
