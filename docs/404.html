@@ -25,6 +25,11 @@
                 <a href="contact.html" class="nav-link">Contact</a>
             </li>
         </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </nav>
 
     <main>
@@ -35,5 +40,16 @@
             </div>
         </div>
     </main>
+<script>
+    /* Begin Responsive Menu Module */
+    document.querySelector(".hamburger").addEventListener('click', function(){
+        this.classList.toggle('closed');
+    })
+    
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('.menu').classList.toggle('activeMenu');
+    })
+    /* End Responsive Menu Module */
+</script>
 </body>
 </html>

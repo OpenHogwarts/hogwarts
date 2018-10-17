@@ -7,17 +7,13 @@
     <title>Home | Open Hogwarts</title>
 
     <link rel="stylesheet" href="css/style.css"/>
+    <script defer src="js/main.js"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <!-- Bulma Carousel -->
-    <!-- <link rel="stylesheet" href="css/bulma.min.css"/>
-    <link rel="stylesheet" type="text/sc" href="sass/bulma-carousel.css"/>
-    <script src="js/bulma-carousel.min.js"></script> -->
 </head>
 <body>
-    <div class="nav-container">
-    <nav class="sticky-nav">
-        <a href="index.html" class="brand-logo">openhogwarts</a>
+    <nav class="nav-sticky">
+        <a href="index.html" class="brand-logo">OpenHogwarts</a>
         <ul class="menu">
             <li class="nav-item">
                 <a href="#" class="nav-link active">Home</a>
@@ -32,14 +28,19 @@
                 <a href="contact.html" class="nav-link">Contact</a>
             </li>
         </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </nav>
-    </div>
     <section class="hero large">
+        <div class="slider"></div>
         <div class="hero-text">
             <h1 class="hero-title">Open Hogwarts</h1>
             <h2 class="hero-subtitle">Here is a subtitle</h2>
             <a href="https://www.github.com/openhogwarts/hogwarts" class="btn hero-btn">
-                <img src="assets/GitHub-light.png" width = 24px alt="">
+                <i class="fab fa-github"></i>
                 <span style="margin-left: 10px">GitHub</span>
             </a>
         </div>
@@ -84,5 +85,16 @@
         </div>
     </section>
     <p class="notice">Design and Code by Binyamin Green at <a href="https://b3u.github.io">b3u.github.io</a></p>
+<script>
+    /* Begin Responsive Menu Module */
+    document.querySelector(".hamburger").addEventListener('click', function(){
+        this.classList.toggle('closed');
+    })
+
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('.menu').classList.toggle('activeMenu');
+    })
+    /* End Responsive Menu Module */
+</script>
 </body>
 </html>

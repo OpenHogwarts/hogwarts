@@ -71,7 +71,7 @@ section.small {
 }
 
 /* Navbar */
-.nav-container {
+.nav-sticky {
     position: fixed;
     top: 0;
     z-index: 2;
@@ -80,18 +80,13 @@ section.small {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
 
     padding: 0 3em;
     height: var(--nav-height);
     background: var(--nav-1);
     overflow: hidden;
-}
-
-.sticky-nav {
-    position: fixed;
-    width: 100%;
 }
 
 nav a {
@@ -118,11 +113,15 @@ ul li {
 
 ul li a {
     padding: 2em 2em;
-
+    margin: 2em 2em;
 }
 
-ul li a:hover {
+ul li a:hover, ul li a.active {
     background: var(--nav-3);
+}
+
+.hamburger {
+    display: none;
 }
 
 /* Card */
@@ -138,6 +137,7 @@ ul li a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
 }   
 
 .card-content {
@@ -155,12 +155,12 @@ ul li a:hover {
 }
 
 .card-title {
-    margin: 1em auto;
+    font-size: 3rem;
 }
 
 .card-subtitle {
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: 0 auto;
 }
 
@@ -168,11 +168,13 @@ ul li a:hover {
     margin-top: 2em;
 }
 
+.card-action .icon {
+   margin-right: 10px; 
+}
+
 /* Hero */
-.hero::after {
+.slider {
     content: "";
-    /* Photo 1 by Isa Martine on Unsplash */
-    /* Photo 2 by Jack Anstey on Unsplash */
     background-image: url('../assets/pic2.jpg');
     background-position: center;
     background-size: cover;
@@ -277,6 +279,14 @@ section.docs .card-text{
     width: 50%;
 }
 
+section.docs .card-title {
+    font-size: 2rem;
+}
+
+section.docs .card-subtitle {
+    font-size: 1rem;
+}
+
 section.docs .icon {
     font-size: 5rem;
 }
@@ -291,4 +301,76 @@ section.docs .icon {
 
 .notice a {
     color: var(--white);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1024px) {
+    /* Navbar */
+    nav {
+        overflow: visible;
+    }
+    ul {
+        max-height: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        
+        position: absolute;
+        top: var(--nav-height);
+        right: 0;
+        z-index: 3;
+
+        transition: max-height 1s ease-out, padding .5s ease-out;
+    }
+
+    ul.activeMenu {
+        max-height: 100vh;
+        padding: 1em 0;
+    }
+
+    ul li a{
+        display: block;
+    }
+
+    .hamburger {
+        display: inline-block;
+        justify-self: right;
+    }
+
+    .bar {
+        display: block;
+        background-color: var(--white);
+        width: 2rem;
+        height: .25rem;
+        margin: .5rem 0;
+        transition: transform .3s ease-out, opacity .2s ease-out;
+    }
+
+    .hamburger.closed :first-of-type{transform: rotate(45deg) translate(9px, 7px);}
+    .hamburger.closed :nth-of-type(2){opacity: 0}
+    .hamburger.closed :last-of-type {transform: rotate(-45deg) translate(9px, -8px);}
+
+    /* Card */
+    .card {
+        width: 80%;
+        height: 80%;
+    }
+
+    .card-image {
+        width: 50vw;
+        margin: 0 auto;
+    }
+
+    .card-title {
+        font-size: 2rem;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Gallery*/
+    .flex-row{
+        flex-direction: column;
+    }
 }
