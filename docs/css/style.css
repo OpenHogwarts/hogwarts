@@ -1,0 +1,376 @@
+/*Variables*/
+:root {
+    --bg: #111;
+    --white: #eee;
+
+    --nav-1: #222;
+    --nav-2: #333;
+    --nav-3: #444;
+
+    --nav-height: 50px;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: var(--bg);
+}
+
+/*Global*/
+.bold {
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1em 2em;
+    margin: 1em 2em;
+    color: var(--white);
+    background: #1e1e1e;
+    text-decoration: none;
+    transition: background .2s ease-in-out;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    background: var(--bg);
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*Sections*/
+section {
+    position: relative;
+    top: 0;
+    z-index: 0;
+}
+
+section.large {
+    height: 100vh;
+}
+
+section.medium {
+    height: 70vh;
+}
+
+section.small {
+    height: 50vh;
+}
+
+/* Navbar */
+.nav-sticky {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+
+    padding: 0 3em;
+    height: var(--nav-height);
+    background: var(--nav-1);
+    overflow: hidden;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+nav .brand-logo {
+    text-transform: uppercase;
+}
+
+ul {
+    display: inline;
+    background: var(--nav-2);
+    padding: 1em 0;
+
+    justify-self: right;
+}
+
+ul li {
+    display: inline;
+    list-style-type: none;
+}
+
+ul li a {
+    padding: 2em 2em;
+    margin: 2em 2em;
+}
+
+ul li a:hover, ul li a.active {
+    background: var(--nav-3);
+}
+
+.hamburger {
+    display: none;
+}
+
+/* Card */
+.card {
+    background: #ffffff20;
+    border-radius: 15px;
+
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}   
+
+.card-content {
+    color: var(--white);
+    text-align: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-image {
+    display: block;
+}
+
+.card-title {
+    font-size: 3rem;
+}
+
+.card-subtitle {
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin: 0 auto;
+}
+
+.card-action {
+    margin-top: 2em;
+}
+
+.card-action .icon {
+   margin-right: 10px; 
+}
+
+/* Hero */
+.slider {
+    content: "";
+    background-image: url('../assets/pic2.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.hero {
+    width: 100%;
+    padding-top: var(--nav-height);
+}
+
+.hero-text {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+}
+
+.hero-title {
+    font-size: 4rem;
+}
+
+.hero-subtitle {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.hero-btn {
+    margin-top: 2rem;
+    margin-left: 0;
+}
+
+/* Gallery */
+.section-title {
+    font-size: 3rem;
+    color: var(--white);
+    margin: 5rem auto;
+    text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-item {
+    width: 13vw;
+}
+
+.flex-item .icon {
+    margin: 1rem;
+}
+
+/* Download */
+section.download {
+    width: 70%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download .right {
+    width: 50%;
+}
+
+.download .fas {
+    color: white;
+    font-size: 5rem;
+}
+
+.download .download-text {
+    color: var(--white);
+    line-height: 48px;
+}
+
+.download .lead {
+    font-style: italic;
+}
+
+.download a {
+    color: var(--white);
+}
+
+/* Docs (Home page)*/
+section.docs .card-content {
+    align-items: center;
+}
+
+section.docs .card-text{
+    text-align: left;
+    width: 50%;
+}
+
+section.docs .card-title {
+    font-size: 2rem;
+}
+
+section.docs .card-subtitle {
+    font-size: 1rem;
+}
+
+section.docs .icon {
+    font-size: 5rem;
+}
+
+/* Coder Notice */
+.notice {
+    font-style: italic;
+    text-align: center;
+    color: var(--white);
+    padding: 1em;
+}
+
+.notice a {
+    color: var(--white);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1024px) {
+    /* Navbar */
+    nav {
+        overflow: visible;
+    }
+    ul {
+        max-height: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        
+        position: absolute;
+        top: var(--nav-height);
+        right: 0;
+        z-index: 3;
+
+        transition: max-height 1s ease-out, padding .5s ease-out;
+    }
+
+    ul.activeMenu {
+        max-height: 100vh;
+        padding: 1em 0;
+    }
+
+    ul li a{
+        display: block;
+    }
+
+    .hamburger {
+        display: inline-block;
+        justify-self: right;
+    }
+
+    .bar {
+        display: block;
+        background-color: var(--white);
+        width: 2rem;
+        height: .25rem;
+        margin: .5rem 0;
+        transition: transform .3s ease-out, opacity .2s ease-out;
+    }
+
+    .hamburger.closed :first-of-type{transform: rotate(45deg) translate(9px, 7px);}
+    .hamburger.closed :nth-of-type(2){opacity: 0}
+    .hamburger.closed :last-of-type {transform: rotate(-45deg) translate(9px, -8px);}
+
+    /* Card */
+    .card {
+        width: 80%;
+        height: 80%;
+    }
+
+    .card-image {
+        width: 50vw;
+        margin: 0 auto;
+    }
+
+    .card-title {
+        font-size: 2rem;
+    }
+
+    .card-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Gallery*/
+    .flex-row{
+        flex-direction: column;
+    }
+}
