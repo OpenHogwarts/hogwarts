@@ -46,6 +46,9 @@ PluginImporter:
     OSXUniversal:
       enabled: 1
       settings: {}
+    PS4:
+      enabled: 1
+      settings: {}
     WP8:
       enabled: 0
       settings:
@@ -70,13 +73,19 @@ PluginImporter:
       settings:
         CPU: AnyCPU
     WindowsStoreApps:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
         DontProcess: False
         PlaceholderPath: 
         SDK: AnySDK
+        ScriptingBackend: Il2Cpp
     iOS:
+      enabled: 1
+      settings:
+        CompileFlags: 
+        FrameworkDependencies: 
+    tvOS:
       enabled: 1
       settings:
         CompileFlags: 
