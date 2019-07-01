@@ -35,7 +35,7 @@ You can download the latest compiled binary here: https://github.com/OpenHogwart
 
 ## Development requirements
 -------------
-- Unity >= [ProjectVersion.txt](https://github.com/OpenHogwarts/hogwarts/blob/master/ProjectSettings/ProjectVersion.txt)
+- Unity (tested version in)=> [ProjectVersion.txt](https://github.com/OpenHogwarts/hogwarts/blob/master/ProjectSettings/ProjectVersion.txt) (it should work on newer versions too, but may require changes/fixes)
 
 ## Development setup
 -------------
