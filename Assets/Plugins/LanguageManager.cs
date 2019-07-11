@@ -23,6 +23,7 @@ public class LanguageManager : MonoBehaviour
         SystemLanguage.Spanish,
         SystemLanguage.English,
         SystemLanguage.German,
+        SystemLanguage.French,
     };
 
     public static SystemLanguage? _playerLanguage = null;
