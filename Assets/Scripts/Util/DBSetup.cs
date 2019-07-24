@@ -314,9 +314,36 @@ public class DBSetup : MonoBehaviour {
         npc.create();
         // END -----------------
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
-        npc.id = i++; //This is 10
+        npc.id = i++; //This is 9
         npc.name = "Student";
         npc.subRace = NPCData.creatureSubRace.Talker;
+        npc.create();
+
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 50);
+        npc.id = i++; // 10
+        npc.name = "Professor Quirel";
+        npc.subRace = NPCData.creatureSubRace.Normal;
+        waypoints = new List<Vector3>();
+        waypoints.Add(new Vector3(6.65f, 0.01f, -3.00f));
+        waypoints.Add(new Vector3(-0.75f, 0.01f, -9.16f));
+        waypoints.Add(new Vector3(-4.18f, 0.01f, -3.61f));
+        insertWaypointsTo(npc.id, waypoints);
+        npc.create();
+
+        // END -----------------
+        npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 50);
+        npc.id = i++; // 11
+        npc.name = "Draco";
+        npc.isAggresive = true;
+        npc.attackRange = 6;
+        npc.attacksPerSecond = 0.25f;
+        npc.subRace = NPCData.creatureSubRace.Normal;
+        waypoints = new List<Vector3>();
+        waypoints.Add(new Vector3(6.65f, 0.01f, -3.00f));
+        waypoints.Add(new Vector3(-0.75f, 0.01f, -9.16f));
+        waypoints.Add(new Vector3(-4.18f, 0.01f, -3.61f));
+        insertWaypointsTo(npc.id, waypoints);
         npc.create();
     }
 
