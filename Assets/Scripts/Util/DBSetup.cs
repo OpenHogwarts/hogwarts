@@ -282,56 +282,61 @@ public class DBSetup : MonoBehaviour {
         npc.subRace = NPCData.creatureSubRace.Quest;
         npc.create();
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++;
         npc.name = "Hagrid";
         npc.subRace = NPCData.creatureSubRace.Quest;
         npc.create();
+        // END -----------------
 
-        // END -----------------
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++;
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Talker;
         npc.create();
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++;
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Talker;
         npc.create();
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++;
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Talker;
         npc.create();
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++;
         npc.name = "Estudiante";
         npc.subRace = NPCData.creatureSubRace.Normal;
         npc.create();
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 40);
         npc.id = i++; //This is 9
         npc.name = "Student";
         npc.subRace = NPCData.creatureSubRace.Talker;
         npc.create();
-
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 50);
         npc.id = i++; // 10
         npc.name = "Professor Quirel";
         npc.subRace = NPCData.creatureSubRace.Normal;
         waypoints = new List<Vector3>();
-        waypoints.Add(new Vector3(6.65f, 0.01f, -3.00f));
-        waypoints.Add(new Vector3(-0.75f, 0.01f, -9.16f));
-        waypoints.Add(new Vector3(-4.18f, 0.01f, -3.61f));
+        waypoints.Add(new Vector3(-6.82f, 0.00f, -4f));
+        waypoints.Add(new Vector3(-5.96f, 0.00f, -5f));
+        waypoints.Add(new Vector3(-1.96f, 0.01f, 4f));
         insertWaypointsTo(npc.id, waypoints);
         npc.create();
-
         // END -----------------
+
         npc = NPCTemplate.fillById(NPCData.creatureTemplate.Human, 50);
         npc.id = i++; // 11
         npc.name = "Draco";

@@ -119,10 +119,17 @@ public class NPC : Photon.MonoBehaviour
 		Color color;
 
 		try {
-			anim = transform.Find("Model").GetComponent<Animation> ();
-		} catch (Exception) {}
+            animator = transform.Find("Model").GetComponent<Animator> ();
+		} catch (Exception) {  }
 
-		this.OriginalAttacksPerSecond = data.attacksPerSecond;
+        if (!animator) {
+            anim = this.gameObject.GetComponent<Animation>();
+            Debug.Log("Legacy animation used for " + this.name);
+        } else {
+            Debug.Log("Animator found for " + this.name);
+        }
+
+        this.OriginalAttacksPerSecond = data.attacksPerSecond;
 		this.initialPos = this.transform.position;
 		this.maxHealth = this.health;
 
