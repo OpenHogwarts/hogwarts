@@ -20,7 +20,7 @@ public class Service {
 				// from WSDatabaseConfig.cs
 				iBoxDB.WSDatabaseConfig.ResetStorage();
 				#endif
-				server = new DB (17);
+				server = new DB (3);
 
 				bool isUnique = true;
 				bool isNotUnique = false;
