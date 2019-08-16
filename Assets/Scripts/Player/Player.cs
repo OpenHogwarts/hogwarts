@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Player : Photon.MonoBehaviour {
 
@@ -268,6 +269,29 @@ public class Player : Photon.MonoBehaviour {
         }
     }
 
+    void LateUpdate()
+    {
+        if(gotFirstUpdate && isDead && this.anim.GetBool("Dead") == false ) {
+            this.anim.SetBool("Dead", true);
+            this.freeze();
+
+            Menu.Instance.togglePanel("GameOverPanel");
+            Menu.Instance.GetComponent<Animator>().SetTrigger("GameOver");
+        }
+    }
+
+    public void Reborn()
+    {
+        Menu.Instance.GetComponent<Animator>().SetBool("GameOver", false);
+        Menu.Instance.togglePanel("GameOverPanel");
+
+        this.health = this.maxHealth / 2;
+        this.anim.SetBool("Dead", false);
+
+        transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+        this.unfreeze();
+    }
+
     public void Respawn()
     {
         transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
@@ -475,5 +499,17 @@ public class Player : Photon.MonoBehaviour {
         }
 
         QuestManager.Instance.sendAction(id, type, Task.ActionType.Kill, 1, templateId);
+    }
+
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 70, 50, 30), "-health")) {
+            this.health -= 100;
+        }
+
+        if(GUI.Button(new Rect(100, 70, 50, 30), "+health")) {
+            this.health += 100;
+        }
+
     }
 }

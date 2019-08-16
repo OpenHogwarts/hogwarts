@@ -363,4 +363,10 @@
         "key": "SKILL_LUMOS_DESCRIPTION",
         "translation": "lights your wand tip. Its capable of illumintaing the darker as dark"
     }
+	,
+    {
+        "key": "RESPAWN_BTN",
+        "translation": "Respawn"
+    }
+	
 ]
