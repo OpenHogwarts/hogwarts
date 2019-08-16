@@ -10,6 +10,8 @@ public class Player : Photon.MonoBehaviour {
     const int HEALTH_REGEN_BASE = 5;
     const int MANA_REGEN_BASE = 2;
 
+    const bool debugHealth = false;
+
     public int health
     {
         get { return characterData.health; }
@@ -503,13 +505,14 @@ public class Player : Photon.MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(10, 70, 50, 30), "-health")) {
-            this.health -= 100;
-        }
+        if (debugHealth) {
+            if (GUI.Button(new Rect(10, 70, 50, 30), "-health")) {
+                this.health -= 100;
+            }
 
-        if(GUI.Button(new Rect(100, 70, 50, 30), "+health")) {
-            this.health += 100;
+            if (GUI.Button(new Rect(100, 70, 50, 30), "+health")) {
+                this.health += 100;
+            }
         }
-
     }
 }
