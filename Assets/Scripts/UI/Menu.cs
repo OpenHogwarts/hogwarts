@@ -43,8 +43,8 @@ public class Menu : MonoBehaviour {
 			    showPanel("TopMenu", false);
 			    showPanel("MiniMap", false);
                 // Canvas Scaler was making the bags and menus look broken
-                //gameObject.GetComponent<CanvasScaler> ().enabled = false;
-			break;
+                //gameObject.GetComponent<CanvasScaler>().enabled = false;
+                break;
 		}
 	}
 
