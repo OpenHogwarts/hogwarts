@@ -98,13 +98,14 @@ Check the wiki https://github.com/OpenHogwarts/hogwarts/wiki/ToDo
 - Spell maker: Batuhan Evren
 - Music: Ektorkrom (http://www.goear.com/search/foxkrom)
 - Scenario & UI (mostly): Vancete
-- Backend/Programming: Kardall, Vancete, Seyji, etc.. (https://github.com/OpenHogwarts/hogwarts/graphs/contributors)
+- Backend/Programming: Kardall, Vancete, Seyji, finchen, etc.. (https://github.com/OpenHogwarts/hogwarts/graphs/contributors)
 - Hagrid's Hut model: Ecelon
 
 ## Special Thanks
 -------------
 - Bruce (iBoxDB creator) for the technical support given
 - Rusfighter for finding the OnMouse events - NPC bug
+- finchen for continuously improving the game and it's code
 
 ## Copyright Notice
 -------------
