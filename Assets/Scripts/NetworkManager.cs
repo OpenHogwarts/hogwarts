@@ -20,14 +20,14 @@ public class NetworkManager : Photon.MonoBehaviour {
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
         string latestVersion = (new System.Net.WebClient()).DownloadString("https://raw.githubusercontent.com/OpenHogwarts/hogwarts/master/latest_build.txt").Trim();
 
-        if (Menu.GAME_VERSION != latestVersion) {
+        /*if (Menu.GAME_VERSION != latestVersion) {
             Application.Quit();
             throw new System.Exception("Please download the latest build " + Menu.GAME_VERSION + " <-> " + latestVersion);
-        }
+        }*/
     }
 
 	public void startConnection () {
-		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+        PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
 	}
 	
 	public void spawnPlayer ()
