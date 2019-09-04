@@ -52,6 +52,11 @@ public class NPC : Photon.MonoBehaviour
     public AnimationClip deathAnimation;
     public Animation anim;
 
+    public enum AnimationStates
+    {
+         IDLE, WALK, RUN, ATTACK, DEATH
+    }
+
     public bool check = false;
     public bool resetDps = false;
     public bool stunned = false;
@@ -168,7 +173,7 @@ public class NPC : Photon.MonoBehaviour
                 foreach (KeyValuePair<Player, int> entry in attackers) {
                     entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.id, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue, data.template);
                 }
-                anim.Play(this.deathAnimation.name);
+                this.changeAnimation(AnimationStates.DEATH);
                 NPCManager.Instance.prepareRespawn(this);
                 killNotiSent = true;
             }
@@ -243,22 +248,22 @@ public class NPC : Photon.MonoBehaviour
 				this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.target.transform.position.x - this.transform.position.x), (this.target.transform.position.z - this.transform.position.z)) * 57.29578f, 0.0f);
 				if (Vector3.Distance(this.transform.position, this.target.transform.position) > data.attackRange)
 				{
-					anim.Play(this.runAnimation.name);
+                    this.changeAnimation(AnimationStates.RUN);
 					transform.position = Vector3.MoveTowards(this.transform.position, this.target.transform.position, data.runSpeed * Time.deltaTime);
 				}
 				if (this.timeSinceLastAttack > 1.0 / data.attacksPerSecond && !this.isAttacking && num < data.attackRange)
 				{
 					this.timeSinceLastAttack = 0.0f;
-					anim.Play(this.attackAnimation.name);
-					this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
+                    this.changeAnimation(AnimationStates.ATTACK);
+                    this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
 				}
 				else
 				{
-					if (anim.isPlaying) {
+					if (isAnimationPlaying()) {
 						return;
 					}
-					anim.Play(this.idleAnimation.name);
-				}
+                    this.changeAnimation(AnimationStates.IDLE);
+                }
 			}
 			else {
 				if (backToIPos) {
@@ -266,8 +271,8 @@ public class NPC : Photon.MonoBehaviour
 				} else {
 
 					if (waypoints.Count == 0) {
-						anim.Play(this.idleAnimation.name);
-					} else {
+                        this.changeAnimation(AnimationStates.IDLE);
+                    } else {
 						// run points in loop
 						if (currentWaypoint < waypoints.Count) {
 							followPoint ();
@@ -352,8 +357,8 @@ public class NPC : Photon.MonoBehaviour
 	 */
 	public void gotoInitialPoint ()
     {
-		anim.Play(this.runAnimation.name);
-		this.transform.position = Vector3.MoveTowards(this.transform.position, this.initialPos, data.runSpeed * Time.deltaTime);
+        this.changeAnimation(AnimationStates.RUN);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.initialPos, data.runSpeed * Time.deltaTime);
 		this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.initialPos.x - this.transform.position.x), (this.initialPos.z - this.transform.position.z)) * 57.29578f, 0.0f);
 
 		if (this.health < this.maxHealth) {
@@ -606,9 +611,9 @@ public class NPC : Photon.MonoBehaviour
                 curTime = 0;
                 pauseDuration = UnityEngine.Random.Range(1f, 3f);
             }
-            this.changeAnimation("idle");
+            this.changeAnimation(AnimationStates.IDLE);
         } else {
-            this.changeAnimation("walk");
+            this.changeAnimation(AnimationStates.WALK);
 
             this.transform.position = Vector3.MoveTowards(this.transform.position, moveDirection, data.runSpeed * Time.deltaTime);
 
@@ -626,62 +631,70 @@ public class NPC : Photon.MonoBehaviour
         }
     }
 
-    protected void changeAnimation(string type)
+    /**
+     * Point of entry to change an animation
+     * It uses either legacy or the new animator if setup
+     */
+    public void changeAnimation(AnimationStates state)
     {
         if (this.animator) {
-            this.newAnimation(type);
+            this.newAnimation(state);
         } else {
-            this.legacyAnimation(type);
+            this.legacyAnimation(state);
         }
     }
 
-    protected void newAnimation(string type)
+    /**
+     * Use unity animator
+     */ 
+    private void newAnimation(AnimationStates state)
     {
-        // Debug.Log(this.Id + " change animation to " + type);
-        switch (type) {
-            case "idle":
+        switch (state) {
+            case AnimationStates.IDLE:
                 if (!animator.GetBool("isIdle")) {
                     animator.SetTrigger("isIdle");
                 }
                 break;
-            case "run":
+            case AnimationStates.RUN:
                 if (!animator.GetBool("isRunning")) {
                     animator.SetTrigger("isRunning");
                 }
                 break;
-            case "walk":
+            case AnimationStates.WALK:
                 if (!animator.GetBool("isWalking")) {
                     animator.SetTrigger("isWalking");
                 }
                 break;
-            case "attack":
+            case AnimationStates.ATTACK:
                 if (!animator.GetBool("isAttacking")) {
                     animator.SetTrigger("isAttacking");
                 }
                 break;
-            case "death":
-                if (!animator.GetBool("isIdle")) {
-                    animator.SetTrigger("isIdle");
+            case AnimationStates.DEATH:
+                if (!animator.GetBool("isDeath")) {
+                    animator.SetTrigger("isDeath");
                 }
                 break;
         }
     }
 
-    protected void legacyAnimation(string type)
+    /**
+     * Use unity legacy animation
+     */
+    private void legacyAnimation(AnimationStates state)
     {
-        //Debug.Log(this.Id + " change anim to " + type);
-        switch (type) {
-            case "idle":
+        switch (state) {
+            case AnimationStates.IDLE:
                 anim.Play(this.idleAnimation.name);
                 break;
-            case "walk":
-            case "run":
+            case AnimationStates.WALK:
+            case AnimationStates.RUN:
                 anim.Play(this.runAnimation.name);
                 break;
-            case "death":
+            case AnimationStates.DEATH:
                 anim.Play(this.deathAnimation.name);
                 break;
-            case "attack":
+            case AnimationStates.ATTACK:
                 anim.Play(this.attackAnimation.name);
                 break;
         }
