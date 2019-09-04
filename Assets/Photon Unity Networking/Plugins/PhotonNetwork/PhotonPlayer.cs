@@ -9,6 +9,7 @@
 // <author>developer@exitgames.com</author>
 // ----------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using UnityEngine;
@@ -24,7 +25,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 /// They are synced when joining a room.
 /// </remarks>
 /// \ingroup publicApi
-public class PhotonPlayer
+public class PhotonPlayer : IComparable<PhotonPlayer>, IComparable<int>, IEquatable<PhotonPlayer>, IEquatable<int>
 {
     /// <summary>This player's actorID</summary>
     public int ID
@@ -38,14 +39,16 @@ public class PhotonPlayer
     private string nameField = "";
 
     /// <summary>Nickname of this player.</summary>
-    public string name {
+    /// <remarks>Set the PhotonNetwork.playerName to make the name synchronized in a room.</remarks>
+    public string NickName 
+    {
         get
         {
             return this.nameField;
         }
         set
         {
-            if (!isLocal)
+            if (!IsLocal)
             {
                 Debug.LogError("Error: Cannot change the name of a remote player!");
                 return;
@@ -60,8 +63,12 @@ public class PhotonPlayer
         }
     }
 
+    /// <summary>UserId of the player, available when the room got created with RoomOptions.PublishUserId = true.</summary>
+    /// <remarks>Useful for PhotonNetwork.FindFriends and blocking slots in a room for expected players (e.g. in PhotonNetwork.CreateRoom).</remarks>
+    public string UserId { get; internal set; }
+
     /// <summary>Only one player is controlled by each client. Others are not local.</summary>
-    public readonly bool isLocal = false;
+    public readonly bool IsLocal = false;
 
     /// <summary>
     /// True if this player is the Master Client of the current room.
@@ -69,28 +76,32 @@ public class PhotonPlayer
     /// <remarks>
     /// See also: PhotonNetwork.masterClient.
     /// </remarks>
-    public bool isMasterClient
+    public bool IsMasterClient
     {
         get { return (PhotonNetwork.networkingPeer.mMasterClientId == this.ID); }
     }
 
-    /// <summary>Read-only cache for custom properties of player. Set via Player.SetCustomProperties.</summary>
+    /// <summary>Players might be inactive in a room when PlayerTTL for a room is > 0. If true, the player is not getting events from this room (now) but can return later.</summary>
+    public bool IsInactive { get; set; }    // needed for rejoins
+
+    /// <summary>Read-only cache for custom properties of player. Set via PhotonPlayer.SetCustomProperties.</summary>
     /// <remarks>
     /// Don't modify the content of this Hashtable. Use SetCustomProperties and the
     /// properties of this class to modify values. When you use those, the client will
     /// sync values with the server.
     /// </remarks>
-    public Hashtable customProperties { get; internal set; }
+    /// <see cref="SetCustomProperties"/>
+    public Hashtable CustomProperties { get; internal set; }
 
     /// <summary>Creates a Hashtable with all properties (custom and "well known" ones).</summary>
     /// <remarks>If used more often, this should be cached.</remarks>
-    public Hashtable allProperties
+    public Hashtable AllProperties
     {
         get
         {
             Hashtable allProps = new Hashtable();
-            allProps.Merge(this.customProperties);
-            allProps[ActorProperties.PlayerName] = this.name;
+            allProps.Merge(this.CustomProperties);
+            allProps[ActorProperties.PlayerName] = this.NickName;
             return allProps;
         }
     }
@@ -108,8 +119,8 @@ public class PhotonPlayer
     /// <param name="name">Name of the player (a "well known property").</param>
     public PhotonPlayer(bool isLocal, int actorID, string name)
     {
-        this.customProperties = new Hashtable();
-        this.isLocal = isLocal;
+        this.CustomProperties = new Hashtable();
+        this.IsLocal = isLocal;
         this.actorID = actorID;
         this.nameField = name;
     }
@@ -117,10 +128,10 @@ public class PhotonPlayer
     /// <summary>
     /// Internally used to create players from event Join
     /// </summary>
-    internal protected PhotonPlayer(bool isLocal, int actorID, Hashtable properties)
+    protected internal PhotonPlayer(bool isLocal, int actorID, Hashtable properties)
     {
-        this.customProperties = new Hashtable();
-        this.isLocal = isLocal;
+        this.CustomProperties = new Hashtable();
+        this.IsLocal = isLocal;
         this.actorID = actorID;
 
         this.InternalCacheProperties(properties);
@@ -145,7 +156,7 @@ public class PhotonPlayer
     /// </summary>
     internal void InternalChangeLocalID(int newID)
     {
-        if (!this.isLocal)
+        if (!this.IsLocal)
         {
             Debug.LogError("ERROR You should never change PhotonPlayer IDs!");
             return;
@@ -159,7 +170,7 @@ public class PhotonPlayer
     /// </summary>
     internal void InternalCacheProperties(Hashtable properties)
     {
-        if (properties == null || properties.Count == 0 || this.customProperties.Equals(properties))
+        if (properties == null || properties.Count == 0 || this.CustomProperties.Equals(properties))
         {
             return;
         }
@@ -168,85 +179,98 @@ public class PhotonPlayer
         {
             this.nameField = (string)properties[ActorProperties.PlayerName];
         }
+        if (properties.ContainsKey(ActorProperties.UserId))
+        {
+            this.UserId = (string)properties[ActorProperties.UserId];
+        }
         if (properties.ContainsKey(ActorProperties.IsInactive))
         {
-            // TODO: implement isinactive
+            this.IsInactive = (bool)properties[ActorProperties.IsInactive]; //TURNBASED new well-known propery for players
         }
 
-        this.customProperties.MergeStringKeys(properties);
-        this.customProperties.StripKeysWithNullValues();
+        this.CustomProperties.MergeStringKeys(properties);
+        this.CustomProperties.StripKeysWithNullValues();
     }
 
+
     /// <summary>
-    /// Updates and synchronizes the named properties of this Player with the values of propertiesToSet.
+    /// Updates the this player's Custom Properties with new/updated key-values.
     /// </summary>
     /// <remarks>
-    /// Any player's properties are available in a Room only and only until the player disconnect or leaves.
-    /// Access any player's properties by: Player.CustomProperties (read-only!) but don't modify that hashtable.
+    /// Custom Properties are a key-value set (Hashtable) which is available to all players in a room.
+    /// They can relate to the room or individual players and are useful when only the current value
+    /// of something is of interest. For example: The map of a room.
+    /// All keys must be strings.
     ///
+    /// The Room and the PhotonPlayer class both have SetCustomProperties methods.
+    /// Also, both classes offer access to current key-values by: customProperties.
+    ///
+    /// Always use SetCustomProperties to change values.
+    /// To reduce network traffic, set only values that actually changed.
     /// New properties are added, existing values are updated.
     /// Other values will not be changed, so only provide values that changed or are new.
-    /// To delete a named (custom) property of this player, use null as value.
-    /// Only string-typed keys are applied (everything else is ignored).
     ///
-    /// Local cache is updated immediately, other players are updated through Photon with a fitting operation.
-    /// To reduce network traffic, set only values that actually changed.
-    /// </remarks>
-    /// <param name="propertiesToSet">Hashtable of props to udpate, set and sync. See description.</param>
-    public void SetCustomProperties(Hashtable propertiesToSet)
-    {
-        if (propertiesToSet == null)
-        {
-            return;
-        }
-
-        // merge (delete null-values)
-        this.customProperties.MergeStringKeys(propertiesToSet); // includes a Equals check (simplifying things)
-        this.customProperties.StripKeysWithNullValues();
-
-        // send (sync) these new values
-        Hashtable customProps = propertiesToSet.StripToStringKeys() as Hashtable;
-        if (this.actorID > 0 && !PhotonNetwork.offlineMode)
-        {
-            PhotonNetwork.networkingPeer.OpSetCustomPropertiesOfActor(this.actorID, customProps, true, 0);
-        }
-        NetworkingPeer.SendMonoMessage(PhotonNetworkingMessage.OnPhotonPlayerPropertiesChanged, this, propertiesToSet);
-    }
-
-    /// <summary>
-    /// Will update properties on the server, if the expectedValues are matching the current (property)values on the server.
-    /// </summary>
-    /// <remarks>
-    /// This variant of SetCustomProperties uses server side Check-And-Swap (CAS) to update valuzes only if the expected values are correct.
-    /// The expectedValues can't be null or empty, but they can be different key/values than the propertiesToSet.
-    /// 
-    /// If the client's knowledge of properties is wrong or outdated, it can't set values (with CAS).
+    /// To delete a named (custom) property of this room, use null as value.
+    ///
+    /// Locally, SetCustomProperties will update it's cache without delay.
+    /// Other clients are updated through Photon (the server) with a fitting operation.
+    ///
+    /// <b>Check and Swap</b>
+    ///
+    /// SetCustomProperties have the option to do a server-side Check-And-Swap (CAS):
+    /// Values only get updated if the expected values are correct.
+    /// The expectedValues can be different key/values than the propertiesToSet. So you can
+    /// check some key and set another key's value (if the check succeeds).
+    ///
+    /// If the client's knowledge of properties is wrong or outdated, it can't set values with CAS.
     /// This can be useful to keep players from concurrently setting values. For example: If all players
-    /// try to pickup some card or item, only one should get it. With CAS, only the first SetProperties 
+    /// try to pickup some card or item, only one should get it. With CAS, only the first SetProperties
     /// gets executed server-side and any other (sent at the same time) fails.
-    /// 
-    /// The server will broadcast successfully changed values and the local "cache" of customProperties 
+    ///
+    /// The server will broadcast successfully changed values and the local "cache" of customProperties
     /// only gets updated after a roundtrip (if anything changed).
+    ///
+    /// You can do a "webForward": Photon will send the changed properties to a WebHook defined
+    /// for your application.
+    ///
+    /// <b>OfflineMode</b>
+    ///
+    /// While PhotonNetwork.offlineMode is true, the expectedValues and webForward parameters are ignored.
+    /// In OfflineMode, the local customProperties values are immediately updated (without the roundtrip).
     /// </remarks>
     /// <param name="propertiesToSet">The new properties to be set. </param>
-    /// <param name="expectedValues">At least one property key/value set to check server-side. Key and value must be correct.</param>
-    public void SetCustomProperties(Hashtable propertiesToSet, Hashtable expectedValues)
+    /// <param name="expectedValues">At least one property key/value set to check server-side. Key and value must be correct. Ignored in OfflineMode.</param>
+    /// <param name="webForward">Set to true, to forward the set properties to a WebHook, defined for this app (in Dashboard). Ignored in OfflineMode.</param>
+    public void SetCustomProperties(Hashtable propertiesToSet, Hashtable expectedValues = null, bool webForward = false)
     {
         if (propertiesToSet == null)
         {
             return;
         }
-        if (expectedValues == null || expectedValues.Count == 0)
+
+        Hashtable customProps = propertiesToSet.StripToStringKeys() as Hashtable;
+        Hashtable customPropsToCheck = expectedValues.StripToStringKeys() as Hashtable;
+
+
+        // no expected values -> set and callback
+        bool noCas = customPropsToCheck == null || customPropsToCheck.Count == 0;
+        bool inOnlineRoom = this.actorID > 0 && !PhotonNetwork.offlineMode;
+
+        if (noCas)
         {
-            Debug.LogWarning("SetCustomProperties(props, expected) requires some expectedValues. Use SetCustomProperties(props) to simply set some without check.");
-            return;
+            this.CustomProperties.Merge(customProps);
+            this.CustomProperties.StripKeysWithNullValues();
         }
 
-        if (this.actorID > 0 && !PhotonNetwork.offlineMode)
+        if (inOnlineRoom)
         {
-            Hashtable customProps = propertiesToSet.StripToStringKeys() as Hashtable;
-            Hashtable customPropsToCheck = expectedValues.StripToStringKeys() as Hashtable;
-            PhotonNetwork.networkingPeer.OpSetPropertiesOfActor(this.actorID, customProps, false, 0, customPropsToCheck);
+            PhotonNetwork.networkingPeer.OpSetPropertiesOfActor(this.actorID, customProps, customPropsToCheck, webForward);
+        }
+
+        if (!inOnlineRoom || noCas)
+        {
+            this.InternalCacheProperties(customProps);
+            NetworkingPeer.SendMonoMessage(PhotonNetworkingMessage.OnPhotonPlayerPropertiesChanged, this, customProps);
         }
     }
 
@@ -313,17 +337,55 @@ public class PhotonPlayer
         return (nextHigherId != int.MaxValue) ? players[nextHigherId] : players[lowestId];
     }
 
+	#region IComparable implementation
+
+	public int CompareTo (PhotonPlayer other)
+	{
+		if ( other == null)
+		{
+			return 0;
+		}
+
+		return this.GetHashCode().CompareTo(other.GetHashCode());
+	}
+
+	public int CompareTo (int other)
+	{
+		return this.GetHashCode().CompareTo(other);
+	}
+
+	#endregion
+
+	#region IEquatable implementation
+
+	public bool Equals (PhotonPlayer other)
+	{
+		if ( other == null)
+		{
+			return false;
+		}
+
+		return this.GetHashCode().Equals(other.GetHashCode());
+	}
+
+	public bool Equals (int other)
+	{
+		return this.GetHashCode().Equals(other);
+	}
+
+	#endregion
+
     /// <summary>
     /// Brief summary string of the PhotonPlayer. Includes name or player.ID and if it's the Master Client.
     /// </summary>
     public override string ToString()
     {
-        if (string.IsNullOrEmpty(this.name))
+        if (string.IsNullOrEmpty(this.NickName))
         {
-            return string.Format("#{0:00}{1}",  this.ID, this.isMasterClient ? "(master)":"");
+            return string.Format("#{0:00}{1}{2}",  this.ID, this.IsInactive ? " (inactive)" : " ", this.IsMasterClient ? "(master)":"");
         }
 
-        return string.Format("'{0}'{1}", this.name, this.isMasterClient ? "(master)" : "");
+        return string.Format("'{0}'{1}{2}", this.NickName, this.IsInactive ? " (inactive)" : " ", this.IsMasterClient ? "(master)" : "");
     }
 
     /// <summary>
@@ -335,6 +397,32 @@ public class PhotonPlayer
     /// </remarks>
     public string ToStringFull()
     {
-        return string.Format("#{0:00} '{1}' {2}", this.ID, this.name, this.customProperties.ToStringFull());
+        return string.Format("#{0:00} '{1}'{2} {3}", this.ID, this.NickName, this.IsInactive ? " (inactive)" : "", this.CustomProperties.ToStringFull());
     }
+
+
+    #region Obsoleted variable names
+
+    [Obsolete("Please use NickName (updated case for naming).")]
+    public string name { get { return this.NickName; } set { this.NickName = value; } }
+
+    [Obsolete("Please use UserId (updated case for naming).")]
+    public string userId { get { return this.UserId; } internal set { this.UserId = value; } }
+
+    [Obsolete("Please use IsLocal (updated case for naming).")]
+    public bool isLocal { get { return this.IsLocal; } }
+
+    [Obsolete("Please use IsMasterClient (updated case for naming).")]
+    public bool isMasterClient { get { return this.IsMasterClient; } }
+
+    [Obsolete("Please use IsInactive (updated case for naming).")]
+    public bool isInactive { get { return this.IsInactive; } set { this.IsInactive = value; } }
+
+    [Obsolete("Please use CustomProperties (updated case for naming).")]
+    public Hashtable customProperties { get { return this.CustomProperties; } internal set { this.CustomProperties = value; } }
+
+    [Obsolete("Please use AllProperties (updated case for naming).")]
+    public Hashtable allProperties { get { return this.AllProperties; } }
+
+    #endregion
 }

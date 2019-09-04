@@ -27,7 +27,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     }
 
 	public void startConnection () {
-		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+        PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
 	}
 	
 	public void spawnPlayer ()
