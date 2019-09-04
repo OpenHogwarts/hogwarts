@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour {
 
 	public static string defaultLevel = "Hogwarts";
 	public static string debugLevel = "Test";
-	public const string GAME_VERSION = "0.02"; // remember to also change latest_build.txt
+	public const string GAME_VERSION = "0.01"; // remember to also change latest_build.txt
 
 	public static Menu _instance;
 	
