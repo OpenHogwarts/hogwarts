@@ -1,37 +1,78 @@
 fileFormatVersion: 2
 guid: 6e8e34ab4100c364fa8f6fb40f54881d
-timeCreated: 1460403536
-licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: hud_0
-    21300002: hud_1
-    21300004: hud_2
-    21300006: hud_3
-    21300008: hud_4
-    21300010: hud_5
-    21300012: hud_6
-    21300014: hud_7
-    21300016: hud_8
-    21300018: hud_9
-    21300020: hud_10
-    21300022: hud_11
-    21300024: hud_12
-    21300026: hud_13
-    21300028: hud_14
-    21300030: hud_15
-    21300032: hud_16
-    21300034: hud_17
-    21300036: hud_18
-    21300038: hud_19
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: hud_0
+  - first:
+      213: 21300002
+    second: hud_1
+  - first:
+      213: 21300004
+    second: hud_2
+  - first:
+      213: 21300006
+    second: hud_3
+  - first:
+      213: 21300008
+    second: hud_4
+  - first:
+      213: 21300010
+    second: hud_5
+  - first:
+      213: 21300012
+    second: hud_6
+  - first:
+      213: 21300014
+    second: hud_7
+  - first:
+      213: 21300016
+    second: hud_8
+  - first:
+      213: 21300018
+    second: hud_9
+  - first:
+      213: 21300020
+    second: hud_10
+  - first:
+      213: 21300022
+    second: hud_11
+  - first:
+      213: 21300024
+    second: hud_12
+  - first:
+      213: 21300026
+    second: hud_13
+  - first:
+      213: 21300028
+    second: hud_14
+  - first:
+      213: 21300030
+    second: hud_15
+  - first:
+      213: 21300032
+    second: hud_16
+  - first:
+      213: 21300034
+    second: hud_17
+  - first:
+      213: 21300036
+    second: hud_18
+  - first:
+      213: 21300038
+    second: hud_19
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -40,37 +81,60 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: hud_0
+    - serializedVersion: 2
+      name: hud_0
       rect:
         serializedVersion: 2
         x: 400
@@ -80,16 +144,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 23.5}
-        - {x: -46, y: 9.5}
-        - {x: -46, y: -20.5}
-        - {x: -29, y: -23.5}
-        - {x: 34, y: -23.5}
-        - {x: 46, y: -16.5}
-        - {x: 46, y: 17.5}
-        - {x: 28, y: 23.5}
-    - name: hud_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_1
       rect:
         serializedVersion: 2
         x: 507
@@ -99,16 +165,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 40, y: 49}
-        - {x: -44, y: 49}
-        - {x: -49, y: 43}
-        - {x: -49, y: -49}
-        - {x: 32, y: -49}
-        - {x: 46, y: -42}
-        - {x: 49, y: -28}
-        - {x: 49, y: 46}
-    - name: hud_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_2
       rect:
         serializedVersion: 2
         x: 627
@@ -118,12 +186,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48, y: 48}
-        - {x: -48, y: -48}
-        - {x: 48, y: -48}
-        - {x: 48, y: 48}
-    - name: hud_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_3
       rect:
         serializedVersion: 2
         x: 746
@@ -133,17 +207,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 48}
-        - {x: -34, y: 46}
-        - {x: -48, y: 36}
-        - {x: -48, y: -31}
-        - {x: -41, y: -48}
-        - {x: 31, y: -48}
-        - {x: 48, y: -29}
-        - {x: 48, y: 29}
-        - {x: 26, y: 48}
-    - name: hud_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_4
       rect:
         serializedVersion: 2
         x: 864
@@ -153,23 +228,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 35, y: 50}
-        - {x: -29, y: 50}
-        - {x: -50, y: 43}
-        - {x: -50, y: -27}
-        - {x: -48, y: -38}
-        - {x: -29, y: -50}
-        - {x: 24, y: -50}
-        - {x: 37, y: -47}
-        - {x: 50, y: -27}
-        - {x: 50, y: 28}
-        - {x: 48, y: 38}
-      - - {x: -39, y: -17}
-        - {x: -17, y: 39}
-        - {x: 39, y: 17}
-        - {x: 17, y: -39}
-    - name: hud_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_5
       rect:
         serializedVersion: 2
         x: 975
@@ -179,12 +249,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 25}
-        - {x: -25, y: -25}
-        - {x: 25, y: -25}
-        - {x: 25, y: 25}
-    - name: hud_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_6
       rect:
         serializedVersion: 2
         x: 0
@@ -195,7 +271,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_7
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_7
       rect:
         serializedVersion: 2
         x: 0
@@ -206,7 +292,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_8
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_8
       rect:
         serializedVersion: 2
         x: 2
@@ -216,12 +312,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -139, y: 59}
-        - {x: -139, y: -59}
-        - {x: 139, y: -59}
-        - {x: 139, y: 59}
-    - name: hud_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_9
       rect:
         serializedVersion: 2
         x: 297
@@ -231,14 +333,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -25, y: 16}
-        - {x: -49, y: -2}
-        - {x: -49, y: -16}
-        - {x: 49, y: -16}
-        - {x: 49, y: -3}
-        - {x: 24, y: 16}
-    - name: hud_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_10
       rect:
         serializedVersion: 2
         x: 407
@@ -248,15 +354,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 26, y: 17}
-        - {x: -29, y: 17}
-        - {x: -50, y: 3}
-        - {x: -50, y: -17}
-        - {x: 50, y: -17}
-        - {x: 50, y: 2}
-        - {x: 47, y: 12}
-    - name: hud_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_11
       rect:
         serializedVersion: 2
         x: 520
@@ -266,12 +375,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49, y: 28}
-        - {x: -49, y: -28}
-        - {x: 49, y: -28}
-        - {x: 49, y: 28}
-    - name: hud_12
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_12
       rect:
         serializedVersion: 2
         x: 630
@@ -281,13 +396,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -14, y: 16}
-        - {x: -16, y: 15}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-    - name: hud_13
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83305410000000000800000000000000
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_13
       rect:
         serializedVersion: 2
         x: 665
@@ -298,7 +418,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_14
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3305410000000000800000000000000
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_14
       rect:
         serializedVersion: 2
         x: 705
@@ -309,7 +439,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_15
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3305410000000000800000000000000
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_15
       rect:
         serializedVersion: 2
         x: 726
@@ -319,13 +459,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16, y: 16}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 14}
-        - {x: 11, y: 16}
-    - name: hud_16
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3305410000000000800000000000000
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_16
       rect:
         serializedVersion: 2
         x: 762
@@ -336,7 +481,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_17
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04305410000000000800000000000000
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_17
       rect:
         serializedVersion: 2
         x: 794
@@ -347,7 +502,17 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: hud_18
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24305410000000000800000000000000
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_18
       rect:
         serializedVersion: 2
         x: 12
@@ -357,19 +522,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 166.5, y: 198}
-        - {x: 165.5, y: 200}
-        - {x: 162.5, y: 201}
-        - {x: -162.5, y: 201}
-        - {x: -165.5, y: 198}
-        - {x: -165.5, y: 196}
-        - {x: -166.5, y: 195}
-        - {x: -166.5, y: -199}
-        - {x: -164.5, y: -201}
-        - {x: 163.5, y: -201}
-        - {x: 166.5, y: -198}
-    - name: hud_19
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44305410000000000800000000000000
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_19
       rect:
         serializedVersion: 2
         x: 359
@@ -379,13 +543,29 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48, y: 48}
-        - {x: -48, y: -48}
-        - {x: 48, y: -48}
-        - {x: 48, y: 48}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64305410000000000800000000000000
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
