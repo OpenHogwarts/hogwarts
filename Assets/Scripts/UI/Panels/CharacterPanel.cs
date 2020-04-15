@@ -17,7 +17,7 @@ public class CharacterPanel : MonoBehaviour {
 
 		destroyOldIcons ();
 
-		foreach (CharacterItem characterItem in Service.db.Select<CharacterItem>("FROM inventory WHERE _position != ? & character == ?", 0, PhotonNetwork.player.customProperties["characterId"])) {
+		foreach (CharacterItem characterItem in Service.db.Select<CharacterItem>("FROM inventory WHERE _position != ? & character == ?", 0, PhotonNetwork.player.CustomProperties["characterId"])) {
 
 			Slot slot  = this.transform.Find("Slot"+characterItem._position).GetComponent<Slot>();
 			slot.available = false;

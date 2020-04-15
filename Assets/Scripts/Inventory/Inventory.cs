@@ -91,7 +91,7 @@ public class Inventory : MonoBehaviour {
         CharacterItem characterItem;
         GameObject itemSlot;
 
-        characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], slot.num);
+        characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.CustomProperties["characterId"], slot.num);
 
         if (characterItem != null) {
             isAssigned = true;
@@ -104,7 +104,7 @@ public class Inventory : MonoBehaviour {
             itemSlot.transform.SetParent(this.gameObject.transform, false);
             itemSlot.GetComponent<RectTransform>().localPosition = new Vector3(x, y, 0);
         } else {
-            characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.customProperties["characterId"], 0);
+            characterItem = Service.getOne<CharacterItem>("FROM inventory WHERE _position == ? & character == ? & slot == ?", 0, PhotonNetwork.player.CustomProperties["characterId"], 0);
 
             if (characterItem != null) {
                 isAssigned = true;

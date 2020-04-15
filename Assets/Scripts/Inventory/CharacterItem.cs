@@ -36,7 +36,7 @@ public class CharacterItem {
 	
 	public bool create () {
 		if (character == 0) {
-			character = (int)PhotonNetwork.player.customProperties["characterId"];
+			character = (int)PhotonNetwork.player.CustomProperties["characterId"];
 		}
 
 		return Service.db.Insert (TABLE_NAME, this);

@@ -229,7 +229,7 @@ public class Player : Photon.MonoBehaviour {
             startManaRegeneration();
 			Destroy (trailRenderer);
         } else {
-			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> "+photonView.owner.name+" entró");
+			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> " + photonView.owner.NickName + " entró");
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>());
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>());
             Destroy(GetComponent<Rigidbody>());
@@ -246,7 +246,7 @@ public class Player : Photon.MonoBehaviour {
         } else {
             if (!gotFirstUpdate) {
 
-                photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
+                photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.NickName);
 
                 healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb Bg/HP").GetComponent<Image>();
 
