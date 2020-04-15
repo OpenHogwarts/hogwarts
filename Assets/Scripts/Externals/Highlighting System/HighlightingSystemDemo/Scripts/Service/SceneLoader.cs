@@ -122,7 +122,7 @@ public class SceneLoader : MonoBehaviour
 
 			if (GUI.Button(new Rect(ox, oy + 30 + i * h, 120, 20), scene))
 			{
-				Application.LoadLevel(scene);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
 			}
 		}
 	}

@@ -129,9 +129,6 @@ public class NPC : Photon.MonoBehaviour
 
         if (!animator) {
             anim = this.gameObject.GetComponent<Animation>();
-            Debug.Log("Legacy animation used for " + this.name);
-        } else {
-            Debug.Log("Animator found for " + this.name);
         }
 
         this.OriginalAttacksPerSecond = data.attacksPerSecond;

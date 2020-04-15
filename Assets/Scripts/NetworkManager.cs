@@ -35,7 +35,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 		GameObject player = PhotonNetwork.Instantiate("Characters/Player", GameObject.Find("SpawnPoints/FirstJoin").transform.position, Quaternion.identity, 0);
 
 		// get character data
-		CharacterData character = Service.db.SelectKey<CharacterData> ("characters", PhotonNetwork.player.customProperties["characterId"]);
+		CharacterData character = Service.db.SelectKey<CharacterData> ("characters", PhotonNetwork.player.CustomProperties["characterId"]);
 		player.GetComponent<Player> ().characterData = character;
 
 		player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;

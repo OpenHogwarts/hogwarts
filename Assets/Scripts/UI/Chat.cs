@@ -49,7 +49,7 @@ public class Chat : MonoBehaviour {
         }
 
         if (input.text.Length < 4) {
-            this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.name + "] " + input.text });
+            this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.NickName + "] " + input.text });
         } else {
             // We can use this to send special commands, like GM messages, Global Announcements, etc
             if (input.text.Substring(0, 4) == "!gm ") {
@@ -57,7 +57,7 @@ public class Chat : MonoBehaviour {
             } else if (input.text.Substring(0, 4) == "!ga ") {
                 this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "<color=\"#fe8f00\">[Global Announcement]</color> " + input.text.Replace("!ga ", "") });
             } else {
-                this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.name + "] " + input.text });
+                this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.NickName + "] " + input.text });
             }
         }
         endWritting();
