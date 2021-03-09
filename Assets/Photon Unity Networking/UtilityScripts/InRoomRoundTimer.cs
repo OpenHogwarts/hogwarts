@@ -55,7 +55,7 @@ public class InRoomRoundTimer : MonoBehaviour
         else
         {
             // as the creator of the room sets the start time after entering the room, we may enter a room that has no timer started yet
-            Debug.Log("StartTime already set: " + PhotonNetwork.room.customProperties.ContainsKey(StartTimeKey));
+            Debug.Log("StartTime already set: " + PhotonNetwork.room.CustomProperties.ContainsKey(StartTimeKey));
         }
     }
 
@@ -75,7 +75,7 @@ public class InRoomRoundTimer : MonoBehaviour
     /// </remarks>
     public void OnMasterClientSwitched(PhotonPlayer newMasterClient)
     {
-        if (!PhotonNetwork.room.customProperties.ContainsKey(StartTimeKey))
+        if (!PhotonNetwork.room.CustomProperties.ContainsKey(StartTimeKey))
         {
             Debug.Log("The new master starts a new round, cause we didn't start yet.");
             this.StartRoundNow();

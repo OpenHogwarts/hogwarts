@@ -75,4 +75,12 @@ public class SkillsUI : MonoBehaviour {
 	public void enableSkill (int num) {
 		Skills[num].interactable = true;
 	}
+
+    public void toggleBroomStick () {
+        PlayerHotkeys.Instance.toggleBroomStick();
+    }
+
+    public void toggleLight() {
+        PlayerHotkeys.Instance.toggleLight();
+    }
 }

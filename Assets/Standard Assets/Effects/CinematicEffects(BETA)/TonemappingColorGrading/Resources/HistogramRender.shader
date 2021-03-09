@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/TonemappingColorGradingHistogram"
 {
     SubShader
@@ -28,7 +30,7 @@ Shader "Hidden/TonemappingColorGradingHistogram"
             v_data vert(appdata_img v)
             {
                 v_data o;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = v.texcoord;
                 return o;
             }

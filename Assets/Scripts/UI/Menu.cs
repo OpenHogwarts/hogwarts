@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
@@ -23,27 +23,28 @@ public class Menu : MonoBehaviour {
 		}
 	}
 
-	void Start () {
-		_instance = this;
-	}
+    void Awake() {
+        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(GameObject.Find("EventSystem"));
 
-	void Awake() {
-		DontDestroyOnLoad(transform.gameObject);
-		DontDestroyOnLoad(GameObject.Find("EventSystem"));
-	}
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        _instance = this;
+    }
 
-	public void OnLevelWasLoaded(int level) {
-		switch (level) {
-		case 1: // Main
-			showPanel("MainPanel");
-			break;
-		default:
-            showPanel ("PlayerPanel");
-			showPanel ("ChatPanel", false);
-			showPanel ("TopMenu", false);
-			showPanel ("MiniMap", false);
-            gameObject.GetComponent<CanvasScaler> ().enabled = false;
-			break;
+    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+
+        switch (scene.name) {
+		    case "MainMenu": // Main
+			    showPanel("MainPanel");
+			    break;
+		    default:
+                showPanel("PlayerPanel");
+			    showPanel("ChatPanel", false);
+			    showPanel("TopMenu", false);
+			    showPanel("MiniMap", false);
+                // Canvas Scaler was making the bags and menus look broken
+                //gameObject.GetComponent<CanvasScaler>().enabled = false;
+                break;
 		}
 	}
 
@@ -95,14 +96,14 @@ public class Menu : MonoBehaviour {
 		ItemTooltipPanel.GetComponent<RectTransform> ().SetAsLastSibling ();
 		ItemTooltipPanel.transform.position = pos;
 		
-		ItemTooltipPanel.transform.FindChild("TitleLabel").GetComponent<Text>().text = item.name;
-		ItemTooltipPanel.transform.FindChild("TextLabel").GetComponent<Text>().text = item.description;
+		ItemTooltipPanel.transform.Find("TitleLabel").GetComponent<Text>().text = item.name;
+		ItemTooltipPanel.transform.Find("TextLabel").GetComponent<Text>().text = item.description;
 	}
 
 	public void showSkillTooltip(string description, string cooldown){
-		SkillTooltip.transform.FindChild ("Description").GetComponent<Text> ().text = description;
-		SkillTooltip.transform.FindChild ("Cooldown").GetComponent<Text> ().text = cooldown;
-		SkillTooltip.GetComponent<RectTransform> ().sizeDelta = new Vector2 (416, SkillTooltip.transform.FindChild ("Description").GetComponent<RectTransform> ().sizeDelta.y + 12);
+		SkillTooltip.transform.Find ("Description").GetComponent<Text> ().text = description;
+		SkillTooltip.transform.Find ("Cooldown").GetComponent<Text> ().text = cooldown;
+		SkillTooltip.GetComponent<RectTransform> ().sizeDelta = new Vector2 (416, SkillTooltip.transform.Find ("Description").GetComponent<RectTransform> ().sizeDelta.y + 12);
 		SkillTooltip.GetComponent<RectTransform>().anchoredPosition = new Vector2(Input.mousePosition.x ,68);
 		SkillTooltip.SetActive (true);
 	}

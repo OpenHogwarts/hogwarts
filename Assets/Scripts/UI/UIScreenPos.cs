@@ -5,13 +5,7 @@ using UnityEngine.UI;
 public class UIScreenPos : MonoBehaviour {
 
 	public GameObject follow;
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
 	void LateUpdate () {
         if (follow == null || Camera.main == null) {
             return;

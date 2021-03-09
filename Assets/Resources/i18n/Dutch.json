@@ -1,0 +1,366 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Maak avatar"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nick"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Model"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "klik op enter en schrijf een bericht..."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Level"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Laden"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Verbinden"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Video"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interface"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Verlaten"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Speel"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Zak"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Verkoper"
+    },
+    {
+        "key": "BUY",
+        "translation": "Koop"
+    },
+    {
+        "key": "SELL",
+        "translation": "Verkoop"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Je saldo:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Beloningen"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Accepteer"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "Ben je ..... nog steeds hier?... Waarom ge je de taak niet afmaken?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Geweldig!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Dood"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Ga naar"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Spreek met"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Krijg"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Initiatie"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "Welkom {{username}} !\n Je initiatie bestaat eruit een van deze verschrikkelijke <npc id='11'>spinnen</npc> te doden die zwerven rond de kasteelgronden.\n Wees verzoorchtig en vergeet je toverstok niet!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "Goedzo, volgende keer krijg je een beloning."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Koude Winter"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, We moeten brandhout inslaan zodat we het vuur kunnen laten branden doorheen de winter. Ga naar de opslagplaats en breng me er een paar."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "Je hebt me enkel dit gebrahct? ... Dat is toch iets."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "Wist je dat jeweetwel gestudeerd heeft aan deze school?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "Ik kan niet wachten tot de lessen starten."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "Wanneer je naar het toilet gaat, denk eraan dat de schilderijen je in de gaten houden."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "Wist je dat jeweetwel gestudeerd heeft aan deze school?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "Wist je dat jeweetwel gestudeerd heeft aan deze school?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Geitenkaas"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Gemaakt in de beste dreuzel boerderij"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Medaillon van Dermot"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "Ik kan niets goed bedenken"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Beginners toverstok"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "De gereglementeerde beginners toverstok"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Touw"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Tandwiel"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Onbekende sleutel"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "Studenten sjaal"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "Wat is gebeurd met de rest?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Spinnen vlees"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Oud manuscript"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Blad papier"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Dieren huid"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Appel"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Simpele ring"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Oude heksen mantel"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Oude tovenaars mantel"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Banaan"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "Een niet zo groot mysterie"
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Draken mineraal"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Iets vreemds"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Gekleurd amulet"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Simpel amulet"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Simpel amulet"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Oudere roze amulet"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Magisch poeder"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "Handschoenen van een student"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Normale roze diamant"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Geen beschrijving"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Hout"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "Het brandt!"
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Een oude vliegende bezem"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "Genereert een flits op het einde van je toverstok dat de donkerste duisternis kan verlichten"
+    }
+]

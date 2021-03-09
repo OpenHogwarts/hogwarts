@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Highlighted/Opaque"
 {
 	Properties
@@ -38,7 +40,7 @@ Shader "Hidden/Highlighted/Opaque"
 			
 			float4 vert(appdata_vert v) : POSITION
 			{
-				return mul(UNITY_MATRIX_MVP, v.vertex);
+				return UnityObjectToClipPos(v.vertex);
 			}
 			
 			fixed4 frag() : COLOR

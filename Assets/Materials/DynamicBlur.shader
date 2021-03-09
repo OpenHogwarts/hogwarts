@@ -1,4 +1,6 @@
-﻿Shader "Custom/SimpleGrabPassBlur" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SimpleGrabPassBlur" {
     Properties {
         _Color ("Main Color", Color) = (1,1,1,1)
         _BumpAmt  ("Distortion", Range (0,128)) = 10
@@ -40,7 +42,7 @@
              
                 v2f vert (appdata_t v) {
                     v2f o;
-                    o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+                    o.vertex = UnityObjectToClipPos(v.vertex);
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else
@@ -100,7 +102,7 @@
              
                 v2f vert (appdata_t v) {
                     v2f o;
-                    o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+                    o.vertex = UnityObjectToClipPos(v.vertex);
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else
@@ -169,7 +171,7 @@
              
                 v2f vert (appdata_t v) {
                     v2f o;
-                    o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+                    o.vertex = UnityObjectToClipPos(v.vertex);
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else

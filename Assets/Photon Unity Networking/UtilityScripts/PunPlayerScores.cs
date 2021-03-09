@@ -3,14 +3,12 @@ using UnityEngine;
 using System.Collections;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-
 public class PunPlayerScores : MonoBehaviour
 {
     public const string PlayerScoreProp = "score";
 }
 
-
-static class ScoreExtensions
+public static class ScoreExtensions
 {
     public static void SetScore(this PhotonPlayer player, int newScore)
     {
@@ -33,10 +31,10 @@ static class ScoreExtensions
 
     public static int GetScore(this PhotonPlayer player)
     {
-        object teamId;
-        if (player.customProperties.TryGetValue(PunPlayerScores.PlayerScoreProp, out teamId))
+        object score;
+        if (player.CustomProperties.TryGetValue(PunPlayerScores.PlayerScoreProp, out score))
         {
-            return (int)teamId;
+            return (int) score;
         }
 
         return 0;

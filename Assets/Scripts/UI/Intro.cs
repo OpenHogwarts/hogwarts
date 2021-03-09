@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class Intro : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		((MovieTexture)GetComponent<Renderer>().material.mainTexture).Play();
-		GetComponent<AudioSource> ().Play ();
-		StartCoroutine ("WaitForMovie");
-	}
+    private void Awake() {
+        GetComponent<VideoPlayer>().loopPointReached += EndReached;
+    }
 	
-	// Update is called once per frame
 	void Update () {
 		if (Input.anyKeyDown) {
-			Application.LoadLevel ("MainMenu");
+			SceneManager.LoadScene("MainMenu");
 		}
 	}
 
-	IEnumerator WaitForMovie(){
-		yield return new WaitForSeconds (10.5f);
-		Application.LoadLevel ("MainMenu");
+	void EndReached(VideoPlayer vp) {
+        SceneManager.LoadScene("MainMenu");
 	}
 }

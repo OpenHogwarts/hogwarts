@@ -1,0 +1,366 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Créer un personnage"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nom"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Apparence"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Appuyez sur Entrée & écrivez votre message..."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Niveau"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Chargement"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Connexion"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Graphismes"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interface"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Quitter"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Jouer"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Sac"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Vendeur"
+    },
+    {
+        "key": "BUY",
+        "translation": "Acheter"
+    },
+    {
+        "key": "SELL",
+        "translation": "Vendre"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Vos fonds:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Récompenses"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Accepter"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "Vous êtes toujours là ? Pourquoi ne pas aller accomplir cette quête ?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Génial !"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Tuez"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Allez à"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Parlez à"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Récupérez"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "L'admission"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "Bienvenue {{username}} ! \nPour recevoir votre admission à Poudlard, allez tuer ces horribles <npc id='11'>arañas</npc> aux alentours du château.\n Soyez prudent, et n'oubliez pas votre baguette !"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "Excellent ! La prochaine fois, vous recevrez une récompense."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Hiver glacial"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, nous devons récolter des bûches de bois pour entretenir les feux de cheminées cet hiver. Allez en trouver et ramenez-en une paire."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "Vous ne me rapportez que ça ? Bien... C'est déjà quelque-chose."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "Saviez-vous que Celui-Dont-On-Ne-Doit-Pas-Prononcer-Le-Nom a étudié ici ?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "J'ai hâte de reprendre les cours."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "Quand vous allez dans une salle de bain, rappelez vous que les tableaux vous regardent."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "J'ai hâte de retourner à Pré-au-Lard !"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "Toi aussi tu attends impatiemment le prochain match de Quidditch ?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Fromage de chèvre"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Fait dans la meilleure ferme Modlu"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Pendentif de Dermor"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "Je ne peux pas en dire du bien"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Baguette de débutant"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "La baguette réglementaire de l'école"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Fibre"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Fragment de mécanisme"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Clé inconnue"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "Je me demande ce qu'elle ouvre ?"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "Écharpe d'étudiant"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "Qu'est-il arrivé au reste ?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Chair d'araignée"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Ce n'est pas très bon"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Ancien manuscrit"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Feuille non identifiée"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Peau d'animal"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Pomme"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Simple anneau"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Vieux manteau de magicien"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Vieille cape de magicien"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Banane"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "Pas grand chose à dire dessus"
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Draconite"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Minéral"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Chose étrange"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Amulette multicolore"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Simple amulette"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Simple amulette"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Diamant rose frelaté"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Poudre magique"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "Gants d'étudiant"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Diamant rose"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Sans description"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Bûche de bois"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "Brûle bien"
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Vieux balais volant"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "Éclaire le bout de votre baguette. Capable d'illuminer les endroits les plus sombres"
+    }
+]

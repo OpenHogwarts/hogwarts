@@ -1,0 +1,366 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Charakter erstellen"
+    },
+    {
+        "key": "NICK",
+        "translation": "Name"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Aussehen"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Zum Chatten Enter drücken & schreiben..."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Level"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Lade"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Verbinde"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Grafik"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Benutzeroberfläche"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Beenden"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Spielen"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Tasche"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Verkäufer"
+    },
+    {
+        "key": "BUY",
+        "translation": "Kaufen"
+    },
+    {
+        "key": "SELL",
+        "translation": "Verkaufen"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Dein Geld:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Belohnung"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Annehmen"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "Und... wie geht es voran mit der Aufgabe?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Großartig!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Töte"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Gehe zu"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Sprich mit"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Besorge"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Initiation"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "Willkommen in Hogwarts, {{username}} !\nDeine erste Aufgabe wird es sein, eine dieser schrecklichen <npc id='11'>Spinnen</npc> zu töten, die in der Nähe des Schlosses leben.\n Sei vorsichtig und benutze deinen Zauberstab!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "Ausgezeichnet! Das nächste Mal wirst du eine Belohnung bekommen."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Winterkälte"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, wir müssen Brennholz lagern, damit im Winter alle Feuer brennen. Geh und finde etwas."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "Das ist alles? … Nun, immerhin etwas."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "Wusstest Du, das Du-weißt-schon-wer hier zur Schule gegangen ist?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "Ich freue mich schon auf den Unterricht!"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "Im Badezimmer fühle ich mich durch all die Gemälde schon etwas beobachtet..."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "Wusstest Du, das Du-weißt-schon-wer hier zur Schule gegangen ist?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "Wusstest Du, das Du-weißt-schon-wer hier zur Schule gegangen ist?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Ziegenkäse"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Hergestellt auf einem Muggel-Biohof"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Medallion von Dermor"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "Das bedeutet nichts Gutes"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Anfänger-Zauberstab"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "Der ausgleichende Stab der Mitte"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Faser"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Mechanisches Teil"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Obskurer Schlüssel"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "Schul-Schal"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "Was ist mit dem Rest passiert?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Spinnenfleisch"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Altes Manuskript"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Blatt"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Tierhaut"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Apfel"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Einfacher Ring"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Alter Magiermantel"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Alter Magierumhang"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Ohne Beschreibungn"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Banane"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "Nicht sehr myteriös."
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Draconit"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Ein Mineral"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Seltsames Ding"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Vielfarbiges Amulett"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Einfaches Amulett"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Einfaches Amulett"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Falscher rosafarbener Diamant"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Magisches Pulver"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "Schülerhandschuhe"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Normaler rosafarbener Diamant"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Ohne Beschreibung"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Holz"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "Brennbar."
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Älterer fliegender Besen"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "Erzeugt am Ende deines Zauberstabs ein Licht, das die tiefste Dunkelheit erleuchten kann."
+    }
+]

@@ -77,7 +77,7 @@ public class WaypointEditor : Editor
 
 				// copy waypoints to clipboard
 				TextEditor te = new TextEditor();
-				te.content = new GUIContent(coords);
+				te.text = coords;
 				te.SelectAll();
 				te.Copy();
 			}

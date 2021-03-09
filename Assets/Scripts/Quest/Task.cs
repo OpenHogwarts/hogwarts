@@ -90,44 +90,53 @@ public class Task
 
     public string buildPhrase()
     {
-        string name = "";
+        string phrase = "";
 
         switch (action) {
             case ActionType.Kill:
-                name += "Mata";
+                phrase += LanguageManager.get("TASK_KILL");
                 break;
             case ActionType.Visit:
-                name += "Ve a";
+                phrase += LanguageManager.get("TASK_VISIT");
                 break;
             case ActionType.Talk:
-                name += "Habla con";
+                phrase += LanguageManager.get("TASK_TALK");
+                break;
+            case ActionType.GetItem:
+                phrase += LanguageManager.get("TASK_GET_ITEM");
                 break;
             default:
                 break;
         }
-        name += " ";
+        phrase += " ";
 
         switch (type) {
             case ActorType.NPC:
                 if (idType == IdType.Template) {
                     NPCTemplate data = NPCTemplate.get(id);
-                    name += data.name;
+                    phrase += data.name;
                 } else {
                     NPCData data = NPC.get(id);
-                    name += data.name;
+                    phrase += data.name;
                 }
                 break;
+            case ActorType.Item:
+                ItemData item = Item.get(id);
+                phrase += item.name;
+                break;
         }
-        name += " ";
+        phrase += " ";
 
         if (quantity > 1) {
-            name += currentQuantity + "/" + quantity;
+            phrase += currentQuantity + "/" + quantity;
         }
-        return name;
+        return phrase;
     }
 
     public void save()
     {
+        // rebuild pharse before saving (as quantity may have changed)
+        _phrase = buildPhrase();
         Service.db.Update(TABLE_NAME, this);
     }
 

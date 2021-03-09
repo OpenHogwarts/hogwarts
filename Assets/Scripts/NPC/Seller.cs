@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 
 public class Seller : NPC {
 	
-	new public void OnMouseDown() {
-		Menu.Instance.showPanel ("SellerPanel", false);
-		base.OnMouseDown();
+	public override void OnClick() {
+        Menu.Instance.showPanel ("SellerPanel", false);
 	}
 
 	/**

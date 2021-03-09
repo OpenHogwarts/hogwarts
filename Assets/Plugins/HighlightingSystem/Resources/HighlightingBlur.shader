@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Highlighted/Blur"
 {
 	Properties
@@ -39,7 +41,7 @@ Shader "Hidden/Highlighted/Blur"
 			{
 				// Shader code optimized for the Unity shader compiler
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				float2 offs = _HighlightingBlurOffset * _MainTex_TexelSize.xy;
 				
 				// Diagonal directions

@@ -1,6 +1,7 @@
 using System.Text;
 using UnityEngine;
 using System.Collections;
+using ExitGames.Client.Photon;
 
 public class SupportLogger : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class SupportLogging : MonoBehaviour
         }
     }
 
+
+    protected void OnApplicationPause(bool pause)
+    {
+        Debug.Log("SupportLogger OnApplicationPause: " + pause + " connected: " + PhotonNetwork.connected);
+    }
+
     public void OnApplicationQuit()
     {
         this.CancelInvoke();
@@ -49,7 +56,7 @@ public class SupportLogging : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         sb.AppendFormat("SupportLogger Info: PUN {0}: ", PhotonNetwork.versionPUN);
 
-        sb.AppendFormat("AppID: {0}*** GameVersion: {1} ", PhotonNetwork.networkingPeer.mAppId.Substring(0, 8), PhotonNetwork.networkingPeer.mAppVersionPun);
+        sb.AppendFormat("AppID: {0}*** GameVersion: {1} PeerId: {2} ", PhotonNetwork.networkingPeer.AppId.Substring(0, 8), PhotonNetwork.networkingPeer.AppVersion, PhotonNetwork.networkingPeer.PeerID);
         sb.AppendFormat("Server: {0}. Region: {1} ", PhotonNetwork.ServerAddress, PhotonNetwork.networkingPeer.CloudRegion);
         sb.AppendFormat("HostType: {0} ", PhotonNetwork.PhotonServerSettings.HostType);
 
@@ -93,5 +100,10 @@ public class SupportLogging : MonoBehaviour
     public void OnLeftRoom()
     {
         Debug.Log("SupportLogger OnLeftRoom().");
+    }
+
+    public void OnDisconnectedFromPhoton()
+    {
+        Debug.Log("SupportLogger OnDisconnectedFromPhoton().");
     }
 }

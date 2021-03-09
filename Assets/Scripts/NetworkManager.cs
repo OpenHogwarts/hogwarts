@@ -27,7 +27,7 @@ public class NetworkManager : Photon.MonoBehaviour {
     }
 
 	public void startConnection () {
-		PhotonNetwork.ConnectUsingSettings (Menu.GAME_VERSION);
+        PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
 	}
 	
 	public void spawnPlayer ()
@@ -35,7 +35,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 		GameObject player = PhotonNetwork.Instantiate("Characters/Player", GameObject.Find("SpawnPoints/FirstJoin").transform.position, Quaternion.identity, 0);
 
 		// get character data
-		CharacterData character = Service.db.SelectKey<CharacterData> ("characters", PhotonNetwork.player.customProperties["characterId"]);
+		CharacterData character = Service.db.SelectKey<CharacterData> ("characters", PhotonNetwork.player.CustomProperties["characterId"]);
 		player.GetComponent<Player> ().characterData = character;
 
 		player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
@@ -43,8 +43,8 @@ public class NetworkManager : Photon.MonoBehaviour {
 		//player.GetComponent<Motor> ().enabled = true;
 		player.GetComponent<PlayerHotkeys> ().enabled = true;
 		player.GetComponent<PlayerCombat> ().enabled = true;
-		player.transform.FindChild ("Main Camera").gameObject.SetActive(true);
-		player.transform.FindChild ("NamePlate").gameObject.SetActive(false);
+		player.transform.Find ("Main Camera").gameObject.SetActive(true);
+		player.transform.Find ("NamePlate").gameObject.SetActive(false);
 
 		// Set minimap target
 		GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
@@ -52,7 +52,7 @@ public class NetworkManager : Photon.MonoBehaviour {
 
 		GameObject.Find ("Canvas/TopMenu/Config").GetComponent<ConfigMenu> ().player = player;
 
-		player.transform.FindChild ("Indicator").GetComponent<Renderer>().material.mainTexture = mmarow;
+		player.transform.Find ("Indicator").GetComponent<Renderer>().material.mainTexture = mmarow;
 	}
 	/*
 	void OnPhotonPlayerDisconnected(PhotonPlayer player)

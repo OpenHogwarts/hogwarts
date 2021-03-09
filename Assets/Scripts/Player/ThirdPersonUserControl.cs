@@ -12,7 +12,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
-        
+
         private void Start()
         {
             // get the transform of the main camera
@@ -35,6 +35,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
+             if (Chat.Instance.isWritting) {
+                return;
+             }
+             
             if (!m_Jump)
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
@@ -56,8 +60,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // calculate move direction to pass to character
             if (m_Cam != null)
             {
-				
-					// calculate camera relative direction to move:
+
+				// calculate camera relative direction to move:
 				if ((h != 0)) {
 					m_CamForward = Vector3.Scale (transform.forward, new Vector3 (1, 0, 1)).normalized;
 				}
