@@ -55,7 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\ChangeCamera.cs" />
+     <Compile Include="Assets\Scripts\player.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/kenta/dev/hogwarts/Wise/Wise/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
