@@ -11,6 +11,13 @@ public class ChangeCamera : MonoBehaviour
     public GameObject cam2;
     public GameObject cam3;
     public GameObject cam4;
+    public void Start()
+    {
+      cam1.SetActive(true);
+      cam2.SetActive(false);
+      cam3.SetActive(false);
+      cam4.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -51,9 +58,7 @@ public class ChangeCamera : MonoBehaviour
         cam3.SetActive(false);
         cam4.SetActive(false);
         //Debug.Log("Space key was pressed down3");
-
       }
-
     }
 
 

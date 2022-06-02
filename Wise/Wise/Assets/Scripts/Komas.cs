@@ -8,10 +8,10 @@ public class Komas : MonoBehaviour
     public GameObject koma1;
 
   //  public GameObject checkButtons;
-    public bool Start()
+    public void Start()
     {
           koma1.SetActive(false);
-          return true;
+          
 
     }
 
