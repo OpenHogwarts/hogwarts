@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject [] diagnalCheck2;
     public GameObject [] diagnalCheck3;
     public GameObject [] diagnalCheck4;
+    public GameObject [] diagnalCheckB;
+    public GameObject [] diagnalCheckB2;
+    public GameObject [] diagnalCheckB3;
+    public GameObject [] diagnalCheckB4;
     public GameObject whiteMessage;
     public GameObject blackMessage;
     public GameObject [] WhitePoll1;
@@ -51,8 +55,14 @@ public class GameManager : MonoBehaviour
     private int lines=0;
     private int horiWhite=0;
     private int horiWhite2=0;
+    private int horiWhite3=0;
+    private int horiWhite4=0;
+    private int horiWhite5=0;
     private int horiBlack=0;
     private int horiBlack2=0;
+    private int horiBlack3=0;
+    private int horiBlack4=0;
+    private int horiBlack5=0;
     private int diagnal=0;
     private int diagnal2=0;
     private int diagnal3=0;
@@ -64,6 +74,7 @@ public class GameManager : MonoBehaviour
     private int diagnalBlack3=0;
     private int diagnalBlack4=0;
     private int diagnalBlack5=0;
+    private int diagnalBlack6=0;
     private int Count1=0;
     private int Count2=0;
     private int Count3=0;
@@ -294,10 +305,10 @@ public class GameManager : MonoBehaviour
               //Debug.Log(Count);
             }
            }
-          }
+        }
 
-          for(int i=0; i<4; i++)
-          {
+        for(int i=0; i<4; i++)
+        {
             if(horiWhite2==4)
             {
               Debug.Log("White Wins");
@@ -314,32 +325,71 @@ public class GameManager : MonoBehaviour
                 horiWhite2++;
                 //Debug.Log(horiWhite2);
               }
-             }
-             for(int j=1;j<=13;j+=4)
-             {
+            }
+        }
+
+        for(int i=0; i<4; i++)
+        {
+            if(horiWhite3==4)
+            {
+              Debug.Log("White Wins");
+              horiWhite3=0;
+            }
+            else
+            {
+              horiWhite3=0;
+            }
+            for(int j=1;j<=13;j+=4)
+            {
                if(verticalWhite[j,i].activeInHierarchy==true)
                {
-                 horiWhite2++;
+                 horiWhite3++;
                  //Debug.Log(horiWhite2);
                }
-              }
+            }
+        }
+
+        for(int i=0; i<4; i++)
+        {
+            if(horiWhite4==4)
+            {
+              Debug.Log("White Wins");
+              horiWhite4=0;
+            }
+            else
+            {
+              horiWhite4=0;
+            }
               for(int j=2;j<=14;j+=4)
               {
                 if(verticalWhite[j,i].activeInHierarchy==true)
                 {
-                  horiWhite2++;
+                  horiWhite4++;
                   //Debug.Log(horiWhite2);
                 }
               }
+        }
+        for(int i=0; i<4; i++)
+        {
+            if(horiWhite5==4)
+            {
+              Debug.Log("White Wins");
+              horiWhite5=0;
+            }
+            else
+            {
+              horiWhite5=0;
+            }
               for(int j=3;j<=15;j+=4)
               {
                 if(verticalWhite[j,i].activeInHierarchy==true)
                 {
-                  horiWhite2++;
+                  horiWhite5++;
                   //Debug.Log(horiWhite2);
                 }
-               }
-            }
+              }
+        }
+
        //Checking the white's diagnal winning condition
         for(int i=0;i<16;i++)
         {
@@ -478,8 +528,8 @@ public class GameManager : MonoBehaviour
               lines++;
               //Debug.Log(lines);
             }
-           }
           }
+        }
 
           //Checking the black's horizontal winning condition
           for(int i=0; i<4; i++)
@@ -501,10 +551,10 @@ public class GameManager : MonoBehaviour
                 //Debug.Log(Count);
               }
              }
-            }
+          }
 
-            for(int i=0; i<4; i++)
-            {
+          for(int i=0; i<4; i++)
+          {
               if(horiBlack2==4)
               {
                 Debug.Log("Black Wins");
@@ -522,31 +572,69 @@ public class GameManager : MonoBehaviour
                   //Debug.Log(horiWhite2);
                 }
               }
+          }
+          for(int i=0; i<4; i++)
+          {
+            if(horiBlack3==4)
+            {
+              Debug.Log("Black Wins");
+              horiBlack3=0;
+            }
+            else
+            {
+              horiBlack3=0;
+            }
               for(int j=1;j<=13;j+=4)
               {
                  if(verticalBlack[j,i].activeInHierarchy==true)
                  {
-                   horiBlack2++;
+                   horiBlack3++;
                    //Debug.Log(horiWhite2);
                  }
-               }
+              }
+          }
+
+          for(int i=0; i<4; i++)
+          {
+            if(horiBlack4==4)
+            {
+              Debug.Log("Black Wins");
+              horiBlack4=0;
+            }
+            else
+            {
+              horiBlack4=0;
+            }
               for(int j=2;j<=14;j+=4)
               {
                   if(verticalBlack[j,i].activeInHierarchy==true)
                   {
-                    horiBlack2++;
+                    horiBlack4++;
                     //Debug.Log(horiWhite2);
                   }
               }
+          }
+
+          for(int i=0; i<4; i++)
+          {
+            if(horiBlack5==4)
+            {
+              Debug.Log("Black Wins");
+              horiBlack5=0;
+            }
+            else
+            {
+              horiBlack5=0;
+            }
               for(int j=3;j<=15;j+=4)
               {
                   if(verticalBlack[j,i].activeInHierarchy==true)
                   {
-                    horiBlack2++;
+                    horiBlack5++;
                     //Debug.Log(horiWhite2);
                   }
               }
-            }
+          }
             //Check the black's diagnal winning condition
             for(int i=0;i<4;i++)
             {
@@ -590,6 +678,81 @@ public class GameManager : MonoBehaviour
               }
             }
 
+            for(int i=0;i<16;i++)
+            {
+              if(i==4 || i==8 || i==12)
+              {
+                diagnalBlack3=0;
+              }
+
+              if(diagnalCheckB[i].activeInHierarchy==true)
+              {
+                diagnalBlack3++;
+                //Debug.Log(diagnal2);
+              }
+
+              if(diagnalBlack3==4)
+              {
+                Debug.Log("Black wins");
+              }
+            }
+
+            for(int i=0;i<16;i++)
+            {
+              if(i==4 || i==8 || i==12)
+              {
+                diagnalBlack4=0;
+              }
+
+              if(diagnalCheckB2[i].activeInHierarchy==true)
+              {
+                diagnalBlack4++;
+                //Debug.Log(diagnal2);
+              }
+
+              if(diagnalBlack4==4)
+              {
+                Debug.Log("Black wins");
+              }
+            }
+
+            for(int i=0;i<16;i++)
+            {
+              if(i==4 || i==8 || i==12)
+              {
+                diagnalBlack5=0;
+              }
+
+              if(diagnalCheckB3[i].activeInHierarchy==true)
+              {
+                diagnalBlack5++;
+                //Debug.Log(diagnal2);
+              }
+
+              if(diagnalBlack5==4)
+              {
+                Debug.Log("Black wins");
+              }
+            }
+
+            for(int i=0;i<16;i++)
+            {
+              if(i==4 || i==8 || i==12)
+              {
+                diagnalBlack6=0;
+              }
+
+              if(diagnalCheckB4[i].activeInHierarchy==true)
+              {
+                diagnalBlack6++;
+                //Debug.Log(diagnal2);
+              }
+
+              if(diagnalBlack6==4)
+              {
+                Debug.Log("Black wins");
+              }
+            }
        }
 
     public void NoButton()
@@ -672,7 +835,7 @@ public class GameManager : MonoBehaviour
         }
       }
       //Poll5
-      if(player.transform.position.x>=20.3  && player.transform.position.x<=25.5 && player.transform.position.z>=-6 && player.transform.position.z<=-0.6)
+      if(player.transform.position.x>=20.3  && player.transform.position.x<=25.5 && player.transform.position.z>=-6.7 && player.transform.position.z<=-0.6)
       {
         if(turns%2==0)
         {
@@ -706,7 +869,7 @@ public class GameManager : MonoBehaviour
         }
       }
       //Poll7
-      if(player.transform.position.x>=-13.6  && player.transform.position.x<=-6.9 && player.transform.position.z>=-6.9 && player.transform.position.z<=0.6)
+      if(player.transform.position.x>=-13.6  && player.transform.position.x<=-6.9 && player.transform.position.z>=-7.3 && player.transform.position.z<=0.6)
       {
         if(turns%2==0)
         {
@@ -774,7 +937,7 @@ public class GameManager : MonoBehaviour
           }
         }
         //Poll11
-        if(player.transform.position.x>=-14.9  && player.transform.position.x<=-7.9 && player.transform.position.z>=4.6 && player.transform.position.z<=14.9)
+        if(player.transform.position.x>=-14.9  && player.transform.position.x<=-7.8 && player.transform.position.z>=4.6 && player.transform.position.z<=14.9)
         {
           if(turns%2==0)
           {
@@ -859,7 +1022,7 @@ public class GameManager : MonoBehaviour
           }
         }
         //Poll16
-        if(player.transform.position.x>=-25.4  && player.transform.position.x<=-19.9 && player.transform.position.z>=25.6 && player.transform.position.z<=32.5)
+        if(player.transform.position.x>=-25.4  && player.transform.position.x<=-19.9 && player.transform.position.z>=25.6 && player.transform.position.z<=32.8)
         {
           if(turns%2==0)
           {

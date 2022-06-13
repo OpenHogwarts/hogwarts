@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Komas.cs" />
      <Compile Include="Assets\Scripts\player.cs" />
+     <Compile Include="Assets\Scripts\TitleButton.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/kenta/dev/hogwarts/Wise/Wise/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
