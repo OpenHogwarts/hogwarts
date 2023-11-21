@@ -3651,7 +3651,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                 return;
             }
 
-            this.RemoveInstantiatedGO(listedView.gameObject, true);
+            //this.RemoveInstantiatedGO(listedView.gameObject, true);
         }
 
         // Debug.Log("adding view to known list: " + netView);

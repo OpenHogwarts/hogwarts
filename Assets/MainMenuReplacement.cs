@@ -10,11 +10,11 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 /// </summary>
 public class MainMenuReplacement : MonoBehaviour
 {
-
+    bool started=false;
     private void joinGame(int characterId, string name)
     {
 
-        if (characterId < 1)
+        if (characterId < 1 || started)
         {
             return;
         }
@@ -24,6 +24,7 @@ public class MainMenuReplacement : MonoBehaviour
         PhotonNetwork.player.SetCustomProperties(h);
         PhotonNetwork.player.NickName = name;
         this.gameObject.GetComponent<NetworkManager>().startConnection();
+        started = true;
         //GameObject.Find("Canvas/MainPanel/LoginOptions/JoinButton/Text").GetComponent<Text>().text = LanguageManager.get("CONNECTING") + "...";
     }
     private void OnEnable()

@@ -31,6 +31,7 @@ public class NetworkManager : Photon.MonoBehaviour
 
     public void startConnection()
     {
+        if (PhotonNetwork.offlineMode) return;// Execute once.
         //PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
         PhotonNetwork.offlineMode = true;
         //PhotonNetwork.JoinLobby();

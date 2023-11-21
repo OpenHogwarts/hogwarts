@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerPanel : MonoBehaviour {
 
 	public TargetPanel targetPanel;
-	public static PlayerPanel Instance;
+	public static PlayerPanel Instance=> _instance ??= FindObjectOfType<PlayerPanel>();
     public GameObject temporalTextPrefab;
     public Image expBar;
     public Image manaBar;
@@ -15,6 +15,7 @@ public class PlayerPanel : MonoBehaviour {
     public GameObject taskPrefab;
     public GameObject activeQuestsContainer;
     public CastingPanel castingPanel;
+    private static PlayerPanel _instance;
 
     public enum BarType
     {
@@ -25,7 +26,7 @@ public class PlayerPanel : MonoBehaviour {
 
     void Start ()
     {
-		Instance = this;
+		//Instance = this;
 
         try {
             showActiveQuests();
