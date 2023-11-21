@@ -82,7 +82,7 @@ public class NetworkManager : Photon.MonoBehaviour
     {
         PhotonNetwork.LoadLevel(Menu.defaultLevel);
         PhotonNetwork.JoinRandomRoom();
-        Menu.Instance.showPanel("LoadingPanel");
+        //Menu.Instance.showPanel("LoadingPanel");
     }
     private void OnLevelWasLoaded(int level)
     {
