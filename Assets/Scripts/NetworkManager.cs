@@ -4,6 +4,7 @@ using iBoxDB.LocalServer;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using System.Linq;
 
 public class NetworkManager : Photon.MonoBehaviour
 {
@@ -44,13 +45,14 @@ public class NetworkManager : Photon.MonoBehaviour
         // var position = firstJoin.transform.position;//(633.51, 161.38, 415.70)
 
         GameObject player = PhotonNetwork.Instantiate(
-            "Characters/Player", 
-            new(633.51f, 161.38f, 415.70f), 
+            "Characters/Player",
+            new(633.51f, 161.38f, 415.70f),
             Quaternion.identity, 0);
 
         // get character data
-        CharacterData character = Service.db.SelectKey<CharacterData>("characters", PhotonNetwork.player.CustomProperties["characterId"]);
-        player.GetComponent<Player>().characterData = character;
+        CharacterData character = Service.db.Select<CharacterData>("FROM characters").FirstOrDefault();
+        var playerComponent = player.GetComponent<Player>();
+        playerComponent.characterData = character;
 
         player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>().enabled = true;
         player.GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>().enabled = true;
@@ -63,8 +65,10 @@ public class NetworkManager : Photon.MonoBehaviour
         // Set minimap target
         GameObject.Find("MiniMapCamera").GetComponent<MiniMap>().target = player.transform;
         GameObject.Find("MiniMapElementsCamera").GetComponent<MiniMap>().target = player.transform;
-
-        GameObject.Find("Canvas/TopMenu/Config").GetComponent<ConfigMenu>().player = player;
+        var menu=GameObject.FindObjectOfType<ConfigMenu>();
+        var configObj = GameObject.Find("Canvas/TopMenu/Config");
+        var configMenu = configObj?.GetComponent<ConfigMenu>();
+        if (configMenu is { }) configMenu.player = player;
 
         player.transform.Find("Indicator").GetComponent<Renderer>().material.mainTexture = mmarow;
     }
@@ -91,7 +95,7 @@ public class NetworkManager : Photon.MonoBehaviour
     }
     void OnJoinedRoom()
     {
-        
+
     }
 
     void OnCreatedRoom()

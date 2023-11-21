@@ -152,7 +152,10 @@ public class Player : Photon.MonoBehaviour {
     }
 
     public new string name;
-    public CharacterData characterData;
+    public CharacterData characterData { 
+        get; 
+        set; 
+    }
     private NPC _target;
     public NPC target {
         get {
