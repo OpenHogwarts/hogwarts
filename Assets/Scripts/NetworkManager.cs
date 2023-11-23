@@ -12,7 +12,8 @@ public class NetworkManager : Photon.MonoBehaviour
 
     public Texture mmarow;
     public static NetworkManager Instance;
-
+    [SerializeField]
+    bool useOffline;
     void Start()
     {
         Instance = this;
@@ -37,11 +38,16 @@ public class NetworkManager : Photon.MonoBehaviour
 
     public void startConnection()
     {
-        if (PhotonNetwork.offlineMode) return;// Execute once.
-        //PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
-        PhotonNetwork.offlineMode = true;
-        //PhotonNetwork.JoinLobby();
-        OnJoinedLobby();
+        if (useOffline)
+        {
+            if (PhotonNetwork.offlineMode) return;// Execute once.
+            PhotonNetwork.offlineMode = true;
+            OnJoinedLobby();
+            return;
+        }
+
+        PhotonNetwork.ConnectUsingSettings(Menu.GAME_VERSION);
+
     }
 
     public void spawnPlayer()
