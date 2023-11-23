@@ -4,62 +4,71 @@ using System.Collections;
 using System.Collections.Generic;
 
 /*
-This NPC brain is based on one-to-many way, which means that players set themself as target.
+This NPC brain is based on one-to-many way, which means that players set themself as target once they enter in NPC action radius
 */
 
 public class NPC : Photon.MonoBehaviour
 {
-	public int Id;
+    public int Id;
+    public bool debug = false;
 
-	public int health
-	{
-		get {return data.health;}
-		set {
-			//prevent negative health values
-			if (value <  0) {
-				value = 0;
-			}
-			
-			data.health = value;
+    public int health {
+        get { return data.health; }
+        set {
+            //prevent negative health values
+            if (value < 0) {
+                value = 0;
+            }
 
-			// @ToDo: Update UI bar
-		}
-	}
-	public int maxHealth;
-	public new string name
-	{
-		get {return data.name;}
-	}
+            data.health = value;
 
-	public List<WaypointData> waypoints
-	{
-		get {return data.waypoints;}
-	}
+            // @ToDo: Update UI bar
+        }
+    }
+    public int maxHealth;
+    public new string name {
+        get { return data.name; }
+    }
 
-	public bool isFriendly {
-		get {
-			return !data.isAggresive;
-		}
-	}
+    public List<WaypointData> waypoints {
+        get { return data.waypoints; }
+    }
 
-	public GameObject projectilePrefab;
-	public AnimationClip idleAnimation;
-	public AnimationClip runAnimation;
-	public AnimationClip attackAnimation;
-	public AnimationClip deathAnimation;
-	public Animation anim;
-	public bool check = false;
-	public bool resetDps = false;
-	public bool stunned = false;
-	public float SmoothingDelay = 5;
+    public bool isFriendly {
+        get {
+            return !data.isAggresive;
+        }
+    }
+
+    public GameObject projectilePrefab;
+
+    // new animator
+    Animator animator;
+
+    // deprecated animation
+    public AnimationClip idleAnimation;
+    public AnimationClip runAnimation;
+    public AnimationClip attackAnimation;
+    public AnimationClip deathAnimation;
+    public Animation anim;
+
+    public enum AnimationStates
+    {
+         IDLE, WALK, RUN, ATTACK, DEATH
+    }
+
+    public bool check = false;
+    public bool resetDps = false;
+    public bool stunned = false;
+    public float SmoothingDelay = 5;
 
     [Tooltip("Objects to disable when NPC is disabled")]
     public List<GameObject> toDisable = new List<GameObject>();
 
     private bool isRanged;
-	private float timeSinceLastAttack;
-	private bool inCombat;
-	private bool isDead {
+    private float timeSinceLastAttack;
+    private bool inCombat;
+    private bool isDead {
         get {
             if (health < 1) {
                 return true;
@@ -67,44 +76,62 @@ public class NPC : Photon.MonoBehaviour
             return false;
         }
     }
-	private bool EnableCombat;
-	private bool isUseless = false;
-	private bool isStunned = false;
-	private float amountSlowedBy;
-	private bool isKnockedBack = false;
-	private bool isAttacking = false;
-	private NPCData data;
-	private GameObject target;
-	private Vector3 initialPos;
-	private float distanceFromIPos = 0;
-	private float OriginalAttacksPerSecond;
-	private bool backToIPos = false;
-	private int currentWaypoint = 0;
-	private float curTime = 0;
-	private float pauseDuration = 2;
-	private Vector3 correctPlayerPos = Vector3.zero;
-	private Quaternion correctPlayerRot = Quaternion.identity;
-	private bool gotFirstUpdate = false;
+
+    public const float maxInteractionRange = 5.0f;
+    public bool isInInteractionRange
+    {
+        get {
+            if (Vector3.Distance(transform.position, Player.Instance.transform.position) >= maxInteractionRange) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    private bool EnableCombat;
+    private bool isUseless = false;
+    private bool isStunned = false;
+    private float amountSlowedBy;
+    private bool isKnockedBack = false;
+    private bool isAttacking = false;
+    private NPCData data;
+    private GameObject target;
+    private Vector3 initialPos;
+    private float distanceFromIPos = 0;
+    private float OriginalAttacksPerSecond;
+    protected bool backToIPos = false;
+    protected int currentWaypoint = 0;
+    private float curTime = 0;
+    private float pauseDuration = 2;
+    private Vector3 correctPlayerPos = Vector3.zero;
+    private Quaternion correctPlayerRot = Quaternion.identity;
+    private bool gotFirstUpdate = false;
     private bool killNotiSent = false;
     private bool isLooted = false;
     private Dictionary<Player, int> attackers = new Dictionary<Player, int>();
     private Vector3 originalPosition;
 
     public NamePlate namePlate;
+
 	
 	public void Start()
 	{
-		if (Id == 0) {
-			throw new Exception ("Id not assigned");
+		if (Id == 0 || namePlate == null) {
+			throw new Exception ("Id or nameplate not assigned");
 		}
-		data = NPC.get (Id);
+		data = NPC.get(Id);
 		Color color;
 
 		try {
-			anim = transform.FindChild("Model").GetComponent<Animation> ();
-		} catch (Exception) {}
+            animator = transform.Find("Model").GetComponent<Animator> ();
+		} catch (Exception) {  }
 
-		this.OriginalAttacksPerSecond = data.attacksPerSecond;
+        if (!animator) {
+            anim = this.gameObject.GetComponent<Animation>();
+        }
+
+        this.OriginalAttacksPerSecond = data.attacksPerSecond;
 		this.initialPos = this.transform.position;
 		this.maxHealth = this.health;
 
@@ -113,8 +140,8 @@ public class NPC : Photon.MonoBehaviour
 		} else {
 			color = NamePlate.COLOR_NORMAL;
 		}
-		namePlate.setName (data.name, color);
-		namePlate.setLevel (data.level);
+		namePlate.setName(data.name, color);
+		namePlate.setLevel(data.level);
         originalPosition = transform.position;
 
         // all NPCs start disabled, player will automatically, enable the nearest ones.
@@ -122,8 +149,17 @@ public class NPC : Photon.MonoBehaviour
         setEnabled(false);
         # endif
     }
-	
-	private void Update()
+
+    public static bool isNPCInRange(GameObject target, GameObject player) { 
+     
+        if (Vector3.Distance(target.transform.position, player.transform.position) >= maxInteractionRange) {
+            return false; 
+        } else {
+            return true;
+        }
+    }
+
+    private void Update()
 	{
         if (isDead)
         {
@@ -134,7 +170,7 @@ public class NPC : Photon.MonoBehaviour
                 foreach (KeyValuePair<Player, int> entry in attackers) {
                     entry.Key.photonView.RPC("addKill", entry.Key.photonView.owner, data.id, Task.ActorType.NPC, data.level, entry.Value, data.health, data.expValue, data.template);
                 }
-                anim.Play(this.deathAnimation.name);
+                this.changeAnimation(AnimationStates.DEATH);
                 NPCManager.Instance.prepareRespawn(this);
                 killNotiSent = true;
             }
@@ -209,22 +245,22 @@ public class NPC : Photon.MonoBehaviour
 				this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.target.transform.position.x - this.transform.position.x), (this.target.transform.position.z - this.transform.position.z)) * 57.29578f, 0.0f);
 				if (Vector3.Distance(this.transform.position, this.target.transform.position) > data.attackRange)
 				{
-					anim.Play(this.runAnimation.name);
+                    this.changeAnimation(AnimationStates.RUN);
 					transform.position = Vector3.MoveTowards(this.transform.position, this.target.transform.position, data.runSpeed * Time.deltaTime);
 				}
 				if (this.timeSinceLastAttack > 1.0 / data.attacksPerSecond && !this.isAttacking && num < data.attackRange)
 				{
 					this.timeSinceLastAttack = 0.0f;
-					anim.Play(this.attackAnimation.name);
-					this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
+                    this.changeAnimation(AnimationStates.ATTACK);
+                    this.target.GetComponent<Player>().photonView.RPC("getDamage", this.target.GetComponent<Player>().photonView.owner, data.damage, photonView.viewID);
 				}
 				else
 				{
-					if (anim.isPlaying) {
+					if (isAnimationPlaying()) {
 						return;
 					}
-					anim.Play(this.idleAnimation.name);
-				}
+                    this.changeAnimation(AnimationStates.IDLE);
+                }
 			}
 			else {
 				if (backToIPos) {
@@ -232,8 +268,8 @@ public class NPC : Photon.MonoBehaviour
 				} else {
 
 					if (waypoints.Count == 0) {
-						anim.Play(this.idleAnimation.name);
-					} else {
+                        this.changeAnimation(AnimationStates.IDLE);
+                    } else {
 						// run points in loop
 						if (currentWaypoint < waypoints.Count) {
 							followPoint ();
@@ -290,14 +326,15 @@ public class NPC : Photon.MonoBehaviour
         }
     }
 
-	public bool isTooFar () {
-		if (distanceFromIPos >= data.distanceToLoseAggro) {
-			return true;
-		}
-		return false;
-	}
+    public bool isTooFar()
+    {
+        if (distanceFromIPos >= data.distanceToLoseAggro) {
+            return true;
+        }
+        return false;
+    }
 
-    public void reset ()
+    public void reset()
     {
         health = maxHealth;
         namePlate.health.fillAmount = health;
@@ -317,8 +354,8 @@ public class NPC : Photon.MonoBehaviour
 	 */
 	public void gotoInitialPoint ()
     {
-		anim.Play(this.runAnimation.name);
-		this.transform.position = Vector3.MoveTowards(this.transform.position, this.initialPos, data.runSpeed * Time.deltaTime);
+        this.changeAnimation(AnimationStates.RUN);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.initialPos, data.runSpeed * Time.deltaTime);
 		this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((this.initialPos.x - this.transform.position.x), (this.initialPos.z - this.transform.position.z)) * 57.29578f, 0.0f);
 
 		if (this.health < this.maxHealth) {
@@ -450,103 +487,231 @@ public class NPC : Photon.MonoBehaviour
 	}
 
 	public void OnMouseDown() {
-		setSelected (true);
+        setSelected(true);
+
+        if (!isInInteractionRange) {
+            // alert player somehow?
+            Debug.Log("[User Cannot See This] Target Too Far Away To Interact With.");
+            return;
+        }
 
         if (!data.isAggresive) {
             QuestManager.Instance.sendAction(data.id, Task.ActorType.NPC, Task.ActionType.Talk, 0, data.template);
         }
+
+        try {
+            OnClick();
+        } catch (Exception) {
+        }
     }
 
-	public void OnMouseOver () {
-		Texture2D texture = null;
+    public virtual void OnClick()
+    {
+
+    }
+
+    public void OnMouseOver()
+    {
+        Texture2D texture = null;
 
         if (isDead && !isLooted) {
             texture = GameCursor.Buy;
         } else if (data.isAggresive) {
-			texture = GameCursor.Attack;
-		} else {
-            switch (data.subRace)
-            {
+            texture = GameCursor.Attack;
+        } else {
+
+            switch (data.subRace) {
                 case NPCData.creatureSubRace.Seller:
                     texture = GameCursor.Buy;
                     break;
                 case NPCData.creatureSubRace.Quest:
                     texture = GameCursor.QuestAvailable;
                     break;
+                case NPCData.creatureSubRace.Talker:
+                    texture = GameCursor.Talk;
+                    break;
             }
         }
 
-		if (texture != null) {
-			Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
-		}
-	}
-	public void OnMouseEnter () {
-		OnMouseOver();
-	}
-	public void OnMouseExit () {
-		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-	}
+        if (texture != null) {
+            Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
+        }
+    }
+    public void OnMouseEnter()
+    {
+        OnMouseOver();
+    }
+    public void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
 
-	public static NPCData get (int id) {
-		return Service.db.SelectKey<NPCData> ("npc", id);
-	}
-	
-	public void KnockBackSelf()
-	{
-		if (this == null)
-			return;
-		this.StartCoroutine("KnockBack");
-	}
+    public static NPCData get(int id)
+    {
+        return Service.db.SelectKey<NPCData>("npc", id);
+    }
 
-	private IEnumerator KnockBack()
-	{
-		yield return new WaitForSeconds(1);
-	}
-	
-	public void StunSelf(float timeToStunSelf)
-	{
-		this.StartCoroutine("Stun", (object) timeToStunSelf);
-	}
+    public void KnockBackSelf()
+    {
+        if (this == null)
+            return;
+        this.StartCoroutine("KnockBack");
+    }
 
-	private IEnumerator Stun(float timeToStun)
-	{
-		yield return new WaitForSeconds(1);
-	}
-	
-	public void SlowAttackSpeed(float amountToSlow)
-	{
-		data.attacksPerSecond = this.OriginalAttacksPerSecond;
-		this.StartCoroutine("Slow", (object) amountToSlow);
-	}
+    private IEnumerator KnockBack()
+    {
+        yield return new WaitForSeconds(1);
+    }
 
-	private IEnumerator Slow(float amountToReduceBy)
-	{
-		yield return new WaitForSeconds(1);
-	}
+    public void StunSelf(float timeToStunSelf)
+    {
+        this.StartCoroutine("Stun", (object)timeToStunSelf);
+    }
 
-	void followPoint ()
-    {	
-		Vector3 target = waypoints[currentWaypoint].position;
-		Vector3 moveDirection = initialPos + target; // sum the relative pos
+    private IEnumerator Stun(float timeToStun)
+    {
+        yield return new WaitForSeconds(1);
+    }
 
-		if (moveDirection.magnitude < 0.5f || moveDirection == this.transform.position) {
-			if (curTime == 0) {
-				curTime = Time.time; // Pause over the Waypoint
-			}
-			if ((Time.time - curTime) >= pauseDuration) {
-				currentWaypoint++;
-				curTime = 0;
+    public void SlowAttackSpeed(float amountToSlow)
+    {
+        data.attacksPerSecond = this.OriginalAttacksPerSecond;
+        this.StartCoroutine("Slow", (object)amountToSlow);
+    }
+
+    private IEnumerator Slow(float amountToReduceBy)
+    {
+        yield return new WaitForSeconds(1);
+    }
+
+    protected void followPoint()
+    {
+        Vector3 target = waypoints[currentWaypoint].position;
+        Vector3 moveDirection = initialPos + target; // sum the relative pos
+
+        var detectionRadius = 1f;
+        var distanceToTarget = UnityEngine.Vector3.Distance(moveDirection, this.transform.position);
+
+        //this.log("going to waypoint " + currentWaypoint + " magnitude=" + moveDirection.magnitude + " distance=" + distanceToTarget);
+
+        if (this.debug) {
+            Debug.DrawLine(moveDirection, this.transform.position);
+        }
+
+        if (moveDirection.magnitude < 0.5f || distanceToTarget < detectionRadius) {
+
+            if (curTime == 0) {
+                curTime = Time.time; // Pause over the Waypoint
+            }
+            if ((Time.time - curTime) >= pauseDuration) {
+                currentWaypoint++;
+                curTime = 0;
                 pauseDuration = UnityEngine.Random.Range(1f, 3f);
             }
-			anim.Play(this.idleAnimation.name);
-		} else {
-            anim.Play(this.runAnimation.name);
+            this.changeAnimation(AnimationStates.IDLE);
+        } else {
+            this.changeAnimation(AnimationStates.WALK);
 
             this.transform.position = Vector3.MoveTowards(this.transform.position, moveDirection, data.runSpeed * Time.deltaTime);
-			this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((moveDirection.x - this.transform.position.x), (moveDirection.z - this.transform.position.z)) * 57.29578f, 0.0f);
 
-		}    
-	}
+            /*if (!this.animator)
+            {
+                // animator use root motion and don't need to move manually. it gives smootther animation too
+                this.transform.position = Vector3.MoveTowards(this.transform.position, moveDirection, data.runSpeed * Time.deltaTime);
+            }
+            else
+            {
+                // TODO speed to animator
+            }*/
+            this.transform.eulerAngles = new Vector3(0.0f, Mathf.Atan2((moveDirection.x - this.transform.position.x), (moveDirection.z - this.transform.position.z)) * 57.29578f, 0.0f);
 
+        }
+    }
+
+    /**
+     * Point of entry to change an animation
+     * It uses either legacy or the new animator if setup
+     */
+    public void changeAnimation(AnimationStates state)
+    {
+        if (this.animator) {
+            this.newAnimation(state);
+        } else {
+            this.legacyAnimation(state);
+        }
+    }
+
+    /**
+     * Use unity animator
+     */ 
+    private void newAnimation(AnimationStates state)
+    {
+        switch (state) {
+            case AnimationStates.IDLE:
+                if (!animator.GetBool("isIdle")) {
+                    animator.SetTrigger("isIdle");
+                }
+                break;
+            case AnimationStates.RUN:
+                if (!animator.GetBool("isRunning")) {
+                    animator.SetTrigger("isRunning");
+                }
+                break;
+            case AnimationStates.WALK:
+                if (!animator.GetBool("isWalking")) {
+                    animator.SetTrigger("isWalking");
+                }
+                break;
+            case AnimationStates.ATTACK:
+                if (!animator.GetBool("isAttacking")) {
+                    animator.SetTrigger("isAttacking");
+                }
+                break;
+            case AnimationStates.DEATH:
+                if (!animator.GetBool("isDeath")) {
+                    animator.SetTrigger("isDeath");
+                }
+                break;
+        }
+    }
+
+    /**
+     * Use unity legacy animation
+     */
+    private void legacyAnimation(AnimationStates state)
+    {
+        switch (state) {
+            case AnimationStates.IDLE:
+                anim.Play(this.idleAnimation.name);
+                break;
+            case AnimationStates.WALK:
+            case AnimationStates.RUN:
+                anim.Play(this.runAnimation.name);
+                break;
+            case AnimationStates.DEATH:
+                anim.Play(this.deathAnimation.name);
+                break;
+            case AnimationStates.ATTACK:
+                anim.Play(this.attackAnimation.name);
+                break;
+        }
+    }
+
+    protected bool isAnimationPlaying()
+    {
+        if (this.animator) {
+            return false;
+        } else {
+            return anim.isPlaying;
+        }
+
+    }
+
+    private void log(string s)
+    {
+        if (this.debug) {
+            Debug.Log(this.Id + ": " + s);
+        }
+    }
 }
-public class ItemSpawner {}
+public class ItemSpawner { }

@@ -1,8 +1,8 @@
-using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
 
 
 namespace UnityStandardAssets.CrossPlatformInput
@@ -21,22 +21,24 @@ namespace UnityStandardAssets.CrossPlatformInput
 	{
 		CheckEnableControlRig();
 	}
-	#endif
+#endif
 
         private void Start()
         {
 #if UNITY_EDITOR
-            if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
+            if (Application
+                .isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
 #endif
             {
-                UnityEngine.EventSystems.EventSystem system = GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>();
+                var system = FindObjectOfType<EventSystem>();
 
                 if (system == null)
-                {//the scene have no event system, spawn one
-                    GameObject o = new GameObject("EventSystem");
+                {
+                    //the scene have no event system, spawn one
+                    var o = new GameObject("EventSystem");
 
-                    o.AddComponent<UnityEngine.EventSystems.EventSystem>();
-                    o.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                    o.AddComponent<EventSystem>();
+                    o.AddComponent<StandaloneInputModule>();
                 }
             }
         }
@@ -68,7 +70,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         {
 #if MOBILE_INPUT
 		EnableControlRig(true);
-		#else
+#else
             EnableControlRig(false);
 #endif
         }
@@ -76,10 +78,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         private void EnableControlRig(bool enabled)
         {
-            foreach (Transform t in transform)
-            {
-                t.gameObject.SetActive(enabled);
-            }
+            foreach (Transform t in transform) t.gameObject.SetActive(enabled);
         }
     }
 }

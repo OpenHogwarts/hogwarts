@@ -1,11 +1,19 @@
-﻿using System;
+﻿
 public class ItemData {
 
 	protected string TABLE_NAME = "item";
 
 	public int id;
-	public string name;
-	public string description;
+	public string name {
+        get {
+            return LanguageManager.get("ITEM_" + id + "_NAME");
+        }
+    }
+	public string description {
+        get {
+            return LanguageManager.get("ITEM_" + id + "_DESCRIPTION");
+        }
+    }
 	public int _type;
 	public int _subType;
 	public ItemType type {

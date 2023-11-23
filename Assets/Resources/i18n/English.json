@@ -1,0 +1,372 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Create character"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nick"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Model"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Press enter & write a message.."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Level"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Loading"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Connecting"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Graphics"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interface"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Exit"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Play"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Bag"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Seller"
+    },
+    {
+        "key": "BUY",
+        "translation": "Buy"
+    },
+    {
+        "key": "SELL",
+        "translation": "Sell"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Your funds:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Rewards"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Accept"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "You're still here? Why don't you go and finish that quest?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Great!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Kill"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Go to"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Speak with"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Get"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Initiation"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "Welcome {{username}}! \nYour initiation into Hogwarts is to kill one of those horrible <npc id='11'>arañas</npc> that haunt the vicinity of the castle.\n Be careful and take your wand!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "Excellent! Next time you will have a reward."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Cold winter"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, we need to store firewood to keep all the fires burning during the winter. Go find and bring me a pair."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "You only brought this to me? ... Well ... It's something."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "Did you know that He Who Must Not Be Named studied here?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "I'm looking forward to taking classes again"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "When you go to use the bathrooms, remember that the paintings are watching you"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "I can't wait to go to Hogsmead again!"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "Are you looking forward to the next Quidditch game?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Goat cheese"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Made in the best Muggle farmhouse"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Dermor Pendant"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "I can not think of anything good to say about this"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Beginner's Wand"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "La varita reglamentaria del centro"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Fiber"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Mechanism part"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Unknown key"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "I wonder what it unlocks?"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "A student's scarf"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "What will have happened to the rest?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Spider meat"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Not too tasty"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Ancient manuscript"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Hoja de algo"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Animal skin"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Apple"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Simple ring"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Ancient mantle of magician"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Old magician's cloak"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Banana"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "Not much to say about this"
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Draconite mineral"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Strange thing"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Multicolored amulet"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Simple amulet"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Simple amulet"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Pink diamond adulterated"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Magic powder"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "A student's gloves"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Normal pink diamond"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Without description"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Wood"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "It burns"
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Old flying broomstick"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "lights your wand tip. Its capable of illumintaing the darker as dark"
+    }
+	,
+    {
+        "key": "RESPAWN_BTN",
+        "translation": "Respawn"
+    }
+	
+]

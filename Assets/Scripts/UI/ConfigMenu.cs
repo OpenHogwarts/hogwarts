@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets.CinematicEffects;
+using UnityEngine.SceneManagement;
+using System;
 
 public class ConfigMenu : MonoBehaviour {
 
@@ -21,8 +22,11 @@ public class ConfigMenu : MonoBehaviour {
 
 
 	void LoadCfg(){
-		ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
-		dof.isOn = Camera.main.GetComponent<DepthOfField> ().enabled;
+		//ssao.isOn = Camera.main.GetComponent<SESSAO> ().enabled;
+        try {
+            dof.isOn = Camera.main.GetComponent<DepthOfField>().enabled;
+        } catch(Exception) { }
+		
 		qdrop.value = QualitySettings.GetQualityLevel ();
 	}
 
@@ -33,7 +37,7 @@ public class ConfigMenu : MonoBehaviour {
 
 	public void ConfigDisconnect(){
 		PhotonNetwork.Disconnect ();
-		Application.LoadLevel ("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	public void ConfigQuit(){
@@ -45,7 +49,7 @@ public class ConfigMenu : MonoBehaviour {
 	}
 
 	public void OptionsSetSSAO(){
-		Camera.main.GetComponent<SESSAO> ().enabled = ssao.isOn;
+		//Camera.main.GetComponent<SESSAO> ().enabled = ssao.isOn;
 	}
 
 	public void OptionsSetDOF(){
@@ -89,7 +93,7 @@ public class ConfigMenu : MonoBehaviour {
 
     public void updateDaytime () {
         try {
-            GameObject.Find("Luces").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider>().value;
+            GameObject.Find("Lights").GetComponent<NightSlider>().slider = lightSlider.GetComponent<Slider>().value;
         } catch (System.Exception) {
         }
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Player : Photon.MonoBehaviour {
 
@@ -151,7 +152,10 @@ public class Player : Photon.MonoBehaviour {
     }
 
     public new string name;
-    public CharacterData characterData;
+    public CharacterData characterData { 
+        get; 
+        set; 
+    }
     private NPC _target;
     public NPC target {
         get {
@@ -228,12 +232,12 @@ public class Player : Photon.MonoBehaviour {
             startManaRegeneration();
 			Destroy (trailRenderer);
         } else {
-			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> "+photonView.owner.name+" entró");
+			Chat.Instance.LocalMsg("<color=\"#e8bf00\">[Sistema]</color> " + photonView.owner.NickName + " entró");
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl>());
             Destroy(GetComponent<UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter>());
             Destroy(GetComponent<Rigidbody>());
 			Destroy(GetComponent<NPCActivator>());
-            Destroy(gameObject.transform.FindChild("NPCActivator").gameObject);
+            Destroy(gameObject.transform.Find("NPCActivator").gameObject);
         }
     }
 
@@ -245,7 +249,7 @@ public class Player : Photon.MonoBehaviour {
         } else {
             if (!gotFirstUpdate) {
 
-                photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.name);
+                photonView.RPC("setNick", PhotonTargets.OthersBuffered, PhotonNetwork.player.NickName);
 
                 healthBar = GameObject.Find("Canvas/PlayerPanel/HP Orb Bg/HP").GetComponent<Image>();
 
@@ -268,9 +272,32 @@ public class Player : Photon.MonoBehaviour {
         }
     }
 
+    void LateUpdate()
+    {
+        if(gotFirstUpdate && isDead && this.anim.GetBool("Dead") == false ) {
+            this.anim.SetBool("Dead", true);
+            this.freeze();
+
+            Menu.Instance.togglePanel("GameOverPanel");
+            Menu.Instance.GetComponent<Animator>().SetTrigger("GameOver");
+        }
+    }
+
+    public void Reborn()
+    {
+        Menu.Instance.GetComponent<Animator>().SetBool("GameOver", false);
+        Menu.Instance.togglePanel("GameOverPanel");
+
+        this.health = this.maxHealth / 2;
+        this.anim.SetBool("Dead", false);
+
+        transform.position = new(633.51f, 161.38f, 415.70f);//GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+        this.unfreeze();
+    }
+
     public void Respawn()
     {
-        transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+        transform.position = new(633.51f, 161.38f, 415.70f);//GameObject.Find("SpawnPoints/FirstJoin").transform.position;
     }
 
     private void startHealthRegeneration()
@@ -476,4 +503,5 @@ public class Player : Photon.MonoBehaviour {
 
         QuestManager.Instance.sendAction(id, type, Task.ActionType.Kill, 1, templateId);
     }
+
 }

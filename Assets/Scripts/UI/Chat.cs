@@ -6,17 +6,17 @@ using UnityEngine.UI;
 */
 
 public class Chat : MonoBehaviour {
-	
+
 	public Text chatbox;
 	public Text input;
 	public InputField input2;
 	public Scrollbar scroll;
-    public Image background;
+     public Image background;
 	public bool isWritting = false;
 	public static Chat Instance;
 	public static int MAX_CHARACTERS = 5000;
-    private bool hasMouseOver = false;
-	
+     private bool hasMouseOver = false;
+
 	void Start () {
 		Instance = this;
 	}
@@ -25,6 +25,11 @@ public class Chat : MonoBehaviour {
     public void setWritting () {
         isWritting = true;
         background.enabled = true;
+    }
+
+    public void endWritting() {
+	   isWritting = false;
+	   background.enabled = false;
     }
 
     public void onPointerEnter () {
@@ -39,11 +44,12 @@ public class Chat : MonoBehaviour {
     public void sendMessage ()
     {
         if (input.text == "") {
+		  endWritting();
             return;
         }
 
         if (input.text.Length < 4) {
-            this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.name + "] " + input.text });
+            this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.NickName + "] " + input.text });
         } else {
             // We can use this to send special commands, like GM messages, Global Announcements, etc
             if (input.text.Substring(0, 4) == "!gm ") {
@@ -51,13 +57,12 @@ public class Chat : MonoBehaviour {
             } else if (input.text.Substring(0, 4) == "!ga ") {
                 this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "<color=\"#fe8f00\">[Global Announcement]</color> " + input.text.Replace("!ga ", "") });
             } else {
-                this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.name + "] " + input.text });
+                this.GetComponent<PhotonView>().RPC("Msg", PhotonTargets.All, new object[] { "[" + PhotonNetwork.player.NickName + "] " + input.text });
             }
         }
-        isWritting = false;
-        background.enabled = false;
+        endWritting();
     }
-	
+
 	// Needs to be RPC to work online
 	[PunRPC]
 	public void Msg (string msg) {
@@ -68,7 +73,7 @@ public class Chat : MonoBehaviour {
             scroll.value = 0;
         }
 	}
-	
+
 	//Just add the msg to the chatbox
 	void AddMsg (string msg) {
 		chatbox.text = chatbox.text + "\n" + msg;

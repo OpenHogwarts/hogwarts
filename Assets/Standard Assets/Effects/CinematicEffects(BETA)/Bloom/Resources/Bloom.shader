@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Image Effects/Cinematic/Bloom"
 {
     Properties
@@ -152,7 +154,7 @@ Shader "Hidden/Image Effects/Cinematic/Bloom"
     v2f_multitex vert_multitex(appdata_full v)
     {
         v2f_multitex o;
-        o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+        o.pos = UnityObjectToClipPos(v.vertex);
         o.uvMain = v.texcoord.xy;
         o.uvBase = v.texcoord.xy;
     #if UNITY_UV_STARTS_AT_TOP

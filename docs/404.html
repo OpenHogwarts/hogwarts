@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 page | Open Hogwarts</title>
+
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="brand-logo">openhogwarts</a>
+        <ul class="menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="docs.html" class="nav-link">Docs</a>
+            </li>
+            <li class="nav-item">
+                <a href="develop.html" class="nav-link">Develop</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <main>
+        <div class="card">
+            <div class="card-content">
+                <img class="card-image" src="assets/404_2.svg" alt="404. Sorry, we couldn't find that page.">
+                <a href="index.html" class="card-action btn">Go Home</a>
+            </div>
+        </div>
+    </main>
+<script>
+    /* Begin Responsive Menu Module */
+    document.querySelector(".hamburger").addEventListener('click', function(){
+        this.classList.toggle('closed');
+    })
+    
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('.menu').classList.toggle('activeMenu');
+    })
+    /* End Responsive Menu Module */
+</script>
+</body>
+</html>

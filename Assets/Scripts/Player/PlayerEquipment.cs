@@ -33,7 +33,7 @@ public class PlayerEquipment : MonoBehaviour {
 		GameObject obj;
 		Dictionary<int, bool> loadedPositions = new Dictionary<int, bool>();
 
-		foreach (CharacterItem characterItem in Service.db.Select<CharacterItem>("FROM inventory WHERE _position != ? & character == ?", 0, PhotonNetwork.player.customProperties["characterId"])) {
+		foreach (CharacterItem characterItem in Service.db.Select<CharacterItem>("FROM inventory WHERE _position != ? & character == ?", 0, PhotonNetwork.player.CustomProperties["characterId"])) {
 			item = new Item().get(characterItem);
 			obj = getGameObject(characterItem._position);
 			loadedPositions[characterItem._position] = true;
@@ -75,7 +75,7 @@ public class PlayerEquipment : MonoBehaviour {
 	}
 
 	void unsetItem (GameObject obj) {
-		Destroy(obj.transform.FindChild("Item").gameObject);
+		Destroy(obj.transform.Find("Item").gameObject);
 	}
 
 	GameObject getGameObject (int pos) {

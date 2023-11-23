@@ -1,0 +1,366 @@
+[
+    {
+        "key": "CREATE_CHARACTER",
+        "translation": "Crear personaje"
+    },
+    {
+        "key": "NICK",
+        "translation": "Nick"
+    },
+    {
+        "key": "MODEL",
+        "translation": "Modelo"
+    },
+    {
+        "key": "CHAT_PLACEHOLDER",
+        "translation": "Presiona enter y escribe un mensaje.."
+    },
+    {
+        "key": "LEVEL",
+        "translation": "Nivel"
+    },
+    {
+        "key": "LOADING",
+        "translation": "Cargando"
+    },
+    {
+        "key": "CONNECTING",
+        "translation": "Conectando"
+    },
+    {
+        "key": "GRAPHICS",
+        "translation": "Gráficos"
+    },
+    {
+        "key": "INTERFACE",
+        "translation": "Interfície"
+    },
+    {
+        "key": "EXIT",
+        "translation": "Salir"
+    },
+    {
+        "key": "ENTER_GAME",
+        "translation": "Jugar"
+    },
+    {
+        "key": "BAG_TITLE",
+        "translation": "Mochila"
+    },
+    {
+        "key": "SELLER_TITLE",
+        "translation": "Vendedor"
+    },
+    {
+        "key": "BUY",
+        "translation": "Comprar"
+    },
+    {
+        "key": "SELL",
+        "translation": "Vender"
+    },
+    {
+        "key": "YOUR_FUNDS",
+        "translation": "Tu dinero:"
+    },
+    {
+        "key": "MISSION_REWARDS",
+        "translation": "Recompensa"
+    },
+    {
+        "key": "MISSION_ACCEPT",
+        "translation": "✔ Aceptar"
+    },
+    {
+        "key": "QUEST_NOT_FINISHED",
+        "translation": "Aún..... Sigues aquí?... ¿Por qué no vas por ahí a completarla?"
+    },
+    {
+        "key": "QUEST_ACCEPTED",
+        "translation": "Perfecto!"
+    },
+    {
+        "key": "TASK_KILL",
+        "translation": "Mata"
+    },
+    {
+        "key": "TASK_VISIT",
+        "translation": "Ve a"
+    },
+    {
+        "key": "TASK_TALK",
+        "translation": "Habla con"
+    },
+    {
+        "key": "TASK_GET_ITEM",
+        "translation": "Consigue"
+    },
+    {
+        "key": "QUEST_1_TITLE",
+        "translation": "Inicialización"
+    },
+    {
+        "key": "QUEST_1_PRE",
+        "translation": "¡Bienvenido {{username}} !\nTu iniciación en Hogwarts será matar una de esas horribles <npc id='11'>arañas</npc> que rondan por las cercanías del castillo.\n ¡Ten cuidado y lleva tu varita!"
+    },
+    {
+        "key": "QUEST_1_AFTER",
+        "translation": "¡Excelente! La próxima vez tendrás recompensa."
+    },
+    {
+        "key": "QUEST_2_TITLE",
+        "translation": "Invierno frío"
+    },
+    {
+        "key": "QUEST_2_PRE",
+        "translation": "{{username}}, necesitamos almacenar leña para poder mantener todas las hogueras encendidas durante el invierno. Ve al busque y tráeme un par."
+    },
+    {
+        "key": "QUEST_2_AFTER",
+        "translation": "¿Sólo me has traído esto? ... Bueno... Ya es algo."
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_1",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_2",
+        "translation": "Estoy deseando retomar las clases"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_3",
+        "translation": "Cuando vayas a usar los baños, recuerda que los cuadros te observan"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_4",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "RANDOM_STUDENT_PHRASE_5",
+        "translation": "¿Sabías que el que no deber ser nombrado estudió en este colegio?"
+    },
+    {
+        "key": "ITEM_1_NAME",
+        "translation": "Queso de cabra"
+    },
+    {
+        "key": "ITEM_1_DESCRIPTION",
+        "translation": "Hecho en el mejor caserío muggle"
+    },
+    {
+        "key": "ITEM_2_NAME",
+        "translation": "Colgante de Dermor"
+    },
+    {
+        "key": "ITEM_2_DESCRIPTION",
+        "translation": "No se me ocurre nada bueno"
+    },
+    {
+        "key": "ITEM_3_NAME",
+        "translation": "Varita de principiante"
+    },
+    {
+        "key": "ITEM_3_DESCRIPTION",
+        "translation": "La varita reglamentaria del centro"
+    },
+    {
+        "key": "ITEM_4_NAME",
+        "translation": "Fibra"
+    },
+    {
+        "key": "ITEM_4_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_5_NAME",
+        "translation": "Pieza de mecanismo"
+    },
+    {
+        "key": "ITEM_5_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_6_NAME",
+        "translation": "Llave desconocida"
+    },
+    {
+        "key": "ITEM_6_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_7_NAME",
+        "translation": "Bufanda de estudiante"
+    },
+    {
+        "key": "ITEM_7_DESCRIPTION",
+        "translation": "¿Qué habrá sido del resto?"
+    },
+    {
+        "key": "ITEM_8_NAME",
+        "translation": "Carne de araña"
+    },
+    {
+        "key": "ITEM_8_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_9_NAME",
+        "translation": "Manuscrito antiguo"
+    },
+    {
+        "key": "ITEM_9_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_10_NAME",
+        "translation": "Hoja de algo"
+    },
+    {
+        "key": "ITEM_10_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_11_NAME",
+        "translation": "Piel de animal"
+    },
+    {
+        "key": "ITEM_11_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_12_NAME",
+        "translation": "Manzana"
+    },
+    {
+        "key": "ITEM_12_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_13_NAME",
+        "translation": "Anillo simple"
+    },
+    {
+        "key": "ITEM_13_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_14_NAME",
+        "translation": "Antigua capa de maga"
+    },
+    {
+        "key": "ITEM_14_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_15_NAME",
+        "translation": "Antigua capa de mago"
+    },
+    {
+        "key": "ITEM_15_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_16_NAME",
+        "translation": "Platano"
+    },
+    {
+        "key": "ITEM_16_DESCRIPTION",
+        "translation": "No tiene mucho misterio"
+    },
+    {
+        "key": "ITEM_17_NAME",
+        "translation": "Mineral de Draconita"
+    },
+    {
+        "key": "ITEM_17_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_18_NAME",
+        "translation": "Cosa rara"
+    },
+    {
+        "key": "ITEM_18_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_19_NAME",
+        "translation": "Amuleto multicolor"
+    },
+    {
+        "key": "ITEM_19_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_20_NAME",
+        "translation": "Amuleto simple"
+    },
+    {
+        "key": "ITEM_20_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_21_NAME",
+        "translation": "Amuleto simple"
+    },
+    {
+        "key": "ITEM_21_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_22_NAME",
+        "translation": "Diamante rosa adulterado"
+    },
+    {
+        "key": "ITEM_22_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_23_NAME",
+        "translation": "Polvos mágicos"
+    },
+    {
+        "key": "ITEM_23_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_24_NAME",
+        "translation": "Guantes de estudiante"
+    },
+    {
+        "key": "ITEM_24_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_25_NAME",
+        "translation": "Diamante rosa normal"
+    },
+    {
+        "key": "ITEM_25_DESCRIPTION",
+        "translation": "Sín descripción"
+    },
+    {
+        "key": "ITEM_26_NAME",
+        "translation": "Madera"
+    },
+    {
+        "key": "ITEM_26_DESCRIPTION",
+        "translation": "Combustible para el fuego"
+    },
+    {
+        "key": "ITEM_27_NAME",
+        "translation": "Nimbus 2000"
+    },
+    {
+        "key": "ITEM_27_DESCRIPTION",
+        "translation": "Escoba voladora algo vieja"
+    },
+    {
+        "key": "SKILL_LUMOS_NAME",
+        "translation": "Lumos"
+    },
+    {
+        "key": "SKILL_LUMOS_DESCRIPTION",
+        "translation": "Genera un destello en el extremo de tu varita capaz de iluminar la más profunda de las oscuridades"
+    }
+]

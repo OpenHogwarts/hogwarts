@@ -6,6 +6,7 @@
 [Bb]uild
 [Ll]ibrary/
 [Bb]in/
+Logs/
 sysinfo.txt
 *.box
 *.box.swp
@@ -42,3 +43,5 @@ ehthumbs.db
 /Assets/Super Sampling (SSAA)
 /Assets/Camera Filter Pack
 /Assets/Ignored
+
+translation/

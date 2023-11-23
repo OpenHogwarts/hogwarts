@@ -68,6 +68,7 @@ public class NPCData {
 		Normal = 1,
 		Seller = 2,
         Quest = 3,
+        Talker = 4
     }
 
 	public void save () {
