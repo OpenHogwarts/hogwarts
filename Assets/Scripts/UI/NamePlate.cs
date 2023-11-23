@@ -16,7 +16,7 @@ public class NamePlate : MonoBehaviour {
 
 	void Start() {
 		gameObject.name = transform.parent.name;
-		transform.SetParent(GameObject.Find ("Canvas/Plates").transform);
+		//transform.SetParent(GameObject.Find ("Canvas/Plates").transform);
 	}
 
 	public void setName (string name, Color color) {

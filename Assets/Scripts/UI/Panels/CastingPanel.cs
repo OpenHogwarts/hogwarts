@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class CastingPanel : MonoBehaviour {
 
-	public static CastingPanel Instance;
-	public Text name;
+	private static CastingPanel _instance;
+	public static CastingPanel Instance => _instance ??= FindObjectOfType<CastingPanel>();
+    public Text name;
 	public Image bar;
 	private float skillTime = 10f;
 	private float curTime = 10f;
@@ -13,7 +14,7 @@ public class CastingPanel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Instance = this;
+		//Instance = this;
 	}
 	
 	// Update is called once per frame

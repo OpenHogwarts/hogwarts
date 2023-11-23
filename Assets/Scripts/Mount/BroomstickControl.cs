@@ -1,41 +1,43 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BroomstickControl : MonoBehaviour {
+public class BroomstickControl : MonoBehaviour
+{
+    public float curSpeed;
+    public float damping = 1f;
+    public float latSpeed;
+    public float maxSpeed = 10.0f;
 
-	public Rigidbody rigidbody;
-	public float curSpeed = 0f;
-    public float upSpeed = 0f;
-    public float latSpeed = 0f;
-	public float maxSpeed = 10.0f;
-	public float damping = 1f;
-	private Vector3 rotation;
-	private Vector3 targetVelocity;
+    public new Rigidbody rigidbody;
+    private Vector3 rotation;
+    private Vector3 targetVelocity;
+    public float upSpeed;
 
-	// Use this for initialization
-	void Start () {
-		rigidbody = GetComponent<Rigidbody> ();
-	}
+    // Use this for initialization
+    private void Start()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
-	void FixedUpdate () {
-		curSpeed = Mathf.Lerp(curSpeed, (Input.GetAxis ("Vertical"))*maxSpeed, 0.1f);
-        if (Input.GetKey("space"))
-            upSpeed = Mathf.Lerp(upSpeed, maxSpeed, 0.1f);
-        else
-            upSpeed = 0f;
+    private void FixedUpdate()
+    {
 
-        latSpeed = Mathf.Lerp(latSpeed, (Input.GetAxis("Horizontal")) * maxSpeed, 0.1f);
+        curSpeed = Mathf.Lerp(curSpeed, InputSystemAgent.FlyMove.z * maxSpeed, 0.1f);
+        upSpeed = Mathf.Lerp(upSpeed, InputSystemAgent.FlyMove.y * maxSpeed, 0.1f);
 
-
-        targetVelocity = new Vector3 (latSpeed, upSpeed, curSpeed);
-		targetVelocity = Camera.main.transform.TransformDirection (targetVelocity);
+        latSpeed = Mathf.Lerp(latSpeed, InputSystemAgent.FlyMove.x * maxSpeed, 0.1f);
 
 
-		rigidbody.velocity = targetVelocity;
-	}
+        targetVelocity = new Vector3(latSpeed, upSpeed, curSpeed);
+        targetVelocity = Camera.main.transform.TransformDirection(targetVelocity);
 
-	void Update(){
-		var rotation = Quaternion.LookRotation(transform.position - Vector3.Scale(Camera.main.transform.position, new Vector3(1, 0.99f, 1)));
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-	}
+
+        rigidbody.velocity = targetVelocity;
+    }
+
+    private void Update()
+    {
+        var rotation = Quaternion.LookRotation(transform.position -
+                                               Vector3.Scale(Camera.main.transform.position, new Vector3(1, 0.99f, 1)));
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+    }
 }

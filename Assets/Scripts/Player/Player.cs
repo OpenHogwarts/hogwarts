@@ -152,7 +152,10 @@ public class Player : Photon.MonoBehaviour {
     }
 
     public new string name;
-    public CharacterData characterData;
+    public CharacterData characterData { 
+        get; 
+        set; 
+    }
     private NPC _target;
     public NPC target {
         get {
@@ -288,13 +291,13 @@ public class Player : Photon.MonoBehaviour {
         this.health = this.maxHealth / 2;
         this.anim.SetBool("Dead", false);
 
-        transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+        transform.position = new(633.51f, 161.38f, 415.70f);//GameObject.Find("SpawnPoints/FirstJoin").transform.position;
         this.unfreeze();
     }
 
     public void Respawn()
     {
-        transform.position = GameObject.Find("SpawnPoints/FirstJoin").transform.position;
+        transform.position = new(633.51f, 161.38f, 415.70f);//GameObject.Find("SpawnPoints/FirstJoin").transform.position;
     }
 
     private void startHealthRegeneration()
