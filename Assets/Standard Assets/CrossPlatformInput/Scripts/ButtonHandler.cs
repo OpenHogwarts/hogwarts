@@ -1,16 +1,13 @@
-using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
     public class ButtonHandler : MonoBehaviour
     {
-
         public string Name;
 
-        void OnEnable()
+        private void OnEnable()
         {
-
         }
 
         public void SetDownState()
@@ -44,7 +41,6 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         public void Update()
         {
-
         }
     }
 }
