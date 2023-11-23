@@ -5,6 +5,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : Photon.MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class NetworkManager : Photon.MonoBehaviour
     void Start()
     {
         Instance = this;
+        SceneManager.sceneLoaded += (s, mode) =>
+        {
+            if (s.name == Menu.defaultLevel) spawnPlayer();
+        };
     }
 
     public static void validateGameVersion()
@@ -89,10 +94,10 @@ public class NetworkManager : Photon.MonoBehaviour
         PhotonNetwork.JoinRandomRoom();
         //Menu.Instance.showPanel("LoadingPanel");
     }
-    private void OnLevelWasLoaded(int level)
-    {
-        spawnPlayer();
-    }
+    //private void OnLevelWasLoaded(int level)
+    //{
+    //    spawnPlayer();
+    //}
     void OnJoinedRoom()
     {
 
